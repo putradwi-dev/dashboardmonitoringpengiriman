@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Monitoring Pengiriman & Titipan Stok PT. MBP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen pb-12 flex flex-col justify-between">
+
+    <div>
+        <!-- Read-Only Notice Banner -->
+        <div class="bg-indigo-900 text-indigo-100 px-4 py-2.5 text-xs sm:text-sm font-medium border-b border-indigo-800 no-print">
+            <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                    <span class="inline-flex items-center justify-center bg-indigo-800 text-indigo-200 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
+                        🔒 Read-Only
+                    </span>
+                    <span>Tampilan terbatas (Hanya Lihat). Anda tidak dapat mengubah data pada link ini.</span>
+                </div>
+                <button onclick="openShareModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
+                    🔗 Bagikan / Print PDF
+                </button>
+            </div>
+        </div>
+
+        <!-- Header Section -->
+        <header class="bg-gradient-to-r from-indigo-700 via-indigo-600 to-blue-600 text-white shadow-lg">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div>
+                        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2">
+                            📦 Sistem Monitoring Pengiriman & Titipan Stok PT. MBP
+                        </h1>
+                    </div>
+                    <div class="flex items-center gap-2 bg-indigo-800/50 backdrop-blur-md px-4 py-2 rounded-xl border border-indigo-500/30 text-xs font-medium self-start md:self-auto">
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Status Gudang Active</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-6xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
+
+            <!-- Summary Cards / Statistics Header -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Pesanan</p>
+                    <p class="text-2xl font-bold text-slate-800 mt-1">6 <span class="text-xs font-normal text-slate-500">Item</span></p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm border-l-4 border-l-red-500">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Terlambat</p>
+                    <p class="text-2xl font-bold text-red-600 mt-1">0 <span class="text-xs font-normal text-slate-500">Item</span></p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm border-l-4 border-l-amber-500">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Packing Kayu</p>
+                    <p class="text-2xl font-bold text-amber-600 mt-1">1 <span class="text-xs font-normal text-slate-500">Item</span></p>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm border-l-4 border-l-emerald-500">
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Unit Stok</p>
+                    <p class="text-2xl font-bold text-emerald-600 mt-1">116 <span class="text-xs font-normal text-slate-500">Unit</span></p>
+                </div>
+            </div>
+
+            <!-- Search & Filter Controls (No Print) -->
+            <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between no-print">
+                <div class="relative w-full md:w-80">
+                    <input type="text" id="searchInput" onkeyup="filterItems()" placeholder="Cari nama barang / no. pesanan..." 
+                           class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all">
+                    <svg class="w-4 h-4 text-slate-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+                    <button onclick="filterBy('all')" class="filter-btn bg-indigo-600 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition-all whitespace-nowrap">Semua Data</button>
+                    <button onclick="filterBy('terlambat')" class="filter-btn bg-slate-100 text-slate-600 hover:bg-red-50 hover:text-red-600 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap">⚠️ Terlambat Only</button>
+                    <button onclick="filterBy('kayu')" class="filter-btn bg-slate-100 text-slate-600 hover:bg-amber-50 hover:text-amber-700 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap">🪵 Kayu Only</button>
+                </div>
+            </div>
+
+            <!-- SECTION 1: BELUM KIRIM -->
+            <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-slate-900 text-white px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-amber-500 text-white rounded-lg font-bold text-lg leading-none">⏳</div>
+                        <div>
+                            <h2 class="font-bold text-lg tracking-wide uppercase">BELUM KIRIM</h2>
+                            <p class="text-slate-400 text-xs">Daftar pesanan yang belum dikirimkan ke ekspedisi</p>
+                        </div>
+                    </div>
+                    <span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
+                        Pending Delivery
+                    </span>
+                </div>
+
+                <div class="p-4 sm:p-6 space-y-8">
+
+                    <!-- GRUP: SHOPE MT 14/10 -->
+                    <div class="data-group space-y-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-indigo-600"></span>
+                            <h3 class="font-bold text-indigo-900 text-sm sm:text-base uppercase tracking-wide">SHOPE MT 14/10</h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full font-medium border border-indigo-100">2 Pesanan</span>
+                        </div>
+
+                        <div class="hidden md:block overflow-x-auto rounded-xl border border-slate-200">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200 uppercase text-xs">
+                                    <tr>
+                                        <th class="py-3 px-4 w-1/3">Nama Barang</th>
+                                        <th class="py-3 px-4 w-1/3">Nomor Pesanan</th>
+                                        <th class="py-3 px-4">Ekspedisi</th>
+                                        <th class="py-3 px-4">Status / Catatan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    <tr class="item-row hover:bg-slate-50 transition-colors" data-status="normal" data-search="ysn st6 & gm dz 400 261014juqp24f0 j&t">
+                                        <td class="py-3 px-4 font-semibold text-slate-900">Ysn st6 & gm dz 400</td>
+                                        <td class="py-3 px-4 font-mono text-xs text-slate-600">261014JUQP24F0</td>
+                                        <td class="py-3 px-4"><span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-md text-xs font-bold uppercase border border-blue-100">J&T</span></td>
+                                        <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                    </tr>
+                                    <tr class="item-row hover:bg-slate-50 transition-colors" data-status="normal" data-search="cf 310 261014jymxdmhd jne">
+                                        <td class="py-3 px-4 font-semibold text-slate-900">Cf 310</td>
+                                        <td class="py-3 px-4 font-mono text-xs text-slate-600">261014JYMXDMHD</td>
+                                        <td class="py-3 px-4"><span class="bg-orange-50 text-orange-700 px-2.5 py-1 rounded-md text-xs font-bold uppercase border border-orange-100">JNE</span></td>
+                                        <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Mobile Card View for SHOPE MT 14/10 -->
+                        <div class="grid grid-cols-1 gap-3 md:hidden">
+                            <div class="item-row bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2" data-status="normal" data-search="ysn st6 & gm dz 400 261014juqp24f0 j&t">
+                                <div class="flex justify-between items-start">
+                                    <span class="font-bold text-slate-900 text-base">Ysn st6 & gm dz 400</span>
+                                    <span class="bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-xs font-bold uppercase border border-blue-100">J&T</span>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block uppercase font-medium">Nomor Pesanan</span>
+                                    <span class="font-mono text-xs text-slate-700 bg-white px-2 py-1 rounded border border-slate-200 block mt-0.5 select-all">261014JUQP24F0</span>
+                                </div>
+                            </div>
+
+                            <div class="item-row bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2" data-status="normal" data-search="cf 310 261014jymxdmhd jne">
+                                <div class="flex justify-between items-start">
+                                    <span class="font-bold text-slate-900 text-base">Cf 310</span>
+                                    <span class="bg-orange-50 text-orange-700 px-2 py-0.5 rounded text-xs font-bold uppercase border border-orange-100">JNE</span>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block uppercase font-medium">Nomor Pesanan</span>
+                                    <span class="font-mono text-xs text-slate-700 bg-white px-2 py-1 rounded border border-slate-200 block mt-0.5 select-all">261014JYMXDMHD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GRUP: SHOPE MT 15/10 -->
+                    <div class="data-group space-y-3 pt-4 border-t border-slate-100">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-indigo-600"></span>
+                            <h3 class="font-bold text-indigo-900 text-sm sm:text-base uppercase tracking-wide">SHOPE MT 15/10</h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full font-medium border border-indigo-100">3 Pesanan</span>
+                        </div>
+
+                        <div class="hidden md:block overflow-x-auto rounded-xl border border-slate-200">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200 uppercase text-xs">
+                                    <tr>
+                                        <th class="py-3 px-4 w-1/3">Nama Barang</th>
+                                        <th class="py-3 px-4 w-1/3">Nomor Pesanan</th>
+                                        <th class="py-3 px-4">Ekspedisi</th>
+                                        <th class="py-3 px-4">Status / Catatan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    <tr class="item-row hover:bg-slate-50 transition-colors" data-status="normal" data-search="d8sm 261015n2htg2s2 j&t">
+                                        <td class="py-3 px-4 font-semibold text-slate-900">D8sm</td>
+                                        <td class="py-3 px-4 font-mono text-xs text-slate-600">261015N2HTG2S2</td>
+                                        <td class="py-3 px-4"><span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-md text-xs font-bold uppercase border border-blue-100">J&T</span></td>
+                                        <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                    </tr>
+                                    <tr class="item-row hover:bg-slate-50 transition-colors" data-status="normal" data-search="101g 261015n4v7u1h3 j&t">
+                                        <td class="py-3 px-4 font-semibold text-slate-900">101g</td>
+                                        <td class="py-3 px-4 font-mono text-xs text-slate-600">261015N4V7U1H3</td>
+                                        <td class="py-3 px-4"><span class="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-md text-xs font-bold uppercase border border-blue-100">J&T</span></td>
+                                        <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                    </tr>
+                                    <tr class="item-row hover:bg-slate-50 transition-colors" data-status="normal" data-search="ab 208 261015nf56gmee jne">
+                                        <td class="py-3 px-4 font-semibold text-slate-900">Ab 208</td>
+                                        <td class="py-3 px-4 font-mono text-xs text-slate-600">261015NF56GMEE</td>
+                                        <td class="py-3 px-4"><span class="bg-orange-50 text-orange-700 px-2.5 py-1 rounded-md text-xs font-bold uppercase border border-orange-100">JNE</span></td>
+                                        <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Mobile Card View for SHOPE MT 15/10 -->
+                        <div class="grid grid-cols-1 gap-3 md:hidden">
+                            <div class="item-row bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2" data-status="normal" data-search="d8sm 261015n2htg2s2 j&t">
+                                <div class="flex justify-between items-start">
+                                    <span class="font-bold text-slate-900 text-base">D8sm</span>
+                                    <span class="bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-xs font-bold uppercase border border-blue-100">J&T</span>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block uppercase font-medium">Nomor Pesanan</span>
+                                    <span class="font-mono text-xs text-slate-700 bg-white px-2 py-1 rounded border border-slate-200 block mt-0.5 select-all">261015N2HTG2S2</span>
+                                </div>
+                            </div>
+
+                            <div class="item-row bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2" data-status="normal" data-search="101g 261015n4v7u1h3 j&t">
+                                <div class="flex justify-between items-start">
+                                    <span class="font-bold text-slate-900 text-base">101g</span>
+                                    <span class="bg-blue-50 text-blue-700 px-2 py-0.5 rounded text-xs font-bold uppercase border border-blue-100">J&T</span>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block uppercase font-medium">Nomor Pesanan</span>
+                                    <span class="font-mono text-xs text-slate-700 bg-white px-2 py-1 rounded border border-slate-200 block mt-0.5 select-all">261015N4V7U1H3</span>
+                                </div>
+                            </div>
+
+                            <div class="item-row bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2" data-status="normal" data-search="ab 208 261015nf56gmee jne">
+                                <div class="flex justify-between items-start">
+                                    <span class="font-bold text-slate-900 text-base">Ab 208</span>
+                                    <span class="bg-orange-50 text-orange-700 px-2 py-0.5 rounded text-xs font-bold uppercase border border-orange-100">JNE</span>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block uppercase font-medium">Nomor Pesanan</span>
+                                    <span class="font-mono text-xs text-slate-700 bg-white px-2 py-1 rounded border border-slate-200 block mt-0.5 select-all">261015NF56GMEE</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GRUP: SHOPE ADT 15/10 -->
+                    <div class="data-group space-y-3 pt-4 border-t border-slate-100">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-indigo-600"></span>
+                            <h3 class="font-bold text-indigo-900 text-sm sm:text-base uppercase tracking-wide">SHOPE ADT 15/10</h3>
+                            <span class="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full font-medium border border-indigo-100">1 Pesanan</span>
+                        </div>
+
+                        <div class="hidden md:block overflow-x-auto rounded-xl border border-slate-200">
+                            <table class="w-full text-left text-sm">
+                                <thead class="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200 uppercase text-xs">
+                                    <tr>
+                                        <th class="py-3 px-4 w-1/3">Nama Barang</th>
+                                        <th class="py-3 px-4 w-1/3">Nomor Pesanan</th>
+                                        <th class="py-3 px-4">Ekspedisi</th>
+                                        <th class="py-3 px-4">Status / Catatan</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-100">
+                                    <tr class="item-row hover:bg-slate-50 transition-colors" data-status="kayu" data-search="loyang 3cm chefprimax 261015n41ffxqd jne">
+                                        <td class="py-3 px-4 font-semibold text-slate-900">Loyang 3cm chefprimax</td>
+                                        <td class="py-3 px-4 font-mono text-xs text-slate-600">261015N41FFXQD</td>
+                                        <td class="py-3 px-4"><span class="bg-orange-50 text-orange-700 px-2.5 py-1 rounded-md text-xs font-bold uppercase border border-orange-100">JNE</span></td>
+                                        <td class="py-3 px-4"><span class="bg-amber-100 text-amber-800 text-xs px-2.5 py-1 rounded-md font-semibold border border-amber-200">🪵 kayu</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Mobile Card View for SHOPE ADT 15/10 -->
+                        <div class="grid grid-cols-1 gap-3 md:hidden">
+                            <div class="item-row bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2" data-status="kayu" data-search="loyang 3cm chefprimax 261015n41ffxqd jne">
+                                <div class="flex justify-between items-start">
+                                    <span class="font-bold text-slate-900 text-base">Loyang 3cm chefprimax</span>
+                                    <span class="bg-orange-50 text-orange-700 px-2 py-0.5 rounded text-xs font-bold uppercase border border-orange-100">JNE</span>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-slate-400 block uppercase font-medium">Nomor Pesanan</span>
+                                    <span class="font-mono text-xs text-slate-700 bg-white px-2 py-1 rounded border border-slate-200 block mt-0.5 select-all">261015N41FFXQD</span>
+                                </div>
+                                <div class="pt-2 border-t border-slate-200">
+                                    <span class="bg-amber-100 text-amber-800 text-xs px-2 py-0.5 rounded font-semibold border border-amber-200">🪵 kayu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SECTION 2: STOK TANGERANG TITIP DI PT. MBP -->
+            <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div class="bg-slate-900 text-white px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                    <div class="flex items-center gap-3">
+                        <div class="p-2 bg-emerald-500 text-white rounded-lg font-bold text-lg leading-none">🏢</div>
+                        <div>
+                            <h2 class="font-bold text-lg tracking-wide uppercase">STOK TANGERANG TITIP DI PT. MBP</h2>
+                            <p class="text-slate-400 text-xs">Inventaris fisik barang yang saat ini tersedia di gudang PT. MBP</p>
+                        </div>
+                    </div>
+                    <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
+                        In Stock
+                    </span>
+                </div>
+
+                <div class="p-4 sm:p-6">
+                    <div class="overflow-x-auto rounded-xl border border-slate-200">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 text-xs uppercase tracking-wider">
+                                    <th class="py-3.5 px-4 font-bold">Nama Barang</th>
+                                    <th class="py-3.5 px-4 font-bold text-center w-28">Jumlah (Unit)</th>
+                                    <th class="py-3.5 px-4 font-bold">Catatan / Status Khusus</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 text-sm">
+                                <tr class="item-row hover:bg-slate-50/80 transition-colors" data-status="normal" data-search="gm dh3p perlu di perbaiki">
+                                    <td class="py-3 px-4 font-semibold text-slate-800">Gm dh3p</td>
+                                    <td class="py-3 px-4 text-center"><span class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-slate-700 inline-block">1</span></td>
+                                    <td class="py-3 px-4"><span class="text-red-700 font-bold bg-red-50 px-2.5 py-1 rounded-md text-xs border border-red-200">🛠️ Perlu di perbaiki</span></td>
+                                </tr>
+                                <tr class="item-row hover:bg-slate-50/80 transition-colors" data-status="normal" data-search="wk 120">
+                                    <td class="py-3 px-4 font-medium text-slate-800">Wk 120</td>
+                                    <td class="py-3 px-4 text-center"><span class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-slate-700 inline-block">2</span></td>
+                                    <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                </tr>
+                                <tr class="item-row hover:bg-slate-50/80 transition-colors" data-status="normal" data-search="wk 150">
+                                    <td class="py-3 px-4 font-medium text-slate-800">Wk 150</td>
+                                    <td class="py-3 px-4 text-center"><span class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-slate-700 inline-block">1</span></td>
+                                    <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                </tr>
+                                <tr class="item-row hover:bg-slate-50/80 transition-colors" data-status="normal" data-search="xs 110">
+                                    <td class="py-3 px-4 font-medium text-slate-800">Xs 110</td>
+                                    <td class="py-3 px-4 text-center"><span class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-slate-700 inline-block">1</span></td>
+                                    <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                </tr>
+                                <tr class="item-row hover:bg-slate-50/80 transition-colors" data-status="normal" data-search="loyang 3cm gomesin 91">
+                                    <td class="py-3 px-4 font-medium text-slate-800">Loyang 3cm gomesin</td>
+                                    <td class="py-3 px-4 text-center"><span class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-slate-700 inline-block">91</span></td>
+                                    <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                </tr>
+                                <tr class="item-row hover:bg-amber-50/40 transition-colors bg-amber-50/20" data-status="normal" data-search="loyang 3cm chefprimax 12 utamakan habiskan ini">
+                                    <td class="py-3 px-4 font-bold text-slate-900">Loyang 3cm chefprimax</td>
+                                    <td class="py-3 px-4 text-center"><span class="bg-amber-100 text-amber-900 px-3 py-1 rounded-lg font-extrabold inline-block border border-amber-200">12</span></td>
+                                    <td class="py-3 px-4"><span class="text-amber-900 font-extrabold bg-amber-100 px-2.5 py-1 rounded-md text-xs border border-amber-300">🔥 Utamakan habiskan ini</span></td>
+                                </tr>
+                                <tr class="item-row hover:bg-slate-50/80 transition-colors" data-status="normal" data-search="de 08a">
+                                    <td class="py-3 px-4 font-medium text-slate-800">De 08a</td>
+                                    <td class="py-3 px-4 text-center"><span class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-slate-700 inline-block">1</span></td>
+                                    <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                </tr>
+                                <tr class="item-row hover:bg-slate-50/80 transition-colors" data-status="normal" data-search="ruby 200">
+                                    <td class="py-3 px-4 font-medium text-slate-800">Ruby 200</td>
+                                    <td class="py-3 px-4 text-center"><span class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-slate-700 inline-block">2</span></td>
+                                    <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                </tr>
+                                <tr class="item-row hover:bg-slate-50/80 transition-colors" data-status="normal" data-search="ruby 240">
+                                    <td class="py-3 px-4 font-medium text-slate-800">Ruby 240</td>
+                                    <td class="py-3 px-4 text-center"><span class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-slate-700 inline-block">1</span></td>
+                                    <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                </tr>
+                                <tr class="item-row hover:bg-slate-50/80 transition-colors" data-status="normal" data-search="gsp 650">
+                                    <td class="py-3 px-4 font-medium text-slate-800">Gsp 650</td>
+                                    <td class="py-3 px-4 text-center"><span class="bg-slate-100 px-3 py-1 rounded-lg font-bold text-slate-700 inline-block">1</span></td>
+                                    <td class="py-3 px-4 text-slate-400 font-mono text-xs">-</td>
+                                </tr>
+                                <tr class="item-row hover:bg-red-50/40 transition-colors bg-red-50/20" data-status="normal" data-search="ab 108 3 13/10 pt mbp belum bayar 1 unit">
+                                    <td class="py-3 px-4 font-bold text-slate-900">Ab 108</td>
+                                    <td class="py-3 px-4 text-center"><span class="bg-red-100 text-red-900 px-3 py-1 rounded-lg font-extrabold inline-block border border-red-200">3</span></td>
+                                    <td class="py-3 px-4"><span class="text-red-700 font-bold bg-red-100 px-2.5 py-1 rounded-md text-xs border border-red-200">💳 13/10 PT. MBP belum bayar 1 unit</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal Bagikan Link & Export -->
+    <div id="shareModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden no-print">
+        <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4 relative">
+            <button onclick="closeShareModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg font-bold">✕</button>
+            <div class="flex items-center gap-3">
+                <div class="p-3 bg-indigo-100 text-indigo-700 rounded-xl text-xl">🔗</div>
+                <div>
+                    <h3 class="font-bold text-slate-800 text-lg">Bagikan Dashboard</h3>
+                    <p class="text-xs text-slate-500">Kirim tautan ini ke rekan kerja (Hanya Lihat)</p>
+                </div>
+            </div>
+
+            <div class="space-y-2 pt-2">
+                <label class="text-xs font-semibold text-slate-600 block">Link Akses Read-Only:</label>
+                <div class="flex items-center gap-2">
+                    <input type="text" id="shareUrlInput" readonly class="w-full bg-slate-100 border border-slate-300 rounded-lg px-3 py-2 text-xs font-mono text-slate-700 focus:outline-none select-all">
+                    <button onclick="copyShareUrl()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-3 py-2 rounded-lg transition-all whitespace-nowrap">
+                        Salin Link
+                    </button>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-100 pt-3 space-y-2">
+                <p class="text-xs font-semibold text-slate-600">Alternatif Cetak / Dokumentasi:</p>
+                <button onclick="window.print()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold py-2.5 rounded-lg border border-slate-300 flex items-center justify-center gap-2 transition-all">
+                    🖨️ Simpan sebagai PDF / Cetak Laporan
+                </button>
+            </div>
+
+            <p id="copyAlert" class="text-xs text-emerald-600 font-bold text-center hidden pt-1">
+                ✓ Link berhasil disalin ke clipboard!
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto px-4 mt-12 text-center text-slate-500 text-xs">
+        <p>Sistem Monitoring Pengiriman & Titipan Stok &copy; 2026 PT. MBP</p>
+    </footer>
+
+    <script>
+        function openShareModal() {
+            document.getElementById('shareUrlInput').value = window.location.href;
+            document.getElementById('shareModal').classList.remove('hidden');
+        }
+
+        function closeShareModal() {
+            document.getElementById('shareModal').classList.add('hidden');
+            document.getElementById('copyAlert').classList.add('hidden');
+        }
+
+        function copyShareUrl() {
+            const input = document.getElementById('shareUrlInput');
+            input.select();
+            document.execCommand('copy');
+            const copyAlert = document.getElementById('copyAlert');
+            copyAlert.classList.remove('hidden');
+            setTimeout(() => {
+                copyAlert.classList.add('hidden');
+            }, 3000);
+        }
+
+        function filterItems() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('.item-row');
+
+            rows.forEach(row => {
+                const searchData = row.getAttribute('data-search') || '';
+                if (searchData.toLowerCase().includes(query)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function filterBy(type) {
+            const rows = document.querySelectorAll('.item-row');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            filterBtns.forEach(btn => {
+                btn.classList.remove('bg-indigo-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+
+            event.target.classList.remove('bg-slate-100', 'text-slate-600');
+            event.target.classList.add('bg-indigo-600', 'text-white');
+
+            rows.forEach(row => {
+                const status = row.getAttribute('data-status') || '';
+                if (type === 'all') {
+                    row.style.display = '';
+                } else if (type === 'terlambat') {
+                    row.style.display = status.includes('terlambat') ? '' : 'none';
+                } else if (type === 'kayu') {
+                    row.style.display = status.includes('kayu') ? '' : 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
