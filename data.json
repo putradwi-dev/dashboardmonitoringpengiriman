@@ -6,7 +6,20 @@
     },
     {
       "grup": "SHOPE MT 19/10",
-      "items": []
+      "items": [
+        {
+          "nama": "Ol ggr 60f",
+          "no_pesanan": "261017UE92T8U4",
+          "ekspedisi": "J&T",
+          "status": "normal"
+        },
+        {
+          "nama": "Ct 04",
+          "no_pesanan": "261017UG7RDMCE",
+          "ekspedisi": "J&T",
+          "status": "normal"
+        }
+      ]
     }
   ],
   "stok_tangerang": [
