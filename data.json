@@ -1,0 +1,71 @@
+{
+  "belum_kirim": [
+    {
+      "grup": "MT 17/10",
+      "items": [
+        {
+          "nama": "Sc d8h",
+          "no_pesanan": "586635341813155443",
+          "ekspedisi": "J&T",
+          "status": "normal"
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE MT 16/10",
+      "items": [
+        {
+          "nama": "Dh1p hitam",
+          "no_pesanan": "261016R0MBTQ1E",
+          "ekspedisi": "JNE",
+          "status": "kayu"
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE MT 17/10",
+      "items": [
+        {
+          "nama": "Sc d8h",
+          "no_pesanan": "261016RJSJEC8H",
+          "ekspedisi": "JNE",
+          "status": "normal"
+        },
+        {
+          "nama": "Ab 318",
+          "no_pesanan": "261016RRHUXVJ3",
+          "ekspedisi": "JNE",
+          "status": "normal"
+        },
+        {
+          "nama": "Et 5015",
+          "no_pesanan": "261016S1D8D68P",
+          "ekspedisi": "J&T",
+          "status": "normal"
+        },
+        {
+          "nama": "D8sm",
+          "no_pesanan": "261016S09THDAP",
+          "ekspedisi": "J&T",
+          "status": "kayu"
+        }
+      ]
+    }
+  ],
+  "stok_tangerang": [
+    { "nama": "Gm dh3p", "jumlah": 1, "catatan": "🛠️ Perlu di perbaiki", "tipe": "warning" },
+    { "nama": "Wk 120", "jumlah": 2, "catatan": "-", "tipe": "normal" },
+    { "nama": "Wk 150", "jumlah": 1, "catatan": "-", "tipe": "normal" },
+    { "nama": "Xs 110", "jumlah": 1, "catatan": "-", "tipe": "normal" },
+    { "nama": "Loyang 3cm gomesin", "jumlah": 91, "catatan": "-", "tipe": "normal" },
+    { "nama": "Loyang 3cm chefprimax", "jumlah": 12, "catatan": "🔥 Utamakan habiskan ini", "tipe": "priority" },
+    { "nama": "De 08a", "jumlah": 1, "catatan": "-", "tipe": "normal" },
+    { "nama": "Ruby 200", "jumlah": 2, "catatan": "-", "tipe": "normal" },
+    { "nama": "Ruby 240", "jumlah": 1, "catatan": "-", "tipe": "normal" },
+    { "nama": "Gsp 650", "jumlah": 1, "catatan": "-", "tipe": "normal" },
+    { "nama": "Ab 108", "jumlah": 5, "catatan": "-", "tipe": "normal" },
+    { "nama": "Ab 208", "jumlah": 2, "catatan": "-", "tipe": "normal" },
+    { "nama": "Cf 310", "jumlah": 1, "catatan": "-", "tipe": "normal" },
+    { "nama": "Ab 318", "jumlah": 1, "catatan": "-", "tipe": "normal" }
+  ]
+}
