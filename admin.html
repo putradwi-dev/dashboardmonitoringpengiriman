@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Input Data - Dashboard PT. MBP</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-16">
+
+    <!-- Header Admin -->
+    <header class="bg-amber-950 text-amber-50 shadow-md">
+        <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <span class="text-xl">⚙️</span>
+                <h1 class="font-extrabold text-lg sm:text-xl">Admin Panel Input Data</h1>
+            </div>
+            <a href="index.html" target="_blank" class="text-xs bg-amber-800 hover:bg-amber-700 text-amber-100 px-3 py-1.5 rounded-lg transition-all font-semibold border border-amber-700/50">
+                👁️ Lihat Website Utama ↗
+            </a>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 mt-6 space-y-6">
+
+        <!-- Pengaturan GitHub Token & Repo (Disimpan di Browser LocalStorage) -->
+        <div class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
+                <h2 class="font-bold text-stone-800 flex items-center gap-2">
+                    🔑 Pengaturan Kunci Akses (GitHub Token)
+                </h2>
+                <span id="configStatus" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-red-100 text-red-700">Belum Terhubung</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">Username GitHub:</label>
+                    <input type="text" id="ghUsername" placeholder="Contoh: putradwi-dev" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">Nama Repository:</label>
+                    <input type="text" id="ghRepo" placeholder="Contoh: dashboard-mbp" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">GitHub Personal Access Token (PAT):</label>
+                    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                </div>
+            </div>
+            <div class="flex justify-between items-center pt-1">
+                <p class="text-[11px] text-stone-400">*Token ini disimpan dengan aman di penyimpanan lokal browser HP/Laptop Anda saja.</p>
+                <button onclick="saveConfig()" class="bg-stone-800 hover:bg-stone-900 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all shadow-sm">
+                    💾 Simpan Pengaturan Token
+                </button>
+            </div>
+        </div>
+
+        <!-- Tombol Aksi Utama -->
+        <div class="flex flex-wrap items-center justify-between gap-3 bg-amber-100/60 p-4 rounded-2xl border border-amber-200">
+            <button onclick="loadFromGitHub()" class="bg-amber-800 hover:bg-amber-900 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition-all flex items-center gap-2 shadow-sm">
+                🔄 Muat Data Terbaru dari GitHub
+            </button>
+            <button onclick="saveToGitHub()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition-all flex items-center gap-2 shadow-md">
+                🚀 SIMPAN & UPDATE KE WEBSITE (INDEX.HTML)
+            </button>
+        </div>
+
+        <!-- SECTION 1: EDIT KATEGORI BELUM KIRIM -->
+        <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
+                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base">
+                    ⏳ 1. Data Pesanan Belum Kirim
+                </h2>
+                <button onclick="addBelumKirimGroup()" class="bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3 py-1.5 rounded-lg text-xs transition-all">
+                    + Tambah Kelompok / Grup Baru
+                </button>
+            </div>
+
+            <div id="belumKirimContainer" class="space-y-6">
+                <!-- Form Grup Belum Kirim akan dirender secara dinamis -->
+            </div>
+        </section>
+
+        <!-- SECTION 2: EDIT STOK TANGERANG -->
+        <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
+                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base">
+                    🏢 2. Data Stok Tangerang Titip di PT. MBG
+                </h2>
+                <button onclick="addStokItem()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold px-3 py-1.5 rounded-lg text-xs transition-all">
+                    + Tambah Item Barang Stok
+                </button>
+            </div>
+
+            <div class="overflow-x-auto rounded-xl border border-amber-100">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-amber-100">
+                        <tr>
+                            <th class="py-3 px-3 w-1/3">Nama Barang</th>
+                            <th class="py-3 px-3 w-24">Jumlah (Unit)</th>
+                            <th class="py-3 px-3">Tipe / Status Khusus</th>
+                            <th class="py-3 px-3">Teks Catatan Khusus</th>
+                            <th class="py-3 px-3 text-center w-16">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stokContainer" class="divide-y divide-amber-50">
+                        <!-- Items Stok dirender secara dinamis -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Global State Data -->
+    <script>
+        let currentData = {
+            belum_kirim: [],
+            stok_tangerang: []
+        };
+        let currentSha = "";
+
+        // Inisialisasi Pengaturan Token saat Halaman Dibuka
+        window.onload = function() {
+            document.getElementById('ghUsername').value = localStorage.getItem('mbp_gh_user') || '';
+            document.getElementById('ghRepo').value = localStorage.getItem('mbp_gh_repo') || '';
+            document.getElementById('ghToken').value = localStorage.getItem('mbp_gh_token') || '';
+            
+            checkConfigStatus();
+            if (localStorage.getItem('mbp_gh_token')) {
+                loadFromGitHub();
+            }
+        };
+
+        function saveConfig() {
+            localStorage.setItem('mbp_gh_user', document.getElementById('ghUsername').value.trim());
+            localStorage.setItem('mbp_gh_repo', document.getElementById('ghRepo').value.trim());
+            localStorage.setItem('mbp_gh_token', document.getElementById('ghToken').value.trim());
+            checkConfigStatus();
+            alert('✓ Pengaturan Token berhasil disimpan di browser!');
+            loadFromGitHub();
+        }
+
+        function checkConfigStatus() {
+            const token = localStorage.getItem('mbp_gh_token');
+            const user = localStorage.getItem('mbp_gh_user');
+            const repo = localStorage.getItem('mbp_gh_repo');
+            const statusEl = document.getElementById('configStatus');
+
+            if (token && user && repo) {
+                statusEl.innerText = "✓ Kunci Akses Dikonfigurasi";
+                statusEl.className = "text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800";
+            } else {
+                statusEl.innerText = "⚠️ Belum Terhubung";
+                statusEl.className = "text-xs font-semibold px-2.5 py-0.5 rounded-full bg-red-100 text-red-700";
+            }
+        }
+
+        // Fetch Data Langsung dari GitHub API
+        async function loadFromGitHub() {
+            const user = localStorage.getItem('mbp_gh_user');
+            const repo = localStorage.getItem('mbp_gh_repo');
+            const token = localStorage.getItem('mbp_gh_token');
+
+            if (!user || !repo || !token) {
+                alert('Silakan lengkapi dan simpan Pengaturan Token terlebih dahulu.');
+                return;
+            }
+
+            try {
+                const url = `https://api.github.com/repos/${user}/${repo}/contents/data.json`;
+                const response = await fetch(url, {
+                    headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+                });
+
+                if (!response.ok) throw new Error("Gagal mengambil data dari GitHub. Periksa kembali Username/Repo/Token Anda.");
+
+                const resData = await response.json();
+                currentSha = resData.sha; // Simpan SHA file untuk update nanti
+                
+                // Decode base64 utf-8
+                const jsonText = decodeURIComponent(escape(atob(resData.content)));
+                currentData = JSON.parse(jsonText);
+
+                renderAllForms();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        // Render Tampilan Form berdasarkan State currentData
+        function renderAllForms() {
+            renderBelumKirim();
+            renderStok();
+        }
+
+        function renderBelumKirim() {
+            const container = document.getElementById('belumKirimContainer');
+            container.innerHTML = '';
+
+            (currentData.belum_kirim || []).forEach((group, gIdx) => {
+                const gDiv = document.createElement('div');
+                gDiv.className = "bg-[#fdfbf7] p-4 rounded-xl border border-amber-200/80 space-y-3";
+
+                let itemsHtml = '';
+                group.items.forEach((item, iIdx) => {
+                    itemsHtml += `
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 items-center bg-white p-2.5 rounded-lg border border-amber-100 shadow-sm">
+                            <div class="sm:col-span-4">
+                                <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">Nama Barang</label>
+                                <input type="text" value="${item.nama}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1 text-xs font-semibold text-stone-800">
+                            </div>
+                            <div class="sm:col-span-4">
+                                <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">No. Pesanan</label>
+                                <input type="text" value="${item.no_pesanan}" onchange="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1 text-xs font-mono text-stone-700">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">Ekspedisi</label>
+                                <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1 text-xs font-bold text-stone-800">
+                                    <option value="JNE" ${item.ekspedisi === 'JNE' ? 'selected' : ''}>JNE</option>
+                                    <option value="J&T" ${item.ekspedisi === 'J&T' ? 'selected' : ''}>J&T</option>
+                                    <option value="SICEPAT" ${item.ekspedisi === 'SICEPAT' ? 'selected' : ''}>SICEPAT</option>
+                                    <option value="LAINNYA" ${(!['JNE','J&T','SICEPAT'].includes(item.ekspedisi)) ? 'selected' : ''}>LAINNYA</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-1">
+                                <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">Status</label>
+                                <select onchange="updateItemStatus(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-1 py-1 text-xs font-semibold text-stone-800">
+                                    <option value="normal" ${item.status === 'normal' ? 'selected' : ''}>Normal</option>
+                                    <option value="kayu" ${item.status === 'kayu' ? 'selected' : ''}>🪵 Kayu</option>
+                                    <option value="terlambat" ${item.status === 'terlambat' ? 'selected' : ''}>⚠️ Terlambat</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-1 text-center">
+                                <button onclick="deleteBelumKirimItem(${gIdx}, ${iIdx})" class="text-red-600 hover:text-red-800 text-xs font-bold p-1">🗑️ Hapus</button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                gDiv.innerHTML = `
+                    <div class="flex items-center justify-between pb-2 border-b border-amber-200/60">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-amber-700"></span>
+                            <input type="text" value="${group.grup}" onchange="updateGroupName(${gIdx}, this.value)" class="font-bold text-amber-950 text-sm bg-white border border-amber-200 rounded px-2 py-1 uppercase tracking-wide">
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button onclick="addBelumKirimItem(${gIdx})" class="bg-amber-800 text-white font-bold px-2.5 py-1 rounded text-xs hover:bg-amber-900 transition-all">+ Tambah Pesanan</button>
+                            <button onclick="deleteGroup(${gIdx})" class="bg-red-100 text-red-700 font-bold px-2 py-1 rounded text-xs hover:bg-red-200 transition-all">Hapus Kelompok</button>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        ${itemsHtml}
+                    </div>
+                `;
+
+                container.appendChild(gDiv);
+            });
+        }
+
+        function renderStok() {
+            const container = document.getElementById('stokContainer');
+            container.innerHTML = '';
+
+            (currentData.stok_tangerang || []).forEach((item, idx) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-[#faf7f2]";
+                tr.innerHTML = `
+                    <td class="py-2 px-3">
+                        <input type="text" value="${item.nama}" onchange="updateStokNama(${idx}, this.value)" class="w-full bg-[#fdfbf7] border border-stone-200 rounded px-2 py-1 font-semibold text-stone-800">
+                    </td>
+                    <td class="py-2 px-3">
+                        <input type="number" value="${item.jumlah}" onchange="updateStokJumlah(${idx}, this.value)" class="w-20 bg-[#fdfbf7] border border-stone-200 rounded px-2 py-1 font-bold text-center text-stone-800">
+                    </td>
+                    <td class="py-2 px-3">
+                        <select onchange="updateStokTipe(${idx}, this.value)" class="w-full bg-[#fdfbf7] border border-stone-200 rounded px-2 py-1 font-semibold">
+                            <option value="normal" ${item.tipe === 'normal' ? 'selected' : ''}>Normal (-)</option>
+                            <option value="warning" ${item.tipe === 'warning' ? 'selected' : ''}>🛠️ Perlu diperbaiki</option>
+                            <option value="priority" ${item.tipe === 'priority' ? 'selected' : ''}>🔥 Utamakan habiskan ini</option>
+                        </select>
+                    </td>
+                    <td class="py-2 px-3">
+                        <input type="text" value="${item.catatan}" onchange="updateStokCatatan(${idx}, this.value)" placeholder="Teks Catatan" class="w-full bg-[#fdfbf7] border border-stone-200 rounded px-2 py-1 text-stone-700">
+                    </td>
+                    <td class="py-2 px-3 text-center">
+                        <button onclick="deleteStokItem(${idx})" class="text-red-600 hover:text-red-800 font-bold">🗑️</button>
+                    </td>
+                `;
+                container.appendChild(tr);
+            });
+        }
+
+        // Manipulasi Data Belum Kirim
+        function updateGroupName(gIdx, val) { currentData.belum_kirim[gIdx].grup = val; }
+        function updateItemName(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].nama = val; }
+        function updateItemNo(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].no_pesanan = val; }
+        function updateItemExp(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].ekspedisi = val; }
+        function updateItemStatus(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].status = val; }
+        
+        function addBelumKirimGroup() {
+            currentData.belum_kirim.push({ grup: "GRUP BARU", items: [] });
+            renderBelumKirim();
+        }
+        function addBelumKirimItem(gIdx) {
+            currentData.belum_kirim[gIdx].items.push({ nama: "", no_pesanan: "", ekspedisi: "JNE", status: "normal" });
+            renderBelumKirim();
+        }
+        function deleteBelumKirimItem(gIdx, iIdx) {
+            currentData.belum_kirim[gIdx].items.splice(iIdx, 1);
+            renderBelumKirim();
+        }
+        function deleteGroup(gIdx) {
+            if(confirm("Hapus seluruh kelompok pesanan ini?")) {
+                currentData.belum_kirim.splice(gIdx, 1);
+                renderBelumKirim();
+            }
+        }
+
+        // Manipulasi Data Stok
+        function updateStokNama(idx, val) { currentData.stok_tangerang[idx].nama = val; }
+        function updateStokJumlah(idx, val) { currentData.stok_tangerang[idx].jumlah = Number(val); }
+        function updateStokTipe(idx, val) { currentData.stok_tangerang[idx].tipe = val; }
+        function updateStokCatatan(idx, val) { currentData.stok_tangerang[idx].catatan = val; }
+        
+        function addStokItem() {
+            currentData.stok_tangerang.push({ nama: "", jumlah: 1, catatan: "-", tipe: "normal" });
+            renderStok();
+        }
+        function deleteStokItem(idx) {
+            currentData.stok_tangerang.splice(idx, 1);
+            renderStok();
+        }
+
+        // Simpan Kembali ke GitHub via API
+        async function saveToGitHub() {
+            const user = localStorage.getItem('mbp_gh_user');
+            const repo = localStorage.getItem('mbp_gh_repo');
+            const token = localStorage.getItem('mbp_gh_token');
+
+            if (!user || !repo || !token) {
+                alert('Pengaturan token belum lengkap!');
+                return;
+            }
+
+            try {
+                const url = `https://api.github.com/repos/${user}/${repo}/contents/data.json`;
+                const jsonString = JSON.stringify(currentData, null, 2);
+                
+                // Encode UTF-8 to Base64
+                const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
+
+                const bodyData = {
+                    message: "Update data via Admin Panel Web",
+                    content: contentBase64,
+                    sha: currentSha
+                };
+
+                const response = await fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify(bodyData)
+                });
+
+                if (!response.ok) throw new Error("Gagal menyimpan ke GitHub. Pastikan token memiliki izin repo.");
+
+                const resJson = await response.json();
+                currentSha = resJson.content.sha; // Update SHA baru
+
+                alert("🎉 BERHASIL! Data telah diperbarui ke GitHub.\nHalaman utama (index.html) akan otomatis terupdate!");
+            } catch (err) {
+                alert("Gagal menyimpan: " + err.message);
+            }
+        }
+    </script>
+</body>
+</html>
