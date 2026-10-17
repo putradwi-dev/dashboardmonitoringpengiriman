@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Input Data - Dashboard PT. MBP</title>
+    <title>Input Data Pengiriman - PT. MBP</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
         <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <span class="text-xl">⚙️</span>
-                <h1 class="font-extrabold text-lg sm:text-xl">Admin Panel Input Data</h1>
+                <h1 class="font-extrabold text-lg sm:text-xl">Input Data Pengiriman Pesanan Titip Proses PT. MBG</h1>
             </div>
             <a href="index.html" target="_blank" class="text-xs bg-amber-800 hover:bg-amber-700 text-amber-100 px-3 py-1.5 rounded-lg transition-all font-semibold border border-amber-700/50">
                 👁️ Lihat Website Utama ↗
@@ -62,7 +62,7 @@
                 🔄 Muat Data Terbaru dari GitHub
             </button>
             <button onclick="saveToGitHub()" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition-all flex items-center gap-2 shadow-md">
-                🚀 SIMPAN & UPDATE KE WEBSITE (INDEX.HTML)
+                SIMPAN & UPDATE
             </button>
         </div>
 
@@ -73,7 +73,7 @@
                     ⏳ 1. Data Pesanan Belum Kirim
                 </h2>
                 <button onclick="addBelumKirimGroup()" class="bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3 py-1.5 rounded-lg text-xs transition-all">
-                    + Tambah Kelompok / Grup Baru
+                    + Tambah E-Commerce Baru
                 </button>
             </div>
 
@@ -89,7 +89,7 @@
                     🏢 2. Data Stok Tangerang Titip di PT. MBG
                 </h2>
                 <button onclick="addStokItem()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold px-3 py-1.5 rounded-lg text-xs transition-all">
-                    + Tambah Item Barang Stok
+                    + Tambah Barang / Stok
                 </button>
             </div>
 
@@ -98,9 +98,9 @@
                     <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-amber-100">
                         <tr>
                             <th class="py-3 px-3 w-1/3">Nama Barang</th>
-                            <th class="py-3 px-3 w-24">Jumlah (Unit)</th>
+                            <th class="py-3 px-3 w-24">QTY</th>
                             <th class="py-3 px-3">Tipe / Status Khusus</th>
-                            <th class="py-3 px-3">Teks Catatan Khusus</th>
+                            <th class="py-3 px-3">Catatan</th>
                             <th class="py-3 px-3 text-center w-16">Aksi</th>
                         </tr>
                     </thead>
@@ -233,7 +233,7 @@
                                 </select>
                             </div>
                             <div class="sm:col-span-1 text-center">
-                                <button onclick="deleteBelumKirimItem(${gIdx}, ${iIdx})" class="text-red-600 hover:text-red-800 text-xs font-bold p-1">🗑️ Hapus</button>
+                                <button onclick="deleteBelumKirimItem(${gIdx}, ${iIdx})" class="text-red-600 hover:text-red-800 text-xs font-bold p-1">Hapus</button>
                             </div>
                         </div>
                     `;
@@ -246,8 +246,8 @@
                             <input type="text" value="${group.grup}" onchange="updateGroupName(${gIdx}, this.value)" class="font-bold text-amber-950 text-sm bg-white border border-amber-200 rounded px-2 py-1 uppercase tracking-wide">
                         </div>
                         <div class="flex items-center gap-2">
-                            <button onclick="addBelumKirimItem(${gIdx})" class="bg-amber-800 text-white font-bold px-2.5 py-1 rounded text-xs hover:bg-amber-900 transition-all">+ Tambah Pesanan</button>
-                            <button onclick="deleteGroup(${gIdx})" class="bg-red-100 text-red-700 font-bold px-2 py-1 rounded text-xs hover:bg-red-200 transition-all">Hapus Kelompok</button>
+                            <button onclick="addBelumKirimItem(${gIdx})" class="bg-amber-800 text-white font-bold px-2.5 py-1 rounded text-xs hover:bg-amber-900 transition-all">+ Pesanan</button>
+                            <button onclick="deleteGroup(${gIdx})" class="bg-red-100 text-red-700 font-bold px-2 py-1 rounded text-xs hover:bg-red-200 transition-all">Hapus E-Commerce</button>
                         </div>
                     </div>
                     <div class="space-y-2">
