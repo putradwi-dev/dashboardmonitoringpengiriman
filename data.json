@@ -8,7 +8,7 @@
       "grup": "SHOPE MT 19/10",
       "items": [
         {
-          "nama": "Ol ggr 60fff",
+          "nama": "Ol ggr 60f",
           "no_pesanan": "261017UE92T8U4",
           "ekspedisi": "J&T",
           "status": "normal"
@@ -26,13 +26,13 @@
     {
       "nama": "Gm dh3p",
       "jumlah": 1,
-      "catatan": "🛠️ Perlu di perbaiki",
+      "catatan": "Perlu di perbaiki",
       "tipe": "warning"
     },
     {
       "nama": "Wk 120",
       "jumlah": 2,
-      "catatan": "",
+      "catatan": "17/10 titip",
       "tipe": "normal"
     },
     {
@@ -56,7 +56,7 @@
     {
       "nama": "Loyang 3cm chefprimax",
       "jumlah": 12,
-      "catatan": "🔥 Utamakan habiskan ini",
+      "catatan": "Utamakan habiskan ini",
       "tipe": "priority"
     },
     {
