@@ -1,48 +1,12 @@
 {
   "belum_kirim": [
     {
-      "grup": "MT 17/10",
-      "items": [
-        {
-          "nama": "Sc d8h",
-          "no_pesanan": "586635341813155443",
-          "ekspedisi": "J&T",
-          "status": "normal"
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 16/10",
+      "grup": "MT 19/10",
       "items": []
     },
     {
-      "grup": "SHOPE MT 17/10",
-      "items": [
-        {
-          "nama": "Sc d8h",
-          "no_pesanan": "261016RJSJEC8H",
-          "ekspedisi": "JNE",
-          "status": "normal"
-        },
-        {
-          "nama": "Ab 318",
-          "no_pesanan": "261016RRHUXVJ3",
-          "ekspedisi": "JNE",
-          "status": "normal"
-        },
-        {
-          "nama": "Et 5015",
-          "no_pesanan": "261016S1D8D68P",
-          "ekspedisi": "J&T",
-          "status": "normal"
-        },
-        {
-          "nama": "D8sm",
-          "no_pesanan": "261016S09THDAP",
-          "ekspedisi": "J&T",
-          "status": "kayu"
-        }
-      ]
+      "grup": "SHOPE MT 19/10",
+      "items": []
     }
   ],
   "stok_tangerang": [
