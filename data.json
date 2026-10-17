@@ -4,7 +4,7 @@
       "grup": "MT 17/10",
       "items": [
         {
-          "nama": "Sc d8hhh",
+          "nama": "Sc d8h",
           "no_pesanan": "586635341813155443",
           "ekspedisi": "J&T",
           "status": "normal"
@@ -53,19 +53,89 @@
     }
   ],
   "stok_tangerang": [
-    { "nama": "Gm dh3p", "jumlah": 1, "catatan": "🛠️ Perlu di perbaiki", "tipe": "warning" },
-    { "nama": "Wk 120", "jumlah": 2, "catatan": "-", "tipe": "normal" },
-    { "nama": "Wk 150", "jumlah": 1, "catatan": "-", "tipe": "normal" },
-    { "nama": "Xs 110", "jumlah": 1, "catatan": "-", "tipe": "normal" },
-    { "nama": "Loyang 3cm gomesin", "jumlah": 91, "catatan": "-", "tipe": "normal" },
-    { "nama": "Loyang 3cm chefprimax", "jumlah": 12, "catatan": "🔥 Utamakan habiskan ini", "tipe": "priority" },
-    { "nama": "De 08a", "jumlah": 1, "catatan": "-", "tipe": "normal" },
-    { "nama": "Ruby 200", "jumlah": 2, "catatan": "-", "tipe": "normal" },
-    { "nama": "Ruby 240", "jumlah": 1, "catatan": "-", "tipe": "normal" },
-    { "nama": "Gsp 650", "jumlah": 1, "catatan": "-", "tipe": "normal" },
-    { "nama": "Ab 108", "jumlah": 5, "catatan": "-", "tipe": "normal" },
-    { "nama": "Ab 208", "jumlah": 2, "catatan": "-", "tipe": "normal" },
-    { "nama": "Cf 310", "jumlah": 1, "catatan": "-", "tipe": "normal" },
-    { "nama": "Ab 318", "jumlah": 1, "catatan": "-", "tipe": "normal" }
+    {
+      "nama": "Gm dh3p",
+      "jumlah": 1,
+      "catatan": "🛠️ Perlu di perbaiki",
+      "tipe": "warning"
+    },
+    {
+      "nama": "Wk 120",
+      "jumlah": 2,
+      "catatan": "-",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Wk 150",
+      "jumlah": 1,
+      "catatan": "-",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Xs 110",
+      "jumlah": 1,
+      "catatan": "-",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Loyang 3cm gomesin",
+      "jumlah": 91,
+      "catatan": "-",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Loyang 3cm chefprimax",
+      "jumlah": 12,
+      "catatan": "🔥 Utamakan habiskan ini",
+      "tipe": "priority"
+    },
+    {
+      "nama": "De 08a",
+      "jumlah": 1,
+      "catatan": "-",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Ruby 200",
+      "jumlah": 2,
+      "catatan": "-",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Ruby 240",
+      "jumlah": 1,
+      "catatan": "-",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Gsp 650",
+      "jumlah": 1,
+      "catatan": "-",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Ab 108",
+      "jumlah": 5,
+      "catatan": "-",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Ab 208",
+      "jumlah": 2,
+      "catatan": "-",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Cf 310",
+      "jumlah": 1,
+      "catatan": "-",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Ab 318",
+      "jumlah": 1,
+      "catatan": "-",
+      "tipe": "normal"
+    }
   ]
 }
