@@ -5,6 +5,10 @@
       "items": []
     },
     {
+      "grup": "TOKOPEDIA ADT 19/10/2026",
+      "items": []
+    },
+    {
       "grup": "SHOPE MT 19/10/2026",
       "items": [
         {
@@ -20,6 +24,14 @@
           "status": "normal"
         }
       ]
+    },
+    {
+      "grup": "SHOPE ADT 19/10/2026",
+      "items": []
+    },
+    {
+      "grup": "SHOPE TANGSEL 19/10/2026",
+      "items": []
     }
   ],
   "stok_tangerang": [
