@@ -23,9 +23,9 @@
             <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-2">
                     <span class="inline-flex items-center justify-center bg-amber-800 text-amber-100 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
-                        🔒 Read-Only
+                        READ ONLY
                     </span>
-                    <span>Tampilan terbatas (Hanya Lihat). Anda tidak dapat mengubah data pada link ini.</span>
+                    <span>Tampilan terbatas. Anda tidak dapat mengubah data pada link ini.</span>
                 </div>
                 <button onclick="openShareModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
                     🔗 Bagikan / Print PDF
@@ -39,12 +39,12 @@
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
                         <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2 text-amber-50">
-                            📦 Sistem Monitoring Pengiriman & Titipan Stok PT. MBP
+                            Sistem Monitoring Pengiriman & Titipan Stok PT. MBP
                         </h1>
                     </div>
                     <div class="flex items-center gap-2 bg-amber-950/60 backdrop-blur-md px-4 py-2 rounded-xl border border-amber-600/30 text-xs font-medium self-start md:self-auto">
                         <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span class="text-amber-100">Status Gudang Active</span>
+                        <span class="text-amber-100">Data Realtime</span>
                     </div>
                 </div>
             </div>
@@ -82,9 +82,9 @@
                     </svg>
                 </div>
                 <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
-                    <button onclick="filterBy('all', event)" class="filter-btn bg-amber-800 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition-all whitespace-nowrap">Semua Data</button>
-                    <button onclick="filterBy('terlambat', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-red-50 hover:text-red-700 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap">⚠️ Terlambat Only</button>
-                    <button onclick="filterBy('kayu', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-amber-100/60 hover:text-amber-900 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap">🪵 Kayu Only</button>
+                    <button onclick="filterBy('all', event)" class="filter-btn bg-amber-800 text-white px-3 py-1.5 rounded-lg text-xs font-semibold shadow-sm transition-all whitespace-nowrap">Semua Pesanan</button>
+                    <button onclick="filterBy('terlambat', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-red-50 hover:text-red-700 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap">⚠️ Pesaanan Terlambat</button>
+                    <button onclick="filterBy('kayu', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-amber-100/60 hover:text-amber-900 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all whitespace-nowrap">Pesanan Packing Kayu</button>
                 </div>
             </div>
 
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
-                        Pending Delivery
+                        Menunggu Dikirim
                     </span>
                 </div>
 
@@ -115,11 +115,11 @@
                         <div class="p-2 bg-emerald-700 text-white rounded-lg font-bold text-lg leading-none">🏢</div>
                         <div>
                             <h2 class="font-bold text-lg tracking-wide uppercase">STOK TANGERANG TITIP DI PT. MBG</h2>
-                            <p class="text-stone-400 text-xs">Inventaris fisik barang yang saat ini tersedia di gudang PT. MBG</p>
+                            <p class="text-stone-400 text-xs">Stok fisik barang yang saat ini tersedia di gudang PT. MBG</p>
                         </div>
                     </div>
                     <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
-                        In Stock
+                        Stok Di Gudang MBG
                     </span>
                 </div>
 
