@@ -82,12 +82,12 @@
                     2. Data Stok Tangerang Titip di PT. MBG
                 </h2>
                 <button onclick="addStokItem()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold px-3 py-1.5 rounded-lg text-xs transition-all">
-                    + Tambah Barang & Stok
+                    + Barang & Stok
                 </button>
             </div>
 
             <div class="overflow-x-auto rounded-xl border border-amber-100">
-                <table class="w-full text-left text-xs">
+                <table class="w-full text-center text-xs">
                     <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-amber-100">
                         <tr>
                             <th class="py-3 px-3 w-1/3">Nama Barang</th>
@@ -363,7 +363,7 @@
                 const resJson = await response.json();
                 currentSha = resJson.content.sha; // Update SHA baru
 
-                alert("🎉 BERHASIL! Data telah diperbarui ke GitHub.\nHalaman utama (index.html) akan otomatis terupdate!");
+                alert("BERHASIL SIMPAN & UPDATE");
             } catch (err) {
                 alert("Gagal menyimpan: " + err.message);
             }
