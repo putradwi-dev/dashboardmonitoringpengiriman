@@ -2,7 +2,14 @@
   "belum_kirim": [
     {
       "grup": "TOKOPEDIA MT 19/10/2026",
-      "items": []
+      "items": [
+        {
+          "nama": "Loyang 3cm chefprimax",
+          "no_pesanan": "586662577060087269",
+          "ekspedisi": "J&T",
+          "status": "kayu"
+        }
+      ]
     },
     {
       "grup": "TOKOPEDIA ADT 19/10/2026",
@@ -74,7 +81,7 @@
     },
     {
       "nama": "Loyang 3cm chefprimax",
-      "jumlah": 12,
+      "jumlah": 10,
       "catatan": "Utamakan habiskan",
       "tipe": "priority"
     },
