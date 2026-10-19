@@ -60,6 +60,12 @@
           "no_pesanan": "261018W2K0S1JG",
           "ekspedisi": "JNE",
           "status": "kayu"
+        },
+        {
+          "nama": "Apn10c",
+          "no_pesanan": "2610192K15TK8T",
+          "ekspedisi": "J&T",
+          "status": "normal"
         }
       ]
     },
