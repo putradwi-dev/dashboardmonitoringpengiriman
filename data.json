@@ -8,6 +8,12 @@
           "no_pesanan": "586662577060087269",
           "ekspedisi": "J&T",
           "status": "kayu"
+        },
+        {
+          "nama": "Cf 210",
+          "no_pesanan": "586667678879220968",
+          "ekspedisi": "J&T",
+          "status": "normal"
         }
       ]
     },
