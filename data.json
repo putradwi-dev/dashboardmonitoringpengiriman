@@ -48,6 +48,12 @@
           "no_pesanan": "2610180F5ENP3S",
           "ekspedisi": "J&T",
           "status": "normal"
+        },
+        {
+          "nama": "Agate 300",
+          "no_pesanan": "261018W2K0S1JG",
+          "ekspedisi": "JNE",
+          "status": "kayu"
         }
       ]
     },
