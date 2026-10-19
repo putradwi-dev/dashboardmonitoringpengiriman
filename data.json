@@ -76,11 +76,28 @@
       ]
     },
     {
-      "grup": "SHOPE ADT 19/10/2026",
+      "grup": "SHOPE MT 20/10/2026",
+      "items": [
+        {
+          "nama": "Sj 8525 & 8502",
+          "no_pesanan": "2610192XFWQ2AA",
+          "ekspedisi": "JNE",
+          "status": "normal"
+        },
+        {
+          "nama": "Sj 8525 & 8502",
+          "no_pesanan": "2610192XJW3K7R",
+          "ekspedisi": "JNE",
+          "status": "normal"
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE ADT 20/10/2026",
       "items": []
     },
     {
-      "grup": "SHOPE TANGSEL 19/10/2026",
+      "grup": "SHOPE TANGSEL 20/10/2026",
       "items": []
     }
   ],
