@@ -66,6 +66,12 @@
           "no_pesanan": "2610192K15TK8T",
           "ekspedisi": "J&T",
           "status": "normal"
+        },
+        {
+          "nama": "Ef 85",
+          "no_pesanan": "2610192MFV6WQV",
+          "ekspedisi": "JNE",
+          "status": "kayu"
         }
       ]
     },
