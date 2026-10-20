@@ -1,66 +1,16 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 19/10/2026",
-      "items": [
-        {
-          "nama": "Loyang 3cm chefprimax",
-          "no_pesanan": "586662577060087269",
-          "ekspedisi": "J&T",
-          "status": "kayu"
-        },
-        {
-          "nama": "Cf 210",
-          "no_pesanan": "586667678879220968",
-          "ekspedisi": "J&T",
-          "status": "normal"
-        }
-      ]
+      "grup": "TOKOPEDIA MT 20/10/2026",
+      "items": []
     },
     {
-      "grup": "TOKOPEDIA ADT 19/10/2026",
-      "items": [
-        {
-          "nama": "Sc d8h",
-          "no_pesanan": "586647295601510257",
-          "ekspedisi": "J&T",
-          "status": "normal"
-        }
-      ]
+      "grup": "TOKOPEDIA ADT 20/10/2026",
+      "items": []
     },
     {
       "grup": "SHOPE MT 19/10/2026",
       "items": [
-        {
-          "nama": "Ol ggr 60f",
-          "no_pesanan": "261017UE92T8U4",
-          "ekspedisi": "J&T",
-          "status": "normal"
-        },
-        {
-          "nama": "Ct 04",
-          "no_pesanan": "261017UG7RDMCE",
-          "ekspedisi": "J&T",
-          "status": "normal"
-        },
-        {
-          "nama": "Gf 102g",
-          "no_pesanan": "2610191XMQ1KGE",
-          "ekspedisi": "JNE",
-          "status": "normal"
-        },
-        {
-          "nama": "Gm grd 720",
-          "no_pesanan": "2610180F5ENP3S",
-          "ekspedisi": "J&T",
-          "status": "normal"
-        },
-        {
-          "nama": "Agate 300",
-          "no_pesanan": "261018W2K0S1JG",
-          "ekspedisi": "JNE",
-          "status": "kayu"
-        },
         {
           "nama": "Apn10c",
           "no_pesanan": "2610192K15TK8T",
@@ -79,6 +29,12 @@
       "grup": "SHOPE MT 20/10/2026",
       "items": [
         {
+          "nama": "Rfl 36gd",
+          "no_pesanan": "2610192V1V3R6G",
+          "ekspedisi": "JNE",
+          "status": "normal"
+        },
+        {
           "nama": "Sj 8525 & 8502",
           "no_pesanan": "2610192XFWQ2AA",
           "ekspedisi": "JNE",
@@ -87,6 +43,12 @@
         {
           "nama": "Sj 8525 & 8502",
           "no_pesanan": "2610192XJW3K7R",
+          "ekspedisi": "JNE",
+          "status": "normal"
+        },
+        {
+          "nama": "Cf 210",
+          "no_pesanan": "26101932WR8AH1",
           "ekspedisi": "JNE",
           "status": "normal"
         }
