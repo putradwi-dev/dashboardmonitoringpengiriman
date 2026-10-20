@@ -69,6 +69,12 @@
           "no_pesanan": "261020522E9UW1",
           "ekspedisi": "JNE",
           "status": "kayu"
+        },
+        {
+          "nama": "Dh 10",
+          "no_pesanan": "26102053QKJR16",
+          "ekspedisi": "JNE",
+          "status": "normal"
         }
       ]
     },
