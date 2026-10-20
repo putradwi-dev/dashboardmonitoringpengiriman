@@ -51,6 +51,24 @@
           "no_pesanan": "26101932WR8AH1",
           "ekspedisi": "JNE",
           "status": "normal"
+        },
+        {
+          "nama": "Xcc 150",
+          "no_pesanan": "2610204XPNSMC3",
+          "ekspedisi": "JNE",
+          "status": "kayu"
+        },
+        {
+          "nama": "Elw 660",
+          "no_pesanan": "26102051RFPHT0",
+          "ekspedisi": "J&T",
+          "status": "kayu"
+        },
+        {
+          "nama": "Topaz 750",
+          "no_pesanan": "261020522E9UW1",
+          "ekspedisi": "JNE",
+          "status": "normal"
         }
       ]
     },
