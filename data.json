@@ -84,6 +84,17 @@
           "status": "kayu"
         }
       ]
+    },
+    {
+      "grup": "SHOPE ADT 21/10/2026",
+      "items": [
+        {
+          "nama": "Elw 660",
+          "no_pesanan": "2610217KJ2VG7U",
+          "ekspedisi": "JNE",
+          "status": "kayu"
+        }
+      ]
     }
   ],
   "stok_tangerang": [
