@@ -65,6 +65,12 @@
           "no_pesanan": "261021781A4CEP",
           "ekspedisi": "JNE",
           "status": "kayu"
+        },
+        {
+          "nama": "Cf 460",
+          "no_pesanan": "2610217C76XTK0",
+          "ekspedisi": "JNE",
+          "status": "kayu"
         }
       ]
     }
