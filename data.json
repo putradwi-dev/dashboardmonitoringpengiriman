@@ -16,76 +16,40 @@
       "items": []
     },
     {
-      "grup": "SHOPE MT 19/10/2026",
+      "grup": "SHOPE MT 20/10/2026",
       "items": [
         {
-          "nama": "Apn10c",
-          "no_pesanan": "2610192K15TK8T",
-          "ekspedisi": "J&T",
-          "status": "normal"
-        },
-        {
-          "nama": "Ef 85",
-          "no_pesanan": "2610192MFV6WQV",
+          "nama": "Tz 200",
+          "no_pesanan": "2610205872JT68",
           "ekspedisi": "JNE",
           "status": "kayu"
         }
       ]
     },
     {
-      "grup": "SHOPE MT 20/10/2026",
+      "grup": "SHOPE MT 21/10/2026",
       "items": [
         {
-          "nama": "Rfl 36gd",
-          "no_pesanan": "2610192V1V3R6G",
+          "nama": "250es b10",
+          "no_pesanan": "2610205H2MS3G6",
           "ekspedisi": "JNE",
           "status": "normal"
         },
         {
-          "nama": "Sj 8525 & 8502",
-          "no_pesanan": "2610192XFWQ2AA",
-          "ekspedisi": "JNE",
-          "status": "normal"
-        },
-        {
-          "nama": "Sj 8525 & 8502",
-          "no_pesanan": "2610192XJW3K7R",
-          "ekspedisi": "JNE",
-          "status": "normal"
-        },
-        {
-          "nama": "Cf 210",
-          "no_pesanan": "26101932WR8AH1",
-          "ekspedisi": "JNE",
-          "status": "normal"
-        },
-        {
-          "nama": "Xbc 150",
-          "no_pesanan": "2610204XPNSMC3",
-          "ekspedisi": "JNE",
-          "status": "kayu"
-        },
-        {
-          "nama": "Elw 660",
-          "no_pesanan": "26102051RFPHT0",
+          "nama": "Ruby 280",
+          "no_pesanan": "2610205HEGBR6M",
           "ekspedisi": "J&T",
           "status": "kayu"
         },
         {
-          "nama": "Topaz 750",
-          "no_pesanan": "261020522E9UW1",
-          "ekspedisi": "JNE",
+          "nama": "Topaz 600",
+          "no_pesanan": "2610205TQ66J23",
+          "ekspedisi": "J&T",
           "status": "kayu"
         },
         {
-          "nama": "Dh 10",
-          "no_pesanan": "26102053QKJR16",
-          "ekspedisi": "JNE",
-          "status": "normal"
-        },
-        {
-          "nama": "Tz 200",
-          "no_pesanan": "2610205872JT68",
+          "nama": "Gm 370t",
+          "no_pesanan": "2610216UDGSGVU",
           "ekspedisi": "JNE",
           "status": "kayu"
         }
