@@ -12,8 +12,15 @@
       ]
     },
     {
-      "grup": "TOKOPEDIA ADT 20/10/2026",
-      "items": []
+      "grup": "TOKOPEDIA MT 21/10/2026",
+      "items": [
+        {
+          "nama": "Cf 310",
+          "no_pesanan": "586701181742384163",
+          "ekspedisi": "J&T",
+          "status": "normal"
+        }
+      ]
     },
     {
       "grup": "SHOPE MT 20/10/2026",
@@ -50,6 +57,12 @@
         {
           "nama": "Gm 370t",
           "no_pesanan": "2610216UDGSGVU",
+          "ekspedisi": "JNE",
+          "status": "kayu"
+        },
+        {
+          "nama": "Et a9",
+          "no_pesanan": "261021781A4CEP",
           "ekspedisi": "JNE",
           "status": "kayu"
         }
