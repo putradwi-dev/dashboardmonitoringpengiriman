@@ -42,6 +42,13 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "Topaz 600",
+          "no_pesanan": "586709536018826794",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
