@@ -191,12 +191,11 @@
     </footer>
 
     <script>
-        // Fungsi helper untuk mendeteksi status dengan akurat (mendukung checkbox baru & teks lama)
+        // Fungsi helper untuk mendeteksi status ganda (checkbox baru & teks lama)
         function getItemStatus(item) {
             let isKayu = !!item.kayu;
             let isTerlambat = !!item.terlambat;
 
-            // Jika properti checkbox belum ada, cek string status lama
             if (!isKayu && !isTerlambat && typeof item.status === 'string') {
                 const s = item.status.toLowerCase();
                 isKayu = (s === 'kayu' || s === 'keduanya');
