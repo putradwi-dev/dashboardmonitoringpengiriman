@@ -24,7 +24,8 @@
         <!-- Tombol Aksi Utama -->
         <button onclick="saveToGitHub()" class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold px-5 py-2.5 rounded-xl text-s transition-all flex items-center gap-2 shadow-md">
                 SIMPAN & UPDATE
-            </button>
+        </button>
+
         <!-- SECTION 1: EDIT KATEGORI BELUM KIRIM -->
         <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
             <div class="flex items-center justify-between border-b border-amber-100 pb-3">
@@ -189,12 +190,11 @@
 
                 let itemsHtml = '';
                 (group.items || []).forEach((item, iIdx) => {
-                    // Konversi status lama (string) ke objek boolean jika format lama
                     if (typeof item.status === 'string') {
                         const s = item.status.toLowerCase();
                         item.kayu = (s === 'kayu' || s === 'keduanya');
                         item.terlambat = (s === 'terlambat' || s === 'keduanya');
-                        item.status = ''; // reset
+                        item.status = '';
                     }
 
                     itemsHtml += `
@@ -215,15 +215,18 @@
                                     <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT'].includes(item.ekspedisi)) ? 'selected' : ''}>EKS. LAINNYA</option>
                                 </select>
                             </div>
-                            <div class="sm:col-span-2 flex items-center gap-3 bg-[#faf7f2] px-2 py-1.5 rounded border border-stone-200">
-                                <label class="flex items-center gap-1 text-[11px] font-semibold text-stone-700 cursor-pointer">
-                                    <input type="checkbox" ${item.kayu ? 'checked' : ''} onchange="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="rounded text-amber-800 focus:ring-amber-700"> Kayu
-                                </label>
-                                <label class="flex items-center gap-1 text-[11px] font-semibold text-red-700 cursor-pointer">
-                                    <input type="checkbox" ${item.terlambat ? 'checked' : ''} onchange="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="rounded text-red-600 focus:ring-red-600"> Terlambat
-                                </label>
+                            <!-- DITAMBAHKAN JARAK (gap-4) ANTAR CHECKBOX & TOMBOL HAPUS DIBERI PADDING/MARGIN -->
+                            <div class="sm:col-span-2 flex items-center justify-between bg-[#faf7f2] px-3 py-1.5 rounded border border-stone-200">
+                                <div class="flex items-center gap-3">
+                                    <label class="flex items-center gap-1 text-[11px] font-semibold text-stone-700 cursor-pointer">
+                                        <input type="checkbox" ${item.kayu ? 'checked' : ''} onchange="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="rounded text-amber-800 focus:ring-amber-700"> Kayu
+                                    </label>
+                                    <label class="flex items-center gap-1 text-[11px] font-semibold text-red-700 cursor-pointer">
+                                        <input type="checkbox" ${item.terlambat ? 'checked' : ''} onchange="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="rounded text-red-600 focus:ring-red-600"> Terlambat
+                                    </label>
+                                </div>
                             </div>
-                            <div class="sm:col-span-1 text-center">
+                            <div class="sm:col-span-1 text-center pl-2">
                                 <button onclick="deleteBelumKirimItem(${gIdx}, ${iIdx})" class="text-red-600 hover:text-red-800 text-xs font-bold p-1">Hapus</button>
                             </div>
                         </div>
@@ -375,7 +378,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Update multi-status via Admin Panel Web",
+                    message: "Update jarak status dan tombol hapus di admin",
                     content: contentBase64,
                     sha: currentSha
                 };
