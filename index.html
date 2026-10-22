@@ -216,10 +216,10 @@
                 let mobileCards = '';
 
                 group.items.forEach(item => {
-                    // Kompatibilitas format lama string atau objek multi-status
                     let isKayu = false;
                     let isTerlambat = false;
 
+                    // Deteksi format status baik string lama maupun boolean baru
                     if (typeof item.status === 'string') {
                         const s = item.status.toLowerCase();
                         isKayu = (s === 'kayu' || s === 'keduanya');
