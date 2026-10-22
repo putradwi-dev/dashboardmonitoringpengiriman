@@ -190,10 +190,11 @@
 
                 let itemsHtml = '';
                 (group.items || []).forEach((item, iIdx) => {
-                    if (typeof item.status === 'string') {
+                    // Normalisasi aman: Hanya konversi jika status berisi teks lama yang valid (bukan string kosong)
+                    if (typeof item.status === 'string' && item.status.trim() !== '') {
                         const s = item.status.toLowerCase();
-                        item.kayu = (s === 'kayu' || s === 'keduanya');
-                        item.terlambat = (s === 'terlambat' || s === 'keduanya');
+                        if (s === 'kayu' || s === 'keduanya') item.kayu = true;
+                        if (s === 'terlambat' || s === 'keduanya') item.terlambat = true;
                         item.status = '';
                     } else {
                         item.kayu = !!item.kayu;
@@ -218,7 +219,7 @@
                                     <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT'].includes(item.ekspedisi)) ? 'selected' : ''}>EKS. LAINNYA</option>
                                 </select>
                             </div>
-                            <!-- Menggunakan onclick agar langsung merespon seketika di HP -->
+                            <!-- Checkbox Status -->
                             <div class="sm:col-span-2 flex items-center justify-center gap-3 bg-[#faf7f2] px-2 py-1.5 rounded border border-stone-200">
                                 <label class="flex items-center gap-1 text-[11px] font-semibold text-stone-700 cursor-pointer">
                                     <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="rounded text-amber-800 focus:ring-amber-700"> Kayu
@@ -380,7 +381,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Update centang status checkbox via admin",
+                    message: "Fix bug status checkbox reset on refresh",
                     content: contentBase64,
                     sha: currentSha
                 };
