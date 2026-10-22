@@ -9,7 +9,7 @@
           "ekspedisi": "J&T",
           "status": "",
           "kayu": true,
-          "terlambat": true
+          "terlambat": false
         }
       ]
     },
@@ -22,13 +22,17 @@
           "ekspedisi": "J&T",
           "status": "",
           "kayu": false,
-          "terlambat": false
-        },
+          "terlambat": true
+        }
+      ]
+    },
+    {
+      "grup": "TOKOPEDIA MT 22/10/2026",
+      "items": [
         {
           "nama": "Gm rfl 12c",
           "no_pesanan": "586722916202022607",
           "ekspedisi": "JNE",
-          "status": "",
           "kayu": true,
           "terlambat": false
         },
