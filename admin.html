@@ -190,11 +190,15 @@
 
                 let itemsHtml = '';
                 (group.items || []).forEach((item, iIdx) => {
+                    // Normalisasi status lama atau pastikan properti boolean terbaca stabil
                     if (typeof item.status === 'string') {
                         const s = item.status.toLowerCase();
                         item.kayu = (s === 'kayu' || s === 'keduanya');
                         item.terlambat = (s === 'terlambat' || s === 'keduanya');
                         item.status = '';
+                    } else {
+                        item.kayu = !!item.kayu;
+                        item.terlambat = !!item.terlambat;
                     }
 
                     itemsHtml += `
@@ -224,7 +228,7 @@
                                     <input type="checkbox" ${item.terlambat ? 'checked' : ''} onchange="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="rounded text-red-600 focus:ring-red-600"> Terlambat
                                 </label>
                             </div>
-                            <!-- Tombol Hapus dengan Jarak Margin Kiri yang Jauh -->
+                            <!-- Tombol Hapus -->
                             <div class="sm:col-span-1 text-center pl-4">
                                 <button onclick="deleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs font-bold px-3 py-1.5 rounded border border-red-200 transition-all w-full sm:w-auto shadow-sm">Hapus</button>
                             </div>
@@ -377,7 +381,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Memperluas jarak tombol hapus dari status",
+                    message: "Normalisasi status checkbox kayu dan terlambat",
                     content: contentBase64,
                     sha: currentSha
                 };
