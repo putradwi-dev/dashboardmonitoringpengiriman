@@ -71,7 +71,7 @@
             </div>
         </section>
 
-        <!-- Pengaturan GitHub Token & Repo (Disimpan di Browser LocalStorage) -->
+        <!-- Pengaturan GitHub Token & Repo -->
         <div class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
             <div class="flex items-center justify-between border-b border-amber-100 pb-3">
                 <h2 class="font-bold text-stone-800 flex items-center gap-2">
@@ -198,36 +198,35 @@
                     }
 
                     itemsHtml += `
-                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2 items-center bg-white p-2.5 rounded-lg border border-amber-100 shadow-sm">
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center bg-white p-3 rounded-lg border border-amber-100 shadow-sm">
                             <div class="sm:col-span-4">
                                 <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">Nama Barang</label>
-                                <input type="text" value="${item.nama || ''}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1 text-xs font-semibold text-stone-800">
+                                <input type="text" value="${item.nama || ''}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1.5 text-xs font-semibold text-stone-800">
                             </div>
                             <div class="sm:col-span-3">
                                 <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">No. Pesanan</label>
-                                <input type="text" value="${item.no_pesanan || ''}" onchange="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1 text-xs font-mono text-stone-700">
+                                <input type="text" value="${item.no_pesanan || ''}" onchange="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1.5 text-xs font-mono text-stone-700">
                             </div>
                             <div class="sm:col-span-2">
                                 <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">Ekspedisi</label>
-                                <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1 text-xs font-bold text-stone-800">
+                                <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1.5 text-xs font-bold text-stone-800">
                                     <option value="JNE" ${item.ekspedisi === 'JNE' ? 'selected' : ''}>JNE</option>
                                     <option value="J&T" ${item.ekspedisi === 'J&T' ? 'selected' : ''}>J&T</option>
                                     <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT'].includes(item.ekspedisi)) ? 'selected' : ''}>EKS. LAINNYA</option>
                                 </select>
                             </div>
-                            <!-- DITAMBAHKAN JARAK (gap-4) ANTAR CHECKBOX & TOMBOL HAPUS DIBERI PADDING/MARGIN -->
-                            <div class="sm:col-span-2 flex items-center justify-between bg-[#faf7f2] px-3 py-1.5 rounded border border-stone-200">
-                                <div class="flex items-center gap-3">
-                                    <label class="flex items-center gap-1 text-[11px] font-semibold text-stone-700 cursor-pointer">
-                                        <input type="checkbox" ${item.kayu ? 'checked' : ''} onchange="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="rounded text-amber-800 focus:ring-amber-700"> Kayu
-                                    </label>
-                                    <label class="flex items-center gap-1 text-[11px] font-semibold text-red-700 cursor-pointer">
-                                        <input type="checkbox" ${item.terlambat ? 'checked' : ''} onchange="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="rounded text-red-600 focus:ring-red-600"> Terlambat
-                                    </label>
-                                </div>
+                            <!-- Checkbox Status -->
+                            <div class="sm:col-span-2 flex items-center justify-center gap-3 bg-[#faf7f2] px-2 py-1.5 rounded border border-stone-200">
+                                <label class="flex items-center gap-1 text-[11px] font-semibold text-stone-700 cursor-pointer">
+                                    <input type="checkbox" ${item.kayu ? 'checked' : ''} onchange="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="rounded text-amber-800 focus:ring-amber-700"> Kayu
+                                </label>
+                                <label class="flex items-center gap-1 text-[11px] font-semibold text-red-700 cursor-pointer">
+                                    <input type="checkbox" ${item.terlambat ? 'checked' : ''} onchange="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="rounded text-red-600 focus:ring-red-600"> Terlambat
+                                </label>
                             </div>
-                            <div class="sm:col-span-1 text-center pl-2">
-                                <button onclick="deleteBelumKirimItem(${gIdx}, ${iIdx})" class="text-red-600 hover:text-red-800 text-xs font-bold p-1">Hapus</button>
+                            <!-- Tombol Hapus dengan Jarak Margin Kiri yang Jauh -->
+                            <div class="sm:col-span-1 text-center pl-4">
+                                <button onclick="deleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs font-bold px-3 py-1.5 rounded border border-red-200 transition-all w-full sm:w-auto shadow-sm">Hapus</button>
                             </div>
                         </div>
                     `;
@@ -378,7 +377,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Update jarak status dan tombol hapus di admin",
+                    message: "Memperluas jarak tombol hapus dari status",
                     content: contentBase64,
                     sha: currentSha
                 };
@@ -398,7 +397,7 @@
                 const resJson = await response.json();
                 currentSha = resJson.content.sha;
 
-                alert("🎉 BERHASIL SIMPAN & UPDATE");
+                alert("BERHASIL SIMPAN & UPDATE");
             } catch (err) {
                 alert("Gagal menyimpan: " + err.message);
             }
