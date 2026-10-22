@@ -8,8 +8,8 @@
           "no_pesanan": "586688485572969482",
           "ekspedisi": "J&T",
           "status": "",
-          "kayu": false,
-          "terlambat": false
+          "kayu": true,
+          "terlambat": true
         }
       ]
     },
@@ -22,7 +22,7 @@
           "ekspedisi": "J&T",
           "status": "",
           "kayu": false,
-          "terlambat": false
+          "terlambat": true
         }
       ]
     },
@@ -72,7 +72,7 @@
           "no_pesanan": "2610205872JT68",
           "ekspedisi": "JNE",
           "status": "",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false
         }
       ]
@@ -111,7 +111,7 @@
           "no_pesanan": "261022989D2VJA",
           "ekspedisi": "JNE",
           "status": "",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false
         },
         {
@@ -119,7 +119,7 @@
           "no_pesanan": "261022A1XGPP0E",
           "ekspedisi": "JNE",
           "status": "",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false
         },
         {
