@@ -19,6 +19,12 @@
           "no_pesanan": "586701181742384163",
           "ekspedisi": "J&T",
           "status": "terlambat"
+        },
+        {
+          "nama": "Gm rfl 12c",
+          "no_pesanan": "586722916202022607",
+          "ekspedisi": "JNE",
+          "status": "kayu"
         }
       ]
     },
