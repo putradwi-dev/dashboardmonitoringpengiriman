@@ -190,7 +190,6 @@
 
                 let itemsHtml = '';
                 (group.items || []).forEach((item, iIdx) => {
-                    // Normalisasi status lama atau pastikan properti boolean terbaca stabil
                     if (typeof item.status === 'string') {
                         const s = item.status.toLowerCase();
                         item.kayu = (s === 'kayu' || s === 'keduanya');
@@ -219,13 +218,13 @@
                                     <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT'].includes(item.ekspedisi)) ? 'selected' : ''}>EKS. LAINNYA</option>
                                 </select>
                             </div>
-                            <!-- Checkbox Status -->
+                            <!-- Menggunakan onclick agar langsung merespon seketika di HP -->
                             <div class="sm:col-span-2 flex items-center justify-center gap-3 bg-[#faf7f2] px-2 py-1.5 rounded border border-stone-200">
                                 <label class="flex items-center gap-1 text-[11px] font-semibold text-stone-700 cursor-pointer">
-                                    <input type="checkbox" ${item.kayu ? 'checked' : ''} onchange="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="rounded text-amber-800 focus:ring-amber-700"> Kayu
+                                    <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="rounded text-amber-800 focus:ring-amber-700"> Kayu
                                 </label>
                                 <label class="flex items-center gap-1 text-[11px] font-semibold text-red-700 cursor-pointer">
-                                    <input type="checkbox" ${item.terlambat ? 'checked' : ''} onchange="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="rounded text-red-600 focus:ring-red-600"> Terlambat
+                                    <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="rounded text-red-600 focus:ring-red-600"> Terlambat
                                 </label>
                             </div>
                             <!-- Tombol Hapus -->
@@ -381,7 +380,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Normalisasi status checkbox kayu dan terlambat",
+                    message: "Update centang status checkbox via admin",
                     content: contentBase64,
                     sha: currentSha
                 };
