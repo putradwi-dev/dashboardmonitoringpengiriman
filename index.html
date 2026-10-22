@@ -19,130 +19,133 @@
 </head>
 <body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-12 flex flex-col justify-between">
 
-    <div id="capture-area">
+    <div>
         <!-- Read-Only Notice Banner -->
         <div class="bg-amber-950 text-amber-100 px-4 py-2.5 text-xs sm:text-sm font-medium border-b border-amber-900 no-print">
             <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
                 <div class="flex items-center gap-2">
                     <span class="inline-flex items-center justify-center bg-amber-800 text-amber-100 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
                         READ ONLY
-                    </span>
+                    </span> 
                 </div>
                 <button onclick="openShareModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
-                    BAGIKAN
+                    BAGIKANN
                 </button>
             </div>
         </div>
 
-        <!-- Header Section -->
-        <header class="bg-gradient-to-r from-amber-900 via-stone-800 to-amber-800 text-white shadow-lg">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2 text-amber-50">
-                            Sistem Monitoring Pengiriman & Titipan Stok PT. MBP
-                        </h1>
-                    </div>
-                    <div class="flex items-center gap-2 bg-amber-950/60 backdrop-blur-md px-4 py-2 rounded-xl border border-amber-600/30 text-xs font-medium self-start md:self-auto">
-                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span class="text-amber-100">DATA REALTIME</span>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <main class="max-w-6xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
-
-            <!-- Summary Cards / Statistics Header -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm">
-                    <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Total Pesanan</p>
-                    <p class="text-2xl font-bold text-stone-800 mt-1" id="stat-total-pesanan">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
-                </div>
-                <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-red-500">
-                    <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Terlambat</p>
-                    <p class="text-2xl font-bold text-red-600 mt-1" id="stat-terlambat">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
-                </div>
-                <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-amber-600">
-                    <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Packing Kayu</p>
-                    <p class="text-2xl font-bold text-amber-700 mt-1" id="stat-kayu">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
-                </div>
-                <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-emerald-600">
-                    <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Total Unit Stok</p>
-                    <p class="text-2xl font-bold text-emerald-700 mt-1" id="stat-total-stok">0 <span class="text-xs font-normal text-stone-500">Unit</span></p>
-                </div>
-            </div>
-
-            <!-- Search & Filter Controls (No Print) -->
-            <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between no-print">
-                <div class="relative w-full md:w-80">
-                    <input type="text" id="searchInput" onkeyup="filterItems()" placeholder="Cari nama barang / no. pesanan..." 
-                           class="w-full pl-9 pr-4 py-2 bg-[#fdfbf7] border border-amber-200/80 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-700 focus:bg-white transition-all">
-                    <svg class="w-4 h-4 text-stone-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                </div>
-                <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
-                    <button onclick="filterBy('all', event)" class="filter-btn bg-amber-800 text-white px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold shadow-sm transition-all whitespace-nowrap">Semua Pesanan</button>
-                    <button onclick="filterBy('terlambat', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-red-50 hover:text-red-700 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap">⚠️ Pesanan Terlambat</button>
-                    <button onclick="filterBy('kayu', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-amber-100/60 hover:text-amber-900 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap">Pesanan Packing Kayu</button>
-                </div>
-            </div>
-
-            <!-- SECTION 1: BELUM KIRIM -->
-            <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
-                <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                    <div class="flex items-center gap-3">
-                        <div class="p-2 bg-amber-600 text-white rounded-lg font-bold text-lg leading-none">⏳</div>
+        <!-- Area utama yang di-capture ke Gambar -->
+        <div id="capture-area" class="bg-[#faf7f2] pb-6">
+            <!-- Header Section -->
+            <header class="bg-gradient-to-r from-amber-900 via-stone-800 to-amber-800 text-white shadow-lg">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div>
-                            <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">BELUM KIRIM</h2>
-                            <p class="text-stone-400 text-xs sm:text-sm">Daftar pesanan yang belum dikirimkan ke ekspedisi</p>
+                            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2 text-amber-50">
+                                Sistem Monitoring Pengiriman & Titipan Stok PT. MBP
+                            </h1>
+                        </div>
+                        <div class="flex items-center gap-2 bg-amber-950/60 backdrop-blur-md px-4 py-2 rounded-xl border border-amber-600/30 text-xs font-medium self-start md:self-auto">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span class="text-amber-100">DATA REALTIME</span>
                         </div>
                     </div>
-                    <span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
-                        Menunggu Dikirim
-                    </span>
+                </div>
+            </header>
+
+            <main class="max-w-6xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
+
+                <!-- Summary Cards / Statistics Header -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm">
+                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Total Pesanan</p>
+                        <p class="text-2xl font-bold text-stone-800 mt-1" id="stat-total-pesanan">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-red-500">
+                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Terlambat</p>
+                        <p class="text-2xl font-bold text-red-600 mt-1" id="stat-terlambat">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-amber-600">
+                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Packing Kayu</p>
+                        <p class="text-2xl font-bold text-amber-700 mt-1" id="stat-kayu">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-emerald-600">
+                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Total Unit Stok</p>
+                        <p class="text-2xl font-bold text-emerald-700 mt-1" id="stat-total-stok">0 <span class="text-xs font-normal text-stone-500">Unit</span></p>
+                    </div>
                 </div>
 
-                <div id="container-belum-kirim" class="p-4 sm:p-6 space-y-8">
-                    <!-- Data Belum Kirim Dimuat dari JSON -->
+                <!-- Search & Filter Controls (No Print) -->
+                <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between no-print">
+                    <div class="relative w-full md:w-80">
+                        <input type="text" id="searchInput" onkeyup="filterItems()" placeholder="Cari nama barang / no. pesanan..." 
+                               class="w-full pl-9 pr-4 py-2 bg-[#fdfbf7] border border-amber-200/80 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-700 focus:bg-white transition-all">
+                        <svg class="w-4 h-4 text-stone-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+                        <button onclick="filterBy('all', event)" class="filter-btn bg-amber-800 text-white px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold shadow-sm transition-all whitespace-nowrap">Semua Pesanan</button>
+                        <button onclick="filterBy('terlambat', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-red-50 hover:text-red-700 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap">⚠️ Pesanan Terlambat</button>
+                        <button onclick="filterBy('kayu', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-amber-100/60 hover:text-amber-900 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap">Pesanan Packing Kayu</button>
+                    </div>
                 </div>
-            </section>
 
-            <!-- SECTION 2: STOK TANGERANG TITIP DI PT. MBG -->
-            <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
-                <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                    <div class="flex items-center gap-3">
-                        <div class="p-2 bg-emerald-700 text-white rounded-lg font-bold text-lg leading-none">🏢</div>
-                        <div>
-                            <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">STOK TANGERANG TITIP DI PT. MBG</h2>
-                            <p class="text-stone-400 text-xs sm:text-sm">Stok fisik barang yang saat ini tersedia di gudang PT. MBG</p>
+                <!-- SECTION 1: BELUM KIRIM -->
+                <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
+                    <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-amber-600 text-white rounded-lg font-bold text-lg leading-none">⏳</div>
+                            <div>
+                                <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">BELUM KIRIM</h2>
+                                <p class="text-stone-400 text-xs sm:text-sm">Daftar pesanan yang belum dikirimkan ke ekspedisi</p>
+                            </div>
+                        </div>
+                        <span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
+                            Menunggu Dikirim
+                        </span>
+                    </div>
+
+                    <div id="container-belum-kirim" class="p-4 sm:p-6 space-y-8">
+                        <!-- Data Belum Kirim Dimuat dari JSON -->
+                    </div>
+                </section>
+
+                <!-- SECTION 2: STOK TANGERANG TITIP DI PT. MBG -->
+                <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
+                    <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-emerald-700 text-white rounded-lg font-bold text-lg leading-none">🏢</div>
+                            <div>
+                                <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">STOK TANGERANG TITIP DI PT. MBG</h2>
+                                <p class="text-stone-400 text-xs sm:text-sm">Stok fisik barang yang saat ini tersedia di gudang PT. MBG</p>
+                            </div>
+                        </div>
+                        <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
+                            Stok Di Gudang MBG
+                        </span>
+                    </div>
+
+                    <div class="p-4 sm:p-6">
+                        <div class="overflow-x-auto rounded-xl border border-amber-100">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-[#faf7f2] border-b border-amber-100 text-stone-700 text-sm uppercase tracking-wider">
+                                        <th class="py-4 px-4 font-bold">Nama Barang</th>
+                                        <th class="py-4 px-4 font-bold text-center w-32">QTY</th>
+                                        <th class="py-4 px-4 font-bold">Status / Catatan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-stok-tangerang" class="divide-y divide-amber-50 text-base">
+                                    <!-- Data Stok Dimuat dari JSON -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
-                        Stok Di Gudang MBG
-                    </span>
-                </div>
+                </section>
 
-                <div class="p-4 sm:p-6">
-                    <div class="overflow-x-auto rounded-xl border border-amber-100">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-[#faf7f2] border-b border-amber-100 text-stone-700 text-sm uppercase tracking-wider">
-                                    <th class="py-4 px-4 font-bold">Nama Barang</th>
-                                    <th class="py-4 px-4 font-bold text-center w-32">QTY</th>
-                                    <th class="py-4 px-4 font-bold">Status / Catatan</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbody-stok-tangerang" class="divide-y divide-amber-50 text-base">
-                                <!-- Data Stok Dimuat dari JSON -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-        </main>
+            </main>
+        </div>
     </div>
 
     <!-- Modal Bagikan Link & Download Gambar -->
@@ -170,12 +173,12 @@
             <div class="border-t border-amber-100 pt-3 space-y-2">
                 <p class="text-xs font-semibold text-stone-600">Simpan Tampilan Dashboard:</p>
                 <button onclick="downloadDashboardImage()" id="downloadBtn" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm">
-                    Simpan Laporan sebagai Gambar
+                    Simpan Laporan sebagai Gambar (PNG)
                 </button>
             </div>
 
             <p id="copyAlert" class="text-xs text-emerald-700 font-bold text-center hidden pt-1">
-                ✓ Link berhasil disalin ke clipboard!
+                Link berhasil disalin ke clipboard!
             </p>
         </div>
     </div>
@@ -371,18 +374,19 @@
             }, 3000);
         }
 
-        // Fungsi Otomatis Download Dashboard sebagai Gambar PNG
+        // Fungsi Presisi & Lurus Download Gambar
         function downloadDashboardImage() {
             const btn = document.getElementById('downloadBtn');
             btn.innerText = "⏳ Sedang memproses gambar...";
             btn.disabled = true;
 
             const element = document.getElementById('capture-area');
-            
+
             html2canvas(element, {
-                scale: 2, // Kualitas gambar lebih tajam/HD
+                scale: 2,               // Resolusi tinggi / HD
                 useCORS: true,
-                backgroundColor: '#faf7f2'
+                backgroundColor: '#faf7f2',
+                windowWidth: 1200       // Memaksa render rasio tampilan desktop agar lurus & simetris
             }).then(canvas => {
                 const link = document.createElement('a');
                 link.download = `Laporan-Monitoring-PT-MBP-${new Date().toISOString().slice(0,10)}.png`;
