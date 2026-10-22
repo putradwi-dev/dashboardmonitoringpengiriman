@@ -7,7 +7,7 @@
           "nama": "Loyang 3cm chefprimax",
           "no_pesanan": "586688485572969482",
           "ekspedisi": "J&T",
-          "status": "kayu"
+          "status": "terlambat"
         }
       ]
     },
@@ -18,7 +18,7 @@
           "nama": "Cf 310",
           "no_pesanan": "586701181742384163",
           "ekspedisi": "J&T",
-          "status": "normal"
+          "status": "terlambat"
         }
       ]
     },
@@ -37,46 +37,10 @@
       "grup": "SHOPE MT 21/10/2026",
       "items": [
         {
-          "nama": "250es b10",
-          "no_pesanan": "2610205H2MS3G6",
+          "nama": "Gm hs30",
+          "no_pesanan": "2610217K5Q3J9K",
           "ekspedisi": "JNE",
           "status": "normal"
-        },
-        {
-          "nama": "Ruby 280",
-          "no_pesanan": "2610205HEGBR6M",
-          "ekspedisi": "J&T",
-          "status": "kayu"
-        },
-        {
-          "nama": "Topaz 600",
-          "no_pesanan": "2610205TQ66J23",
-          "ekspedisi": "J&T",
-          "status": "kayu"
-        },
-        {
-          "nama": "Gm 370t",
-          "no_pesanan": "2610216UDGSGVU",
-          "ekspedisi": "JNE",
-          "status": "kayu"
-        },
-        {
-          "nama": "Et a9",
-          "no_pesanan": "261021781A4CEP",
-          "ekspedisi": "JNE",
-          "status": "kayu"
-        },
-        {
-          "nama": "Cf 460",
-          "no_pesanan": "2610217C76XTK0",
-          "ekspedisi": "JNE",
-          "status": "kayu"
-        },
-        {
-          "nama": "Topaz 750",
-          "no_pesanan": "26102164TGN3BB",
-          "ekspedisi": "JNE",
-          "status": "kayu"
         }
       ]
     },
@@ -99,6 +63,17 @@
           "no_pesanan": "2610217KJ2VG7U",
           "ekspedisi": "JNE",
           "status": "kayu"
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE MT 22/10/2026",
+      "items": [
+        {
+          "nama": "Cf 210",
+          "no_pesanan": "2610218C4XQQW5",
+          "ekspedisi": "JNE",
+          "status": "normal"
         }
       ]
     }
