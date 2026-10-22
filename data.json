@@ -9,7 +9,7 @@
           "ekspedisi": "J&T",
           "status": "",
           "kayu": true,
-          "terlambat": false
+          "terlambat": true
         }
       ]
     },
