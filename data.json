@@ -7,7 +7,9 @@
           "nama": "Loyang 3cm chefprimax",
           "no_pesanan": "586688485572969482",
           "ekspedisi": "J&T",
-          "status": "terlambat"
+          "status": "",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
@@ -18,13 +20,24 @@
           "nama": "Cf 310",
           "no_pesanan": "586701181742384163",
           "ekspedisi": "J&T",
-          "status": "terlambat"
+          "status": "",
+          "kayu": false,
+          "terlambat": false
         },
         {
           "nama": "Gm rfl 12c",
           "no_pesanan": "586722916202022607",
           "ekspedisi": "JNE",
-          "status": "kayu"
+          "status": "",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "Loyang 3cm chefprimax",
+          "no_pesanan": "586723022623311462",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
@@ -35,7 +48,9 @@
           "nama": "Btz 200",
           "no_pesanan": "2610205872JT68",
           "ekspedisi": "JNE",
-          "status": "kayu"
+          "status": "",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
@@ -46,7 +61,9 @@
           "nama": "Gm hs30",
           "no_pesanan": "2610217K5Q3J9K",
           "ekspedisi": "JNE",
-          "status": "normal"
+          "status": "",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
@@ -57,7 +74,9 @@
           "nama": "Cf 210",
           "no_pesanan": "2610218C4XQQW5",
           "ekspedisi": "JNE",
-          "status": "normal"
+          "status": "",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
@@ -68,19 +87,25 @@
           "nama": "Expo 37",
           "no_pesanan": "261022989D2VJA",
           "ekspedisi": "JNE",
-          "status": "kayu"
+          "status": "",
+          "kayu": false,
+          "terlambat": false
         },
         {
           "nama": "Ruby 240",
           "no_pesanan": "261022A1XGPP0E",
           "ekspedisi": "JNE",
-          "status": "kayu"
+          "status": "",
+          "kayu": false,
+          "terlambat": false
         },
         {
           "nama": "Et 5015",
           "no_pesanan": "2610229N9G8RRY",
           "ekspedisi": "JNE",
-          "status": "normal"
+          "status": "",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     }
@@ -118,7 +143,7 @@
     },
     {
       "nama": "Loyang 3cm chefprimax",
-      "jumlah": 9,
+      "jumlah": 5,
       "catatan": "Utamakan habiskan",
       "tipe": "priority"
     },
