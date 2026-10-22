@@ -8,8 +8,8 @@
           "no_pesanan": "586688485572969482",
           "ekspedisi": "J&T",
           "status": "",
-          "kayu": true,
-          "terlambat": true
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
@@ -22,7 +22,7 @@
           "ekspedisi": "J&T",
           "status": "",
           "kayu": false,
-          "terlambat": true
+          "terlambat": false
         }
       ]
     },
@@ -53,6 +53,18 @@
       ]
     },
     {
+      "grup": "TOKOPEDIA MT 23/10/2026",
+      "items": [
+        {
+          "nama": "Hr 85e",
+          "no_pesanan": "586726145490322996",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 20/10/2026",
       "items": [
         {
@@ -60,7 +72,7 @@
           "no_pesanan": "2610205872JT68",
           "ekspedisi": "JNE",
           "status": "",
-          "kayu": true,
+          "kayu": false,
           "terlambat": false
         }
       ]
@@ -99,7 +111,7 @@
           "no_pesanan": "261022989D2VJA",
           "ekspedisi": "JNE",
           "status": "",
-          "kayu": true,
+          "kayu": false,
           "terlambat": false
         },
         {
@@ -107,7 +119,7 @@
           "no_pesanan": "261022A1XGPP0E",
           "ekspedisi": "JNE",
           "status": "",
-          "kayu": true,
+          "kayu": false,
           "terlambat": false
         },
         {
