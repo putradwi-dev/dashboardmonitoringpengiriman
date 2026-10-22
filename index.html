@@ -6,6 +6,8 @@
     <title>Sistem Monitoring Pengiriman & Titipan Stok PT. MBP</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- html2canvas CDN untuk fitur Simpan ke Gambar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
@@ -17,7 +19,7 @@
 </head>
 <body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-12 flex flex-col justify-between">
 
-    <div>
+    <div id="capture-area">
         <!-- Read-Only Notice Banner -->
         <div class="bg-amber-950 text-amber-100 px-4 py-2.5 text-xs sm:text-sm font-medium border-b border-amber-900 no-print">
             <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
@@ -26,6 +28,9 @@
                         READ ONLY
                     </span>
                 </div>
+                <button onclick="openShareModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
+                    Simpan Gambar
+                </button>
             </div>
         </div>
 
@@ -140,15 +145,15 @@
         </main>
     </div>
 
-    <!-- Modal Bagikan Link & Export -->
+    <!-- Modal Bagikan Link & Download Gambar -->
     <div id="shareModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden no-print">
         <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4 relative border border-amber-100">
             <button onclick="closeShareModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600 text-lg font-bold">✕</button>
             <div class="flex items-center gap-3">
-                <div class="p-3 bg-amber-100 text-amber-800 rounded-xl text-xl">🔗</div>
+                <div class="p-3 bg-amber-100 text-amber-800 rounded-xl text-xl">📸</div>
                 <div>
-                    <h3 class="font-bold text-stone-800 text-lg">Bagikan Dashboard</h3>
-                    <p class="text-xs text-stone-500">Kirim tautan ini ke rekan kerja (Hanya Lihat)</p>
+                    <h3 class="font-bold text-stone-800 text-lg">Bagikan Laporan</h3>
+                    <p class="text-xs text-stone-500">Salin link atau simpan laporan sebagai gambar</p>
                 </div>
             </div>
 
@@ -163,9 +168,9 @@
             </div>
 
             <div class="border-t border-amber-100 pt-3 space-y-2">
-                <p class="text-xs font-semibold text-stone-600">Alternatif Cetak / Dokumentasi:</p>
-                <button onclick="window.print()" class="w-full bg-[#faf7f2] hover:bg-[#f3ede2] text-stone-800 text-xs font-bold py-2.5 rounded-lg border border-amber-200 flex items-center justify-center gap-2 transition-all">
-                    🖨️ Simpan sebagai PDF / Cetak Laporan
+                <p class="text-xs font-semibold text-stone-600">Simpan Tampilan Dashboard:</p>
+                <button onclick="downloadDashboardImage()" id="downloadBtn" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm">
+                    🖼️ Download Laporan sebagai Gambar (PNG)
                 </button>
             </div>
 
@@ -292,7 +297,6 @@
                 let rowBgClass = 'hover:bg-[#faf7f2] transition-colors';
                 let qtyClass = 'bg-stone-100 px-3.5 py-1 rounded-lg font-bold text-stone-800 text-base inline-block';
 
-                // Tentukan Tampilan Badge Catatan
                 if (item.tipe === 'warning') {
                     statusBadge = `<span class="text-red-700 font-bold bg-red-50 px-3 py-1 rounded-md text-sm border border-red-200">${item.catatan && item.catatan !== '-' ? item.catatan : '🛠️ Perlu di perbaiki'}</span>`;
                 } else if (item.tipe === 'priority') {
@@ -300,7 +304,6 @@
                     rowBgClass = 'hover:bg-amber-50/50 transition-colors bg-amber-50/30';
                     qtyClass = 'bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200';
                 } else {
-                    // Tipe Normal: jika ada catatan khusus yang diisi (selain '-'), tampilkan dengan gaya netral
                     if (item.catatan && item.catatan.trim() !== '' && item.catatan.trim() !== '-') {
                         statusBadge = `<span class="text-stone-800 font-semibold bg-stone-100 px-3 py-1 rounded-md text-sm border border-stone-200">${item.catatan}</span>`;
                     }
@@ -366,6 +369,35 @@
             setTimeout(() => {
                 copyAlert.classList.add('hidden');
             }, 3000);
+        }
+
+        // Fungsi Otomatis Download Dashboard sebagai Gambar PNG
+        function downloadDashboardImage() {
+            const btn = document.getElementById('downloadBtn');
+            btn.innerText = "⏳ Sedang memproses gambar...";
+            btn.disabled = true;
+
+            const element = document.getElementById('capture-area');
+            
+            html2canvas(element, {
+                scale: 2, // Kualitas gambar lebih tajam/HD
+                useCORS: true,
+                backgroundColor: '#faf7f2'
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Laporan-Monitoring-PT-MBP-${new Date().toISOString().slice(0,10)}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+                btn.innerText = "🖼️ Download Laporan sebagai Gambar (PNG)";
+                btn.disabled = false;
+                closeShareModal();
+            }).catch(err => {
+                console.error("Gagal membuat gambar:", err);
+                alert("Gagal mengunduh gambar. Silakan coba lagi.");
+                btn.innerText = "🖼️ Download Laporan sebagai Gambar (PNG)";
+                btn.disabled = false;
+            });
         }
 
         function filterItems() {
