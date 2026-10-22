@@ -20,17 +20,11 @@
 <body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-12 flex flex-col justify-between">
 
     <div>
-        <!-- Read-Only Notice Banner -->
-        <div class="bg-amber-950 text-amber-100 px-4 py-2.5 text-xs sm:text-sm font-medium border-b border-amber-900 no-print">
-            <div class="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
-                <div class="flex items-center gap-2">
-                    <span class="inline-flex items-center justify-center bg-amber-800 text-amber-100 px-2 py-0.5 rounded text-xs font-bold uppercase tracking-wider">
-                        READ ONLY
-                    </span>
-                    <span>Tampilan terbatas. Anda tidak dapat mengubah data pada link ini.</span>
-                </div>
-                <button onclick="openShareModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
-                    🔗 Bagikan / Download Gambar
+        <!-- Banner Top Bar (Hanya Tombol Bagikan) -->
+        <div class="bg-amber-950 text-amber-100 px-4 py-2 text-xs sm:text-sm font-medium border-b border-amber-900 no-print">
+            <div class="max-w-6xl mx-auto flex justify-end items-center">
+                <button onclick="openShareModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
+                    🔗 BAGIKAN
                 </button>
             </div>
         </div>
