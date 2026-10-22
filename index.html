@@ -191,6 +191,20 @@
     </footer>
 
     <script>
+        // Fungsi helper untuk mendeteksi status dengan akurat (mendukung checkbox baru & teks lama)
+        function getItemStatus(item) {
+            let isKayu = !!item.kayu;
+            let isTerlambat = !!item.terlambat;
+
+            // Jika properti checkbox belum ada, cek string status lama
+            if (!isKayu && !isTerlambat && typeof item.status === 'string') {
+                const s = item.status.toLowerCase();
+                isKayu = (s === 'kayu' || s === 'keduanya');
+                isTerlambat = (s === 'terlambat' || s === 'keduanya');
+            }
+            return { isKayu, isTerlambat };
+        }
+
         async function loadDashboardData() {
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
@@ -216,18 +230,9 @@
                 let mobileCards = '';
 
                 group.items.forEach(item => {
-                    let isKayu = false;
-                    let isTerlambat = false;
-
-                    // Deteksi format status baik string lama maupun boolean baru
-                    if (typeof item.status === 'string') {
-                        const s = item.status.toLowerCase();
-                        isKayu = (s === 'kayu' || s === 'keduanya');
-                        isTerlambat = (s === 'terlambat' || s === 'keduanya');
-                    } else {
-                        isKayu = !!item.kayu;
-                        isTerlambat = !!item.terlambat;
-                    }
+                    const statusObj = getItemStatus(item);
+                    const isKayu = statusObj.isKayu;
+                    const isTerlambat = statusObj.isTerlambat;
 
                     const ekspedisiClean = (item.ekspedisi || '').toUpperCase();
                     const badgeEkspedisi = ekspedisiClean.includes('JNE')
@@ -353,11 +358,9 @@
             (data.belum_kirim || []).forEach(group => {
                 group.items.forEach(item => {
                     totalPesanan++;
-                    let isKayu = (typeof item.status === 'string') ? (item.status.toLowerCase() === 'kayu' || item.status.toLowerCase() === 'keduanya') : !!item.kayu;
-                    let isTerlambat = (typeof item.status === 'string') ? (item.status.toLowerCase() === 'terlambat' || item.status.toLowerCase() === 'keduanya') : !!item.terlambat;
-
-                    if (isKayu) totalKayu++;
-                    if (isTerlambat) totalTerlambat++;
+                    const statusObj = getItemStatus(item);
+                    if (statusObj.isKayu) totalKayu++;
+                    if (statusObj.isTerlambat) totalTerlambat++;
                 });
             });
 
