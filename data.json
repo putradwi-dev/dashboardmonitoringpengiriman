@@ -21,31 +21,31 @@
           "ekspedisi": "JNE",
           "status": "",
           "kayu": true,
-          "terlambat": false
+          "terlambat": true
         }
       ]
     },
     {
-      "grup": "SHOPE MT 21/10/2026",
+      "grup": "SHOPE MT 23/10/2026",
       "items": [
         {
-          "nama": "Gm hs30",
-          "no_pesanan": "2610217K5Q3J9K",
+          "nama": "Ab 318",
+          "no_pesanan": "2610229BAWFJ5H",
           "ekspedisi": "JNE",
-          "status": "",
           "kayu": false,
           "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 22/10/2026",
-      "items": [
+        },
         {
           "nama": "Cf 210",
-          "no_pesanan": "2610218C4XQQW5",
+          "no_pesanan": "261023BBQDHQE6",
           "ekspedisi": "JNE",
-          "status": "",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "Ice 300sc",
+          "no_pesanan": "261023BYY4P6SQ",
+          "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
         }
