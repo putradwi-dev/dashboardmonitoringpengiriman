@@ -76,6 +76,13 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "Jl t12yf",
+          "no_pesanan": "261023CU2M7PC3",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
