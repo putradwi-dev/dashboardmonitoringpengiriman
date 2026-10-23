@@ -48,6 +48,13 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "Bsf 5015",
+          "no_pesanan": "261023BX8KG0XM",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
