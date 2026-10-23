@@ -39,7 +39,7 @@
           "nama": "Ab 318",
           "no_pesanan": "2610229BAWFJ5H",
           "ekspedisi": "JNE",
-          "kayu": true,
+          "kayu": false,
           "terlambat": false
         },
         {
