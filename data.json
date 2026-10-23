@@ -87,6 +87,13 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "Loyang 3cm chefprimax",
+          "no_pesanan": "261023CESEFCXD",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     }
