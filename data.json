@@ -69,6 +69,13 @@
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "Eh 181401",
+          "no_pesanan": "261023CT4MUU8G",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
