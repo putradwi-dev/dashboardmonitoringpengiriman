@@ -9,6 +9,13 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "L 061z",
+          "no_pesanan": "586745867668588331",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
