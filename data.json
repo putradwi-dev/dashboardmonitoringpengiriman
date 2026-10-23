@@ -55,22 +55,6 @@
       "grup": "SHOPE ADT 22/10/2026",
       "items": [
         {
-          "nama": "Expo 37",
-          "no_pesanan": "261022989D2VJA",
-          "ekspedisi": "JNE",
-          "status": "",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "Ruby 240",
-          "no_pesanan": "261022A1XGPP0E",
-          "ekspedisi": "JNE",
-          "status": "",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
           "nama": "Et 5015",
           "no_pesanan": "2610229N9G8RRY",
           "ekspedisi": "JNE",
