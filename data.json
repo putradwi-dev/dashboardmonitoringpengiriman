@@ -144,6 +144,30 @@
       "jumlah": 1,
       "catatan": "",
       "tipe": "normal"
+    },
+    {
+      "nama": "Cf 110",
+      "jumlah": 8,
+      "catatan": "",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Cf 160",
+      "jumlah": 1,
+      "catatan": "",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Gmb 50 inox",
+      "jumlah": 1,
+      "catatan": "",
+      "tipe": "normal"
+    },
+    {
+      "nama": "Gmb 50 black inox",
+      "jumlah": 2,
+      "catatan": "",
+      "tipe": "normal"
     }
   ]
 }
