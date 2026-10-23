@@ -1,58 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 20/10/2026",
-      "items": [
-        {
-          "nama": "Loyang 3cm chefprimax",
-          "no_pesanan": "586688485572969482",
-          "ekspedisi": "J&T",
-          "status": "",
-          "kayu": true,
-          "terlambat": true
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA MT 21/10/2026",
-      "items": [
-        {
-          "nama": "Cf 310",
-          "no_pesanan": "586701181742384163",
-          "ekspedisi": "J&T",
-          "status": "",
-          "kayu": false,
-          "terlambat": true
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA MT 22/10/2026",
-      "items": [
-        {
-          "nama": "Gm rfl 12c",
-          "no_pesanan": "586722916202022607",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "Loyang 3cm chefprimax",
-          "no_pesanan": "586723022623311462",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "Topaz 600",
-          "no_pesanan": "586709536018826794",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA MT 23/10/2026",
       "items": [
         {
