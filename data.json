@@ -38,6 +38,18 @@
       ]
     },
     {
+      "grup": "SHOPE ADT 24/10/2026",
+      "items": [
+        {
+          "nama": "Elw 660",
+          "no_pesanan": "261024EVWN14ME",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE tANGSEL 24/10/2026",
       "items": [
         {
