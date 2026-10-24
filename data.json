@@ -25,80 +25,6 @@
       ]
     },
     {
-      "grup": "SHOPE MT 20/10/2026",
-      "items": [
-        {
-          "nama": "Btz 200",
-          "no_pesanan": "2610205872JT68",
-          "ekspedisi": "JNE",
-          "status": "",
-          "kayu": true,
-          "terlambat": true
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 23/10/2026",
-      "items": [
-        {
-          "nama": "Ab 318",
-          "no_pesanan": "2610229BAWFJ5H",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "Cf 210",
-          "no_pesanan": "261023BBQDHQE6",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "Ice 300sc",
-          "no_pesanan": "261023BYY4P6SQ",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "Bsf 5015",
-          "no_pesanan": "261023BX8KG0XM",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "Bg 05",
-          "no_pesanan": "261023CESP1HAX",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "Dh 10",
-          "no_pesanan": "261023CPWRR634",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "Eh 181401",
-          "no_pesanan": "261023CT4MUU8G",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "Jl t12yf",
-          "no_pesanan": "261023CU2M7PC3",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE ADT 22/10/2026",
       "items": [
         {
@@ -107,7 +33,7 @@
           "ekspedisi": "JNE",
           "status": "",
           "kayu": false,
-          "terlambat": false
+          "terlambat": true
         }
       ]
     },
