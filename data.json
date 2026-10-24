@@ -38,18 +38,11 @@
       ]
     },
     {
-      "grup": "SHOPE tANGSEL 23/10/2026",
+      "grup": "SHOPE tANGSEL 24/10/2026",
       "items": [
         {
           "nama": "Loyang 3cm chefprimax",
-          "no_pesanan": "261023CD3EBSBC",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "Loyang 3cm chefprimax",
-          "no_pesanan": "261023CESEFCXD",
+          "no_pesanan": "261023DBVCB6PS",
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
@@ -90,7 +83,7 @@
     },
     {
       "nama": "Loyang 3cm chefprimax",
-      "jumlah": 3,
+      "jumlah": 1,
       "catatan": "Utamakan habiskan",
       "tipe": "priority"
     },
