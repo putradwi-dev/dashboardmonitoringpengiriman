@@ -25,6 +25,18 @@
       ]
     },
     {
+      "grup": "SHOPE MT 24/10/2026",
+      "items": [
+        {
+          "nama": "Cf 310",
+          "no_pesanan": "261024EXTVSGVA",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE ADT 22/10/2026",
       "items": [
         {
