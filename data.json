@@ -38,7 +38,7 @@
           "nama": "Ab 208",
           "no_pesanan": "261024F81QFTT5",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false
         }
       ]
