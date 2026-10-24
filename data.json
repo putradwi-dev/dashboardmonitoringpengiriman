@@ -1,18 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 23/10/2026",
-      "items": [
-        {
-          "nama": "L 061z",
-          "no_pesanan": "586745867668588331",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA ADT 24/10/2026",
       "items": [
         {
@@ -32,13 +20,6 @@
           "no_pesanan": "261024EXTVSGVA",
           "ekspedisi": "JNE",
           "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "Ab 208",
-          "no_pesanan": "261024F81QFTT5",
-          "ekspedisi": "J&T",
-          "kayu": true,
           "terlambat": false
         }
       ]
