@@ -183,14 +183,22 @@
             }
 
             try {
-                const url = `https://api.github.com/repos/${user}/${repo}/contents/data.json`;
+                const url = `https://api.github.com/repos/${user}/${repo}/contents/admin.html`;
                 const response = await fetch(url, {
                     headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
                 });
 
                 if (!response.ok) throw new Error("Gagal mengambil data dari GitHub.");
 
-                const resData = await response.json();
+                // Load data.json as well
+                const dataUrl = `https://api.github.com/repos/${user}/${repo}/contents/data.json`;
+                const dataRes = await fetch(dataUrl, {
+                    headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+                });
+
+                if (!dataRes.ok) throw new Error("Gagal mengambil data.json dari GitHub.");
+
+                const resData = await dataRes.json();
                 currentSha = resData.sha;
                 
                 const jsonText = decodeURIComponent(escape(atob(resData.content)));
