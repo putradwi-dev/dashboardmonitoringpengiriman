@@ -244,19 +244,19 @@
 
                     const ekspedisiClean = (item.ekspedisi || '').toUpperCase();
                     const badgeEkspedisi = ekspedisiClean.includes('JNE')
-                        ? `<span class="bg-amber-50 text-amber-800 px-2 py-0.5 rounded text-xs font-bold uppercase border border-amber-200">${item.ekspedisi}</span>`
-                        : `<span class="bg-stone-100 text-stone-800 px-2 py-0.5 rounded text-xs font-bold uppercase border border-stone-200">${item.ekspedisi}</span>`;
+                        ? `<span class="bg-amber-50 text-amber-800 px-2 py-0.5 rounded-md text-xs sm:text-sm font-bold uppercase border border-amber-200">${item.ekspedisi}</span>`
+                        : `<span class="bg-stone-100 text-stone-800 px-2 py-0.5 rounded-md text-xs sm:text-sm font-bold uppercase border border-stone-200">${item.ekspedisi}</span>`;
 
                     let statusBadgesHtml = '';
                     let statusBadgesMobile = '';
 
                     if (isKayu) {
-                        statusBadgesHtml += `<span class="bg-amber-100/80 text-amber-900 text-xs px-3 py-1 rounded-md font-semibold border border-amber-200 inline-block">KAYU</span>`;
-                        statusBadgesMobile += `<span class="bg-amber-100/80 text-amber-900 text-xs px-2.5 py-1 rounded font-semibold border border-amber-200 inline-block">KAYU</span>`;
+                        statusBadgesHtml += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-3 py-1 rounded-md font-semibold border border-amber-200 inline-block">KAYU</span>`;
+                        statusBadgesMobile += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-amber-200 inline-block">KAYU</span>`;
                     }
                     if (isTerlambat) {
-                        statusBadgesHtml += `<span class="bg-red-100 text-red-800 text-xs px-3 py-1 rounded-md font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
-                        statusBadgesMobile += `<span class="bg-red-100 text-red-800 text-xs px-2.5 py-1 rounded font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
+                        statusBadgesHtml += `<span class="bg-red-100 text-red-800 text-xs sm:text-sm px-3 py-1 rounded-md font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
+                        statusBadgesMobile += `<span class="bg-red-100 text-red-800 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
                     }
 
                     if (!isKayu && !isTerlambat) {
@@ -267,11 +267,11 @@
 
                     tableRows += `
                         <tr class="item-row hover:bg-[#faf7f2] transition-colors" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
-                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[26%]" style="word-break: break-word;">${item.nama}</td>
-                            <td class="py-3.5 px-3 font-mono text-xs sm:text-sm text-stone-700 w-[28%]" style="word-break: break-all;">${item.no_pesanan}</td>
-                            <td class="py-3.5 px-2 text-center w-[8%]"><span class="bg-amber-50 px-2 py-0.5 rounded font-bold text-amber-900 text-xs inline-block border border-amber-200">${itemQty}</span></td>
-                            <td class="py-3.5 px-2 text-center w-[10%]">${badgeEkspedisi}</td>
-                            <td class="py-3.5 px-4 w-[28%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
+                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[30%]">${item.nama}</td>
+                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[28%]">${item.no_pesanan}</td>
+                            <td class="py-3.5 px-2 text-center w-[8%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
+                            <td class="py-3.5 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
+                            <td class="py-3.5 px-4 w-[24%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
                         </tr>
                     `;
 
@@ -302,13 +302,13 @@
 
                     <div class="hidden md:block overflow-x-auto rounded-xl border border-amber-100">
                         <table class="w-full text-left text-base table-fixed">
-                            <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-100 uppercase text-xs">
+                            <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-100 uppercase text-sm">
                                 <tr>
-                                    <th class="py-4 px-4 w-[26%]">Nama Barang</th>
-                                    <th class="py-4 px-3 w-[28%]">Nomor Pesanan</th>
-                                    <th class="py-4 px-2 text-center w-[8%]">QTY</th>
-                                    <th class="py-4 px-2 text-center w-[10%]">Ekspedisi</th>
-                                    <th class="py-4 px-4 w-[28%]">Status / Catatan</th>
+                                    <th class="py-4 px-4 w-[30%]">Nama Barang</th>
+                                    <th class="py-4 px-4 w-[28%]">Nomor Pesanan</th>
+                                    <th class="py-4 px-2 text-center w-[8%]" style="padding-left: 2px; padding-right: 2px;">QTY</th>
+                                    <th class="py-4 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
+                                    <th class="py-4 px-4 w-[24%]">Status / Catatan</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-amber-50">
