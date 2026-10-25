@@ -23,9 +23,14 @@
 
     <main class="max-w-5xl mx-auto px-4 mt-6 space-y-6">
         <!-- Tombol Aksi Utama -->
-        <button onclick="saveToGitHub()" class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold px-5 py-2.5 rounded-xl text-s transition-all flex items-center gap-2 shadow-md">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <button onclick="saveToGitHub()" class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold px-5 py-2.5 rounded-xl text-s transition-all flex items-center gap-2 shadow-md">
                 SIMPAN & UPDATE
-        </button>
+            </button>
+            <div id="globalDuplicateWarning" class="hidden bg-red-100 border border-red-300 text-red-700 px-3 py-1.5 rounded-lg text-xs font-bold animate-pulse">
+                ⚠️ Peringatan: Ada Nomor Pesanan yang Duplikat!
+            </div>
+        </div>
 
         <!-- SECTION 1: EDIT KATEGORI BELUM KIRIM -->
         <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
@@ -179,6 +184,7 @@
         function renderAllForms() {
             renderBelumKirim();
             renderStok();
+            checkDuplicates();
         }
 
         function renderBelumKirim() {
@@ -202,7 +208,7 @@
                     }
 
                     itemsHtml += `
-                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-white p-3 rounded-lg border border-amber-100 shadow-sm">
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-white p-3 rounded-lg border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}">
                             <div class="sm:col-span-4">
                                 <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">Nama Barang</label>
                                 <input type="text" value="${item.nama || ''}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1.5 text-xs font-semibold text-stone-800">
@@ -213,7 +219,7 @@
                             </div>
                             <div class="sm:col-span-3">
                                 <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">No. Pesanan</label>
-                                <input type="text" value="${item.no_pesanan || ''}" onchange="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1.5 text-xs font-mono text-stone-700">
+                                <input type="text" id="no_pesanan_${gIdx}_${iIdx}" value="${item.no_pesanan || ''}" oninput="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1.5 text-xs font-mono text-stone-700">
                             </div>
                             <div class="sm:col-span-1">
                                 <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">Ekspedisi</label>
@@ -271,6 +277,7 @@
 
                 container.appendChild(gDiv);
             });
+            checkDuplicates();
         }
 
         function renderStok() {
@@ -308,10 +315,57 @@
         function updateGroupName(gIdx, val) { currentData.belum_kirim[gIdx].grup = val; }
         function updateItemName(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].nama = val; }
         function updateItemQty(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].qty = Number(val) || 1; }
-        function updateItemNo(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].no_pesanan = val; }
+        function updateItemNo(gIdx, iIdx, val) { 
+            currentData.belum_kirim[gIdx].items[iIdx].no_pesanan = val; 
+            checkDuplicates();
+        }
         function updateItemExp(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].ekspedisi = val; }
         function updateItemStatusCheckbox(gIdx, iIdx, field, isChecked) {
             currentData.belum_kirim[gIdx].items[iIdx][field] = isChecked;
+        }
+
+        function checkDuplicates() {
+            const allInputs = document.querySelectorAll('[id^="no_pesanan_"]');
+            const counts = {};
+            
+            // Kumpulkan semua nomor pesanan yang tidak kosong
+            (currentData.belum_kirim || []).forEach(group => {
+                (group.items || []).forEach(item => {
+                    const no = (item.no_pesanan || '').trim();
+                    if (no !== '') {
+                        counts[no] = (counts[no] || 0) + 1;
+                    }
+                });
+            });
+
+            let hasDuplicate = false;
+
+            // Tandai input yang duplikat
+            (currentData.belum_kirim || []).forEach((group, gIdx) => {
+                (group.items || []).forEach((item, iIdx) => {
+                    const no = (item.no_pesanan || '').trim();
+                    const inputEl = document.getElementById(`no_pesanan_${gIdx}_${iIdx}`);
+                    if (inputEl) {
+                        if (no !== '' && counts[no] > 1) {
+                            inputEl.classList.add('border-red-500', 'bg-red-50', 'text-red-700');
+                            inputEl.title = "Nomor pesanan ini duplikat!";
+                            hasDuplicate = true;
+                        } else {
+                            inputEl.classList.remove('border-red-500', 'bg-red-50', 'text-red-700');
+                            inputEl.title = "";
+                        }
+                    }
+                });
+            });
+
+            const warningBanner = document.getElementById('globalDuplicateWarning');
+            if (warningBanner) {
+                if (hasDuplicate) {
+                    warningBanner.classList.remove('hidden');
+                } else {
+                    warningBanner.classList.add('hidden');
+                }
+            }
         }
         
         function addBelumKirimGroup() {
@@ -386,7 +440,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Make group title input box longer",
+                    message: "Add duplicate order number validation",
                     content: contentBase64,
                     sha: currentSha
                 };
