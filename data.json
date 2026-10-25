@@ -15,7 +15,8 @@
           "no_pesanan": "586780932054811971",
           "ekspedisi": "JNE",
           "kayu": false,
-          "terlambat": false
+          "terlambat": false,
+          "qty": 2
         }
       ]
     },
