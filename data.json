@@ -60,6 +60,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "AB 208 & GF 102G",
+          "qty": 2,
+          "no_pesanan": "261025JDYN49GJ",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
