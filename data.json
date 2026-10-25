@@ -99,6 +99,19 @@
           "terlambat": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE TANGSEL 26/10/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM GOMESIN",
+          "qty": 1,
+          "no_pesanan": "261025HY6U0FFM",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
@@ -128,7 +141,7 @@
     },
     {
       "nama": "Loyang 3cm gomesin",
-      "jumlah": 89,
+      "jumlah": 88,
       "catatan": "",
       "tipe": "normal"
     },
