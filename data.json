@@ -4,7 +4,7 @@
       "grup": "TOKOPEDIA ADT 24/10/2026",
       "items": [
         {
-          "nama": "Mkh 46",
+          "nama": "MKH 46",
           "no_pesanan": "586747167699011126",
           "ekspedisi": "J&T",
           "kayu": false,
@@ -16,7 +16,7 @@
       "grup": "SHOPE MT 24/10/2026",
       "items": [
         {
-          "nama": "Cf 310",
+          "nama": "CF 310",
           "no_pesanan": "261024EXTVSGVA",
           "ekspedisi": "JNE",
           "kayu": false,
@@ -25,10 +25,29 @@
       ]
     },
     {
+      "grup": "SHOPE MT 26/10/2026",
+      "items": [
+        {
+          "nama": "MFS 150YG",
+          "no_pesanan": "261024FBBKWNNP",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        },
+        {
+          "nama": "TOPAZ 600",
+          "no_pesanan": "261025GTV0MAJG",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE ADT 22/10/2026",
       "items": [
         {
-          "nama": "Et 5015",
+          "nama": "ET 5015",
           "no_pesanan": "2610229N9G8RRY",
           "ekspedisi": "JNE",
           "status": "",
@@ -41,8 +60,20 @@
       "grup": "SHOPE ADT 24/10/2026",
       "items": [
         {
-          "nama": "Elw 660",
+          "nama": "ELW 660",
           "no_pesanan": "261024EVWN14ME",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE ADT 26/10/2026",
+      "items": [
+        {
+          "nama": "SD 456B",
+          "no_pesanan": "261025GDWJS2WR",
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
