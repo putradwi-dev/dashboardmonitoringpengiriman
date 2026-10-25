@@ -22,16 +22,11 @@
     </header>
 
     <main class="max-w-5xl mx-auto px-4 mt-6 space-y-6">
-        <!-- Tombol Aksi Utama & Undo -->
+        <!-- Tombol Aksi Utama -->
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div class="flex items-center gap-2">
-                <button onclick="saveToGitHub()" class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold px-5 py-2.5 rounded-xl text-s transition-all flex items-center gap-2 shadow-md">
-                    SIMPAN & UPDATE
-                </button>
-                <button onclick="undoChanges()" id="undoBtn" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-bold px-3.5 py-2.5 rounded-xl text-xs transition-all flex items-center gap-1.5 shadow-sm hidden" title="Batalkan perubahan terakhir">
-                    ↩️ Undo Perubahan
-                </button>
-            </div>
+            <button onclick="saveToGitHub()" class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold px-5 py-2.5 rounded-xl text-s transition-all flex items-center gap-2 shadow-md">
+                SIMPAN & UPDATE
+            </button>
             <div id="globalDuplicateWarning" class="hidden bg-red-100 border border-red-300 text-red-700 px-3 py-1.5 rounded-lg text-xs font-bold animate-pulse">
                 ⚠️ Peringatan: Ada Nomor Pesanan yang Duplikat!
             </div>
@@ -119,7 +114,6 @@
             belum_kirim: [],
             stok_tangerang: []
         };
-        let previousDataSnapshot = null; // Untuk fitur Undo
         let currentSha = "";
 
         window.onload = function() {
@@ -132,21 +126,6 @@
                 loadFromGitHub();
             }
         };
-
-        function saveSnapshot() {
-            previousDataSnapshot = JSON.stringify(currentData);
-            document.getElementById('undoBtn').classList.remove('hidden');
-        }
-
-        function undoChanges() {
-            if (previousDataSnapshot) {
-                currentData = JSON.parse(previousDataSnapshot);
-                renderAllForms();
-                document.getElementById('undoBtn').classList.add('hidden');
-                previousDataSnapshot = null;
-                alert('↩️ Perubahan terakhir dibatalkan (Undo berhasil).');
-            }
-        }
 
         function saveConfig() {
             localStorage.setItem('mbp_gh_user', document.getElementById('ghUsername').value.trim());
@@ -183,28 +162,18 @@
             }
 
             try {
-                const url = `https://api.github.com/repos/${user}/${repo}/contents/admin.html`;
+                const url = `https://api.github.com/repos/${user}/${repo}/contents/data.json`;
                 const response = await fetch(url, {
                     headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
                 });
 
                 if (!response.ok) throw new Error("Gagal mengambil data dari GitHub.");
 
-                // Load data.json as well
-                const dataUrl = `https://api.github.com/repos/${user}/${repo}/contents/data.json`;
-                const dataRes = await fetch(dataUrl, {
-                    headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
-                });
-
-                if (!dataRes.ok) throw new Error("Gagal mengambil data.json dari GitHub.");
-
-                const resData = await dataRes.json();
+                const resData = await response.json();
                 currentSha = resData.sha;
                 
                 const jsonText = decodeURIComponent(escape(atob(resData.content)));
                 currentData = JSON.parse(jsonText);
-                previousDataSnapshot = null;
-                document.getElementById('undoBtn').classList.add('hidden');
 
                 renderAllForms();
             } catch (err) {
@@ -239,7 +208,7 @@
                     }
 
                     itemsHtml += `
-                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-white p-3 rounded-lg border border-amber-100 shadow-sm item-row-admin">
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-white p-3 rounded-lg border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}">
                             <div class="sm:col-span-4">
                                 <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">Nama Barang</label>
                                 <input type="text" value="${item.nama || ''}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1.5 text-xs font-semibold text-stone-800">
@@ -269,9 +238,9 @@
                                     <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="rounded text-red-600 focus:ring-red-600"> Terlambat
                                 </label>
                             </div>
-                            <!-- Tombol Hapus -->
+                            <!-- Tombol Hapus dengan Konfirmasi -->
                             <div class="sm:col-span-1 text-center">
-                                <button onclick="deleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs font-bold px-2 py-1.5 rounded border border-red-200 transition-all w-full shadow-sm">Hapus</button>
+                                <button onclick="confirmDeleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs font-bold px-2 py-1.5 rounded border border-red-200 transition-all w-full shadow-sm">Hapus</button>
                             </div>
                         </div>
                     `;
@@ -298,7 +267,7 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <button onclick="addBelumKirimItem(${gIdx})" class="bg-amber-800 text-white font-bold px-2.5 py-1 rounded text-xs hover:bg-amber-900 transition-all">+ Pesanan</button>
-                            <button onclick="deleteGroup(${gIdx})" class="bg-red-100 text-red-700 font-bold px-2 py-1 rounded text-xs hover:bg-red-200 transition-all">Hapus E-Commerce</button>
+                            <button onclick="confirmDeleteGroup(${gIdx})" class="bg-red-100 text-red-700 font-bold px-2 py-1 rounded text-xs hover:bg-red-200 transition-all">Hapus E-Commerce</button>
                         </div>
                     </div>
                     <div class="space-y-2">
@@ -336,29 +305,29 @@
                         <input type="text" value="${item.catatan || ''}" onchange="updateStokCatatan(${idx}, this.value)" placeholder="Teks Catatan" class="w-full bg-[#fdfbf7] border border-stone-200 rounded px-2 py-1 text-stone-700">
                     </td>
                     <td class="py-2 px-3 text-center">
-                        <button onclick="deleteStokItem(${idx})" class="text-red-600 hover:text-red-800 font-bold">Hapus</button>
+                        <button onclick="confirmDeleteStokItem(${idx})" class="text-red-600 hover:text-red-800 font-bold">Hapus</button>
                     </td>
                 `;
                 container.appendChild(tr);
             });
         }
 
-        function updateGroupName(gIdx, val) { saveSnapshot(); currentData.belum_kirim[gIdx].grup = val; }
-        function updateItemName(gIdx, iIdx, val) { saveSnapshot(); currentData.belum_kirim[gIdx].items[iIdx].nama = val; }
-        function updateItemQty(gIdx, iIdx, val) { saveSnapshot(); currentData.belum_kirim[gIdx].items[iIdx].qty = Number(val) || 1; }
+        function updateGroupName(gIdx, val) { currentData.belum_kirim[gIdx].grup = val; }
+        function updateItemName(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].nama = val; }
+        function updateItemQty(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].qty = Number(val) || 1; }
         function updateItemNo(gIdx, iIdx, val) { 
-            saveSnapshot();
             currentData.belum_kirim[gIdx].items[iIdx].no_pesanan = val; 
             checkDuplicates();
         }
-        function updateItemExp(gIdx, iIdx, val) { saveSnapshot(); currentData.belum_kirim[gIdx].items[iIdx].ekspedisi = val; }
+        function updateItemExp(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].ekspedisi = val; }
         function updateItemStatusCheckbox(gIdx, iIdx, field, isChecked) {
-            saveSnapshot();
             currentData.belum_kirim[gIdx].items[iIdx][field] = isChecked;
         }
 
         function checkDuplicates() {
+            const allInputs = document.querySelectorAll('[id^="no_pesanan_"]');
             const counts = {};
+            
             (currentData.belum_kirim || []).forEach(group => {
                 (group.items || []).forEach(item => {
                     const no = (item.no_pesanan || '').trim();
@@ -369,6 +338,7 @@
             });
 
             let hasDuplicate = false;
+
             (currentData.belum_kirim || []).forEach((group, gIdx) => {
                 (group.items || []).forEach((item, iIdx) => {
                     const no = (item.no_pesanan || '').trim();
@@ -397,7 +367,6 @@
         }
         
         function addBelumKirimGroup() {
-            saveSnapshot();
             if (!currentData.belum_kirim) currentData.belum_kirim = [];
             currentData.belum_kirim.push({ 
                 grup: "GRUP BARU", 
@@ -409,23 +378,20 @@
         }
 
         function addBelumKirimItem(gIdx) {
-            saveSnapshot();
             if (!currentData.belum_kirim[gIdx].items) currentData.belum_kirim[gIdx].items = [];
             currentData.belum_kirim[gIdx].items.push({ nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false });
             renderBelumKirim();
         }
 
-        function deleteBelumKirimItem(gIdx, iIdx) {
-            if(confirm("Yakin ingin menghapus item pesanan ini?")) {
-                saveSnapshot();
+        function confirmDeleteBelumKirimItem(gIdx, iIdx) {
+            if (confirm("Yakin ingin menghapus item pesanan ini?")) {
                 currentData.belum_kirim[gIdx].items.splice(iIdx, 1);
                 renderBelumKirim();
             }
         }
 
-        function deleteGroup(gIdx) {
-            if(confirm("Yakin ingin menghapus seluruh kelompok E-Commerce ini beserta isinya?")) {
-                saveSnapshot();
+        function confirmDeleteGroup(gIdx) {
+            if (confirm("⚠️ Yakin ingin menghapus seluruh kelompok E-Commerce ini beserta isinya?")) {
                 currentData.belum_kirim.splice(gIdx, 1);
                 renderBelumKirim();
             }
@@ -435,7 +401,6 @@
             const newIdx = gIdx + direction;
             if (newIdx < 0 || newIdx >= currentData.belum_kirim.length) return;
             
-            saveSnapshot();
             const temp = currentData.belum_kirim[gIdx];
             currentData.belum_kirim[gIdx] = currentData.belum_kirim[newIdx];
             currentData.belum_kirim[newIdx] = temp;
@@ -443,21 +408,19 @@
             renderBelumKirim();
         }
 
-        function updateStokNama(idx, val) { saveSnapshot(); currentData.stok_tangerang[idx].nama = val; }
-        function updateStokJumlah(idx, val) { saveSnapshot(); currentData.stok_tangerang[idx].jumlah = Number(val); }
-        function updateStokTipe(idx, val) { saveSnapshot(); currentData.stok_tangerang[idx].tipe = val; }
-        function updateStokCatatan(idx, val) { saveSnapshot(); currentData.stok_tangerang[idx].catatan = val; }
+        function updateStokNama(idx, val) { currentData.stok_tangerang[idx].nama = val; }
+        function updateStokJumlah(idx, val) { currentData.stok_tangerang[idx].jumlah = Number(val); }
+        function updateStokTipe(idx, val) { currentData.stok_tangerang[idx].tipe = val; }
+        function updateStokCatatan(idx, val) { currentData.stok_tangerang[idx].catatan = val; }
         
         function addStokItem() {
-            saveSnapshot();
             if (!currentData.stok_tangerang) currentData.stok_tangerang = [];
             currentData.stok_tangerang.push({ nama: "", jumlah: 1, catatan: "-", tipe: "normal" });
             renderStok();
         }
 
-        function deleteStokItem(idx) {
-            if(confirm("Yakin ingin menghapus item stok ini?")) {
-                saveSnapshot();
+        function confirmDeleteStokItem(idx) {
+            if (confirm("Yakin ingin menghapus data stok barang ini?")) {
                 currentData.stok_tangerang.splice(idx, 1);
                 renderStok();
             }
@@ -479,7 +442,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Add undo and delete confirmation features",
+                    message: "Add delete confirmation prompts",
                     content: contentBase64,
                     sha: currentSha
                 };
@@ -498,8 +461,6 @@
 
                 const resJson = await response.json();
                 currentSha = resJson.content.sha;
-                previousDataSnapshot = null;
-                document.getElementById('undoBtn').classList.add('hidden');
 
                 alert("BERHASIL SIMPAN & UPDATE");
             } catch (err) {
