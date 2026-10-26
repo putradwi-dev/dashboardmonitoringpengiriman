@@ -116,6 +116,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "FJ 15GC",
+          "qty": 1,
+          "no_pesanan": "261025GRX4RWNW",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
