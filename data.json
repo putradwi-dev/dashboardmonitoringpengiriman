@@ -69,7 +69,7 @@
           "no_pesanan": "261024EVWN14ME",
           "ekspedisi": "JNE",
           "kayu": true,
-          "terlambat": false
+          "terlambat": true
         }
       ]
     },
@@ -82,20 +82,7 @@
           "no_pesanan": "261025J4V825YW",
           "ekspedisi": "J&T",
           "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE TANGSEL 26/10/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM GOMESIN",
-          "qty": 1,
-          "no_pesanan": "261025HY6U0FFM",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
+          "terlambat": true
         }
       ]
     }
