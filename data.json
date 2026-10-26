@@ -13,10 +13,6 @@
       ]
     },
     {
-      "grup": "TOKOPEDIA ADT 26/10/2026",
-      "items": []
-    },
-    {
       "grup": "SHOPE MT 24/10/2026",
       "items": [
         {
@@ -41,7 +37,7 @@
         },
         {
           "nama": "AB 318",
-          "qty": 1,
+          "qty": 3,
           "no_pesanan": "261026KV6USKM8",
           "ekspedisi": "JNE",
           "kayu": false,
@@ -51,6 +47,14 @@
           "nama": "AB 318",
           "qty": 2,
           "no_pesanan": "261026KV91CNUX",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 2,
+          "no_pesanan": "261026KV3Y72Y0",
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
