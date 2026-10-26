@@ -85,6 +85,19 @@
           "terlambat": true
         }
       ]
+    },
+    {
+      "grup": "SHOPE TANGSEL 27/10/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM GOMESIN",
+          "qty": 10,
+          "no_pesanan": "261026N6YH8F7E",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
