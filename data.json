@@ -151,13 +151,6 @@
       "grup": "SHOPE ADT 26/10/2026",
       "items": [
         {
-          "nama": "SD 456B (TUNDA)",
-          "no_pesanan": "261025GDWJS2WR",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
           "nama": "KR 2T1S",
           "qty": 1,
           "no_pesanan": "261025J4V825YW",
