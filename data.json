@@ -108,6 +108,14 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "GM GRD 720",
+          "qty": 1,
+          "no_pesanan": "261025H24RQY1T",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
