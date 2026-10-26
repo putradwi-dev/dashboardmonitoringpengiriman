@@ -1,26 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 26/10/2026",
-      "items": [
-        {
-          "nama": "TOPAZ 600",
-          "no_pesanan": "586778415005074915",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "BILL HOLDER 24",
-          "no_pesanan": "586780932054811971",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "qty": 2
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA ADT 24/10/2026",
       "items": [
         {
@@ -28,22 +8,13 @@
           "no_pesanan": "586747167699011126",
           "ekspedisi": "J&T",
           "kayu": false,
-          "terlambat": false
+          "terlambat": true
         }
       ]
     },
     {
       "grup": "TOKOPEDIA ADT 26/10/2026",
-      "items": [
-        {
-          "nama": "BILL HOLDER 48",
-          "qty": 1,
-          "no_pesanan": "586798115711845734",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        }
-      ]
+      "items": []
     },
     {
       "grup": "SHOPE MT 24/10/2026",
@@ -53,106 +24,7 @@
           "no_pesanan": "261024EXTVSGVA",
           "ekspedisi": "JNE",
           "kayu": false,
-          "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 26/10/2026",
-      "items": [
-        {
-          "nama": "MFS 150YG",
-          "no_pesanan": "261024FBBKWNNP",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "TOPAZ 600",
-          "no_pesanan": "261025GTV0MAJG",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "AB 208 & GF 102G",
-          "qty": 2,
-          "no_pesanan": "261025JDYN49GJ",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "AB 318",
-          "qty": 1,
-          "no_pesanan": "261026JSRM4MGX",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "TOPAZ 600",
-          "qty": 1,
-          "no_pesanan": "261026KK4E7QPW",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "RUBY 280",
-          "qty": 1,
-          "no_pesanan": "261026KQMP1AJ9",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "TOPAZ 600",
-          "qty": 1,
-          "no_pesanan": "261026KRPHD8ES",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "GF 102G & SC X36",
-          "qty": 2,
-          "no_pesanan": "261026KBADTR1D",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "GM GRD 720 (TITIP PROSES BANDUNG)",
-          "qty": 1,
-          "no_pesanan": "261025H24RQY1T",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "AB 318",
-          "qty": 1,
-          "no_pesanan": "261026KYDSRJAG",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "AB 318",
-          "qty": 1,
-          "no_pesanan": "261026M8JX4174",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "RUBY 280",
-          "qty": 1,
-          "no_pesanan": "261025JF0D5H7Q",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
+          "terlambat": true
         }
       ]
     },
