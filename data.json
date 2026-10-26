@@ -38,6 +38,22 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "261026KV6USKM8",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 2,
+          "no_pesanan": "261026KV91CNUX",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
