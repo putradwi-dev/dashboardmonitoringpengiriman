@@ -100,6 +100,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "GF 102G & SC X36",
+          "qty": 2,
+          "no_pesanan": "261026KBADTR1D",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
