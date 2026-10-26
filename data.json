@@ -124,6 +124,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "261026M8JX4174",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
