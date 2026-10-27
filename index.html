@@ -3,484 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary Meta Tags -->
-    <title>Sistem Monitoring Pengiriman & Titipan Stok PT. MBP</title>
-    <meta name="title" content="Sistem Monitoring Pengiriman & Titipan Stok PT. MBP">
-    <meta name="description" content="Dashboard monitoring real-time status pengiriman dan titipan stok PT. MBP.">
-
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/favicon.png">
+    <title>Closing Report E-commerce Tangerang</title>
 
     <!-- Open Graph / WhatsApp Preview Meta Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Sistem Monitoring Pengiriman & Titipan Stok PT. MBP">
-    <meta property="og:description" content="Dashboard monitoring real-time status pengiriman dan titipan stok PT. MBP.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/preview.png">
+    <meta property="og:title" content="Closing Report E-commerce Tangerang">
+    <meta property="og:description" content="Closing Report E-commerce Tangerang">
+    <meta property="og:image" content="https://raw.githubusercontent.com/putradwi-dev/dashboardclosingreport/main/preview.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://monitoringtitipproses.ptmbp.my.id/">
-
-    <!-- Tailwind CSS CDN -->
+    <meta property="og:url" content="https://closingreport.ptmbp.my.id/">
+    
+    <!-- Tailwind v3 CDN standar (tanpa oklab) -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- html2canvas CDN untuk fitur Simpan ke Gambar -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Library html2canvas untuk mengunduh gambar PNG -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; }
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
     </style>
 </head>
-<body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-12 flex flex-col justify-between">
-
-    <div>
-        <!-- Area utama yang di-capture ke Gambar -->
-        <div id="capture-area" class="bg-[#faf7f2] pb-6">
-            <!-- Header Section (Tombol BAGIKAN disatukan di sebelah DATA REALTIME) -->
-            <header class="bg-gradient-to-r from-amber-900 via-stone-800 to-amber-800 text-white shadow-lg">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <div>
-                            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2 text-amber-50">
-                                Sistem Monitoring Pengiriman & Titipan Stok PT. MBP
-                            </h1>
-                        </div>
-                        <div class="flex items-center gap-2.5 self-start md:self-auto">
-                            <!-- Tombol Bagikan -->
-                            <button onclick="openShareModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm no-print">
-                                🔗 BAGIKAN
-                            </button>
-                            <!-- Badge Realtime -->
-                            <div class="flex items-center gap-2 bg-amber-950/60 backdrop-blur-md px-4 py-2 rounded-xl border border-amber-600/30 text-xs font-medium">
-                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                                <span class="text-amber-100">DATA REALTIME</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <main class="max-w-6xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
-
-                <!-- Summary Cards / Statistics Header -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm">
-                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Total Pesanan</p>
-                        <p class="text-2xl font-bold text-stone-800 mt-1" id="stat-total-pesanan">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-red-500">
-                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Terlambat</p>
-                        <p class="text-2xl font-bold text-red-600 mt-1" id="stat-terlambat">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-amber-600">
-                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Packing Kayu</p>
-                        <p class="text-2xl font-bold text-amber-700 mt-1" id="stat-kayu">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-emerald-600">
-                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Total Unit Stok</p>
-                        <p class="text-2xl font-bold text-emerald-700 mt-1" id="stat-total-stok">0 <span class="text-xs font-normal text-stone-500">Unit</span></p>
+<body class="bg-[#FBF9F1] text-[#33312E] min-h-screen p-4 md:p-8 flex items-center justify-center">
+    <div class="w-full max-w-2xl space-y-4">
+        
+        <!-- Area Dashboard Utama yang Akan Diunduh Sebagai Gambar -->
+        <div id="captureArea" class="bg-[#F5F0E6] rounded-2xl shadow-lg border border-[#E3DCD0] overflow-hidden space-y-6 pb-6 p-1">
+            
+            <!-- Header Rapi & Presisi -->
+            <div class="bg-[#8C7A6B] p-6 text-center shadow-sm space-y-3 rounded-t-xl">
+                <h1 class="text-xl md:text-2xl font-bold tracking-wide text-[#FAF7F2]">CLOSING REPORT E-COMMERCE TANGERANG</h1>
+                
+                <!-- Badge CS & Tanggal (Wadah Tersendiri di Tengah) -->
+                <div class="flex justify-center w-full">
+                    <div class="bg-[#786759] text-[#FAF7F2] px-5 py-2 rounded-full text-xs font-bold shadow-sm inline-flex items-center justify-center gap-2">
+                        <span>👤 <span id="display_cs_name">MARVELL TANGERANG</span></span>
+                        <span class="text-[#D3C7BC]">•</span>
+                        <span>📅 <span id="display_tanggal">-</span></span>
                     </div>
                 </div>
 
-                <!-- Search & Filter Controls (No Print) -->
-                <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between no-print">
-                    <div class="relative w-full md:w-80">
-                        <input type="text" id="searchInput" onkeyup="filterItems()" placeholder="Cari nama barang / no. pesanan..." 
-                               class="w-full pl-9 pr-4 py-2 bg-[#fdfbf7] border border-amber-200/80 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-700 focus:bg-white transition-all">
-                        <svg class="w-4 h-4 text-stone-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </div>
-                    <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
-                        <button onclick="filterBy('all', event)" class="filter-btn bg-amber-800 text-white px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold shadow-sm transition-all whitespace-nowrap">Semua Pesanan</button>
-                        <button onclick="filterBy('terlambat', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-red-50 hover:text-red-700 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap">⚠️ Pesanan Terlambat</button>
-                        <button onclick="filterBy('kayu', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-amber-100/60 hover:text-amber-900 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap">Pesanan Packing Kayu</button>
-                    </div>
-                </div>
-
-                <!-- SECTION 1: BELUM KIRIM -->
-                <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
-                    <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                        <div class="flex items-center gap-3">
-                            <div class="p-2 bg-amber-600 text-white rounded-lg font-bold text-lg leading-none">⏳</div>
-                            <div>
-                                <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">BELUM KIRIM</h2>
-                                <p class="text-stone-400 text-xs sm:text-sm">Daftar pesanan yang belum dikirimkan ke ekspedisi</p>
-                            </div>
-                        </div>
-                        <span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
-                            Menunggu Dikirim
-                        </span>
-                    </div>
-
-                    <div id="container-belum-kirim" class="p-4 sm:p-6 space-y-8">
-                        <!-- Data Belum Kirim Dimuat dari JSON -->
-                    </div>
-                </section>
-
-                <!-- SECTION 2: STOK TANGERANG TITIP DI PT. MBG -->
-                <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
-                    <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                        <div class="flex items-center gap-3">
-                            <div class="p-2 bg-emerald-700 text-white rounded-lg font-bold text-lg leading-none">🏢</div>
-                            <div>
-                                <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">STOK TANGERANG TITIP DI PT. MBG</h2>
-                                <p class="text-stone-400 text-xs sm:text-sm">Stok fisik barang yang saat ini tersedia di gudang PT. MBG</p>
-                            </div>
-                        </div>
-                        <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
-                            Stok Di Gudang MBG
-                        </span>
-                    </div>
-
-                    <div class="p-4 sm:p-6">
-                        <div class="overflow-x-auto rounded-xl border border-amber-100">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-[#faf7f2] border-b border-amber-100 text-stone-700 text-sm uppercase tracking-wider">
-                                        <th class="py-4 px-4 font-bold">Nama Barang</th>
-                                        <th class="py-4 px-4 font-bold text-center w-32">QTY</th>
-                                        <th class="py-4 px-4 font-bold">Status / Catatan</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody-stok-tangerang" class="divide-y divide-amber-50 text-base">
-                                    <!-- Data Stok Dimuat dari JSON -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-
-            </main>
-        </div>
-    </div>
-
-    <!-- Modal Bagikan Link & Download Gambar -->
-    <div id="shareModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden no-print">
-        <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4 relative border border-amber-100">
-            <button onclick="closeShareModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600 text-lg font-bold">✕</button>
-            <div class="flex items-center gap-3">
-                <div class="p-3 bg-amber-100 text-amber-800 rounded-xl text-xl">📸</div>
-                <div>
-                    <h3 class="font-bold text-stone-800 text-lg">Bagikan Laporan</h3>
-                    <p class="text-xs text-stone-500">Salin link atau simpan laporan sebagai gambar</p>
+                <!-- Filter Bulan (Disembunyikan Otomatis Saat Diunduh Gambar) -->
+                <div class="no-export flex justify-center w-full pt-1">
+                    <select id="monthFilter" class="bg-[#FAF7F2] text-[#33312E] text-xs font-bold px-3 py-1 rounded-full border border-[#E3DCD0] focus:outline-none cursor-pointer shadow-xs">
+                    </select>
                 </div>
             </div>
 
-            <div class="space-y-2 pt-2">
-                <label class="text-xs font-semibold text-stone-600 block">Link Akses:</label>
-                <div class="flex items-center gap-2">
-                    <input type="text" id="shareUrlInput" readonly class="w-full bg-[#faf7f2] border border-amber-200 rounded-lg px-3 py-2 text-xs font-mono text-stone-700 focus:outline-none select-all">
-                    <button onclick="copyShareUrl()" class="bg-amber-800 hover:bg-amber-900 text-white text-xs font-bold px-3 py-2 rounded-lg transition-all whitespace-nowrap">
-                        Salin Link
-                    </button>
-                </div>
-            </div>
-
-            <div class="border-t border-amber-100 pt-3 space-y-2">
-                <p class="text-xs font-semibold text-stone-600">Simpan Tampilan Dashboard:</p>
-                <button onclick="downloadDashboardImage()" id="downloadBtn" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm">
-                    🖼️ Download Laporan sebagai Gambar (PNG)
-                </button>
-            </div>
-
-            <p id="copyAlert" class="text-xs text-emerald-700 font-bold text-center hidden pt-1">
-                ✓ Link berhasil disalin ke clipboard!
-            </p>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="max-w-6xl mx-auto px-4 mt-12 text-center text-stone-600 text-xs sm:text-sm space-y-1">
-        <p class="font-semibold">DASHBOARD MONITORING PENGIRIMAN & TITIP STOK PT. MBP © 2026</p>
-        <p class="text-stone-400 font-medium">by putradwi-dev</p>
-    </footer>
-
-    <script>
-        function getItemStatus(item) {
-            let isKayu = !!item.kayu;
-            let isTerlambat = !!item.terlambat;
-
-            if (!isKayu && !isTerlambat && typeof item.status === 'string') {
-                const s = item.status.toLowerCase();
-                isKayu = (s === 'kayu' || s === 'keduanya');
-                isTerlambat = (s === 'terlambat' || s === 'keduanya');
-            }
-            return { isKayu, isTerlambat };
-        }
-
-        async function loadDashboardData() {
-            try {
-                const response = await fetch('data.json?v=' + new Date().getTime());
-                const data = await response.json();
-
-                renderBelumKirim(data.belum_kirim || []);
-                renderStokTangerang(data.stok_tangerang || []);
-                updateStatistics(data);
-            } catch (error) {
-                console.error("Gagal memuat data.json:", error);
-            }
-        }
-
-        function renderBelumKirim(groups) {
-            const container = document.getElementById('container-belum-kirim');
-            container.innerHTML = '';
-
-            groups.forEach((group, index) => {
-                const groupDiv = document.createElement('div');
-                groupDiv.className = `data-group space-y-3 ${index > 0 ? 'pt-4 border-t border-amber-100' : ''}`;
-
-                let tableRows = '';
-                let mobileCards = '';
-
-                group.items.forEach(item => {
-                    const statusObj = getItemStatus(item);
-                    const isKayu = statusObj.isKayu;
-                    const isTerlambat = statusObj.isTerlambat;
-                    const itemQty = item.qty !== undefined ? item.qty : 1;
-
-                    const ekspedisiClean = (item.ekspedisi || '').toUpperCase();
-                    const badgeEkspedisi = ekspedisiClean.includes('JNE')
-                        ? `<span class="bg-amber-50 text-amber-800 px-2 py-0.5 rounded-md text-xs sm:text-sm font-bold uppercase border border-amber-200">${item.ekspedisi}</span>`
-                        : `<span class="bg-stone-100 text-stone-800 px-2 py-0.5 rounded-md text-xs sm:text-sm font-bold uppercase border border-stone-200">${item.ekspedisi}</span>`;
-
-                    let statusBadgesHtml = '';
-                    let statusBadgesMobile = '';
-
-                    if (isKayu) {
-                        statusBadgesHtml += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-3 py-1 rounded-md font-semibold border border-amber-200 inline-block">KAYU</span>`;
-                        statusBadgesMobile += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-amber-200 inline-block">KAYU</span>`;
-                    }
-                    if (isTerlambat) {
-                        statusBadgesHtml += `<span class="bg-red-100 text-red-800 text-xs sm:text-sm px-3 py-1 rounded-md font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
-                        statusBadgesMobile += `<span class="bg-red-100 text-red-800 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
-                    }
-
-                    if (!isKayu && !isTerlambat) {
-                        statusBadgesHtml = `<span class="text-stone-400 font-mono text-sm">-</span>`;
-                    }
-
-                    const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''}`.toLowerCase();
-
-                    tableRows += `
-                        <tr class="item-row hover:bg-[#faf7f2] transition-colors" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
-                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[30%]">${item.nama}</td>
-                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[28%]">${item.no_pesanan}</td>
-                            <td class="py-3.5 px-2 text-center w-[8%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
-                            <td class="py-3.5 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
-                            <td class="py-3.5 px-4 w-[24%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
-                        </tr>
-                    `;
-
-                    mobileCards += `
-                        <div class="item-row bg-[#fdfbf7] p-4 rounded-xl border border-amber-100 space-y-2" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
-                            <div class="flex justify-between items-start">
-                                <span class="font-bold text-stone-900 text-base sm:text-lg">${item.nama}</span>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-xs border border-amber-200">Qty: ${itemQty}</span>
-                                    ${badgeEkspedisi}
-                                </div>
-                            </div>
-                            <div>
-                                <span class="text-xs sm:text-sm text-stone-400 block uppercase font-medium">Nomor Pesanan</span>
-                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-white px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
-                            </div>
-                            ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
-                        </div>
-                    `;
-                });
-
-                groupDiv.innerHTML = `
-                    <div class="flex items-center gap-2">
-                        <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
-                        <h3 class="font-bold text-amber-950 text-base sm:text-lg uppercase tracking-wide">${group.grup}</h3>
-                        <span class="text-xs sm:text-sm bg-amber-50 text-amber-800 px-2.5 py-0.5 rounded-full font-semibold border border-amber-200/60">${group.items.length} Pesanan</span>
+            <!-- Content Body -->
+            <div class="px-6 space-y-6">
+                <!-- Grid Summary Cards (Hari Ini) -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-[#FAF7F2] rounded-xl p-4 border border-[#E8E1D5] shadow-sm">
+                        <h2 class="text-xs font-extrabold text-[#8C6D46] uppercase tracking-wider mb-1">LEADS TODAY</h2>
+                        <div id="display_leads_today" class="text-2xl font-bold text-[#33312E]">0</div>
                     </div>
+                    <div class="bg-[#FAF7F2] rounded-xl p-4 border border-[#E8E1D5] shadow-sm">
+                        <h2 class="text-xs font-extrabold text-[#5A7863] uppercase tracking-wider mb-1">CLOSING TODAY</h2>
+                        <div class="text-2xl font-bold text-[#5A7863]">
+                            <span id="display_closing_today">0</span> 
+                            <span class="text-xs font-normal text-[#78726A]">(<span id="display_closing_rate">0%</span>)</span>
+                        </div>
+                    </div>
+                    <div class="bg-[#FAF7F2] rounded-xl p-4 border border-[#E8E1D5] shadow-sm">
+                        <h2 class="text-xs font-extrabold text-[#B3704D] uppercase tracking-wider mb-1">OMZET TODAY</h2>
+                        <div id="display_omzet_today" class="text-lg font-bold text-[#B3704D]">Rp0</div>
+                    </div>
+                </div>
 
-                    <div class="hidden md:block overflow-x-auto rounded-xl border border-amber-100">
-                        <table class="w-full text-left text-base table-fixed">
-                            <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-100 uppercase text-sm">
-                                <tr>
-                                    <th class="py-4 px-4 w-[30%]">Nama Barang</th>
-                                    <th class="py-4 px-4 w-[28%]">Nomor Pesanan</th>
-                                    <th class="py-4 px-2 text-center w-[8%]" style="padding-left: 2px; padding-right: 2px;">QTY</th>
-                                    <th class="py-4 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
-                                    <th class="py-4 px-4 w-[24%]">Status / Catatan</th>
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-[#FAF7F2] rounded-xl p-4 border border-[#E8E1D5] shadow-sm flex flex-col items-center">
+                        <h2 class="text-xs font-extrabold text-[#8C6D46] uppercase tracking-wider mb-3 w-full text-left">PERFORMA HARIAN (TODAY)</h2>
+                        <div class="w-full h-48 relative flex items-center justify-center">
+                            <canvas id="todayChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-[#FAF7F2] rounded-xl p-4 border border-[#E8E1D5] shadow-sm flex flex-col items-center">
+                        <h2 class="text-xs font-extrabold text-[#6B5B7B] uppercase tracking-wider mb-3 w-full text-left">MTD CONVERSION RATE</h2>
+                        <div class="w-full h-48 relative flex items-center justify-center">
+                            <canvas id="mtdChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MTD Summary (2x2 Grid) -->
+                <div class="bg-[#FAF7F2] rounded-xl p-4 border border-[#E8E1D5] shadow-sm space-y-3">
+                    <h2 class="text-xs font-extrabold text-[#523F63] uppercase tracking-wider mb-3">MTD (MONTH TO DATE) SUMMARY</h2>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-[#F5F0E6] p-4 rounded-lg border border-[#E3DCD0]">
+                            <div class="text-xs font-bold text-[#33312E] uppercase">TOTAL LEADS</div>
+                            <div id="display_total_leads_mtd" class="text-xl font-bold text-[#33312E] mt-1">0</div>
+                        </div>
+                        <div class="bg-[#F5F0E6] p-4 rounded-lg border border-[#E3DCD0]">
+                            <div class="text-xs font-bold text-[#33312E] uppercase">TOTAL CLOSING</div>
+                            <div id="display_total_closing_mtd" class="text-xl font-bold text-[#33312E] mt-1">0</div>
+                        </div>
+                        <div class="bg-[#F5F0E6] p-4 rounded-lg border border-[#E3DCD0]">
+                            <div class="text-xs font-bold text-[#33312E] uppercase">TOTAL OMZET</div>
+                            <div id="display_total_omzet_mtd" class="text-lg md:text-xl font-extrabold text-[#6B5B7B] mt-1">Rp0</div>
+                        </div>
+                        <div class="bg-[#F5F0E6] p-4 rounded-lg border border-[#E3DCD0]">
+                            <div class="text-xs font-bold text-[#33312E] uppercase">CLOSING RATE MTD</div>
+                            <div id="display_closing_rate_mtd" class="text-xl font-bold text-[#6B5B7B] mt-1">0%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABEL RIWAYAT HARIAN (Dilengkapi Scroll Vertikal untuk > 6 Baris) -->
+                <div class="bg-[#FAF7F2] rounded-xl p-4 border border-[#E8E1D5] space-y-3">
+                    <h2 class="text-xs font-extrabold text-[#8C6D46] uppercase tracking-wider mb-2">RIWAYAT LAPORAN HARIAN</h2>
+                    <div class="max-h-64 overflow-y-auto overflow-x-auto rounded-lg border border-[#E3DCD0]">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead class="bg-[#EFEAE1] text-[#78726A] sticky top-0 z-10 shadow-sm">
+                                <tr class="border-b border-[#E3DCD0]">
+                                    <th class="p-2.5 font-bold bg-[#EFEAE1]">TANGGAL</th>
+                                    <th class="p-2.5 font-bold text-center bg-[#EFEAE1]">LEADS</th>
+                                    <th class="p-2.5 font-bold text-center bg-[#EFEAE1]">CLOSING</th>
+                                    <th class="p-2.5 font-bold text-center bg-[#EFEAE1]">RATE</th>
+                                    <th class="p-2.5 font-bold text-right bg-[#EFEAE1]">OMZET</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-amber-50">
-                                ${tableRows}
+                            <tbody id="historyTableBody" class="divide-y divide-[#E3DCD0] text-[#33312E] bg-white">
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
 
-                    <div class="grid grid-cols-1 gap-3 md:hidden">
-                        ${mobileCards}
-                    </div>
-                `;
+            <!-- Footer -->
+            <div class="bg-[#EFEAE1] px-6 py-4 text-center border-t border-[#E3DCD0] space-y-1 rounded-b-xl">
+                <div class="text-xs text-[#8A8379] font-medium">DASHBOARD CLOSING REPORT E-COMMERCE TANGERANG &copy; 2026</div>
+                <div class="text-xs text-[#8C7A6B] font-semibold">by putradwi-dev</div>
+            </div>
+        </div>
 
-                container.appendChild(groupDiv);
-            });
+        <!-- Tombol Utama Download Gambar -->
+        <div class="bg-[#FAF7F2] p-4 rounded-2xl border border-[#E8E1D5] shadow-sm flex items-center justify-between">
+            <span class="text-xs font-bold text-[#78726A]">SIMPAN HASIL LAPORAN:</span>
+            <button type="button" id="downloadImgBtn" class="w-full md:w-auto bg-[#5A7863] hover:bg-[#496351] text-white px-6 py-3 rounded-xl text-xs font-bold transition flex items-center justify-center gap-2 shadow-md cursor-pointer">
+                SIMPAN GAMBAR
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        let todayChart, mtdChart;
+        let globalData = {};
+
+        function formatRupiah(number) {
+            return 'Rp' + number.toLocaleString('id-ID');
         }
 
-        function renderStokTangerang(items) {
-            const tbody = document.getElementById('tbody-stok-tangerang');
-            tbody.innerHTML = '';
+        fetch('data.json?v=' + Date.now())
+            .then(res => res.json())
+            .then(data => {
+                globalData = data;
+                document.getElementById('display_cs_name').innerText = data.cs_name || 'MARVELL TANGERANG';
 
-            items.forEach(item => {
-                let statusBadge = `<span class="text-stone-400 font-mono text-sm">-</span>`;
-                let rowBgClass = 'hover:bg-[#faf7f2] transition-colors';
-                let qtyClass = 'bg-stone-100 px-3.5 py-1 rounded-lg font-bold text-stone-800 text-base inline-block';
+                const months = data.months || {};
+                const monthKeys = Object.keys(months);
+                const filterSelect = document.getElementById('monthFilter');
 
-                if (item.tipe === 'warning') {
-                    statusBadge = `<span class="text-red-700 font-bold bg-red-50 px-3 py-1 rounded-md text-sm border border-red-200">${item.catatan && item.catatan !== '-' ? item.catatan : '🛠️ Perlu di perbaiki'}</span>`;
-                } else if (item.tipe === 'priority') {
-                    statusBadge = `<span class="text-amber-900 font-extrabold bg-amber-100/90 px-3 py-1 rounded-md text-sm border border-amber-300">${item.catatan && item.catatan !== '-' ? item.catatan : '🔥 Utamakan habiskan ini'}</span>`;
-                    rowBgClass = 'hover:bg-amber-50/50 transition-colors bg-amber-50/30';
-                    qtyClass = 'bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200';
-                } else {
-                    if (item.catatan && item.catatan.trim() !== '' && item.catatan.trim() !== '-') {
-                        statusBadge = `<span class="text-stone-800 font-semibold bg-stone-100 px-3 py-1 rounded-md text-sm border border-stone-200">${item.catatan}</span>`;
-                    }
-                }
-
-                const searchStr = `${item.nama} ${item.catatan || ''}`.toLowerCase();
-
-                const tr = document.createElement('tr');
-                tr.className = `item-row ${rowBgClass}`;
-                tr.setAttribute('data-search', searchStr);
-
-                tr.innerHTML = `
-                    <td class="py-3.5 px-4 ${item.tipe === 'priority' ? 'font-bold text-stone-900' : 'font-semibold text-stone-800'} text-base">${item.nama}</td>
-                    <td class="py-3.5 px-4 text-center"><span class="${qtyClass}">${item.jumlah}</span></td>
-                    <td class="py-3.5 px-4">${statusBadge}</td>
-                `;
-
-                tbody.appendChild(tr);
-            });
-        }
-
-        function updateStatistics(data) {
-            let totalPesanan = 0;
-            let totalKayu = 0;
-            let totalTerlambat = 0;
-
-            (data.belum_kirim || []).forEach(group => {
-                group.items.forEach(item => {
-                    totalPesanan++;
-                    const statusObj = getItemStatus(item);
-                    if (statusObj.isKayu) totalKayu++;
-                    if (statusObj.isTerlambat) totalTerlambat++;
+                filterSelect.innerHTML = '';
+                monthKeys.forEach(mKey => {
+                    const opt = document.createElement('option');
+                    opt.value = mKey;
+                    opt.innerText = `Bulan ${mKey}`;
+                    if (mKey === data.active_month) opt.selected = true;
+                    filterSelect.appendChild(opt);
                 });
-            });
 
-            let totalStok = 0;
-            (data.stok_tangerang || []).forEach(item => {
-                totalStok += Number(item.jumlah) || 0;
-            });
+                filterSelect.addEventListener('change', (e) => {
+                    renderDashboard(e.target.value);
+                });
 
-            document.getElementById('stat-total-pesanan').innerHTML = `${totalPesanan} <span class="text-xs font-normal text-stone-500">Item</span>`;
-            document.getElementById('stat-terlambat').innerHTML = `${totalTerlambat} <span class="text-xs font-normal text-stone-500">Item</span>`;
-            document.getElementById('stat-kayu').innerHTML = `${totalKayu} <span class="text-xs font-normal text-stone-500">Item</span>`;
-            document.getElementById('stat-total-stok').innerHTML = `${totalStok} <span class="text-xs font-normal text-stone-500">Unit</span>`;
-        }
+                const activeM = data.active_month || monthKeys[monthKeys.length - 1] || '10/2026';
+                renderDashboard(activeM);
+            })
+            .catch(err => console.error("Gagal memuat data:", err));
 
-        function openShareModal() {
-            document.getElementById('shareUrlInput').value = window.location.href;
-            document.getElementById('shareModal').classList.remove('hidden');
-        }
+        function renderDashboard(selectedMonth) {
+            const mData = (globalData.months && globalData.months[selectedMonth]) || { initial_baseline: { leads: 0, closing: 0, omzet: 0 }, history: [] };
+            const baseline = mData.initial_baseline || { leads: 0, closing: 0, omzet: 0 };
+            const history = mData.history || [];
 
-        function closeShareModal() {
-            document.getElementById('shareModal').classList.add('hidden');
-            document.getElementById('copyAlert').classList.add('hidden');
-        }
+            if (todayChart) todayChart.destroy();
+            if (mtdChart) mtdChart.destroy();
 
-        function copyShareUrl() {
-            const input = document.getElementById('shareUrlInput');
-            input.select();
-            document.execCommand('copy');
-            const copyAlert = document.getElementById('copyAlert');
-            copyAlert.classList.remove('hidden');
-            setTimeout(() => {
-                copyAlert.classList.add('hidden');
-            }, 3000);
-        }
+            if (history.length === 0) {
+                document.getElementById('display_tanggal').innerText = '-';
+                document.getElementById('display_leads_today').innerText = '0';
+                document.getElementById('display_closing_today').innerText = '0';
+                document.getElementById('display_closing_rate').innerText = '0%';
+                document.getElementById('display_omzet_today').innerText = 'Rp0';
 
-        function downloadDashboardImage() {
-            const btn = document.getElementById('downloadBtn');
-            btn.innerText = "⏳ Sedang memproses gambar...";
-            btn.disabled = true;
-
-            const element = document.getElementById('capture-area');
-
-            html2canvas(element, {
-                scale: 2,
-                useCORS: true,
-                backgroundColor: '#faf7f2',
-                windowWidth: 1200
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `Laporan-Monitoring-PT-MBP-${new Date().toISOString().slice(0,10)}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-
-                btn.innerText = "🖼️ Download Laporan sebagai Gambar (PNG)";
-                btn.disabled = false;
-                closeShareModal();
-            }).catch(err => {
-                console.error("Gagal membuat gambar:", err);
-                alert("Gagal mengunduh gambar. Silakan coba lagi.");
-                btn.innerText = "🖼️ Download Laporan sebagai Gambar (PNG)";
-                btn.disabled = false;
-            });
-        }
-
-        function filterItems() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const rows = document.querySelectorAll('.item-row');
-
-            rows.forEach(row => {
-                const searchData = row.getAttribute('data-search') || '';
-                if (searchData.toLowerCase().includes(query)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-
-        function filterBy(type, event) {
-            const rows = document.querySelectorAll('#container-belum-kirim .item-row');
-            const filterBtns = document.querySelectorAll('.filter-btn');
-
-            filterBtns.forEach(btn => {
-                btn.classList.remove('bg-amber-800', 'text-white');
-                btn.classList.add('bg-[#f7f2ea]', 'text-stone-700');
-            });
-
-            if(event && event.target) {
-                event.target.classList.remove('bg-[#f7f2ea]', 'text-stone-700');
-                event.target.classList.add('bg-amber-800', 'text-white');
+                document.getElementById('display_total_leads_mtd').innerText = (baseline.leads || 0).toLocaleString('id-ID');
+                document.getElementById('display_total_closing_mtd').innerText = (baseline.closing || 0).toLocaleString('id-ID');
+                document.getElementById('display_total_omzet_mtd').innerText = formatRupiah(baseline.omzet || 0);
+                
+                const baseRate = baseline.leads > 0 ? Math.round((baseline.closing / baseline.leads) * 100) : 0;
+                document.getElementById('display_closing_rate_mtd').innerText = baseRate + '%';
+                document.getElementById('historyTableBody').innerHTML = `<tr><td colspan="5" class="p-3 text-center text-[#78726A]">Belum ada riwayat di bulan ini.</td></tr>`;
+                return;
             }
 
-            rows.forEach(row => {
-                const isKayu = row.getAttribute('data-kayu') === 'true';
-                const isTerlambat = row.getAttribute('data-terlambat') === 'true';
+            const latest = history[history.length - 1];
+            document.getElementById('display_tanggal').innerText = latest.tanggal || '-';
 
-                if (type === 'all') {
-                    row.style.display = '';
-                } else if (type === 'terlambat') {
-                    row.style.display = isTerlambat ? '' : 'none';
-                } else if (type === 'kayu') {
-                    row.style.display = isKayu ? '' : 'none';
+            const l_today = latest.leads_today || 0;
+            const c_today = latest.closing_today || 0;
+            const o_today = latest.omzet_today || 0;
+            const closingRateToday = l_today > 0 ? Math.round((c_today / l_today) * 100) : 0;
+
+            let totalLeadsMTD = baseline.leads || 0;
+            let totalClosingMTD = baseline.closing || 0;
+            let totalOmzetMTD = baseline.omzet || 0;
+
+            let tableHtml = '';
+            history.forEach(item => {
+                const l = item.leads_today || 0;
+                const c = item.closing_today || 0;
+                const o = item.omzet_today || 0;
+                const rate = l > 0 ? Math.round((c / l) * 100) : 0;
+
+                totalLeadsMTD += l;
+                totalClosingMTD += c;
+                totalOmzetMTD += o;
+
+                tableHtml += `
+                    <tr class="hover:bg-[#F5F0E6] transition duration-150">
+                        <td class="p-2.5 font-semibold">${item.tanggal}</td>
+                        <td class="p-2.5 text-center">${l}</td>
+                        <td class="p-2.5 text-center">${c}</td>
+                        <td class="p-2.5 text-center font-semibold text-[#5A7863]">${rate}%</td>
+                        <td class="p-2.5 text-right font-semibold text-[#B3704D]">${formatRupiah(o)}</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('historyTableBody').innerHTML = tableHtml;
+
+            const closingRateMTD = totalLeadsMTD > 0 ? Math.round((totalClosingMTD / totalLeadsMTD) * 100) : 0;
+
+            document.getElementById('display_leads_today').innerText = l_today.toLocaleString('id-ID');
+            document.getElementById('display_closing_today').innerText = c_today.toLocaleString('id-ID');
+            document.getElementById('display_closing_rate').innerText = closingRateToday + '%';
+            document.getElementById('display_omzet_today').innerText = formatRupiah(o_today);
+
+            document.getElementById('display_total_leads_mtd').innerText = totalLeadsMTD.toLocaleString('id-ID');
+            document.getElementById('display_total_closing_mtd').innerText = totalClosingMTD.toLocaleString('id-ID');
+            document.getElementById('display_total_omzet_mtd').innerText = formatRupiah(totalOmzetMTD);
+            document.getElementById('display_closing_rate_mtd').innerText = closingRateMTD + '%';
+
+            const ctxToday = document.getElementById('todayChart').getContext('2d');
+            todayChart = new Chart(ctxToday, {
+                type: 'bar',
+                data: {
+                    labels: ['LEADS TODAY', 'CLOSING TODAY'],
+                    datasets: [{
+                        data: [l_today, c_today],
+                        backgroundColor: ['#8C6D46', '#5A7863'],
+                        borderWidth: 0,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, grid: { color: 'rgba(140, 122, 107, 0.1)' }, ticks: { color: '#78726A' } },
+                        x: { grid: { display: false }, ticks: { color: '#78726A' } }
+                    }
+                }
+            });
+
+            const ctxMtd = document.getElementById('mtdChart').getContext('2d');
+            mtdChart = new Chart(ctxMtd, {
+                type: 'doughnut',
+                data: {
+                    labels: ['TOTAL CLOSING', 'SISA LEADS (BELUM CLOSING)'],
+                    datasets: [{
+                        data: [totalClosingMTD, Math.max(0, totalLeadsMTD - totalClosingMTD)],
+                        backgroundColor: ['#6B5B7B', '#E3DCD0'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#78726A', boxWidth: 12, font: { size: 11 } } }
+                    }
                 }
             });
         }
 
-        window.onload = loadDashboardData;
+        // --- FUNGSI DOWNLOAD GAMBAR PNG --- //
+        document.getElementById('downloadImgBtn').addEventListener('click', async () => {
+            const btn = document.getElementById('downloadImgBtn');
+            const originalText = btn.innerHTML;
+            btn.innerText = "⏳ Sedang Memproses Gambar...";
+            btn.disabled = true;
+
+            try {
+                const captureArea = document.getElementById('captureArea');
+                
+                const canvas = await html2canvas(captureArea, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#FBF9F1',
+                    logging: false,
+                    onclone: (clonedDoc) => {
+                        // Sembunyikan elemen dropdown bulan pada salinan dokumen yang dirender ke gambar
+                        const noExportEl = clonedDoc.querySelectorAll('.no-export');
+                        noExportEl.forEach(el => el.style.display = 'none');
+                    }
+                });
+
+                const link = document.createElement('a');
+                const tgl = document.getElementById('display_tanggal').innerText.replace(/\//g, '-');
+                link.download = `Closing_Report_${tgl}.png`;
+                link.href = canvas.toDataURL('image/png');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            } catch (err) {
+                alert("Gagal mengunduh gambar: " + err.message);
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        });
     </script>
 </body>
 </html>
