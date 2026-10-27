@@ -71,6 +71,14 @@
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "CF 1200",
+          "qty": 1,
+          "no_pesanan": "261027P5XJQ46C",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
