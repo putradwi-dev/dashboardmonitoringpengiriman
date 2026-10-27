@@ -1,6 +1,19 @@
 {
   "belum_kirim": [
     {
+      "grup": "TOKOPEDIA MT 27/10/2026",
+      "items": [
+        {
+          "nama": "AGATE 300",
+          "qty": 1,
+          "no_pesanan": "586812696433427937",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "TOKOPEDIA ADT 24/10/2026",
       "items": [
         {
@@ -135,19 +148,6 @@
           "nama": "LOYANG 3CM GOMESIN",
           "qty": 10,
           "no_pesanan": "261026N6YH8F7E",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA MT 27/10/2026",
-      "items": [
-        {
-          "nama": "AGATE 300",
-          "qty": 1,
-          "no_pesanan": "586812696433427937",
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
