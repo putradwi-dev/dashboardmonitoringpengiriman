@@ -88,6 +88,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "AB 600",
+          "qty": 1,
+          "no_pesanan": "261027PV9Q53Q6",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
