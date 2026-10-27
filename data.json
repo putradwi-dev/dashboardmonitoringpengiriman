@@ -80,6 +80,14 @@
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "POP6A R",
+          "qty": 1,
+          "no_pesanan": "261027PV7S5G66",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
