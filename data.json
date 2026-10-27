@@ -231,6 +231,18 @@
       "jumlah": 1,
       "catatan": "pengembalian dari 261013FCBTW06E",
       "tipe": "normal"
+    },
+    {
+      "nama": "RUBY 200 RSA",
+      "jumlah": 1,
+      "catatan": "PINDAH GUDANG 27/10",
+      "tipe": "normal"
+    },
+    {
+      "nama": "RUBY 410 RSA",
+      "jumlah": 1,
+      "catatan": "PINDAH GUDANG 27/10",
+      "tipe": "normal"
     }
   ]
 }
