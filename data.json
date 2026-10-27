@@ -79,6 +79,14 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "CF 460",
+          "qty": 1,
+          "no_pesanan": "261027PD0CQ6YD",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
