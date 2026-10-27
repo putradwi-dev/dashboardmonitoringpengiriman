@@ -140,6 +140,19 @@
           "terlambat": false
         }
       ]
+    },
+    {
+      "grup": "TOKOPEDIA MT 27/10/2026",
+      "items": [
+        {
+          "nama": "AGATE 300",
+          "qty": 1,
+          "no_pesanan": "586812696433427937",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
@@ -235,7 +248,7 @@
     },
     {
       "nama": "AGATE 300 RSA",
-      "jumlah": 2,
+      "jumlah": 1,
       "catatan": "PO.2026.10.00089",
       "tipe": "normal"
     }
