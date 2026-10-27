@@ -87,6 +87,19 @@
       ]
     },
     {
+      "grup": "SHOPE ADT 27/10/2026",
+      "items": [
+        {
+          "nama": "HR 9",
+          "qty": 1,
+          "no_pesanan": "261026MWHW48A4",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE TANGSEL 27/10/2026",
       "items": [
         {
