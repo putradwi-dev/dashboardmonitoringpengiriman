@@ -40,15 +40,7 @@
     },
     {
       "grup": "SHOPE MT 24/10/2026",
-      "items": [
-        {
-          "nama": "CF 310",
-          "no_pesanan": "261024EXTVSGVA",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": true
-        }
-      ]
+      "items": []
     },
     {
       "grup": "SHOPE MT 27/10/2026",
@@ -100,18 +92,6 @@
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE ADT 24/10/2026",
-      "items": [
-        {
-          "nama": "ELW 660",
-          "no_pesanan": "261024EVWN14ME",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": true
         }
       ]
     },
