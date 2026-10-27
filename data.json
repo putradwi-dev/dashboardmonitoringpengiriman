@@ -13,6 +13,19 @@
       ]
     },
     {
+      "grup": "TOKOPEDIA ADT 27/10/2026",
+      "items": [
+        {
+          "nama": "GSC 15",
+          "qty": 1,
+          "no_pesanan": "586810038529590912",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 24/10/2026",
       "items": [
         {
