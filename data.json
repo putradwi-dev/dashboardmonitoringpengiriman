@@ -104,6 +104,19 @@
       ]
     },
     {
+      "grup": "SHOPE MT 29/10/2026",
+      "items": [
+        {
+          "nama": "RW 25",
+          "qty": 1,
+          "no_pesanan": "261028SGHAWE3Y",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE ADT 28/10/2026",
       "items": [
         {
