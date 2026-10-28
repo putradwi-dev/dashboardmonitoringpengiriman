@@ -84,6 +84,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "SD 516B",
+          "qty": 1,
+          "no_pesanan": "261028RYSSDEJP",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
