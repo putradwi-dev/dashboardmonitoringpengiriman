@@ -76,6 +76,14 @@
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "TOPAZ 600",
+          "qty": 1,
+          "no_pesanan": "261028RVS7FNM7",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
