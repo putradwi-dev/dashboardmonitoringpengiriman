@@ -97,6 +97,14 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "ICE 1530",
+          "qty": 1,
+          "no_pesanan": "261028RWSR05T6",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     }
