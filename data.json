@@ -36,6 +36,30 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "SC R2 7",
+          "qty": 1,
+          "no_pesanan": "261027QJQ6UEF9",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        },
+        {
+          "nama": "DH 10",
+          "qty": 1,
+          "no_pesanan": "261028RDQUT341",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "AP 6430",
+          "qty": 2,
+          "no_pesanan": "261028RMJY6BSB",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
