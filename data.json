@@ -68,6 +68,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "BH15C",
+          "qty": 1,
+          "no_pesanan": "261028RTY9KB3X",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
