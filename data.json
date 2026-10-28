@@ -10,6 +10,14 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "LOYANG 3CM GOMESIN",
+          "qty": 2,
+          "no_pesanan": "586828846161167754",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
