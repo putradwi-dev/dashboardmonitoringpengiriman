@@ -17,67 +17,24 @@
       "grup": "SHOPE MT 27/10/2026",
       "items": [
         {
-          "nama": "TOPAZ 750",
-          "qty": 1,
-          "no_pesanan": "261026MJ0K7D6G",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
           "nama": "AB 318",
           "qty": 3,
           "no_pesanan": "261026KV6USKM8",
           "ekspedisi": "JNE",
           "kayu": false,
-          "terlambat": false
-        },
+          "terlambat": true
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE MT 28/10/2026",
+      "items": [
         {
-          "nama": "AB 318",
-          "qty": 2,
-          "no_pesanan": "261026KV91CNUX",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "AB 318",
-          "qty": 2,
-          "no_pesanan": "261026KV3Y72Y0",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "CF 1200",
+          "nama": "CF 750",
           "qty": 1,
-          "no_pesanan": "261027P5XJQ46C",
+          "no_pesanan": "261027Q1GA3W67",
           "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "CF 460",
-          "qty": 1,
-          "no_pesanan": "261027PD0CQ6YD",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "POP6A R",
-          "qty": 1,
-          "no_pesanan": "261027PV7S5G66",
-          "ekspedisi": "JNE",
           "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "AB 600",
-          "qty": 1,
-          "no_pesanan": "261027PV9Q53Q6",
-          "ekspedisi": "JNE",
-          "kayu": false,
           "terlambat": false
         }
       ]
