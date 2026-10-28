@@ -92,6 +92,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "ET 5015",
+          "qty": 1,
+          "no_pesanan": "261028S9CX0Q82",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
