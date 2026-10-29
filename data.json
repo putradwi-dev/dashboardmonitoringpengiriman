@@ -241,8 +241,14 @@
     },
     {
       "nama": "EXPO 37 GEA",
-      "jumlah": 3,
+      "jumlah": 2,
       "catatan": "PO.2026.10.00087",
+      "tipe": "normal"
+    },
+    {
+      "nama": "EXPO 37 GEA",
+      "jumlah": 1,
+      "catatan": "PO.2026.10.00185",
       "tipe": "normal"
     }
   ]
