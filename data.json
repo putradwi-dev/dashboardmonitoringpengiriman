@@ -80,6 +80,19 @@
       ]
     },
     {
+      "grup": "SHOPE MT 30/10/2026",
+      "items": [
+        {
+          "nama": "ET MF JZ 520",
+          "qty": 1,
+          "no_pesanan": "261029V0TM5H3N",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE ADT 29/10/2026",
       "items": [
         {
