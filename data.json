@@ -49,6 +49,30 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "SR 120",
+          "qty": 1,
+          "no_pesanan": "261029TD962YE0",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "261029TK4RGSWM",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "CF 210",
+          "qty": 1,
+          "no_pesanan": "261029U5F9T6GN",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
