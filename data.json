@@ -89,6 +89,14 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "",
+          "qty": 1,
+          "no_pesanan": "261029UXCMC9PJ",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
