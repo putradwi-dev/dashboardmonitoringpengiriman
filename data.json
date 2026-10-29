@@ -73,6 +73,14 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "GF 633",
+          "qty": 1,
+          "no_pesanan": "261028R04R3GKY",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
