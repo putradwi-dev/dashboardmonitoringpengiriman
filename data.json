@@ -96,6 +96,19 @@
           "terlambat": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE TANGSEL 29/10/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM GOMESIN",
+          "qty": 2,
+          "no_pesanan": "261029UNN2W4JA",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
@@ -125,7 +138,7 @@
     },
     {
       "nama": "LOYANG 3CM GOMESIN",
-      "jumlah": 73,
+      "jumlah": 69,
       "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
     },
