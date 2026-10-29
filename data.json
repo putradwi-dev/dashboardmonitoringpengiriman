@@ -71,7 +71,7 @@
           "qty": 1,
           "no_pesanan": "261029U5F9T6GN",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false
         },
         {
