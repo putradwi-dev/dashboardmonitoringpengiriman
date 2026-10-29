@@ -10,19 +10,14 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 27/10/2026",
-      "items": [
+        },
         {
-          "nama": "AB 318 MALAM INI BATAL",
-          "qty": 3,
-          "no_pesanan": "261026KV6USKM8",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": true
+          "nama": "AGATE 300",
+          "qty": 1,
+          "no_pesanan": "586851449792464353",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
@@ -200,12 +195,6 @@
       "nama": "RUBY 280 RSA",
       "jumlah": 1,
       "catatan": "PO.2026.10.00168",
-      "tipe": "normal"
-    },
-    {
-      "nama": "AGATE 300 RSA",
-      "jumlah": 1,
-      "catatan": "PO.2026.10.00089",
       "tipe": "normal"
     },
     {
