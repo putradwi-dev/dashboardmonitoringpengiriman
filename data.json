@@ -85,21 +85,21 @@
       ]
     },
     {
-      "grup": "SHOPE ADT 28/10/2026",
+      "grup": "SHOPE ADT 29/10/2026",
       "items": [
         {
           "nama": "ICE 1530",
           "qty": 1,
-          "no_pesanan": "261028RDHES1AP",
-          "ekspedisi": "J&T",
+          "no_pesanan": "261028RWVGN3B9",
+          "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
         },
         {
           "nama": "ICE 1530",
           "qty": 1,
-          "no_pesanan": "261028RWSR05T6",
-          "ekspedisi": "JNE",
+          "no_pesanan": "261028SVNGK3QE",
+          "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
         }
