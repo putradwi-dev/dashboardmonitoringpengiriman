@@ -1,20 +1,12 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 28/10/2026",
+      "grup": "TOKOPEDIA MT 29/10/2026",
       "items": [
         {
           "nama": "LOYANG 3CM GOMESIN",
-          "qty": 3,
-          "no_pesanan": "586817539346892757",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "LOYANG 3CM GOMESIN",
           "qty": 2,
-          "no_pesanan": "586828846161167754",
+          "no_pesanan": "586841701033018795",
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
@@ -25,7 +17,7 @@
       "grup": "SHOPE MT 27/10/2026",
       "items": [
         {
-          "nama": "AB 318",
+          "nama": "AB 318 MALAM INI BATAL",
           "qty": 3,
           "no_pesanan": "261026KV6USKM8",
           "ekspedisi": "JNE",
@@ -37,62 +29,6 @@
     {
       "grup": "SHOPE MT 28/10/2026",
       "items": [
-        {
-          "nama": "CF 750",
-          "qty": 1,
-          "no_pesanan": "261027Q1GA3W67",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "SC R2 7",
-          "qty": 1,
-          "no_pesanan": "261027QJQ6UEF9",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "DH 10",
-          "qty": 1,
-          "no_pesanan": "261028RDQUT341",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "AP 6430",
-          "qty": 2,
-          "no_pesanan": "261028RMJY6BSB",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "BH15C",
-          "qty": 1,
-          "no_pesanan": "261028RTY9KB3X",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "TOPAZ 600",
-          "qty": 1,
-          "no_pesanan": "261028RVS7FNM7",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "SD 516B",
-          "qty": 1,
-          "no_pesanan": "261028RYSSDEJP",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
         {
           "nama": "ET 5015",
           "qty": 1,
