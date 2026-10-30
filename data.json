@@ -33,6 +33,19 @@
           "terlambat": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE ADT 30/10/2026",
+      "items": [
+        {
+          "nama": "",
+          "qty": 1,
+          "no_pesanan": "2610301757756R",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
