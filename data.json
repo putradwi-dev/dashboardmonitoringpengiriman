@@ -1,85 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 29/10/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM GOMESIN",
-          "qty": 2,
-          "no_pesanan": "586841701033018795",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "AGATE 300",
-          "qty": 1,
-          "no_pesanan": "586851449792464353",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 28/10/2026",
-      "items": [
-        {
-          "nama": "ET 5015",
-          "qty": 1,
-          "no_pesanan": "261028S9CX0Q82",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 29/10/2026",
-      "items": [
-        {
-          "nama": "RW 25",
-          "qty": 1,
-          "no_pesanan": "261028SGHAWE3Y",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "AB 318",
-          "qty": 1,
-          "no_pesanan": "261029TK4RGSWM",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "CF 210",
-          "qty": 1,
-          "no_pesanan": "261029U5F9T6GN",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "GF 633",
-          "qty": 1,
-          "no_pesanan": "261028R04R3GKY",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "RUBY 280",
-          "qty": 1,
-          "no_pesanan": "261029V0FEJMFT",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 30/10/2026",
       "items": [
         {
@@ -112,7 +33,7 @@
           "terlambat": false
         },
         {
-          "nama": "",
+          "nama": "ICE 1530",
           "qty": 1,
           "no_pesanan": "261029UXCMC9PJ",
           "ekspedisi": "J&T",
