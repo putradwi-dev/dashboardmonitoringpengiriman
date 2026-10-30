@@ -41,32 +41,6 @@
           "terlambat": false
         }
       ]
-    },
-    {
-      "grup": "SHOPE ADT 29/10/2026",
-      "items": [
-        {
-          "nama": "ICE 1530",
-          "qty": 1,
-          "no_pesanan": "261029UXCMC9PJ",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE ADT 30/10/2026",
-      "items": [
-        {
-          "nama": "ICE 1530",
-          "qty": 1,
-          "no_pesanan": "2610301757756R",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
     }
   ],
   "stok_tangerang": [
@@ -174,7 +148,7 @@
     },
     {
       "nama": "CF 310 RSA",
-      "jumlah": 3,
+      "jumlah": 2,
       "catatan": "PO.2026.10.00174",
       "tipe": "normal"
     },
