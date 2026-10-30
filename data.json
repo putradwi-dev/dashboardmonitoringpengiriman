@@ -10,6 +10,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "CF 210",
+          "qty": 1,
+          "no_pesanan": "26103019Q2X9KE",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
@@ -126,7 +134,7 @@
     },
     {
       "nama": "CF 210 RSA",
-      "jumlah": 2,
+      "jumlah": 1,
       "catatan": "PO.2026.10.00174",
       "tipe": "normal"
     },
