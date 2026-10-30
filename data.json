@@ -19,36 +19,7 @@
         {
           "nama": "ICE 1530",
           "qty": 1,
-          "no_pesanan": "261028RWVGN3B9",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "ICE 1530",
-          "qty": 1,
-          "no_pesanan": "261028SVNGK3QE",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "ICE 1530",
-          "qty": 1,
           "no_pesanan": "261029UXCMC9PJ",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE TANGSEL 29/10/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM GOMESIN",
-          "qty": 2,
-          "no_pesanan": "261029UNN2W4JA",
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
