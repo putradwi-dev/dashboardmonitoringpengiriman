@@ -31,6 +31,14 @@
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "GM RTW 100L",
+          "qty": 1,
+          "no_pesanan": "2610301MKJ6PF7",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
