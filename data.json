@@ -14,22 +14,22 @@
       ]
     },
     {
-      "grup": "SHOPE MT 30/10/2026",
+      "grup": "SHOPE MT 31/10/2026",
       "items": [
         {
-          "nama": "ET MF JZ 520",
+          "nama": "TOPAZ 600",
           "qty": 1,
-          "no_pesanan": "261029V0TM5H3N",
-          "ekspedisi": "JNE",
+          "no_pesanan": "2610301EYMWCD4",
+          "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
         },
         {
-          "nama": "CF 210",
+          "nama": "CF 310",
           "qty": 1,
-          "no_pesanan": "26103019Q2X9KE",
+          "no_pesanan": "26103021VBWGQM",
           "ekspedisi": "JNE",
-          "kayu": true,
+          "kayu": false,
           "terlambat": false
         }
       ]
