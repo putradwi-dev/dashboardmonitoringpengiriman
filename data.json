@@ -49,6 +49,19 @@
           "terlambat": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE TANGSEL 31/10/2026",
+      "items": [
+        {
+          "nama": "DHH 180C",
+          "qty": 1,
+          "no_pesanan": "2610313QDMS011",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
