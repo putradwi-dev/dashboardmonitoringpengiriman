@@ -17,27 +17,11 @@
       "grup": "SHOPE MT 31/10/2026",
       "items": [
         {
-          "nama": "TOPAZ 600",
-          "qty": 1,
-          "no_pesanan": "2610301EYMWCD4",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
           "nama": "CF 310",
           "qty": 1,
           "no_pesanan": "26103021VBWGQM",
           "ekspedisi": "JNE",
           "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "GM RTW 100L",
-          "qty": 1,
-          "no_pesanan": "2610301MKJ6PF7",
-          "ekspedisi": "J&T",
-          "kayu": true,
           "terlambat": false
         },
         {
