@@ -39,6 +39,14 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "ET 118",
+          "qty": 1,
+          "no_pesanan": "261031290PX9ND",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     }
