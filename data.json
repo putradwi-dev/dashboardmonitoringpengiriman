@@ -51,6 +51,19 @@
       ]
     },
     {
+      "grup": "SHOPE ADT 31/10/2026",
+      "items": [
+        {
+          "nama": "GF 102G",
+          "qty": 1,
+          "no_pesanan": "2610313UKS6TGQ",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE TANGSEL 31/10/2026",
       "items": [
         {
