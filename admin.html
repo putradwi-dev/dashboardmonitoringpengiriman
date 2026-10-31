@@ -16,7 +16,7 @@
     <header class="bg-amber-950 text-amber-50 shadow-md">
         <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <h1 class="font-extrabold text-lg sm:text-xl">Input Data Pengiriman Pesanan Titip Proses PT. MBG</h1>
+                <h1 class="font-extrabold text-lg sm:text-xl">Input Data Pengiriman Pesanan Titip Proses PT. MBP</h1>
             </div>
         </div>
     </header>
@@ -25,26 +25,26 @@
         <!-- Tombol Aksi Utama & Kotak Pencarian -->
         <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-amber-100 shadow-sm">
             <div class="flex items-center gap-3">
-                <button onclick="saveToGitHub()" class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold px-5 py-2.5 rounded-xl text-s transition-all flex items-center gap-2 shadow-md">
+                <button onclick="saveToGitHub()" class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-all flex items-center gap-2 shadow-md">
                     SIMPAN & UPDATE
                 </button>
                 <div id="globalDuplicateWarning" class="hidden bg-red-100 border border-red-300 text-red-700 px-3 py-1.5 rounded-lg text-xs font-bold animate-pulse">
                     ⚠️ Peringatan: Duplikat!
                 </div>
             </div>
-            <!-- Kotak Pencarian -->
-            <div class="w-full md:w-72">
-                <input type="text" id="searchInput" oninput="filterData()" placeholder="🔍 Cari no. pesanan / barang..." class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl px-3 py-2 text-xs font-semibold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+            <!-- Kotak Pencarian (Font Lebih Besar) -->
+            <div class="w-full md:w-80">
+                <input type="text" id="searchInput" oninput="filterData()" placeholder="🔍 Cari no. pesanan / barang..." class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
             </div>
         </div>
 
         <!-- SECTION 1: EDIT KATEGORI BELUM KIRIM -->
         <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
             <div class="flex items-center justify-between border-b border-amber-100 pb-3">
-                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base">
+                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base sm:text-lg">
                     1. Data Pesanan Belum Kirim
                 </h2>
-                <button onclick="addBelumKirimGroup()" class="bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3 py-1.5 rounded-lg text-xs transition-all">
+                <button onclick="addBelumKirimGroup()" class="bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3.5 py-2 rounded-lg text-xs sm:text-sm transition-all">
                     + E-Commerce Baru
                 </button>
             </div>
@@ -57,17 +57,17 @@
         <!-- SECTION 2: EDIT STOK TANGERANG -->
         <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
             <div class="flex items-center justify-between border-b border-amber-100 pb-3">
-                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base">
+                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base sm:text-lg">
                     2. Data Stok Tangerang Titip di PT. MBG
                 </h2>
-                <button onclick="addStokItem()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold px-3 py-1.5 rounded-lg text-xs transition-all">
+                <button onclick="addStokItem()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold px-3.5 py-2 rounded-lg text-xs sm:text-sm transition-all">
                     + Barang & Stok
                 </button>
             </div>
 
             <div class="overflow-x-auto rounded-xl border border-amber-100">
-                <table class="w-full text-center text-xs">
-                    <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-amber-100">
+                <table class="w-full text-center text-xs sm:text-sm">
+                    <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-amber-100 text-xs">
                         <tr>
                             <th class="py-3 px-3 w-1/3">Nama Barang</th>
                             <th class="py-3 px-3 w-24">QTY</th>
@@ -86,7 +86,7 @@
         <!-- Pengaturan GitHub Token & Repo -->
         <div class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
             <div class="flex items-center justify-between border-b border-amber-100 pb-3">
-                <h2 class="font-bold text-stone-800 flex items-center gap-2">
+                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-sm sm:text-base">
                     🔑 Pengaturan Kunci Akses (GitHub Token)
                 </h2>
                 <span id="configStatus" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-red-100 text-red-700">Belum Terhubung</span>
@@ -94,20 +94,20 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
                     <label class="block text-xs font-semibold text-stone-600 mb-1">Username GitHub:</label>
-                    <input type="text" id="ghUsername" placeholder="Contoh: putradwi-dev" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                    <input type="text" id="ghUsername" placeholder="Contoh: putradwi-dev" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-800 focus:outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-stone-600 mb-1">Nama Repository:</label>
-                    <input type="text" id="ghRepo" placeholder="Contoh: dashboard-mbp" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                    <input type="text" id="ghRepo" placeholder="Contoh: dashboard-mbp" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-800 focus:outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-semibold text-stone-600 mb-1">GitHub Personal Access Token (PAT):</label>
-                    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-xs focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-800 focus:outline-none">
                 </div>
             </div>
             <div class="flex justify-between items-center pt-1">
                 <p class="text-[11px] text-stone-400">*Token ini disimpan dengan aman di penyimpanan lokal browser HP/Laptop Anda saja.</p>
-                <button onclick="saveConfig()" class="bg-stone-800 hover:bg-stone-900 text-white font-bold px-4 py-2 rounded-lg text-xs transition-all shadow-sm">
+                <button onclick="saveConfig()" class="bg-stone-800 hover:bg-stone-900 text-white font-bold px-4 py-2 rounded-lg text-xs sm:text-sm transition-all shadow-sm">
                     💾 Simpan Pengaturan Token
                 </button>
             </div>
@@ -232,45 +232,48 @@
                     const displayStyle = isMatch ? '' : 'display: none;';
 
                     itemsHtml += `
-                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-white p-3 rounded-lg border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
+                            <!-- Nama Barang (Font Lebih Besar text-sm/base & Bold) -->
                             <div class="sm:col-span-4">
-                                <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">Nama Barang</label>
-                                <input type="text" value="${item.nama || ''}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1.5 text-xs font-semibold text-stone-800">
+                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Nama Barang</label>
+                                <input type="text" value="${item.nama || ''}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                             </div>
+                            <!-- QTY (Font Lebih Besar text-sm/base & Bold) -->
                             <div class="sm:col-span-1">
-                                <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">QTY</label>
-                                <input type="number" min="1" value="${item.qty !== undefined ? item.qty : 1}" onchange="updateItemQty(${gIdx}, ${iIdx}, this.value)" placeholder="Qty" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1.5 text-xs font-bold text-center text-stone-800">
+                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">QTY</label>
+                                <input type="number" min="1" value="${item.qty !== undefined ? item.qty : 1}" onchange="updateItemQty(${gIdx}, ${iIdx}, this.value)" placeholder="Qty" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-sm sm:text-base font-extrabold text-center text-stone-900 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                             </div>
+                            <!-- No. Pesanan (Font Lebih Besar text-sm/base Monospace) -->
                             <div class="sm:col-span-3">
-                                <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">No. Pesanan</label>
-                                <input type="text" id="no_pesanan_${gIdx}_${iIdx}" value="${item.no_pesanan || ''}" oninput="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1.5 text-xs font-mono text-stone-700">
+                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">No. Pesanan</label>
+                                <input type="text" id="no_pesanan_${gIdx}_${iIdx}" value="${item.no_pesanan || ''}" oninput="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-mono font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                             </div>
+                            <!-- Ekspedisi (Font Lebih Besar text-sm & Bold) -->
                             <div class="sm:col-span-1">
-                                <label class="block text-[10px] text-stone-400 font-bold uppercase sm:hidden">Ekspedisi</label>
-                                <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2 py-1.5 text-xs font-bold text-stone-800">
+                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Ekspedisi</label>
+                                <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-xs sm:text-sm font-extrabold text-stone-900 cursor-pointer focus:ring-2 focus:ring-amber-800 focus:outline-none">
                                     <option value="JNE" ${item.ekspedisi === 'JNE' ? 'selected' : ''}>JNE</option>
                                     <option value="J&T" ${item.ekspedisi === 'J&T' ? 'selected' : ''}>J&T</option>
                                     <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
                                 </select>
                             </div>
-                            <!-- Checkbox Status -->
-                            <div class="sm:col-span-2 flex items-center justify-center gap-1.5 bg-[#faf7f2] px-2 py-1.5 rounded border border-stone-200">
-                                <label class="flex items-center gap-0.5 text-[10px] font-semibold text-stone-700 cursor-pointer">
-                                    <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="rounded text-amber-800 focus:ring-amber-700"> Kayu
+                            <!-- Checkbox Status (Font Lebih Jelas text-xs) -->
+                            <div class="sm:col-span-2 flex items-center justify-center gap-2 bg-[#faf7f2] px-2.5 py-2 rounded-lg border border-stone-200">
+                                <label class="flex items-center gap-1 text-xs font-bold text-stone-800 cursor-pointer">
+                                    <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="w-4 h-4 rounded text-amber-800 focus:ring-amber-700"> Kayu
                                 </label>
-                                <label class="flex items-center gap-0.5 text-[10px] font-semibold text-red-700 cursor-pointer">
-                                    <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="rounded text-red-600 focus:ring-red-600"> Terlambat
+                                <label class="flex items-center gap-1 text-xs font-bold text-red-700 cursor-pointer">
+                                    <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="w-4 h-4 rounded text-red-600 focus:ring-red-600"> Terlambat
                                 </label>
                             </div>
-                            <!-- Tombol Hapus dengan Konfirmasi -->
+                            <!-- Tombol Hapus -->
                             <div class="sm:col-span-1 text-center">
-                                <button onclick="confirmDeleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs font-bold px-2 py-1.5 rounded border border-red-200 transition-all w-full shadow-sm">Hapus</button>
+                                <button onclick="confirmDeleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs sm:text-sm font-bold px-2 py-2 rounded-lg border border-red-200 transition-all w-full shadow-sm">Hapus</button>
                             </div>
                         </div>
                     `;
                 });
 
-                // Jika sedang mencari dan tidak ada item yang cocok di grup ini, sembunyikan grupnya
                 if (keyword !== '' && !hasVisibleItem) return;
 
                 const gDiv = document.createElement('div');
@@ -280,10 +283,10 @@
                 if ((currentData.belum_kirim || []).length > 1) {
                     moveButtons = `<div class="flex items-center gap-1.5 border-l border-amber-200 pl-2.5 ml-1">`;
                     if (gIdx > 0) {
-                        moveButtons += `<button onclick="moveGroup(${gIdx}, -1)" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-semibold px-2 py-1 rounded text-[11px] transition-all">Geser ke Atas</button>`;
+                        moveButtons += `<button onclick="moveGroup(${gIdx}, -1)" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-semibold px-2 py-1 rounded text-xs transition-all">Geser ke Atas</button>`;
                     }
                     if (gIdx < currentData.belum_kirim.length - 1) {
-                        moveButtons += `<button onclick="moveGroup(${gIdx}, 1)" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-semibold px-2 py-1 rounded text-[11px] transition-all">Geser ke Bawah</button>`;
+                        moveButtons += `<button onclick="moveGroup(${gIdx}, 1)" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-semibold px-2 py-1 rounded text-xs transition-all">Geser ke Bawah</button>`;
                     }
                     moveButtons += `</div>`;
                 }
@@ -291,16 +294,16 @@
                 gDiv.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between pb-2 border-b border-amber-200/60 gap-2">
                         <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-amber-700"></span>
-                            <input type="text" value="${group.grup || ''}" onchange="updateGroupName(${gIdx}, this.value)" class="font-bold text-amber-950 text-sm bg-white border border-amber-200 rounded px-3 py-1.5 uppercase tracking-wide w-72 sm:w-96">
+                            <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
+                            <input type="text" value="${group.grup || ''}" onchange="updateGroupName(${gIdx}, this.value)" class="font-black text-amber-950 text-base sm:text-lg bg-white border border-amber-200 rounded-lg px-3 py-1.5 uppercase tracking-wide w-72 sm:w-96 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                             ${moveButtons}
                         </div>
                         <div class="flex items-center gap-2">
-                            <button onclick="addBelumKirimItem(${gIdx})" class="bg-amber-800 text-white font-bold px-2.5 py-1 rounded text-xs hover:bg-amber-900 transition-all">+ Pesanan</button>
-                            <button onclick="confirmDeleteGroup(${gIdx})" class="bg-red-100 text-red-700 font-bold px-2 py-1 rounded text-xs hover:bg-red-200 transition-all">Hapus E-Commerce</button>
+                            <button onclick="addBelumKirimItem(${gIdx})" class="bg-amber-800 text-white font-bold px-3 py-1.5 rounded-lg text-xs sm:text-sm hover:bg-amber-900 transition-all">+ Pesanan</button>
+                            <button onclick="confirmDeleteGroup(${gIdx})" class="bg-red-100 text-red-700 font-bold px-2.5 py-1.5 rounded-lg text-xs sm:text-sm hover:bg-red-200 transition-all">Hapus E-Commerce</button>
                         </div>
                     </div>
-                    <div class="space-y-2">
+                    <div class="space-y-2.5">
                         ${itemsHtml}
                     </div>
                 `;
@@ -318,24 +321,24 @@
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-[#faf7f2]";
                 tr.innerHTML = `
-                    <td class="py-2 px-3">
-                        <input type="text" value="${item.nama || ''}" onchange="updateStokNama(${idx}, this.value)" class="w-full bg-[#fdfbf7] border border-stone-200 rounded px-2 py-1 font-semibold text-stone-800">
+                    <td class="py-2.5 px-3">
+                        <input type="text" value="${item.nama || ''}" onchange="updateStokNama(${idx}, this.value)" class="w-full bg-[#fdfbf7] border border-stone-200 rounded-lg px-3 py-2 font-bold text-sm text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                     </td>
-                    <td class="py-2 px-3">
-                        <input type="number" value="${item.jumlah !== undefined ? item.jumlah : 1}" onchange="updateStokJumlah(${idx}, this.value)" class="w-20 bg-[#fdfbf7] border border-stone-200 rounded px-2 py-1 font-bold text-center text-stone-800">
+                    <td class="py-2.5 px-3">
+                        <input type="number" value="${item.jumlah !== undefined ? item.jumlah : 1}" onchange="updateStokJumlah(${idx}, this.value)" class="w-24 bg-[#fdfbf7] border border-stone-200 rounded-lg px-2 py-2 font-extrabold text-sm text-center text-stone-900 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                     </td>
-                    <td class="py-2 px-3">
-                        <select onchange="updateStokTipe(${idx}, this.value)" class="w-full bg-[#fdfbf7] border border-stone-200 rounded px-2 py-1 font-semibold">
+                    <td class="py-2.5 px-3">
+                        <select onchange="updateStokTipe(${idx}, this.value)" class="w-full bg-[#fdfbf7] border border-stone-200 rounded-lg px-2 py-2 font-bold text-sm focus:ring-2 focus:ring-amber-800 focus:outline-none">
                             <option value="normal" ${item.tipe === 'normal' ? 'selected' : ''}>Normal (-)</option>
                             <option value="warning" ${item.tipe === 'warning' ? 'selected' : ''}>Perlu diperbaiki</option>
                             <option value="priority" ${item.tipe === 'priority' ? 'selected' : ''}>Utamakan habiskan ini</option>
                         </select>
                     </td>
-                    <td class="py-2 px-3">
-                        <input type="text" value="${item.catatan || ''}" onchange="updateStokCatatan(${idx}, this.value)" placeholder="Teks Catatan" class="w-full bg-[#fdfbf7] border border-stone-200 rounded px-2 py-1 text-stone-700">
+                    <td class="py-2.5 px-3">
+                        <input type="text" value="${item.catatan || ''}" onchange="updateStokCatatan(${idx}, this.value)" placeholder="Teks Catatan" class="w-full bg-[#fdfbf7] border border-stone-200 rounded-lg px-3 py-2 text-sm text-stone-700 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                     </td>
-                    <td class="py-2 px-3 text-center">
-                        <button onclick="confirmDeleteStokItem(${idx})" class="text-red-600 hover:text-red-800 font-bold">Hapus</button>
+                    <td class="py-2.5 px-3 text-center">
+                        <button onclick="confirmDeleteStokItem(${idx})" class="text-red-600 hover:text-red-800 font-bold text-xs sm:text-sm">Hapus</button>
                     </td>
                 `;
                 container.appendChild(tr);
@@ -469,7 +472,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Add search feature for admin panel",
+                    message: "Increase font size for admin input fields",
                     content: contentBase64,
                     sha: currentSha
                 };
