@@ -50,6 +50,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "2611028DE5N9YJ",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
@@ -178,7 +186,7 @@
     },
     {
       "nama": "AB 318 GEA",
-      "jumlah": 2,
+      "jumlah": 1,
       "catatan": "PO.2026.10.00174",
       "tipe": "normal"
     },
