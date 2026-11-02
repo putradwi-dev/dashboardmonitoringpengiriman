@@ -77,7 +77,7 @@
           "qty": 1,
           "no_pesanan": "2611028K96X66A",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false
         }
       ]
