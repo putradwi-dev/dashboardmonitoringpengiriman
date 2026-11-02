@@ -54,27 +54,14 @@
       ]
     },
     {
-      "grup": "SHOPE ADT 31/10/2026",
+      "grup": "SHOPE TANGSEL 2/11/2026",
       "items": [
         {
-          "nama": "GF 102G",
-          "qty": 1,
-          "no_pesanan": "2610313UKS6TGQ",
+          "nama": "LOYANG 3CM GOMESIN",
+          "qty": 15,
+          "no_pesanan": "2610313DMATD4N",
           "ekspedisi": "J&T",
           "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE TANGSEL 31/10/2026",
-      "items": [
-        {
-          "nama": "DHH 180C",
-          "qty": 1,
-          "no_pesanan": "2610313QDMS011",
-          "ekspedisi": "JNE",
-          "kayu": false,
           "terlambat": false
         }
       ]
@@ -101,7 +88,7 @@
     },
     {
       "nama": "LOYANG 3CM GOMESIN",
-      "jumlah": 69,
+      "jumlah": 54,
       "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
     },
