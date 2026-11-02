@@ -99,6 +99,19 @@
       ]
     },
     {
+      "grup": "SHOPE MT 3/11/2026",
+      "items": [
+        {
+          "nama": "AGATE 300",
+          "qty": 1,
+          "no_pesanan": "26110290WA0UCE",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE TANGSEL 2/11/2026",
       "items": [
         {
