@@ -1,34 +1,29 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 30/10/2026",
+      "grup": "SHOPE MT 2/11/2026",
       "items": [
         {
-          "nama": "AGATE 300",
+          "nama": "cf 600",
           "qty": 1,
-          "no_pesanan": "586869799277135773",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 31/10/2026",
-      "items": [
-        {
-          "nama": "CF 310",
-          "qty": 1,
-          "no_pesanan": "26103021VBWGQM",
+          "no_pesanan": "2610314CFQV5WV",
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
         },
         {
-          "nama": "ET 118",
+          "nama": "DHH 180C",
           "qty": 1,
-          "no_pesanan": "261031290PX9ND",
+          "no_pesanan": "261101664USV6C",
           "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "2611016PXHXBNK",
+          "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
         }
@@ -172,7 +167,7 @@
     },
     {
       "nama": "AB 318 GEA",
-      "jumlah": 3,
+      "jumlah": 2,
       "catatan": "PO.2026.10.00174",
       "tipe": "normal"
     },
