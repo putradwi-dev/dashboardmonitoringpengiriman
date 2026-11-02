@@ -1,6 +1,19 @@
 {
   "belum_kirim": [
     {
+      "grup": "TOKOPEDIA MT 2/11/2026",
+      "items": [
+        {
+          "nama": "AB 108",
+          "qty": 1,
+          "no_pesanan": "586923150484801307",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 2/11/2026",
       "items": [
         {
@@ -126,7 +139,7 @@
     },
     {
       "nama": "AB 108 GEA",
-      "jumlah": 5,
+      "jumlah": 4,
       "catatan": "PO.2026.09.00180 & PO.2026.10.00043",
       "tipe": "normal"
     },
