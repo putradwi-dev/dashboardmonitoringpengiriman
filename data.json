@@ -87,6 +87,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "CF 110",
+          "qty": 1,
+          "no_pesanan": "2611028WPMKG7X",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
