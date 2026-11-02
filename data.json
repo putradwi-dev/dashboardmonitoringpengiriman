@@ -26,6 +26,14 @@
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "AB 208",
+          "qty": 1,
+          "no_pesanan": "26110171G90K90",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
@@ -161,7 +169,7 @@
     },
     {
       "nama": "AB 208 GEA",
-      "jumlah": 4,
+      "jumlah": 3,
       "catatan": "PO.2026.10.00174",
       "tipe": "normal"
     },
