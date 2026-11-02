@@ -161,7 +161,7 @@
     },
     {
       "nama": "CF 110 RSA",
-      "jumlah": 7,
+      "jumlah": 4,
       "catatan": "PO.2026.10.00132",
       "tipe": "normal"
     },
@@ -196,12 +196,6 @@
       "tipe": "normal"
     },
     {
-      "nama": "CF 210 RSA",
-      "jumlah": 1,
-      "catatan": "PO.2026.10.00174",
-      "tipe": "normal"
-    },
-    {
       "nama": "CF 310 RSA",
       "jumlah": 2,
       "catatan": "PO.2026.10.00174",
@@ -209,13 +203,7 @@
     },
     {
       "nama": "AB 208 GEA",
-      "jumlah": 3,
-      "catatan": "PO.2026.10.00174",
-      "tipe": "normal"
-    },
-    {
-      "nama": "AB 318 GEA",
-      "jumlah": 1,
+      "jumlah": 2,
       "catatan": "PO.2026.10.00174",
       "tipe": "normal"
     },
@@ -235,6 +223,12 @@
       "nama": "SR 120 GETRA",
       "jumlah": 1,
       "catatan": "PO.2026.10.00182",
+      "tipe": "normal"
+    },
+    {
+      "nama": "D8SM GETRA",
+      "jumlah": 6,
+      "catatan": "PO.2026.11.00005",
       "tipe": "normal"
     }
   ]
