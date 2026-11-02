@@ -71,6 +71,14 @@
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "LP 12X1",
+          "qty": 1,
+          "no_pesanan": "2611028K96X66A",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
