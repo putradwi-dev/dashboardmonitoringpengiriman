@@ -79,6 +79,14 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "RUBY 280",
+          "qty": 1,
+          "no_pesanan": "2611028S5BFYUY",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
