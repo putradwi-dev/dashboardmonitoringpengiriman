@@ -3,479 +3,342 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Primary Meta Tags -->
     <title>Monitoring Pengiriman & Titipan Stok PT. MBP</title>
-    <meta name="title" content="Monitoring Pengiriman & Titipan Stok PT. MBP">
-    <meta name="description" content="Dashboard monitoring real-time status pengiriman dan titipan stok PT. MBP.">
-
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/favicon.png">
-
+    
     <!-- Open Graph / WhatsApp Preview Meta Tags -->
-    <meta property="og:type" content="website">
     <meta property="og:title" content="Monitoring Pengiriman & Titipan Stok PT. MBP">
-    <meta property="og:description" content="Monitoring Pengiriman & Titipan Stok PT. MBP">
-    <meta property="og:image" content="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/preview.png">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:description" content="Sistem pemantauan pengiriman pesanan dan titipan stok secara real-time.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/favicon.png">
     <meta property="og:url" content="https://monitoringtitipproses.ptmbp.my.id/">
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- html2canvas CDN untuk fitur Simpan ke Gambar -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        @media print {
-            .no-print { display: none !important; }
-            body { background: white !important; }
-        }
-    </style>
+    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-12 flex flex-col justify-between">
+<body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-16">
 
-    <div>
-        <!-- Area utama yang di-capture ke Gambar -->
-        <div id="capture-area" class="bg-[#faf7f2] pb-6">
-            <!-- Header Section (Tombol BAGIKAN disatukan di sebelah DATA REALTIME) -->
-            <header class="bg-gradient-to-r from-amber-900 via-stone-800 to-amber-800 text-white shadow-lg">
-                <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <div>
-                            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2 text-amber-50">
-                                Monitoring Pengiriman & Titipan Stok PT. MBP
-                            </h1>
-                        </div>
-                        <div class="flex items-center gap-2.5 self-start md:self-auto">
-                            <!-- Tombol Bagikan -->
-                            <button onclick="openShareModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm no-print">
-                                🔗 BAGIKAN
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            <main class="max-w-6xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
-
-                <!-- Summary Cards / Statistics Header -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm">
-                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Total Pesanan</p>
-                        <p class="text-2xl font-bold text-stone-800 mt-1" id="stat-total-pesanan">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-red-500">
-                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Terlambat</p>
-                        <p class="text-2xl font-bold text-red-600 mt-1" id="stat-terlambat">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-amber-600">
-                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Packing Kayu</p>
-                        <p class="text-2xl font-bold text-amber-700 mt-1" id="stat-kayu">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
-                    </div>
-                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-emerald-600">
-                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Total Unit Stok</p>
-                        <p class="text-2xl font-bold text-emerald-700 mt-1" id="stat-total-stok">0 <span class="text-xs font-normal text-stone-500">Unit</span></p>
-                    </div>
-                </div>
-
-                <!-- Search & Filter Controls (No Print) -->
-                <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between no-print">
-                    <div class="relative w-full md:w-80">
-                        <input type="text" id="searchInput" onkeyup="filterItems()" placeholder="Cari nama barang / no. pesanan..." 
-                               class="w-full pl-9 pr-4 py-2 bg-[#fdfbf7] border border-amber-200/80 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-700 focus:bg-white transition-all">
-                        <svg class="w-4 h-4 text-stone-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </div>
-                    <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
-                        <button onclick="filterBy('all', event)" class="filter-btn bg-amber-800 text-white px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold shadow-sm transition-all whitespace-nowrap">Semua Pesanan</button>
-                        <button onclick="filterBy('terlambat', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-red-50 hover:text-red-700 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap">⚠️ Pesanan Terlambat</button>
-                        <button onclick="filterBy('kayu', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-amber-100/60 hover:text-amber-900 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap">Pesanan Packing Kayu</button>
-                    </div>
-                </div>
-
-                <!-- SECTION 1: BELUM KIRIM -->
-                <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
-                    <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                        <div class="flex items-center gap-3">
-                            <div class="p-2 bg-amber-600 text-white rounded-lg font-bold text-lg leading-none">⏳</div>
-                            <div>
-                                <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">BELUM KIRIM</h2>
-                                <p class="text-stone-400 text-xs sm:text-sm">Daftar pesanan yang belum dikirimkan ke ekspedisi</p>
-                            </div>
-                        </div>
-                        <span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
-                            Menunggu Dikirim
-                        </span>
-                    </div>
-
-                    <div id="container-belum-kirim" class="p-4 sm:p-6 space-y-8">
-                        <!-- Data Belum Kirim Dimuat dari JSON -->
-                    </div>
-                </section>
-
-                <!-- SECTION 2: STOK TANGERANG TITIP DI PT. MBG -->
-                <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
-                    <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                        <div class="flex items-center gap-3">
-                            <div class="p-2 bg-emerald-700 text-white rounded-lg font-bold text-lg leading-none">🏢</div>
-                            <div>
-                                <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">STOK TANGERANG TITIP DI PT. MBG</h2>
-                                <p class="text-stone-400 text-xs sm:text-sm">Stok fisik barang yang saat ini tersedia di gudang PT. MBG</p>
-                            </div>
-                        </div>
-                        <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
-                            Stok Di Gudang MBG
-                        </span>
-                    </div>
-
-                    <div class="p-4 sm:p-6">
-                        <div class="overflow-x-auto rounded-xl border border-amber-100">
-                            <table class="w-full text-left border-collapse">
-                                <thead>
-                                    <tr class="bg-[#faf7f2] border-b border-amber-100 text-stone-700 text-sm uppercase tracking-wider">
-                                        <th class="py-4 px-4 font-bold">Nama Barang</th>
-                                        <th class="py-4 px-4 font-bold text-center w-32">QTY</th>
-                                        <th class="py-4 px-4 font-bold">Status / Catatan</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbody-stok-tangerang" class="divide-y divide-amber-50 text-base">
-                                    <!-- Data Stok Dimuat dari JSON -->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </section>
-
-            </main>
-        </div>
-    </div>
-
-    <!-- Modal Bagikan Link & Download Gambar -->
-    <div id="shareModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden no-print">
-        <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4 relative border border-amber-100">
-            <button onclick="closeShareModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600 text-lg font-bold">✕</button>
-            <div class="flex items-center gap-3">
-                <div class="p-3 bg-amber-100 text-amber-800 rounded-xl text-xl">📸</div>
-                <div>
-                    <h3 class="font-bold text-stone-800 text-lg">Bagikan Laporan</h3>
-                    <p class="text-xs text-stone-500">Salin link atau simpan laporan sebagai gambar</p>
-                </div>
+    <!-- Header Publik -->
+    <header class="bg-gradient-to-r from-amber-950 via-amber-900 to-stone-900 text-amber-50 shadow-lg border-b border-amber-800">
+        <div class="max-w-5xl mx-auto px-4 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div>
+                <h1 class="font-extrabold text-lg sm:text-xl tracking-tight">Monitoring Pengiriman & Titipan Stok PT. MBP</h1>
+                <p class="text-xs text-amber-200/80 mt-0.5">Sistem pemantauan status pengiriman paket secara real-time</p>
             </div>
+            <div class="flex items-center gap-2.5">
+                <a href="https://api.whatsapp.com/send?text=*Monitoring%20Pengiriman%20PT.%20MBP*%0Aakses%20link%20berikut:%20https://monitoringtitipproses.ptmbp.my.id/" target="_blank" class="bg-amber-800 hover:bg-amber-700 text-white font-bold px-3.5 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5 shadow-sm border border-amber-700">
+                    📤 BAGIKAN
+                </a>
+                <span id="lastUpdateBadge" class="bg-amber-900/80 text-amber-200 border border-amber-700/50 text-[11px] font-semibold px-3 py-2 rounded-xl shadow-inner">
+                    ⏳ Memuat data...
+                </span>
+            </div>
+        </div>
+    </header>
 
-            <div class="space-y-2 pt-2">
-                <label class="text-xs font-semibold text-stone-600 block">Link Akses:</label>
+    <main class="max-w-5xl mx-auto px-4 mt-6 space-y-6">
+        <!-- Statistik Ringkasan -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="bg-white p-4 rounded-2xl border border-amber-100 shadow-sm">
+                <p class="text-[11px] font-bold text-stone-400 uppercase tracking-wider">Total Pesanan</p>
+                <p id="statTotalPesanan" class="text-2xl font-black text-amber-950 mt-1">0</p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-amber-100 shadow-sm">
+                <p class="text-[11px] font-bold text-red-500 uppercase tracking-wider">Terlambat</p>
+                <p id="statTerlambat" class="text-2xl font-black text-red-600 mt-1">0</p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-amber-100 shadow-sm">
+                <p class="text-[11px] font-bold text-amber-700 uppercase tracking-wider">Packing Kayu</p>
+                <p id="statKayu" class="text-2xl font-black text-amber-800 mt-1">0</p>
+            </div>
+            <div class="bg-white p-4 rounded-2xl border border-emerald-100 shadow-sm">
+                <p class="text-[11px] font-bold text-emerald-600 uppercase tracking-wider">Total Unit Stok</p>
+                <p id="statTotalStok" class="text-2xl font-black text-emerald-700 mt-1">0</p>
+            </div>
+        </div>
+
+        <!-- Filter & Pencarian -->
+        <div class="bg-white p-4 rounded-2xl border border-amber-100 shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+            <div class="w-full md:w-80">
+                <input type="text" id="publicSearch" oninput="filterPublicData()" placeholder="🔍 Cari nama barang / no. pesanan..." class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl px-3.5 py-2.5 text-xs font-semibold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5">
+                <button onclick="setFilter('all')" id="btnFilterAll" class="bg-amber-900 text-white font-bold px-3.5 py-2 rounded-xl text-xs transition-all shadow-sm">Semua Pesanan</button>
+                <button onclick="setFilter('terlambat')" id="btnFilterTerlambat" class="bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold px-3.5 py-2 rounded-xl text-xs transition-all border border-stone-200">⚠️ Pesanan Terlambat</button>
+                <button onclick="setFilter('kayu')" id="btnFilterKayu" class="bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold px-3.5 py-2 rounded-xl text-xs transition-all border border-stone-200">📦 Pesanan Packing Kayu</button>
+            </div>
+        </div>
+
+        <!-- SECTION 1: PESANAN BELUM KIRIM -->
+        <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
                 <div class="flex items-center gap-2">
-                    <input type="text" id="shareUrlInput" readonly class="w-full bg-[#faf7f2] border border-amber-200 rounded-lg px-3 py-2 text-xs font-mono text-stone-700 focus:outline-none select-all">
-                    <button onclick="copyShareUrl()" class="bg-amber-800 hover:bg-amber-900 text-white text-xs font-bold px-3 py-2 rounded-lg transition-all whitespace-nowrap">
-                        Salin Link
-                    </button>
+                    <span class="w-3.5 h-3.5 rounded-full bg-amber-700 animate-pulse"></span>
+                    <h2 class="font-extrabold text-stone-900 text-base sm:text-lg">BELUM KIRIM</h2>
                 </div>
+                <span class="text-xs font-semibold text-stone-500 bg-amber-50 border border-amber-200 px-3 py-1 rounded-lg">Daftar pesanan yang belum dikirimkan ke ekspedisi</span>
             </div>
 
-            <div class="border-t border-amber-100 pt-3 space-y-2">
-                <p class="text-xs font-semibold text-stone-600">Simpan Tampilan Dashboard:</p>
-                <button onclick="downloadDashboardImage()" id="downloadBtn" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm">
-                    🖼️ Download Laporan sebagai Gambar (PNG)
-                </button>
+            <div id="publicBelumKirimContainer" class="space-y-6">
+                <!-- Render Data Belum Kirim -->
+            </div>
+        </section>
+
+        <!-- SECTION 2: STOK TANGERANG -->
+        <section class="bg-white p-5 rounded-2xl border border-emerald-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-emerald-100 pb-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-3.5 h-3.5 rounded-full bg-emerald-600"></span>
+                    <h2 class="font-extrabold text-stone-900 text-base sm:text-lg">STOK TANGERANG TITIP DI PT. MBG</h2>
+                </div>
+                <span class="text-xs font-semibold text-stone-500 bg-emerald-50 border border-emerald-200 px-3 py-1 rounded-lg">Stok fisik barang saat ini tersedia di gudang PT. MBG</span>
             </div>
 
-            <p id="copyAlert" class="text-xs text-emerald-700 font-bold text-center hidden pt-1">
-                ✓ Link berhasil disalin ke clipboard!
-            </p>
-        </div>
-    </div>
+            <div class="overflow-x-auto rounded-xl border border-emerald-100">
+                <table class="w-full text-left text-xs sm:text-sm">
+                    <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-emerald-100 text-xs">
+                        <tr>
+                            <th class="py-3 px-4 w-1/3">Nama Barang</th>
+                            <th class="py-3 px-4 w-24 text-center">QTY</th>
+                            <th class="py-3 px-4">Status / Catatan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="publicStokContainer" class="divide-y divide-emerald-50">
+                        <!-- Render Data Stok -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="max-w-6xl mx-auto px-4 mt-12 text-center text-stone-600 text-xs sm:text-sm space-y-1">
-        <p class="font-semibold">DASHBOARD MONITORING PENGIRIMAN & TITIP STOK PT. MBP © 2026</p>
-        <p class="text-stone-400 font-medium">by putradwi-dev</p>
-    </footer>
-
+    <!-- Script Logika Publik -->
     <script>
-        function getItemStatus(item) {
-            let isKayu = !!item.kayu;
-            let isTerlambat = !!item.terlambat;
+        let globalRawData = { belum_kirim: [], stok_tangerang: [] };
+        let currentActiveFilter = 'all';
 
-            if (!isKayu && !isTerlambat && typeof item.status === 'string') {
-                const s = item.status.toLowerCase();
-                isKayu = (s === 'kayu' || s === 'keduanya');
-                isTerlambat = (s === 'terlambat' || s === 'keduanya');
-            }
-            return { isKayu, isTerlambat };
-        }
+        window.onload = function() {
+            fetchPublicData();
+            // Auto refresh setiap 30 detik agar selalu sinkron dengan admin
+            setInterval(fetchPublicData, 30000);
+        };
 
-        async function loadDashboardData() {
+        async function fetchPublicData() {
             try {
-                const response = await fetch('data.json?v=' + new Date().getTime());
-                const data = await response.json();
-
-                renderBelumKirim(data.belum_kirim || []);
-                renderStokTangerang(data.stok_tangerang || []);
-                updateStatistics(data);
-            } catch (error) {
-                console.error("Gagal memuat data.json:", error);
+                const response = await fetch('data.json?t=' + new Date().getTime());
+                if (!response.ok) throw new Error("Gagal memuat data utama.");
+                globalRawData = await response.json();
+                
+                renderPublicUI();
+                updateStatistics();
+                
+                const now = new Date();
+                document.getElementById('lastUpdateBadge').innerText = "✓ Update: " + now.toLocaleTimeString();
+            } catch (err) {
+                console.error(err);
+                document.getElementById('lastUpdateBadge').innerText = "⚠️ Gagal memuat data";
             }
         }
 
-        function renderBelumKirim(groups) {
-            const container = document.getElementById('container-belum-kirim');
+        function setFilter(filterType) {
+            currentActiveFilter = filterType;
+            
+            // Atur warna tombol aktif
+            ['all', 'terlambat', 'kayu'].forEach(f => {
+                const btn = document.getElementById('btnFilter' + f.charAt(0).toUpperCase() + f.slice(1));
+                if (f === filterType) {
+                    btn.className = "bg-amber-900 text-white font-bold px-3.5 py-2 rounded-xl text-xs transition-all shadow-sm";
+                } else {
+                    btn.className = "bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold px-3.5 py-2 rounded-xl text-xs transition-all border border-stone-200";
+                }
+            });
+
+            renderPublicUI();
+        }
+
+        function updateStatistics() {
+            let totalP = 0;
+            let totalT = 0;
+            let totalK = 0;
+            let totalS = 0;
+
+            (globalRawData.belum_kirim || []).forEach(group => {
+                (group.items || []).forEach(item => {
+                    totalP++;
+                    if (item.terlambat) totalT++;
+                    if (item.kayu) totalK++;
+                });
+            });
+
+            (globalRawData.stok_tangerang || []).forEach(item => {
+                totalS += Number(item.jumlah || 0);
+            });
+
+            document.getElementById('statTotalPesanan').innerText = totalP;
+            document.getElementById('statTerlambat').innerText = totalT;
+            document.getElementById('statKayu').innerText = totalK;
+            document.getElementById('statTotalStok').innerText = totalS;
+        }
+
+        function renderPublicUI() {
+            const container = document.getElementById('publicBelumKirimContainer');
             container.innerHTML = '';
 
-            groups.forEach((group, index) => {
-                const groupDiv = document.createElement('div');
-                groupDiv.className = `data-group space-y-3 ${index > 0 ? 'pt-4 border-t border-amber-100' : ''}`;
+            const keyword = (document.getElementById('publicSearch') ? document.getElementById('publicSearch').value : '').toLowerCase().trim();
 
-                let tableRows = '';
-                let mobileCards = '';
+            let hasAnyGroupVisible = false;
 
-                group.items.forEach(item => {
-                    const statusObj = getItemStatus(item);
-                    const isKayu = statusObj.isKayu;
-                    const isTerlambat = statusObj.isTerlambat;
-                    const itemQty = item.qty !== undefined ? item.qty : 1;
+            (globalRawData.belum_kirim || []).forEach((group) => {
+                let itemsHtml = '';
+                let visibleCount = 0;
 
-                    const ekspedisiClean = (item.ekspedisi || '').toUpperCase();
-                    const badgeEkspedisi = ekspedisiClean.includes('JNE')
-                        ? `<span class="bg-amber-50 text-amber-800 px-2 py-0.5 rounded-md text-xs sm:text-sm font-bold uppercase border border-amber-200">${item.ekspedisi}</span>`
-                        : `<span class="bg-stone-100 text-stone-800 px-2 py-0.5 rounded-md text-xs sm:text-sm font-bold uppercase border border-stone-200">${item.ekspedisi}</span>`;
-
-                    let statusBadgesHtml = '';
-                    let statusBadgesMobile = '';
-
-                    if (isKayu) {
-                        statusBadgesHtml += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-3 py-1 rounded-md font-semibold border border-amber-200 inline-block">KAYU</span>`;
-                        statusBadgesMobile += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-amber-200 inline-block">KAYU</span>`;
-                    }
-                    if (isTerlambat) {
-                        statusBadgesHtml += `<span class="bg-red-100 text-red-800 text-xs sm:text-sm px-3 py-1 rounded-md font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
-                        statusBadgesMobile += `<span class="bg-red-100 text-red-800 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
+                (group.items || []).forEach((item) => {
+                    // Konversi kompatibilitas status lama/baru
+                    if (typeof item.status === 'string' && item.status.trim() !== '') {
+                        const s = item.status.toLowerCase();
+                        if (s === 'kayu' || s === 'keduanya') item.kayu = true;
+                        if (s === 'terlambat' || s === 'keduanya') item.terlambat = true;
                     }
 
-                    if (!isKayu && !isTerlambat) {
-                        statusBadgesHtml = `<span class="text-stone-400 font-mono text-sm">-</span>`;
+                    // Filter Tab Kategori
+                    if (currentActiveFilter === 'terlambat' && !item.terlambat) return;
+                    if (currentActiveFilter === 'kayu' && !item.kayu) return;
+
+                    // Filter Pencarian Teks
+                    const nama = (item.nama || '').toLowerCase();
+                    const noPesan = (item.no_pesanan || '').toLowerCase();
+                    const grupName = (group.grup || '').toLowerCase();
+                    const isMatch = keyword === '' || nama.includes(keyword) || noPesan.includes(keyword) || grupName.includes(keyword);
+
+                    if (!isMatch) return;
+
+                    visibleCount++;
+
+                    // Badge Status dengan Animasi Berkedip (animate-pulse)
+                    let statusBadges = '<span class="text-stone-400">-</span>';
+                    let badgesArr = [];
+
+                    if (item.kayu) {
+                        badgesArr.push(`<span class="bg-amber-100 text-amber-900 border border-amber-300 font-extrabold px-2.5 py-1 rounded-lg text-xs animate-pulse shadow-sm">📦 KAYU</span>`);
+                    }
+                    if (item.terlambat) {
+                        badgesArr.push(`<span class="bg-red-100 text-red-700 border border-red-300 font-extrabold px-2.5 py-1 rounded-lg text-xs animate-pulse shadow-sm">⚠️ TERLAMBAT</span>`);
                     }
 
-                    const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''}`.toLowerCase();
+                    if (badgesArr.length > 0) {
+                        statusBadges = `<div class="flex flex-wrap gap-1.5">${badgesArr.join('')}</div>`;
+                    }
 
-                    tableRows += `
-                        <tr class="item-row hover:bg-[#faf7f2] transition-colors" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
-                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[30%]">${item.nama}</td>
-                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[28%]">${item.no_pesanan}</td>
-                            <td class="py-3.5 px-2 text-center w-[8%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
-                            <td class="py-3.5 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
-                            <td class="py-3.5 px-4 w-[24%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
-                        </tr>
-                    `;
+                    // Warna ekspedisi
+                    let eksColor = 'bg-stone-100 text-stone-700 border-stone-200';
+                    const eks = (item.ekspedisi || '').toUpperCase();
+                    if (eks === 'JNE') eksColor = 'bg-blue-50 text-blue-700 border-blue-200';
+                    if (eks === 'J&T') eksColor = 'bg-red-50 text-red-700 border-red-200';
 
-                    mobileCards += `
-                        <div class="item-row bg-[#fdfbf7] p-4 rounded-xl border border-amber-100 space-y-2" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
-                            <div class="flex justify-between items-start">
-                                <span class="font-bold text-stone-900 text-base sm:text-lg">${item.nama}</span>
-                                <div class="flex items-center gap-2">
-                                    <span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-xs border border-amber-200">Qty: ${itemQty}</span>
-                                    ${badgeEkspedisi}
-                                </div>
+                    itemsHtml += `
+                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-[#faf7f2]/60 hover:bg-[#faf7f2] p-3 rounded-xl border border-amber-100 transition-all">
+                            <div class="sm:col-span-4 font-bold text-stone-900 text-sm">
+                                <span class="text-[10px] text-stone-400 block sm:hidden uppercase font-semibold">Nama Barang</span>
+                                ${item.nama || '-'}
                             </div>
-                            <div>
-                                <span class="text-xs sm:text-sm text-stone-400 block uppercase font-medium">Nomor Pesanan</span>
-                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-white px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
+                            <div class="sm:col-span-3 font-mono font-bold text-stone-700 text-xs sm:text-sm">
+                                <span class="text-[10px] text-stone-400 block sm:hidden uppercase font-semibold">No. Pesanan</span>
+                                ${item.no_pesanan || '-'}
                             </div>
-                            ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
+                            <div class="sm:col-span-1 text-center font-extrabold text-stone-900 text-sm">
+                                <span class="text-[10px] text-stone-400 block sm:hidden uppercase font-semibold">QTY</span>
+                                ${item.qty !== undefined ? item.qty : 1}
+                            </div>
+                            <div class="sm:col-span-1">
+                                <span class="text-[10px] text-stone-400 block sm:hidden uppercase font-semibold mb-0.5">Ekspedisi</span>
+                                <span class="inline-block px-2.5 py-1 rounded-lg text-xs font-black border ${eksColor}">${item.ekspedisi || '-'}</span>
+                            </div>
+                            <div class="sm:col-span-3">
+                                <span class="text-[10px] text-stone-400 block sm:hidden uppercase font-semibold mb-0.5">Status / Catatan</span>
+                                ${statusBadges}
+                            </div>
                         </div>
                     `;
                 });
 
-                groupDiv.innerHTML = `
-                    <div class="flex items-center gap-2">
-                        <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
-                        <h3 class="font-bold text-amber-950 text-base sm:text-lg uppercase tracking-wide">${group.grup}</h3>
-                        <span class="text-xs sm:text-sm bg-amber-50 text-amber-800 px-2.5 py-0.5 rounded-full font-semibold border border-amber-200/60">${group.items.length} Pesanan</span>
-                    </div>
+                if (visibleCount === 0) return;
 
-                    <div class="hidden md:block overflow-x-auto rounded-xl border border-amber-100">
-                        <table class="w-full text-left text-base table-fixed">
-                            <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-100 uppercase text-sm">
-                                <tr>
-                                    <th class="py-4 px-4 w-[30%]">Nama Barang</th>
-                                    <th class="py-4 px-4 w-[28%]">Nomor Pesanan</th>
-                                    <th class="py-4 px-2 text-center w-[8%]" style="padding-left: 2px; padding-right: 2px;">QTY</th>
-                                    <th class="py-4 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
-                                    <th class="py-4 px-4 w-[24%]">Status / Catatan</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-amber-50">
-                                ${tableRows}
-                            </tbody>
-                        </table>
-                    </div>
+                hasAnyGroupVisible = true;
 
-                    <div class="grid grid-cols-1 gap-3 md:hidden">
-                        ${mobileCards}
+                const gDiv = document.createElement('div');
+                gDiv.className = "bg-[#fdfbf7] p-4 sm:p-5 rounded-2xl border border-amber-200/80 space-y-3 shadow-sm";
+                gDiv.innerHTML = `
+                    <div class="flex items-center justify-between pb-2 border-b border-amber-200/60">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-amber-600"></span>
+                            <h3 class="font-black text-amber-950 text-sm sm:text-base uppercase tracking-wider">${group.grup || 'Grup Pesanan'}</h3>
+                        </div>
+                        <span class="text-xs font-bold text-amber-900 bg-amber-100/80 border border-amber-300 px-2.5 py-1 rounded-lg">${visibleCount} Pesanan</span>
+                    </div>
+                    <div class="space-y-2">
+                        ${itemsHtml}
                     </div>
                 `;
-
-                container.appendChild(groupDiv);
+                container.appendChild(gDiv);
             });
-        }
 
-        function renderStokTangerang(items) {
-            const tbody = document.getElementById('tbody-stok-tangerang');
-            tbody.innerHTML = '';
-
-            items.forEach(item => {
-                let statusBadge = `<span class="text-stone-400 font-mono text-sm">-</span>`;
-                let rowBgClass = 'hover:bg-[#faf7f2] transition-colors';
-                let qtyClass = 'bg-stone-100 px-3.5 py-1 rounded-lg font-bold text-stone-800 text-base inline-block';
-
-                if (item.tipe === 'warning') {
-                    statusBadge = `<span class="text-red-700 font-bold bg-red-50 px-3 py-1 rounded-md text-sm border border-red-200">${item.catatan && item.catatan !== '-' ? item.catatan : '🛠️ Perlu di perbaiki'}</span>`;
-                } else if (item.tipe === 'priority') {
-                    statusBadge = `<span class="text-amber-900 font-extrabold bg-amber-100/90 px-3 py-1 rounded-md text-sm border border-amber-300">${item.catatan && item.catatan !== '-' ? item.catatan : '🔥 Utamakan habiskan ini'}</span>`;
-                    rowBgClass = 'hover:bg-amber-50/50 transition-colors bg-amber-50/30';
-                    qtyClass = 'bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200';
-                } else {
-                    if (item.catatan && item.catatan.trim() !== '' && item.catatan.trim() !== '-') {
-                        statusBadge = `<span class="text-stone-800 font-semibold bg-stone-100 px-3 py-1 rounded-md text-sm border border-stone-200">${item.catatan}</span>`;
-                    }
-                }
-
-                const searchStr = `${item.nama} ${item.catatan || ''}`.toLowerCase();
-
-                const tr = document.createElement('tr');
-                tr.className = `item-row ${rowBgClass}`;
-                tr.setAttribute('data-search', searchStr);
-
-                tr.innerHTML = `
-                    <td class="py-3.5 px-4 ${item.tipe === 'priority' ? 'font-bold text-stone-900' : 'font-semibold text-stone-800'} text-base">${item.nama}</td>
-                    <td class="py-3.5 px-4 text-center"><span class="${qtyClass}">${item.jumlah}</span></td>
-                    <td class="py-3.5 px-4">${statusBadge}</td>
+            if (!hasAnyGroupVisible) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-stone-400 text-sm font-semibold">
+                        Tidak ada data pesanan yang cocok dengan filter atau pencarian.
+                    </div>
                 `;
-
-                tbody.appendChild(tr);
-            });
-        }
-
-        function updateStatistics(data) {
-            let totalPesanan = 0;
-            let totalKayu = 0;
-            let totalTerlambat = 0;
-
-            (data.belum_kirim || []).forEach(group => {
-                group.items.forEach(item => {
-                    totalPesanan++;
-                    const statusObj = getItemStatus(item);
-                    if (statusObj.isKayu) totalKayu++;
-                    if (statusObj.isTerlambat) totalTerlambat++;
-                });
-            });
-
-            let totalStok = 0;
-            (data.stok_tangerang || []).forEach(item => {
-                totalStok += Number(item.jumlah) || 0;
-            });
-
-            document.getElementById('stat-total-pesanan').innerHTML = `${totalPesanan} <span class="text-xs font-normal text-stone-500">Item</span>`;
-            document.getElementById('stat-terlambat').innerHTML = `${totalTerlambat} <span class="text-xs font-normal text-stone-500">Item</span>`;
-            document.getElementById('stat-kayu').innerHTML = `${totalKayu} <span class="text-xs font-normal text-stone-500">Item</span>`;
-            document.getElementById('stat-total-stok').innerHTML = `${totalStok} <span class="text-xs font-normal text-stone-500">Unit</span>`;
-        }
-
-        function openShareModal() {
-            document.getElementById('shareUrlInput').value = window.location.href;
-            document.getElementById('shareModal').classList.remove('hidden');
-        }
-
-        function closeShareModal() {
-            document.getElementById('shareModal').classList.add('hidden');
-            document.getElementById('copyAlert').classList.add('hidden');
-        }
-
-        function copyShareUrl() {
-            const input = document.getElementById('shareUrlInput');
-            input.select();
-            document.execCommand('copy');
-            const copyAlert = document.getElementById('copyAlert');
-            copyAlert.classList.remove('hidden');
-            setTimeout(() => {
-                copyAlert.classList.add('hidden');
-            }, 3000);
-        }
-
-        function downloadDashboardImage() {
-            const btn = document.getElementById('downloadBtn');
-            btn.innerText = "⏳ Sedang memproses gambar...";
-            btn.disabled = true;
-
-            const element = document.getElementById('capture-area');
-
-            html2canvas(element, {
-                scale: 2,
-                useCORS: true,
-                backgroundColor: '#faf7f2',
-                windowWidth: 1200
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `Laporan-Monitoring-PT-MBP-${new Date().toISOString().slice(0,10)}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-
-                btn.innerText = "🖼️ Download Laporan sebagai Gambar (PNG)";
-                btn.disabled = false;
-                closeShareModal();
-            }).catch(err => {
-                console.error("Gagal membuat gambar:", err);
-                alert("Gagal mengunduh gambar. Silakan coba lagi.");
-                btn.innerText = "🖼️ Download Laporan sebagai Gambar (PNG)";
-                btn.disabled = false;
-            });
-        }
-
-        function filterItems() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const rows = document.querySelectorAll('.item-row');
-
-            rows.forEach(row => {
-                const searchData = row.getAttribute('data-search') || '';
-                if (searchData.toLowerCase().includes(query)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-
-        function filterBy(type, event) {
-            const rows = document.querySelectorAll('#container-belum-kirim .item-row');
-            const filterBtns = document.querySelectorAll('.filter-btn');
-
-            filterBtns.forEach(btn => {
-                btn.classList.remove('bg-amber-800', 'text-white');
-                btn.classList.add('bg-[#f7f2ea]', 'text-stone-700');
-            });
-
-            if(event && event.target) {
-                event.target.classList.remove('bg-[#f7f2ea]', 'text-stone-700');
-                event.target.classList.add('bg-amber-800', 'text-white');
             }
 
-            rows.forEach(row => {
-                const isKayu = row.getAttribute('data-kayu') === 'true';
-                const isTerlambat = row.getAttribute('data-terlambat') === 'true';
-
-                if (type === 'all') {
-                    row.style.display = '';
-                } else if (type === 'terlambat') {
-                    row.style.display = isTerlambat ? '' : 'none';
-                } else if (type === 'kayu') {
-                    row.style.display = isKayu ? '' : 'none';
-                }
-            });
+            renderPublicStok();
         }
 
-        window.onload = loadDashboardData;
+        function renderPublicStok() {
+            const container = document.getElementById('publicStokContainer');
+            container.innerHTML = '';
+
+            const keyword = (document.getElementById('publicSearch') ? document.getElementById('publicSearch').value : '').toLowerCase().trim();
+
+            let hasStok = false;
+
+            (globalRawData.stok_tangerang || []).forEach((item) => {
+                const nama = (item.nama || '').toLowerCase();
+                const catatan = (item.catatan || '').toLowerCase();
+                const isMatch = keyword === '' || nama.includes(keyword) || catatan.includes(keyword);
+
+                if (!isMatch && currentActiveFilter !== 'all') return;
+
+                hasStok = true;
+
+                let badgeTipe = '<span class="text-stone-500">' + (item.catatan || '-') + '</span>';
+                if (item.tipe === 'warning') {
+                    badgeTipe = `<span class="bg-amber-100 text-amber-900 border border-amber-300 font-bold px-2.5 py-1 rounded-lg text-xs">⚠️ ${item.catatan || 'Perlu diperbaiki'}</span>`;
+                } else if (item.tipe === 'priority') {
+                    badgeTipe = `<span class="bg-red-100 text-red-700 border border-red-300 font-bold px-2.5 py-1 rounded-lg text-xs animate-pulse">🔥 ${item.catatan || 'Utamakan habiskan ini'}</span>`;
+                }
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-[#faf7f2] transition-colors";
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-bold text-stone-900">${item.nama || '-'}</td>
+                    <td class="py-3 px-4 text-center font-black text-stone-900">${item.jumlah !== undefined ? item.jumlah : 1}</td>
+                    <td class="py-3 px-4">${badgeTipe}</td>
+                `;
+                container.appendChild(tr);
+            });
+
+            if (!hasStok) {
+                container.innerHTML = `
+                    <tr>
+                        <td colspan="3" class="text-center py-6 text-stone-400 text-xs font-semibold">Belum ada data stok Tangerang.</td>
+                    </tr>
+                `;
+            }
+        }
+
+        function filterPublicData() {
+            renderPublicUI();
+        }
     </script>
 </body>
 </html>
