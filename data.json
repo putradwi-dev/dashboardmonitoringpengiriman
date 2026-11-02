@@ -4,7 +4,7 @@
       "grup": "SHOPE MT 2/11/2026",
       "items": [
         {
-          "nama": "cf 600",
+          "nama": "CF 600",
           "qty": 1,
           "no_pesanan": "2610314CFQV5WV",
           "ekspedisi": "JNE",
@@ -33,6 +33,22 @@
           "no_pesanan": "26110171G90K90",
           "ekspedisi": "J&T",
           "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "D8SM",
+          "qty": 1,
+          "no_pesanan": "2610314A3GBXPX",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        },
+        {
+          "nama": "HR 6",
+          "qty": 1,
+          "no_pesanan": "261101628AD8NX",
+          "ekspedisi": "JNE",
+          "kayu": true,
           "terlambat": false
         }
       ]
