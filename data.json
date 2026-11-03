@@ -1,14 +1,14 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 2/11/2026",
+      "grup": "TOKOPEDIA MT 3/11/2026",
       "items": [
         {
-          "nama": "AB 108",
-          "qty": 1,
-          "no_pesanan": "586923150484801307",
+          "nama": "LOYANG 3CM GOMESIN",
+          "qty": 2,
+          "no_pesanan": "586927578377192705",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false
         }
       ]
@@ -17,81 +17,9 @@
       "grup": "SHOPE MT 2/11/2026",
       "items": [
         {
-          "nama": "CF 600",
-          "qty": 1,
-          "no_pesanan": "2610314CFQV5WV",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "DHH 180C",
-          "qty": 1,
-          "no_pesanan": "261101664USV6C",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "AB 318",
-          "qty": 1,
-          "no_pesanan": "2611016PXHXBNK",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "AB 208",
-          "qty": 1,
-          "no_pesanan": "26110171G90K90",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "D8SM",
-          "qty": 1,
-          "no_pesanan": "2610314A3GBXPX",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "HR 6",
-          "qty": 1,
-          "no_pesanan": "261101628AD8NX",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
           "nama": "AB 318",
           "qty": 1,
           "no_pesanan": "2611028DE5N9YJ",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "LP 12X1",
-          "qty": 1,
-          "no_pesanan": "2611028K96X66A",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "RUBY 280",
-          "qty": 1,
-          "no_pesanan": "2611028S5BFYUY",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "CF 110",
-          "qty": 1,
-          "no_pesanan": "2611028WPMKG7X",
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
@@ -146,7 +74,7 @@
     },
     {
       "nama": "LOYANG 3CM GOMESIN",
-      "jumlah": 54,
+      "jumlah": 52,
       "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
     },
