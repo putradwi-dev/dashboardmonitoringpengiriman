@@ -36,6 +36,22 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "DHB 180C",
+          "qty": 1,
+          "no_pesanan": "261103AB5UJX2Q",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        },
+        {
+          "nama": "GM RTW 160L",
+          "qty": 1,
+          "no_pesanan": "261103AJUV7330",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
