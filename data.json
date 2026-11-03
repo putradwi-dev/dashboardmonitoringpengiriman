@@ -115,6 +115,19 @@
           "terlambat": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE TANGSEL 3/11/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM CHEFPRIMAX",
+          "qty": 1,
+          "no_pesanan": "261103B40XMGGG",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
@@ -135,12 +148,6 @@
       "jumlah": 52,
       "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
-    },
-    {
-      "nama": "LOYANG 3CM CHEFPRIMAX",
-      "jumlah": 1,
-      "catatan": "Utamakan habiskan",
-      "tipe": "priority"
     },
     {
       "nama": "DE 08A",
