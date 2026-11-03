@@ -10,6 +10,14 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "98001-1",
+          "qty": 1,
+          "no_pesanan": "586939264584943596",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     },
