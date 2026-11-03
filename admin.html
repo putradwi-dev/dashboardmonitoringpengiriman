@@ -32,9 +32,9 @@
                     ⚠️ Peringatan: Duplikat!
                 </div>
             </div>
-            <!-- Kotak Pencarian (Font Lebih Besar) -->
+            <!-- Kotak Pencarian Universal -->
             <div class="w-full md:w-80">
-                <input type="text" id="searchInput" oninput="filterData()" placeholder="🔍 Cari no. pesanan / barang..." class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                <input type="text" id="searchInput" oninput="filterData()" placeholder="🔍 Cari pesanan, barang, atau stok..." class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
             </div>
         </div>
 
@@ -195,6 +195,7 @@
 
         function filterData() {
             renderBelumKirim();
+            renderStok();
         }
 
         function renderBelumKirim() {
@@ -218,7 +219,7 @@
                         item.terlambat = !!item.terlambat;
                     }
 
-                    // Logika Filter Pencarian
+                    // Logika Filter Pencarian Belum Kirim
                     const namaBarang = (item.nama || '').toLowerCase();
                     const noPesanan = (item.no_pesanan || '').toLowerCase();
                     const namaGrup = (group.grup || '').toLowerCase();
@@ -233,22 +234,18 @@
 
                     itemsHtml += `
                         <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
-                            <!-- Nama Barang (Font Lebih Besar text-sm/base & Bold) -->
                             <div class="sm:col-span-4">
                                 <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Nama Barang</label>
                                 <input type="text" value="${item.nama || ''}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                             </div>
-                            <!-- QTY (Font Lebih Besar text-sm/base & Bold) -->
                             <div class="sm:col-span-1">
                                 <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">QTY</label>
                                 <input type="number" min="1" value="${item.qty !== undefined ? item.qty : 1}" onchange="updateItemQty(${gIdx}, ${iIdx}, this.value)" placeholder="Qty" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-sm sm:text-base font-extrabold text-center text-stone-900 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                             </div>
-                            <!-- No. Pesanan (Font Lebih Besar text-sm/base Monospace) -->
                             <div class="sm:col-span-3">
                                 <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">No. Pesanan</label>
                                 <input type="text" id="no_pesanan_${gIdx}_${iIdx}" value="${item.no_pesanan || ''}" oninput="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-mono font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                             </div>
-                            <!-- Ekspedisi (Font Lebih Besar text-sm & Bold) -->
                             <div class="sm:col-span-1">
                                 <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Ekspedisi</label>
                                 <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-xs sm:text-sm font-extrabold text-stone-900 cursor-pointer focus:ring-2 focus:ring-amber-800 focus:outline-none">
@@ -257,7 +254,7 @@
                                     <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
                                 </select>
                             </div>
-                            <!-- Checkbox Status (Font Lebih Jelas text-xs) -->
+                            <!-- Checkbox Status -->
                             <div class="sm:col-span-2 flex items-center justify-center gap-2 bg-[#faf7f2] px-2.5 py-2 rounded-lg border border-stone-200">
                                 <label class="flex items-center gap-1 text-xs font-bold text-stone-800 cursor-pointer">
                                     <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="w-4 h-4 rounded text-amber-800 focus:ring-amber-700"> Kayu
@@ -317,9 +314,19 @@
             const container = document.getElementById('stokContainer');
             container.innerHTML = '';
 
+            const keyword = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
+
             (currentData.stok_tangerang || []).forEach((item, idx) => {
+                // Logika Filter Pencarian Stok Tangerang
+                const namaStok = (item.nama || '').toLowerCase();
+                const catatanStok = (item.catatan || '').toLowerCase();
+                const isMatchStok = keyword === '' || namaStok.includes(keyword) || catatanStok.includes(keyword);
+
+                const displayStyleStok = isMatchStok ? '' : 'display: none;';
+
                 const tr = document.createElement('tr');
                 tr.className = "hover:bg-[#faf7f2]";
+                tr.style.cssText = displayStyleStok;
                 tr.innerHTML = `
                     <td class="py-2.5 px-3">
                         <input type="text" value="${item.nama || ''}" onchange="updateStokNama(${idx}, this.value)" class="w-full bg-[#fdfbf7] border border-stone-200 rounded-lg px-3 py-2 font-bold text-sm text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
@@ -472,7 +479,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Increase font size for admin input fields",
+                    message: "Update universal search to include stock items",
                     content: contentBase64,
                     sha: currentSha
                 };
