@@ -58,7 +58,7 @@
           "qty": 1,
           "no_pesanan": "261103AQP6AC6E",
           "ekspedisi": "JNE",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false
         }
       ]
