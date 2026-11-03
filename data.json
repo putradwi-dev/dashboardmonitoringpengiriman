@@ -102,6 +102,19 @@
           "terlambat": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE ADT 3/11/2026",
+      "items": [
+        {
+          "nama": "ELW 660",
+          "qty": 1,
+          "no_pesanan": "261103B2WX31TR",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
