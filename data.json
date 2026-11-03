@@ -18,6 +18,14 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "D8SM",
+          "qty": 1,
+          "no_pesanan": "586943846000002843",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     },
@@ -241,7 +249,7 @@
     },
     {
       "nama": "D8SM GETRA",
-      "jumlah": 5,
+      "jumlah": 4,
       "catatan": "PO.2026.11.00005",
       "tipe": "normal"
     },
