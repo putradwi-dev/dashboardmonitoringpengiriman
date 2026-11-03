@@ -52,18 +52,13 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE TANGSEL 2/11/2026",
-      "items": [
+        },
         {
-          "nama": "LOYANG 3CM GOMESIN",
-          "qty": 15,
-          "no_pesanan": "2610313DMATD4N",
-          "ekspedisi": "J&T",
-          "kayu": true,
+          "nama": "AB 600",
+          "qty": 1,
+          "no_pesanan": "261103AQP6AC6E",
+          "ekspedisi": "JNE",
+          "kayu": false,
           "terlambat": false
         }
       ]
