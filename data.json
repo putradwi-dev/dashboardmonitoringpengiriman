@@ -1,35 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 3/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM GOMESIN",
-          "qty": 2,
-          "no_pesanan": "586927578377192705",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "98001-1",
-          "qty": 1,
-          "no_pesanan": "586939264584943596",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "D8SM",
-          "qty": 1,
-          "no_pesanan": "586943846000002843",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 2/11/2026",
       "items": [
         {
@@ -38,53 +9,13 @@
           "no_pesanan": "2611028DE5N9YJ",
           "ekspedisi": "JNE",
           "kayu": false,
-          "terlambat": false
+          "terlambat": true
         }
       ]
     },
     {
       "grup": "SHOPE MT 3/11/2026",
       "items": [
-        {
-          "nama": "AGATE 300",
-          "qty": 1,
-          "no_pesanan": "26110290WA0UCE",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "DHB 180C",
-          "qty": 1,
-          "no_pesanan": "261103AB5UJX2Q",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "GM RTW 160L",
-          "qty": 1,
-          "no_pesanan": "261103AJUV7330",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "AB 600",
-          "qty": 1,
-          "no_pesanan": "261103AQP6AC6E",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "RUBY 280",
-          "qty": 1,
-          "no_pesanan": "261103AV96STX9",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        },
         {
           "nama": "XRF 1000 & UCF 150 KISTARA",
           "qty": 2,
