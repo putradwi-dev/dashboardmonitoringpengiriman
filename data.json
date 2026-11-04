@@ -68,6 +68,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "CF 460",
+          "qty": 1,
+          "no_pesanan": "261104DHP8CQ5S",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     }
