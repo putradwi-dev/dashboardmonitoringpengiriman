@@ -1,6 +1,19 @@
 {
   "belum_kirim": [
     {
+      "grup": "TOKOPEDIA MT 4/11/2026",
+      "items": [
+        {
+          "nama": "KLAKAT 30CM 1 SET",
+          "qty": 3,
+          "no_pesanan": "586945787706311768",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 2/11/2026",
       "items": [
         {
@@ -74,19 +87,6 @@
           "qty": 1,
           "no_pesanan": "261104DHP8CQ5S",
           "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA MT 4/11/2026",
-      "items": [
-        {
-          "nama": "KLAKAT 30CM 1 SET",
-          "qty": 3,
-          "no_pesanan": "586945787706311768",
-          "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
         }
