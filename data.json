@@ -60,6 +60,14 @@
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "AGATE 200",
+          "qty": 1,
+          "no_pesanan": "261103AW4N2Q90",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false
         }
       ]
     }
