@@ -43,12 +43,20 @@
       ]
     },
     {
-      "grup": "SHOPE ADT 3/11/2026",
+      "grup": "SHOPE MT 4/11/2026",
       "items": [
         {
-          "nama": "ELW 660",
+          "nama": "AB 318",
           "qty": 1,
-          "no_pesanan": "261103B2WX31TR",
+          "no_pesanan": "261103BKTT9VTK",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "AGATE 300",
+          "qty": 1,
+          "no_pesanan": "261104D2WK4THM",
           "ekspedisi": "JNE",
           "kayu": true,
           "terlambat": false
@@ -186,7 +194,7 @@
     },
     {
       "nama": "AB 318",
-      "jumlah": 5,
+      "jumlah": 4,
       "catatan": "PO.2026.11.00003",
       "tipe": "normal"
     }
