@@ -73,6 +73,14 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "261105FWR8WDWF",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     }
@@ -194,7 +202,7 @@
     },
     {
       "nama": "AB 318",
-      "jumlah": 4,
+      "jumlah": 3,
       "catatan": "PO.2026.11.00003",
       "tipe": "normal"
     }
