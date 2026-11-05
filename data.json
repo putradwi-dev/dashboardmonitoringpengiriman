@@ -71,7 +71,7 @@
           "qty": 1,
           "no_pesanan": "261104EJNKXR9G",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false
         },
         {
