@@ -63,7 +63,7 @@
           "qty": 1,
           "no_pesanan": "261104EF3P21SB",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false
         },
         {
