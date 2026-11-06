@@ -1,19 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 6/11/2026",
-      "items": [
-        {
-          "nama": "IC 20B",
-          "qty": 1,
-          "no_pesanan": "587001771183343326",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 6/11/2026",
       "items": [
         {
@@ -65,6 +52,22 @@
           "nama": "SJ 8503",
           "qty": 1,
           "no_pesanan": "261106K24KKDVE",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "GM RTW 100L",
+          "qty": 1,
+          "no_pesanan": "261106KHG3K92B",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        },
+        {
+          "nama": "GSC 15",
+          "qty": 1,
+          "no_pesanan": "261107KTKBT4ET",
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
