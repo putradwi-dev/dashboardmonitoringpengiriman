@@ -48,6 +48,19 @@
       ]
     },
     {
+      "grup": "SHOPE MT 7/11/2026",
+      "items": [
+        {
+          "nama": "AWS 180",
+          "qty": 1,
+          "no_pesanan": "261106K3BH2CAY",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE ADT 6/11/2026",
       "items": [
         {
