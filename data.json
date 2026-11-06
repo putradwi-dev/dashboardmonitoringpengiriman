@@ -43,6 +43,19 @@
       ]
     },
     {
+      "grup": "SHOPE MT 6/11/2026",
+      "items": [
+        {
+          "nama": "HR 6",
+          "qty": 1,
+          "no_pesanan": "261106JRY4R4VV",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE TANGSEL 6/11/2026",
       "items": [
         {
