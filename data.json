@@ -1,19 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 5/11/2026",
-      "items": [
-        {
-          "nama": "SJ 8564B & EF 81",
-          "qty": 2,
-          "no_pesanan": "586959369237989317",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 3/11/2026",
       "items": [
         {
@@ -43,43 +30,14 @@
       ]
     },
     {
-      "grup": "SHOPE MT 4/11/2026",
+      "grup": "SHOPE TANGSEL 6/11/2026",
       "items": [
         {
-          "nama": "AGATE 300",
+          "nama": "RUBY 240",
           "qty": 1,
-          "no_pesanan": "261104D2WK4THM",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 5/11/2026",
-      "items": [
-        {
-          "nama": "TOPAZ 600",
-          "qty": 1,
-          "no_pesanan": "261104EF3P21SB",
+          "no_pesanan": "261105GMF6X96F",
           "ekspedisi": "J&T",
           "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "CF 210",
-          "qty": 1,
-          "no_pesanan": "261104EJNKXR9G",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        },
-        {
-          "nama": "AB 318",
-          "qty": 1,
-          "no_pesanan": "261105FWR8WDWF",
-          "ekspedisi": "J&T",
-          "kayu": false,
           "terlambat": false
         }
       ]
