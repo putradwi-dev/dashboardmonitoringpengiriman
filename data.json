@@ -54,6 +54,19 @@
           "terlambat": false
         }
       ]
+    },
+    {
+      "grup": "GRUP BARU",
+      "items": [
+        {
+          "nama": "ELW 660 (BANTU TEMPEL NOTE)",
+          "qty": 1,
+          "no_pesanan": "261106JEXYE3J4",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
