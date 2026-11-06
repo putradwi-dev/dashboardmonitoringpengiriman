@@ -39,7 +39,7 @@
     <div>
         <!-- Area utama yang di-capture ke Gambar -->
         <div id="capture-area" class="bg-[#faf7f2] pb-6">
-            <!-- Header Section -->
+            <!-- Header Section (Tombol BAGIKAN disatukan di sebelah DATA REALTIME) -->
             <header class="bg-gradient-to-r from-amber-900 via-stone-800 to-amber-800 text-white shadow-lg">
                 <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -96,7 +96,7 @@
                     </div>
                 </div>
 
-                <!-- SECTION 1: BELUM KIRIM (Model Garis Minimalis Modern) -->
+                <!-- SECTION 1: BELUM KIRIM -->
                 <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
                     <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
                         <div class="flex items-center gap-3">
@@ -226,7 +226,7 @@
 
             groups.forEach((group, index) => {
                 const groupDiv = document.createElement('div');
-                groupDiv.className = `data-group space-y-3 ${index > 0 ? 'pt-6 border-t border-amber-200' : ''}`;
+                groupDiv.className = `data-group space-y-3 ${index > 0 ? 'pt-4 border-t border-amber-100' : ''}`;
 
                 let tableRows = '';
                 let mobileCards = '';
@@ -260,60 +260,59 @@
 
                     const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''}`.toLowerCase();
 
-                    // Model Garis Minimalis Modern (Tanpa kotak luar per baris, menggunakan garis bawah tipis bersih)
                     tableRows += `
-                        <tr class="item-row hover:bg-amber-50/40 transition-colors border-b border-stone-100" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
-                            <td class="py-3 px-4 font-bold text-stone-900 text-base w-[30%]">${item.nama}</td>
-                            <td class="py-3 px-4 font-mono text-sm sm:text-base text-stone-700 w-[28%]">${item.no_pesanan}</td>
-                            <td class="py-3 px-2 text-center w-[8%]"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
-                            <td class="py-3 px-2 w-[10%]">${badgeEkspedisi}</td>
-                            <td class="py-3 px-4 w-[24%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
+                        <tr class="item-row hover:bg-[#faf7f2] transition-colors" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
+                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[30%]">${item.nama}</td>
+                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[28%]">${item.no_pesanan}</td>
+                            <td class="py-3.5 px-2 text-center w-[8%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
+                            <td class="py-3.5 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
+                            <td class="py-3.5 px-4 w-[24%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
                         </tr>
                     `;
 
                     mobileCards += `
-                        <div class="item-row bg-white p-3.5 rounded-xl border-b border-stone-100 space-y-2 shadow-2xs" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
+                        <div class="item-row bg-[#fdfbf7] p-4 rounded-xl border border-amber-100 space-y-2" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
                             <div class="flex justify-between items-start">
-                                <span class="font-bold text-stone-900 text-base">${item.nama}</span>
+                                <span class="font-bold text-stone-900 text-base sm:text-lg">${item.nama}</span>
                                 <div class="flex items-center gap-2">
                                     <span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-xs border border-amber-200">Qty: ${itemQty}</span>
                                     ${badgeEkspedisi}
                                 </div>
                             </div>
                             <div>
-                                <span class="text-xs text-stone-400 block uppercase font-medium">Nomor Pesanan</span>
-                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-[#faf7f2] px-2.5 py-1 rounded border border-stone-200 block mt-0.5 select-all">${item.no_pesanan}</span>
+                                <span class="text-xs sm:text-sm text-stone-400 block uppercase font-medium">Nomor Pesanan</span>
+                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-white px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
                             </div>
-                            ${statusBadgesMobile ? `<div class="pt-2 border-t border-stone-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
+                            ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
                         </div>
                     `;
                 });
 
                 groupDiv.innerHTML = `
-                    <div class="flex items-center gap-2 mb-2">
+                    <div class="flex items-center gap-2">
                         <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
                         <h3 class="font-bold text-amber-950 text-base sm:text-lg uppercase tracking-wide">${group.grup}</h3>
                         <span class="text-xs sm:text-sm bg-amber-50 text-amber-800 px-2.5 py-0.5 rounded-full font-semibold border border-amber-200/60">${group.items.length} Pesanan</span>
                     </div>
 
-                    <div class="hidden md:block overflow-x-auto">
+                    <div class="hidden md:block overflow-x-auto rounded-xl border border-amber-100">
                         <table class="w-full text-left text-base table-fixed">
-                            <thead>
-                                <tr class="text-stone-500 font-semibold border-b border-stone-200 uppercase text-xs tracking-wider">
-                                    <th class="py-2.5 px-4 w-[30%]">Nama Barang</th>
-                                    <th class="py-2.5 px-4 w-[28%]">Nomor Pesanan</th>
-                                    <th class="py-2.5 px-2 text-center w-[8%]">QTY</th>
-                                    <th class="py-2.5 px-2 w-[10%]">Ekspedisi</th>
-                                    <th class="py-2.5 px-4 w-[24%]">Status / Catatan</th>
+                            <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-100 uppercase text-sm">
+                                <tr>
+                                    <th class="py-4 px-4 w-[30%]">Nama Barang</th>
+                                    <th class="py-4 px-4 w-[28%]">Nomor Pesanan</th>
+                                    <th class="py-4 px-2 text-center w-[8%]" style="padding-left: 2px; padding-right: 2px;">QTY</th>
+                                    <th class="py-4 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
+                                    <th class="py-4 px-4 w-[24%]">Status / Catatan</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="divide-y divide-amber-50">
                                 ${tableRows}
                             </tbody>
                         </table>
                     </div>
 
-                    <div class="grid grid-cols-1 gap-2 md:hidden">
+                    <div class="grid grid-cols-1 gap-3 md:hidden">
                         ${mobileCards}
                     </div>
                 `;
