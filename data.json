@@ -14,35 +14,6 @@
       ]
     },
     {
-      "grup": "SHOPE MT 3/11/2026",
-      "items": [
-        {
-          "nama": "XRF 1000 & UCF 150 KISTARA",
-          "qty": 2,
-          "no_pesanan": "261103AV6KTRMX",
-          "ekspedisi": "EKS. LAINNYA",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "XCC 180",
-          "qty": 2,
-          "no_pesanan": "261103AV6KTRMY",
-          "ekspedisi": "EKS. LAINNYA",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
-          "nama": "XS 110",
-          "qty": 1,
-          "no_pesanan": "261103AYBFYYCE",
-          "ekspedisi": "EKS. LAINNYA",
-          "kayu": false,
-          "terlambat": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 6/11/2026",
       "items": [
         {
