@@ -14,19 +14,6 @@
       ]
     },
     {
-      "grup": "TOKOPEDIA ADT 6/11/2026",
-      "items": [
-        {
-          "nama": "GMB 50 BLACK INOX",
-          "qty": 1,
-          "no_pesanan": "587014537225405973",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 6/11/2026",
       "items": [
         {
@@ -54,6 +41,30 @@
           "nama": "AWS 180",
           "qty": 1,
           "no_pesanan": "261106K3BH2CAY",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "A03",
+          "qty": 1,
+          "no_pesanan": "261106K4YBF7FA",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        },
+        {
+          "nama": "HIS 300PC",
+          "qty": 1,
+          "no_pesanan": "261106K114QSU0",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "SJ 8503",
+          "qty": 1,
+          "no_pesanan": "261106K24KKDVE",
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
