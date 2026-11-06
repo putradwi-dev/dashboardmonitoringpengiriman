@@ -56,25 +56,20 @@
       ]
     },
     {
-      "grup": "SHOPE TANGSEL 6/11/2026",
-      "items": [
-        {
-          "nama": "RUBY 240",
-          "qty": 1,
-          "no_pesanan": "261105GMF6X96F",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE ADT 6/11/2026",
       "items": [
         {
           "nama": "ELW 660 (BANTU TEMPEL NOTE)",
           "qty": 1,
           "no_pesanan": "261106JEXYE3J4",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        },
+        {
+          "nama": "RUBY 240",
+          "qty": 1,
+          "no_pesanan": "261105GMF6X96F",
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
