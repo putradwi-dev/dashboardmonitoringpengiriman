@@ -96,7 +96,7 @@
                     </div>
                 </div>
 
-                <!-- SECTION 1: BELUM KIRIM (Model Card / Kotak Terpisah) -->
+                <!-- SECTION 1: BELUM KIRIM (Model Garis Minimalis Modern) -->
                 <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
                     <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
                         <div class="flex items-center gap-3">
@@ -226,9 +226,10 @@
 
             groups.forEach((group, index) => {
                 const groupDiv = document.createElement('div');
-                groupDiv.className = `data-group space-y-3 ${index > 0 ? 'pt-6 border-t border-amber-100' : ''}`;
+                groupDiv.className = `data-group space-y-3 ${index > 0 ? 'pt-6 border-t border-amber-200' : ''}`;
 
-                let cardsHtml = '';
+                let tableRows = '';
+                let mobileCards = '';
 
                 group.items.forEach(item => {
                     const statusObj = getItemStatus(item);
@@ -238,56 +239,82 @@
 
                     const ekspedisiClean = (item.ekspedisi || '').toUpperCase();
                     const badgeEkspedisi = ekspedisiClean.includes('JNE')
-                        ? `<span class="bg-amber-50 text-amber-800 px-2.5 py-1 rounded-md text-xs font-bold uppercase border border-amber-200">${item.ekspedisi}</span>`
-                        : `<span class="bg-stone-100 text-stone-800 px-2.5 py-1 rounded-md text-xs font-bold uppercase border border-stone-200">${item.ekspedisi}</span>`;
+                        ? `<span class="bg-amber-50 text-amber-800 px-2 py-0.5 rounded-md text-xs sm:text-sm font-bold uppercase border border-amber-200">${item.ekspedisi}</span>`
+                        : `<span class="bg-stone-100 text-stone-800 px-2 py-0.5 rounded-md text-xs sm:text-sm font-bold uppercase border border-stone-200">${item.ekspedisi}</span>`;
 
-                    let statusBadges = '';
+                    let statusBadgesHtml = '';
+                    let statusBadgesMobile = '';
+
                     if (isKayu) {
-                        statusBadges += `<span class="bg-amber-100 text-amber-900 text-xs px-2.5 py-1 rounded-md font-bold border border-amber-200 inline-block">📦 KAYU</span>`;
+                        statusBadgesHtml += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-3 py-1 rounded-md font-semibold border border-amber-200 inline-block">KAYU</span>`;
+                        statusBadgesMobile += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-amber-200 inline-block">KAYU</span>`;
                     }
                     if (isTerlambat) {
-                        statusBadges += `<span class="bg-red-100 text-red-800 text-xs px-2.5 py-1 rounded-md font-bold border border-red-200 inline-block">⚠️ TERLAMBAT</span>`;
+                        statusBadgesHtml += `<span class="bg-red-100 text-red-800 text-xs sm:text-sm px-3 py-1 rounded-md font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
+                        statusBadgesMobile += `<span class="bg-red-100 text-red-800 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
                     }
+
                     if (!isKayu && !isTerlambat) {
-                        statusBadges = `<span class="text-stone-400 text-xs">-</span>`;
+                        statusBadgesHtml = `<span class="text-stone-400 font-mono text-sm">-</span>`;
                     }
 
                     const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''}`.toLowerCase();
 
-                    // Model Card / Kotak Terpisah yang modern
-                    cardsHtml += `
-                        <div class="item-row bg-[#fdfbf7] hover:bg-white p-4 rounded-xl border border-amber-200/70 shadow-sm transition-all space-y-3" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-amber-100/80 pb-2.5">
+                    // Model Garis Minimalis Modern (Tanpa kotak luar per baris, menggunakan garis bawah tipis bersih)
+                    tableRows += `
+                        <tr class="item-row hover:bg-amber-50/40 transition-colors border-b border-stone-100" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
+                            <td class="py-3 px-4 font-bold text-stone-900 text-base w-[30%]">${item.nama}</td>
+                            <td class="py-3 px-4 font-mono text-sm sm:text-base text-stone-700 w-[28%]">${item.no_pesanan}</td>
+                            <td class="py-3 px-2 text-center w-[8%]"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
+                            <td class="py-3 px-2 w-[10%]">${badgeEkspedisi}</td>
+                            <td class="py-3 px-4 w-[24%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
+                        </tr>
+                    `;
+
+                    mobileCards += `
+                        <div class="item-row bg-white p-3.5 rounded-xl border-b border-stone-100 space-y-2 shadow-2xs" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
+                            <div class="flex justify-between items-start">
+                                <span class="font-bold text-stone-900 text-base">${item.nama}</span>
                                 <div class="flex items-center gap-2">
-                                    <span class="font-extrabold text-stone-900 text-base">${item.nama}</span>
-                                    <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded-md font-black text-xs border border-amber-200">Qty: ${itemQty}</span>
-                                </div>
-                                <div class="flex items-center gap-2 self-start sm:self-auto">
+                                    <span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-xs border border-amber-200">Qty: ${itemQty}</span>
                                     ${badgeEkspedisi}
                                 </div>
                             </div>
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pt-0.5">
-                                <div>
-                                    <span class="text-[10px] text-stone-400 block uppercase font-bold tracking-wider">Nomor Pesanan</span>
-                                    <span class="font-mono text-sm sm:text-base font-bold text-stone-700 bg-white px-2.5 py-1 rounded-lg border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
-                                </div>
-                                <div class="flex items-center gap-1.5 self-start sm:self-auto">
-                                    ${statusBadges}
-                                </div>
+                            <div>
+                                <span class="text-xs text-stone-400 block uppercase font-medium">Nomor Pesanan</span>
+                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-[#faf7f2] px-2.5 py-1 rounded border border-stone-200 block mt-0.5 select-all">${item.no_pesanan}</span>
                             </div>
+                            ${statusBadgesMobile ? `<div class="pt-2 border-t border-stone-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
                         </div>
                     `;
                 });
 
                 groupDiv.innerHTML = `
-                    <div class="flex items-center gap-2">
+                    <div class="flex items-center gap-2 mb-2">
                         <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
                         <h3 class="font-bold text-amber-950 text-base sm:text-lg uppercase tracking-wide">${group.grup}</h3>
                         <span class="text-xs sm:text-sm bg-amber-50 text-amber-800 px-2.5 py-0.5 rounded-full font-semibold border border-amber-200/60">${group.items.length} Pesanan</span>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-1">
-                        ${cardsHtml}
+                    <div class="hidden md:block overflow-x-auto">
+                        <table class="w-full text-left text-base table-fixed">
+                            <thead>
+                                <tr class="text-stone-500 font-semibold border-b border-stone-200 uppercase text-xs tracking-wider">
+                                    <th class="py-2.5 px-4 w-[30%]">Nama Barang</th>
+                                    <th class="py-2.5 px-4 w-[28%]">Nomor Pesanan</th>
+                                    <th class="py-2.5 px-2 text-center w-[8%]">QTY</th>
+                                    <th class="py-2.5 px-2 w-[10%]">Ekspedisi</th>
+                                    <th class="py-2.5 px-4 w-[24%]">Status / Catatan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${tableRows}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-2 md:hidden">
+                        ${mobileCards}
                     </div>
                 `;
 
