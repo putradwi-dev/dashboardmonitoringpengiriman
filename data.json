@@ -79,6 +79,14 @@
           "ekspedisi": "JNE",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "DH 10",
+          "qty": 1,
+          "no_pesanan": "261107N9FKRR16",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     }
