@@ -4,14 +4,6 @@
       "grup": "SHOPE MT 7/11/2026",
       "items": [
         {
-          "nama": "AWS 180",
-          "qty": 1,
-          "no_pesanan": "261106K3BH2CAY",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false
-        },
-        {
           "nama": "A03 GETRA",
           "qty": 1,
           "no_pesanan": "261106K4YBF7FA",
@@ -57,6 +49,14 @@
           "no_pesanan": "261107MQ65RT7D",
           "ekspedisi": "J&T",
           "kayu": false,
+          "terlambat": false
+        },
+        {
+          "nama": "BG 05",
+          "qty": 1,
+          "no_pesanan": "261107MVUUBTFD",
+          "ekspedisi": "J&T",
+          "kayu": true,
           "terlambat": false
         }
       ]
