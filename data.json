@@ -1,6 +1,19 @@
 {
   "belum_kirim": [
     {
+      "grup": "TOKOPEDIA MT 7/11/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM",
+          "qty": 2,
+          "no_pesanan": "587026599850575513",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 7/11/2026",
       "items": [
         {
@@ -77,7 +90,7 @@
     },
     {
       "nama": "LOYANG 3CM GOMESIN",
-      "jumlah": 52,
+      "jumlah": 50,
       "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
     },
