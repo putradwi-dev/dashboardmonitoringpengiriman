@@ -71,6 +71,14 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false
+        },
+        {
+          "nama": "SR 120",
+          "qty": 4,
+          "no_pesanan": "261107N318J1KY",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     }
