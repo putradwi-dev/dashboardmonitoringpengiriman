@@ -100,6 +100,14 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false
+        },
+        {
+          "nama": "SP01",
+          "qty": 1,
+          "no_pesanan": "261107P5T8GEEJ",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false
         }
       ]
     }
