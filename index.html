@@ -198,13 +198,14 @@
         function getItemStatus(item) {
             let isKayu = !!item.kayu;
             let isTerlambat = !!item.terlambat;
+            let isBatal = !!item.batal;
 
-            if (!isKayu && !isTerlambat && typeof item.status === 'string') {
+            if (!isKayu && !isTerlambat && !isBatal && typeof item.status === 'string') {
                 const s = item.status.toLowerCase();
                 isKayu = (s === 'kayu' || s === 'keduanya');
                 isTerlambat = (s === 'terlambat' || s === 'keduanya');
             }
-            return { isKayu, isTerlambat };
+            return { isKayu, isTerlambat, isBatal };
         }
 
         async function loadDashboardData() {
@@ -235,6 +236,7 @@
                     const statusObj = getItemStatus(item);
                     const isKayu = statusObj.isKayu;
                     const isTerlambat = statusObj.isTerlambat;
+                    const isBatal = statusObj.isBatal;
                     const itemQty = item.qty !== undefined ? item.qty : 1;
 
                     const ekspedisiClean = (item.ekspedisi || '').toUpperCase();
@@ -253,17 +255,21 @@
                         statusBadgesHtml += `<span class="bg-red-100 text-red-800 text-xs sm:text-sm px-3 py-1 rounded-md font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
                         statusBadgesMobile += `<span class="bg-red-100 text-red-800 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-red-200 inline-block">⚠️ Terlambat</span>`;
                     }
+                    if (isBatal) {
+                        statusBadgesHtml += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-3 py-1 rounded-md font-semibold border border-orange-200 inline-block">️⚠️ MALAM INI BATAL</span>`;
+                        statusBadgesMobile += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-orange-200 inline-block">⚠️ MALAM INI BATAL</span>`;
+                    }
 
-                    if (!isKayu && !isTerlambat) {
+                    if (!isKayu && !isTerlambat && !isBatal) {
                         statusBadgesHtml = `<span class="text-stone-400 font-mono text-sm">-</span>`;
                     }
 
-                    const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''}`.toLowerCase();
+                    const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
 
                     tableRows += `
                         <tr class="item-row hover:bg-[#faf7f2] transition-colors" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
-                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[30%]">${item.nama}</td>
-                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[28%]">${item.no_pesanan}</td>
+                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[30%]" ${isBatal ? 'style="text-decoration: line-through; opacity: 0.7;"' : ''}>${item.nama}</td>
+                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[28%]" ${isBatal ? 'style="text-decoration: line-through; opacity: 0.7;"' : ''}>${item.no_pesanan}</td>
                             <td class="py-3.5 px-2 text-center w-[8%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
                             <td class="py-3.5 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
                             <td class="py-3.5 px-4 w-[24%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
@@ -271,9 +277,9 @@
                     `;
 
                     mobileCards += `
-                        <div class="item-row bg-[#fdfbf7] p-4 rounded-xl border border-amber-100 space-y-2" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}">
+                        <div class="item-row bg-[#fdfbf7] p-4 rounded-xl border border-amber-100 space-y-2" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-search="${searchStr}" ${isBatal ? 'style="opacity: 0.75;"' : ''}>
                             <div class="flex justify-between items-start">
-                                <span class="font-bold text-stone-900 text-base sm:text-lg">${item.nama}</span>
+                                <span class="font-bold text-stone-900 text-base sm:text-lg" ${isBatal ? 'style="text-decoration: line-through;"' : ''}>${item.nama}</span>
                                 <div class="flex items-center gap-2">
                                     <span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-xs border border-amber-200">Qty: ${itemQty}</span>
                                     ${badgeEkspedisi}
@@ -281,7 +287,7 @@
                             </div>
                             <div>
                                 <span class="text-xs sm:text-sm text-stone-400 block uppercase font-medium">Nomor Pesanan</span>
-                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-white px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
+                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-white px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all" ${isBatal ? 'style="text-decoration: line-through;"' : ''}>${item.no_pesanan}</span>
                             </div>
                             ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
                         </div>
