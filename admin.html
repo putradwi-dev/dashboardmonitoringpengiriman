@@ -209,15 +209,9 @@
                 let hasVisibleItem = false;
 
                 (group.items || []).forEach((item, iIdx) => {
-                    if (typeof item.status === 'string' && item.status.trim() !== '') {
-                        const s = item.status.toLowerCase();
-                        if (s === 'kayu' || s === 'keduanya') item.kayu = true;
-                        if (s === 'terlambat' || s === 'keduanya') item.terlambat = true;
-                        item.status = '';
-                    } else {
-                        item.kayu = !!item.kayu;
-                        item.terlambat = !!item.terlambat;
-                    }
+                    item.kayu = !!item.kayu;
+                    item.terlambat = !!item.terlambat;
+                    item.batal = !!item.batal;
 
                     // Logika Filter Pencarian Belum Kirim
                     const namaBarang = (item.nama || '').toLowerCase();
@@ -234,7 +228,7 @@
 
                     itemsHtml += `
                         <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
-                            <div class="sm:col-span-4">
+                            <div class="sm:col-span-3">
                                 <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Nama Barang</label>
                                 <input type="text" value="${item.nama || ''}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                             </div>
@@ -254,13 +248,16 @@
                                     <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
                                 </select>
                             </div>
-                            <!-- Checkbox Status -->
-                            <div class="sm:col-span-2 flex items-center justify-center gap-2 bg-[#faf7f2] px-2.5 py-2 rounded-lg border border-stone-200">
-                                <label class="flex items-center gap-1 text-xs font-bold text-stone-800 cursor-pointer">
-                                    <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="w-4 h-4 rounded text-amber-800 focus:ring-amber-700"> Kayu
+                            <!-- Checkbox Status (Kayu, Terlambat, MIB) -->
+                            <div class="sm:col-span-3 flex flex-wrap items-center justify-center gap-1.5 bg-[#faf7f2] px-2 py-2 rounded-lg border border-stone-200">
+                                <label class="flex items-center gap-0.5 text-[11px] font-bold text-stone-800 cursor-pointer">
+                                    <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="w-3.5 h-3.5 rounded text-amber-800 focus:ring-amber-700"> Kayu
                                 </label>
-                                <label class="flex items-center gap-1 text-xs font-bold text-red-700 cursor-pointer">
-                                    <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="w-4 h-4 rounded text-red-600 focus:ring-red-600"> Terlambat
+                                <label class="flex items-center gap-0.5 text-[11px] font-bold text-red-700 cursor-pointer">
+                                    <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="w-3.5 h-3.5 rounded text-red-600 focus:ring-red-600"> Terlambat
+                                </label>
+                                <label class="flex items-center gap-0.5 text-[11px] font-bold text-orange-700 cursor-pointer" title="Malam Ini Batal">
+                                    <input type="checkbox" ${item.batal ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'batal', this.checked)" class="w-3.5 h-3.5 rounded text-orange-600 focus:ring-orange-600"> MIB
                                 </label>
                             </div>
                             <!-- Tombol Hapus -->
@@ -317,7 +314,6 @@
             const keyword = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
 
             (currentData.stok_tangerang || []).forEach((item, idx) => {
-                // Logika Filter Pencarian Stok Tangerang
                 const namaStok = (item.nama || '').toLowerCase();
                 const catatanStok = (item.catatan || '').toLowerCase();
                 const isMatchStok = keyword === '' || namaStok.includes(keyword) || catatanStok.includes(keyword);
@@ -408,7 +404,7 @@
             currentData.belum_kirim.push({ 
                 grup: "GRUP BARU", 
                 items: [
-                    { nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false }
+                    { nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false }
                 ] 
             });
             renderBelumKirim();
@@ -416,7 +412,7 @@
 
         function addBelumKirimItem(gIdx) {
             if (!currentData.belum_kirim[gIdx].items) currentData.belum_kirim[gIdx].items = [];
-            currentData.belum_kirim[gIdx].items.push({ nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false });
+            currentData.belum_kirim[gIdx].items.push({ nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false });
             renderBelumKirim();
         }
 
@@ -479,7 +475,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Update universal search to include stock items",
+                    message: "Change Batal label to MIB (Malam Ini Batal)",
                     content: contentBase64,
                     sha: currentSha
                 };
