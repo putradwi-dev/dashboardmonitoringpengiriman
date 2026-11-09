@@ -25,6 +25,15 @@
           "kayu": true,
           "terlambat": false,
           "batal": false
+        },
+        {
+          "nama": "CF 310",
+          "qty": 1,
+          "no_pesanan": "587073363542246692",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false
         }
       ]
     },
@@ -251,7 +260,7 @@
     },
     {
       "nama": "CF 310 RSA",
-      "jumlah": 2,
+      "jumlah": 1,
       "catatan": "PO.2026.10.00174",
       "tipe": "normal"
     },
