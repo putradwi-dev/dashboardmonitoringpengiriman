@@ -225,9 +225,8 @@
 
                     const displayStyle = isMatch ? '' : 'display: none;';
 
-                    // Status Indikator File PDF yang sudah di-upload
                     const resiStatus = item.resi ? `<span class="text-emerald-700 font-bold text-[10px] bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">✓ Resi Terunggah</span>` : `<span class="text-stone-400 text-[10px]">Belum ada resi</span>`;
-                    const sjStatus = item.surat_jalan ? `<span class="text-emerald-700 font-bold text-[10px] bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">✓ S.Jalan Terunggah</span>` : `<span class="text-stone-400 text-[10px]">Belum ada surat jalan</span>`;
+                    const sjStatus = item.surat_jalan ? `<span class="text-emerald-700 font-bold text-[10px] bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">✓ Surat Jalan Terunggah</span>` : `<span class="text-stone-400 text-[10px]">Belum ada surat jalan</span>`;
 
                     itemsHtml += `
                         <div class="bg-[#faf7f2] p-3.5 rounded-xl border border-amber-200/60 space-y-3 item-row-admin shadow-sm" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
@@ -252,15 +251,15 @@
                                         <option value="EKS. LAINNYA" ${(!['JNE','J&T'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
                                     </select>
                                 </div>
-                                <!-- Checkbox Status (Kayu, Terlambat, MIB) -->
-                                <div class="sm:col-span-2 flex flex-wrap items-center justify-center gap-1.5 bg-white px-2 py-2 rounded-lg border border-stone-200">
-                                    <label class="flex items-center gap-0.5 text-[11px] font-bold text-stone-800 cursor-pointer">
+                                <!-- Checkbox Status Sejajar (Horizontal) -->
+                                <div class="sm:col-span-2 flex items-center justify-around gap-2 bg-white px-3 py-2.5 rounded-lg border border-stone-200">
+                                    <label class="flex items-center gap-1 text-xs font-bold text-stone-800 cursor-pointer">
                                         <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="w-3.5 h-3.5 rounded text-amber-800 focus:ring-amber-700"> Kayu
                                     </label>
-                                    <label class="flex items-center gap-0.5 text-[11px] font-bold text-red-700 cursor-pointer">
+                                    <label class="flex items-center gap-1 text-xs font-bold text-red-700 cursor-pointer">
                                         <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="w-3.5 h-3.5 rounded text-red-600 focus:ring-red-600"> Terlambat
                                     </label>
-                                    <label class="flex items-center gap-0.5 text-[11px] font-bold text-orange-700 cursor-pointer" title="Malam Ini Batal">
+                                    <label class="flex items-center gap-1 text-xs font-bold text-orange-700 cursor-pointer" title="Malam Ini Batal">
                                         <input type="checkbox" ${item.batal ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'batal', this.checked)" class="w-3.5 h-3.5 rounded text-orange-600 focus:ring-orange-600"> MIB
                                     </label>
                                 </div>
@@ -388,7 +387,6 @@
             currentData.belum_kirim[gIdx].items[iIdx][field] = isChecked;
         }
 
-        // Fungsi Handler Upload File PDF Menjadi Base64
         function handleFileUpload(gIdx, iIdx, field, event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -530,7 +528,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Upload PDF files for Resi and Surat Jalan",
+                    message: "Make status checkboxes horizontal",
                     content: contentBase64,
                     sha: currentSha
                 };
