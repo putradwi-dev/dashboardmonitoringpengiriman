@@ -10,7 +10,9 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false,
-          "batal": false
+          "batal": false,
+          "resi": "https://seller-id.tokopedia.com/easesafe/oec_fulfillment_doc_tts/object/9fc23540fb3f4c1esafe?expire=1794269344&skipCookie=true&timeStamp=1794182944&sign=512159e850237e98c503c65894d67aab2002ab707ff693e6fcb333f10880d151",
+          "surat_jalan": "https://iris.accurate.id/accurate/pub/email-trans-doc.do?_q=9aiLmO%2Fg8%2B5S8epqWj1laNKNXKeZrYZOpnIHjMMRo4mRpZVRzKm%2FnI0%2BhVO7FTOxWhQyZz%2BE4y6hoZ0GKOQppjcYm%2FHMxJotbjfJoFXLNhhuyzrLfyGj8ZdGXCdtn0mebJ1yHb9apew5ElWJtDzSzf%2B0%2FDHiIi9QB6lh%2BSXglt%2BLe2QtGNSKrpgS31NjG4kSxQJip5k8KYcvDHGDvs%2FhPZVuzWKNpb2aONa5a%2FL16nA%3D"
         }
       ]
     },
