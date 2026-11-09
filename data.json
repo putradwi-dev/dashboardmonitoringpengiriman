@@ -274,21 +274,21 @@
       "tipe": "normal"
     },
     {
-      "nama": "SR 120 GETRA",
-      "jumlah": 1,
-      "catatan": "PO.2026.10.00182",
-      "tipe": "normal"
-    },
-    {
       "nama": "D8SM GETRA",
       "jumlah": 4,
       "catatan": "PO.2026.11.00005",
       "tipe": "normal"
     },
     {
-      "nama": "AB 318",
+      "nama": "AB 318 GEA",
       "jumlah": 3,
       "catatan": "PO.2026.11.00003",
+      "tipe": "normal"
+    },
+    {
+      "nama": "AGATE 300 RSA",
+      "jumlah": 3,
+      "catatan": "PO.2026.11.00032",
       "tipe": "normal"
     }
   ]
