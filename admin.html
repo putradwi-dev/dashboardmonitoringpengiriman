@@ -225,10 +225,6 @@
 
                     const displayStyle = isMatch ? '' : 'display: none;';
 
-                    // Info status file yang sudah di-upload
-                    let resiStatus = item.resi ? `<span class="text-emerald-700 font-bold text-[10px] ml-1">✓ PDF Resi Ada</span>` : `<span class="text-stone-400 text-[10px] ml-1">Belum ada file</span>`;
-                    let sjStatus = item.surat_jalan ? `<span class="text-emerald-700 font-bold text-[10px] ml-1">✓ PDF S.Jalan Ada</span>` : `<span class="text-stone-400 text-[10px] ml-1">Belum ada file</span>`;
-
                     itemsHtml += `
                         <div class="bg-[#faf7f2] p-3.5 rounded-xl border border-amber-200/60 space-y-3 item-row-admin shadow-sm" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
                             <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center">
@@ -269,21 +265,15 @@
                                     <button onclick="confirmDeleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs sm:text-sm font-bold px-2 py-2 rounded-lg border border-red-200 transition-all w-full shadow-sm">Hapus Item</button>
                                 </div>
                             </div>
-                            <!-- Baris Upload File PDF Langsung -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-amber-200/50 bg-white p-3 rounded-lg border border-amber-100">
+                            <!-- Baris Tambahan: Input Link PDF Resi & Surat Jalan -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 border-t border-amber-200/50 bg-white p-2.5 rounded-lg border border-amber-100">
                                 <div>
-                                    <div class="flex items-center justify-between mb-1">
-                                        <label class="text-[11px] font-bold text-stone-700">📄 Upload PDF Resi: ${resiStatus}</label>
-                                        ${item.resi ? `<button onclick="clearFile(${gIdx}, ${iIdx}, 'resi')" class="text-red-600 hover:text-red-800 text-[10px] font-bold underline">Hapus File</button>` : ''}
-                                    </div>
-                                    <input type="file" accept="application/pdf" onchange="handleFileUpload(event, ${gIdx}, ${iIdx}, 'resi')" class="w-full text-xs text-stone-500 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-amber-50 file:text-amber-900 hover:file:bg-amber-100 cursor-pointer">
+                                    <label class="block text-[11px] font-semibold text-stone-500 mb-0.5">🔗 Link PDF Resi:</label>
+                                    <input type="text" value="${item.resi || ''}" onchange="updateItemResi(${gIdx}, ${iIdx}, this.value)" placeholder="Tempel URL/Link PDF Resi..." class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2.5 py-1 text-xs font-mono focus:ring-1 focus:ring-amber-800 focus:outline-none">
                                 </div>
                                 <div>
-                                    <div class="flex items-center justify-between mb-1">
-                                        <label class="text-[11px] font-bold text-stone-700">📄 Upload PDF Surat Jalan: ${sjStatus}</label>
-                                        ${item.surat_jalan ? `<button onclick="clearFile(${gIdx}, ${iIdx}, 'surat_jalan')" class="text-red-600 hover:text-red-800 text-[10px] font-bold underline">Hapus File</button>` : ''}
-                                    </div>
-                                    <input type="file" accept="application/pdf" onchange="handleFileUpload(event, ${gIdx}, ${iIdx}, 'surat_jalan')" class="w-full text-xs text-stone-500 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-emerald-50 file:text-emerald-900 hover:file:bg-emerald-100 cursor-pointer">
+                                    <label class="block text-[11px] font-semibold text-stone-500 mb-0.5">🔗 Link PDF Surat Jalan:</label>
+                                    <input type="text" value="${item.surat_jalan || ''}" onchange="updateItemSuratJalan(${gIdx}, ${iIdx}, this.value)" placeholder="Tempel URL/Link PDF Surat Jalan..." class="w-full bg-[#faf7f2] border border-stone-200 rounded px-2.5 py-1 text-xs font-mono focus:ring-1 focus:ring-amber-800 focus:outline-none">
                                 </div>
                             </div>
                         </div>
@@ -370,33 +360,6 @@
             });
         }
 
-        // Fungsi Memproses File PDF yang di-upload ke format Base64
-        function handleFileUpload(event, gIdx, iIdx, field) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            if (file.type !== "application/pdf") {
-                alert("Harap unggah file berformat PDF!");
-                event.target.value = "";
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                currentData.belum_kirim[gIdx].items[iIdx][field] = e.target.result; // Menyimpan Base64 PDF
-                renderBelumKirim();
-                alert("✓ File PDF berhasil dimuat! Jangan lupa klik 'Simpan & Update'.");
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function clearFile(gIdx, iIdx, field) {
-            if (confirm("Hapus file PDF ini?")) {
-                currentData.belum_kirim[gIdx].items[iIdx][field] = "";
-                renderBelumKirim();
-            }
-        }
-
         function updateGroupName(gIdx, val) { currentData.belum_kirim[gIdx].grup = val; }
         function updateItemName(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].nama = val; }
         function updateItemQty(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].qty = Number(val) || 1; }
@@ -408,6 +371,8 @@
         function updateItemStatusCheckbox(gIdx, iIdx, field, isChecked) {
             currentData.belum_kirim[gIdx].items[iIdx][field] = isChecked;
         }
+        function updateItemResi(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].resi = val; }
+        function updateItemSuratJalan(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].surat_jalan = val; }
 
         function checkDuplicates() {
             const counts = {};
@@ -524,7 +489,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Upload PDF Resi and Surat Jalan directly",
+                    message: "Add PDF download links for Resi and Surat Jalan",
                     content: contentBase64,
                     sha: currentSha
                 };
