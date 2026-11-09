@@ -14,14 +14,14 @@
 
     <!-- Header Admin -->
     <header class="bg-amber-950 text-amber-50 shadow-md">
-        <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <h1 class="font-extrabold text-lg sm:text-xl">Input Data Pengiriman Pesanan Titip Proses PT. MBP</h1>
             </div>
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto px-4 mt-6 space-y-6">
+    <main class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
         <!-- Tombol Aksi Utama & Kotak Pencarian -->
         <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-amber-100 shadow-sm">
             <div class="flex items-center gap-3">
@@ -213,7 +213,6 @@
                     item.terlambat = !!item.terlambat;
                     item.batal = !!item.batal;
 
-                    // Logika Filter Pencarian Belum Kirim
                     const namaBarang = (item.nama || '').toLowerCase();
                     const noPesanan = (item.no_pesanan || '').toLowerCase();
                     const namaGrup = (group.grup || '').toLowerCase();
@@ -226,43 +225,66 @@
 
                     const displayStyle = isMatch ? '' : 'display: none;';
 
+                    // Info status file yang sudah di-upload
+                    let resiStatus = item.resi ? `<span class="text-emerald-700 font-bold text-[10px] ml-1">✓ PDF Resi Ada</span>` : `<span class="text-stone-400 text-[10px] ml-1">Belum ada file</span>`;
+                    let sjStatus = item.surat_jalan ? `<span class="text-emerald-700 font-bold text-[10px] ml-1">✓ PDF S.Jalan Ada</span>` : `<span class="text-stone-400 text-[10px] ml-1">Belum ada file</span>`;
+
                     itemsHtml += `
-                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
-                            <div class="sm:col-span-3">
-                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Nama Barang</label>
-                                <input type="text" value="${item.nama || ''}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                        <div class="bg-[#faf7f2] p-3.5 rounded-xl border border-amber-200/60 space-y-3 item-row-admin shadow-sm" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
+                            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center">
+                                <div class="sm:col-span-3">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Nama Barang</label>
+                                    <input type="text" value="${item.nama || ''}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-white border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">QTY</label>
+                                    <input type="number" min="1" value="${item.qty !== undefined ? item.qty : 1}" onchange="updateItemQty(${gIdx}, ${iIdx}, this.value)" placeholder="Qty" class="w-full bg-white border border-stone-200 rounded-lg px-2 py-2 text-sm sm:text-base font-extrabold text-center text-stone-900 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">No. Pesanan</label>
+                                    <input type="text" id="no_pesanan_${gIdx}_${iIdx}" value="${item.no_pesanan || ''}" oninput="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-white border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-mono font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Ekspedisi</label>
+                                    <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-white border border-stone-200 rounded-lg px-2 py-2 text-xs sm:text-sm font-extrabold text-stone-900 cursor-pointer focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                                        <option value="JNE" ${item.ekspedisi === 'JNE' ? 'selected' : ''}>JNE</option>
+                                        <option value="J&T" ${item.ekspedisi === 'J&T' ? 'selected' : ''}>J&T</option>
+                                        <option value="EKS. LAINNYA" ${(!['JNE','J&T'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
+                                    </select>
+                                </div>
+                                <!-- Checkbox Status (Kayu, Terlambat, MIB) -->
+                                <div class="sm:col-span-2 flex flex-wrap items-center justify-center gap-1.5 bg-white px-2 py-2 rounded-lg border border-stone-200">
+                                    <label class="flex items-center gap-0.5 text-[11px] font-bold text-stone-800 cursor-pointer">
+                                        <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="w-3.5 h-3.5 rounded text-amber-800 focus:ring-amber-700"> Kayu
+                                    </label>
+                                    <label class="flex items-center gap-0.5 text-[11px] font-bold text-red-700 cursor-pointer">
+                                        <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="w-3.5 h-3.5 rounded text-red-600 focus:ring-red-600"> Terlambat
+                                    </label>
+                                    <label class="flex items-center gap-0.5 text-[11px] font-bold text-orange-700 cursor-pointer" title="Malam Ini Batal">
+                                        <input type="checkbox" ${item.batal ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'batal', this.checked)" class="w-3.5 h-3.5 rounded text-orange-600 focus:ring-orange-600"> MIB
+                                    </label>
+                                </div>
+                                <!-- Tombol Hapus -->
+                                <div class="sm:col-span-2 text-center">
+                                    <button onclick="confirmDeleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs sm:text-sm font-bold px-2 py-2 rounded-lg border border-red-200 transition-all w-full shadow-sm">Hapus Item</button>
+                                </div>
                             </div>
-                            <div class="sm:col-span-1">
-                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">QTY</label>
-                                <input type="number" min="1" value="${item.qty !== undefined ? item.qty : 1}" onchange="updateItemQty(${gIdx}, ${iIdx}, this.value)" placeholder="Qty" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-sm sm:text-base font-extrabold text-center text-stone-900 focus:ring-2 focus:ring-amber-800 focus:outline-none">
-                            </div>
-                            <div class="sm:col-span-3">
-                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">No. Pesanan</label>
-                                <input type="text" id="no_pesanan_${gIdx}_${iIdx}" value="${item.no_pesanan || ''}" oninput="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-mono font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
-                            </div>
-                            <div class="sm:col-span-1">
-                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Ekspedisi</label>
-                                <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-xs sm:text-sm font-extrabold text-stone-900 cursor-pointer focus:ring-2 focus:ring-amber-800 focus:outline-none">
-                                    <option value="JNE" ${item.ekspedisi === 'JNE' ? 'selected' : ''}>JNE</option>
-                                    <option value="J&T" ${item.ekspedisi === 'J&T' ? 'selected' : ''}>J&T</option>
-                                    <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
-                                </select>
-                            </div>
-                            <!-- Checkbox Status (Kayu, Terlambat, MIB) -->
-                            <div class="sm:col-span-3 flex flex-wrap items-center justify-center gap-1.5 bg-[#faf7f2] px-2 py-2 rounded-lg border border-stone-200">
-                                <label class="flex items-center gap-0.5 text-[11px] font-bold text-stone-800 cursor-pointer">
-                                    <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="w-3.5 h-3.5 rounded text-amber-800 focus:ring-amber-700"> Kayu
-                                </label>
-                                <label class="flex items-center gap-0.5 text-[11px] font-bold text-red-700 cursor-pointer">
-                                    <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="w-3.5 h-3.5 rounded text-red-600 focus:ring-red-600"> Terlambat
-                                </label>
-                                <label class="flex items-center gap-0.5 text-[11px] font-bold text-orange-700 cursor-pointer" title="Malam Ini Batal">
-                                    <input type="checkbox" ${item.batal ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'batal', this.checked)" class="w-3.5 h-3.5 rounded text-orange-600 focus:ring-orange-600"> MIB
-                                </label>
-                            </div>
-                            <!-- Tombol Hapus -->
-                            <div class="sm:col-span-1 text-center">
-                                <button onclick="confirmDeleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs sm:text-sm font-bold px-2 py-2 rounded-lg border border-red-200 transition-all w-full shadow-sm">Hapus</button>
+                            <!-- Baris Upload File PDF Langsung -->
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-amber-200/50 bg-white p-3 rounded-lg border border-amber-100">
+                                <div>
+                                    <div class="flex items-center justify-between mb-1">
+                                        <label class="text-[11px] font-bold text-stone-700">📄 Upload PDF Resi: ${resiStatus}</label>
+                                        ${item.resi ? `<button onclick="clearFile(${gIdx}, ${iIdx}, 'resi')" class="text-red-600 hover:text-red-800 text-[10px] font-bold underline">Hapus File</button>` : ''}
+                                    </div>
+                                    <input type="file" accept="application/pdf" onchange="handleFileUpload(event, ${gIdx}, ${iIdx}, 'resi')" class="w-full text-xs text-stone-500 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-amber-50 file:text-amber-900 hover:file:bg-amber-100 cursor-pointer">
+                                </div>
+                                <div>
+                                    <div class="flex items-center justify-between mb-1">
+                                        <label class="text-[11px] font-bold text-stone-700">📄 Upload PDF Surat Jalan: ${sjStatus}</label>
+                                        ${item.surat_jalan ? `<button onclick="clearFile(${gIdx}, ${iIdx}, 'surat_jalan')" class="text-red-600 hover:text-red-800 text-[10px] font-bold underline">Hapus File</button>` : ''}
+                                    </div>
+                                    <input type="file" accept="application/pdf" onchange="handleFileUpload(event, ${gIdx}, ${iIdx}, 'surat_jalan')" class="w-full text-xs text-stone-500 file:mr-2 file:py-1 file:px-2 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-emerald-50 file:text-emerald-900 hover:file:bg-emerald-100 cursor-pointer">
+                                </div>
                             </div>
                         </div>
                     `;
@@ -297,7 +319,7 @@
                             <button onclick="confirmDeleteGroup(${gIdx})" class="bg-red-100 text-red-700 font-bold px-2.5 py-1.5 rounded-lg text-xs sm:text-sm hover:bg-red-200 transition-all">Hapus E-Commerce</button>
                         </div>
                     </div>
-                    <div class="space-y-2.5">
+                    <div class="space-y-3">
                         ${itemsHtml}
                     </div>
                 `;
@@ -346,6 +368,33 @@
                 `;
                 container.appendChild(tr);
             });
+        }
+
+        // Fungsi Memproses File PDF yang di-upload ke format Base64
+        function handleFileUpload(event, gIdx, iIdx, field) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (file.type !== "application/pdf") {
+                alert("Harap unggah file berformat PDF!");
+                event.target.value = "";
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                currentData.belum_kirim[gIdx].items[iIdx][field] = e.target.result; // Menyimpan Base64 PDF
+                renderBelumKirim();
+                alert("✓ File PDF berhasil dimuat! Jangan lupa klik 'Simpan & Update'.");
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function clearFile(gIdx, iIdx, field) {
+            if (confirm("Hapus file PDF ini?")) {
+                currentData.belum_kirim[gIdx].items[iIdx][field] = "";
+                renderBelumKirim();
+            }
         }
 
         function updateGroupName(gIdx, val) { currentData.belum_kirim[gIdx].grup = val; }
@@ -404,7 +453,7 @@
             currentData.belum_kirim.push({ 
                 grup: "GRUP BARU", 
                 items: [
-                    { nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false }
+                    { nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, resi: "", surat_jalan: "" }
                 ] 
             });
             renderBelumKirim();
@@ -412,7 +461,7 @@
 
         function addBelumKirimItem(gIdx) {
             if (!currentData.belum_kirim[gIdx].items) currentData.belum_kirim[gIdx].items = [];
-            currentData.belum_kirim[gIdx].items.push({ nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false });
+            currentData.belum_kirim[gIdx].items.push({ nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, resi: "", surat_jalan: "" });
             renderBelumKirim();
         }
 
@@ -475,7 +524,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Change Batal label to MIB (Malam Ini Batal)",
+                    message: "Upload PDF Resi and Surat Jalan directly",
                     content: contentBase64,
                     sha: currentSha
                 };
