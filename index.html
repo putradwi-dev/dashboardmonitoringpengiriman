@@ -41,7 +41,7 @@
         <div id="capture-area" class="bg-[#faf7f2] pb-6">
             <!-- Header Section -->
             <header class="bg-gradient-to-r from-amber-900 via-stone-800 to-amber-800 text-white shadow-lg">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div>
                             <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2 text-amber-50">
@@ -58,7 +58,7 @@
                 </div>
             </header>
 
-            <main class="max-w-7xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
+            <main class="max-w-6xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
 
                 <!-- Summary Cards / Statistics Header (4 Kolom) -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -190,7 +190,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="max-w-7xl mx-auto px-4 mt-12 text-center text-stone-600 text-xs sm:text-sm space-y-1">
+    <footer class="max-w-6xl mx-auto px-4 mt-12 text-center text-stone-600 text-xs sm:text-sm space-y-1">
         <p class="font-semibold">DASHBOARD MONITORING PENGIRIMAN & TITIP STOK PT. MBP © 2026</p>
         <p class="text-stone-400 font-medium">by putradwi-dev</p>
     </footer>
@@ -249,48 +249,32 @@
                     let statusBadgesMobile = '';
 
                     if (isKayu) {
-                        statusBadgesHtml += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-2 py-0.5 rounded-md font-semibold border border-amber-200 inline-block whitespace-nowrap">KAYU</span>`;
-                        statusBadgesMobile += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-2 py-0.5 rounded font-semibold border border-amber-200 inline-block whitespace-nowrap">KAYU</span>`;
+                        statusBadgesHtml += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-2.5 py-1 rounded-md font-semibold border border-amber-200 inline-block whitespace-nowrap">KAYU</span>`;
+                        statusBadgesMobile += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-amber-200 inline-block whitespace-nowrap">KAYU</span>`;
                     }
                     if (isTerlambat) {
-                        statusBadgesHtml += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2 py-0.5 rounded-md font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ Terlambat</span>`;
-                        statusBadgesMobile += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2 py-0.5 rounded font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ Terlambat</span>`;
+                        statusBadgesHtml += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2.5 py-1 rounded-md font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ Terlambat</span>`;
+                        statusBadgesMobile += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ Terlambat</span>`;
                     }
                     if (isBatal) {
-                        statusBadgesHtml += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2 py-0.5 rounded-md font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ MALAM INI BATAL</span>`;
-                        statusBadgesMobile += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2 py-0.5 rounded font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ MALAM INI BATAL</span>`;
+                        statusBadgesHtml += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2.5 py-1 rounded-md font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ MALAM INI BATAL</span>`;
+                        statusBadgesMobile += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ MALAM INI BATAL</span>`;
                     }
 
                     if (!isKayu && !isTerlambat && !isBatal) {
                         statusBadgesHtml = `<span class="text-stone-400 font-mono text-sm">-</span>`;
                     }
 
-                    // Tombol Unduh Data dengan Ikon Panah ke Bawah (↓) dan teks "Surat Jalan"
-                    let downloadBtnsHtml = '';
-                    let downloadBtnsMobile = '';
-
-                    if (item.resi) {
-                        downloadBtnsHtml += `<a href="${item.resi}" download="Resi-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-sky-50 hover:bg-sky-100 text-sky-800 text-xs font-bold px-2.5 py-1 rounded border border-sky-200 inline-flex items-center gap-1.5 transition-all whitespace-nowrap"><span>↓</span> Resi</a>`;
-                        downloadBtnsMobile += `<a href="${item.resi}" download="Resi-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-sky-50 hover:bg-sky-100 text-sky-800 text-xs font-bold px-2.5 py-1 rounded border border-sky-200 inline-flex items-center gap-1.5 transition-all"><span>↓</span> Resi PDF</a>`;
-                    }
-                    if (item.surat_jalan) {
-                        downloadBtnsHtml += `<a href="${item.surat_jalan}" download="SuratJalan-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded border border-emerald-200 inline-flex items-center gap-1.5 transition-all whitespace-nowrap"><span>↓</span> Surat Jalan</a>`;
-                        downloadBtnsMobile += `<a href="${item.surat_jalan}" download="SuratJalan-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded border border-emerald-200 inline-flex items-center gap-1.5 transition-all"><span>↓</span> Surat Jalan PDF</a>`;
-                    }
-                    if (!item.resi && !item.surat_jalan) {
-                        downloadBtnsHtml = `<span class="text-stone-400 text-xs">-</span>`;
-                    }
-
                     const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
 
+                    // Diubah ke hover:bg-sky-100 (biru muda)
                     tableRows += `
                         <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
-                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[22%]">${item.nama}</td>
-                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[20%]">${item.no_pesanan}</td>
-                            <td class="py-3.5 px-2 text-center w-[6%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
-                            <td class="py-3.5 px-2 w-[9%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
-                            <td class="py-3.5 px-4 w-[24%]"><div class="flex flex-wrap gap-1 items-center">${statusBadgesHtml}</div></td>
-                            <td class="py-3.5 px-4 w-[19%]"><div class="flex flex-wrap gap-1.5 items-center">${downloadBtnsHtml}</div></td>
+                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[26%]">${item.nama}</td>
+                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[24%]">${item.no_pesanan}</td>
+                            <td class="py-3.5 px-2 text-center w-[7%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
+                            <td class="py-3.5 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
+                            <td class="py-3.5 px-4 w-[33%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
                         </tr>
                     `;
 
@@ -308,7 +292,6 @@
                                 <span class="font-mono text-sm sm:text-base text-stone-700 bg-white px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
                             </div>
                             ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
-                            ${downloadBtnsMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${downloadBtnsMobile}</div>` : ''}
                         </div>
                     `;
                 });
@@ -324,12 +307,11 @@
                         <table class="w-full text-left text-base table-fixed">
                             <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-100 uppercase text-sm">
                                 <tr>
-                                    <th class="py-4 px-4 w-[22%]">Nama Barang</th>
-                                    <th class="py-4 px-4 w-[20%]">Nomor Pesanan</th>
-                                    <th class="py-4 px-2 text-center w-[6%]" style="padding-left: 2px; padding-right: 2px;">QTY</th>
-                                    <th class="py-4 px-2 w-[9%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
-                                    <th class="py-4 px-4 w-[24%]">Status / Catatan</th>
-                                    <th class="py-4 px-4 w-[19%]">Unduh Data</th>
+                                    <th class="py-4 px-4 w-[26%]">Nama Barang</th>
+                                    <th class="py-4 px-4 w-[24%]">Nomor Pesanan</th>
+                                    <th class="py-4 px-2 text-center w-[7%]" style="padding-left: 2px; padding-right: 2px;">QTY</th>
+                                    <th class="py-4 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
+                                    <th class="py-4 px-4 w-[33%]">Status / Catatan</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-amber-50">
