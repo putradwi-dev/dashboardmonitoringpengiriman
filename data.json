@@ -41,51 +41,6 @@
       "grup": "SHOPE MT 7/11/2026",
       "items": [
         {
-          "nama": "A03 GETRA",
-          "qty": 1,
-          "no_pesanan": "261106K4YBF7FA",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": true
-        },
-        {
-          "nama": "HIS 300PC",
-          "qty": 1,
-          "no_pesanan": "261106K114QSU0",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": true
-        },
-        {
-          "nama": "SJ 8503",
-          "qty": 1,
-          "no_pesanan": "261106K24KKDVE",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": true
-        },
-        {
-          "nama": "GM RTW 100L",
-          "qty": 1,
-          "no_pesanan": "261106KHG3K92B",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": true
-        },
-        {
-          "nama": "GSC 15",
-          "qty": 1,
-          "no_pesanan": "261107KTKBT4ET",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": true
-        },
-        {
           "nama": "DH 10",
           "qty": 1,
           "no_pesanan": "261107MQ65RT7D",
