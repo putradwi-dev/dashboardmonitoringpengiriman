@@ -265,17 +265,17 @@
                         statusBadgesHtml = `<span class="text-stone-400 font-mono text-sm">-</span>`;
                     }
 
-                    // Tombol Download File PDF Asli
+                    // Tombol Unduh Data dengan Ikon Panah ke Bawah (↓) dan teks "Surat Jalan"
                     let downloadBtnsHtml = '';
                     let downloadBtnsMobile = '';
 
                     if (item.resi) {
-                        downloadBtnsHtml += `<a href="${item.resi}" download="Resi-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-sky-50 hover:bg-sky-100 text-sky-800 text-xs font-bold px-2.5 py-1 rounded border border-sky-200 inline-flex items-center gap-1 transition-all whitespace-nowrap">📥 Resi</a>`;
-                        downloadBtnsMobile += `<a href="${item.resi}" download="Resi-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-sky-50 hover:bg-sky-100 text-sky-800 text-xs font-bold px-2.5 py-1 rounded border border-sky-200 inline-flex items-center gap-1 transition-all">📥 Resi PDF</a>`;
+                        downloadBtnsHtml += `<a href="${item.resi}" download="Resi-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-sky-50 hover:bg-sky-100 text-sky-800 text-xs font-bold px-2.5 py-1 rounded border border-sky-200 inline-flex items-center gap-1.5 transition-all whitespace-nowrap"><span>↓</span> Resi</a>`;
+                        downloadBtnsMobile += `<a href="${item.resi}" download="Resi-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-sky-50 hover:bg-sky-100 text-sky-800 text-xs font-bold px-2.5 py-1 rounded border border-sky-200 inline-flex items-center gap-1.5 transition-all"><span>↓</span> Resi PDF</a>`;
                     }
                     if (item.surat_jalan) {
-                        downloadBtnsHtml += `<a href="${item.surat_jalan}" download="SuratJalan-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded border border-emerald-200 inline-flex items-center gap-1 transition-all whitespace-nowrap">📥 S.Jalan</a>`;
-                        downloadBtnsMobile += `<a href="${item.surat_jalan}" download="SuratJalan-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded border border-emerald-200 inline-flex items-center gap-1 transition-all">📥 Surat Jalan PDF</a>`;
+                        downloadBtnsHtml += `<a href="${item.surat_jalan}" download="SuratJalan-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded border border-emerald-200 inline-flex items-center gap-1.5 transition-all whitespace-nowrap"><span>↓</span> Surat Jalan</a>`;
+                        downloadBtnsMobile += `<a href="${item.surat_jalan}" download="SuratJalan-${item.no_pesanan || 'Pesanan'}.pdf" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded border border-emerald-200 inline-flex items-center gap-1.5 transition-all"><span>↓</span> Surat Jalan PDF</a>`;
                     }
                     if (!item.resi && !item.surat_jalan) {
                         downloadBtnsHtml = `<span class="text-stone-400 text-xs">-</span>`;
