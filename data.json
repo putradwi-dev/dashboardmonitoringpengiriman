@@ -10,7 +10,8 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false,
-          "batal": false
+          "batal": false,
+          "catatan_manual": ""
         }
       ]
     },
@@ -24,7 +25,8 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false,
-          "batal": false
+          "batal": false,
+          "catatan_manual": ""
         }
       ]
     },
@@ -38,7 +40,8 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false,
-          "batal": false
+          "batal": false,
+          "catatan_manual": ""
         },
         {
           "nama": "1600PT & 1520PT",
@@ -47,7 +50,8 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false,
-          "batal": false
+          "batal": false,
+          "catatan_manual": ""
         }
       ]
     },
@@ -61,7 +65,8 @@
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false,
-          "batal": false
+          "batal": false,
+          "catatan_manual": ""
         }
       ]
     },
@@ -69,13 +74,14 @@
       "grup": "OFFLINE 10/11/2026",
       "items": [
         {
-          "nama": "EXPO 1200 IC (KIRIM 16/11/2026)",
+          "nama": "EXPO 1200 IC",
           "qty": 4,
           "no_pesanan": "PT. KOPI KINA INDONESIA",
           "ekspedisi": "EKS. LAINNYA",
           "kayu": false,
           "terlambat": false,
-          "batal": false
+          "batal": false,
+          "catatan_manual": "KIRIM TANGGAL 16/11/2026"
         }
       ]
     }
