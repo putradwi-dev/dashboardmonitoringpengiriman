@@ -25,6 +25,15 @@
           "kayu": false,
           "terlambat": false,
           "batal": false
+        },
+        {
+          "nama": "1600PT & 1520PT",
+          "qty": 5,
+          "no_pesanan": "261110VES6XYNH",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false
         }
       ]
     }
