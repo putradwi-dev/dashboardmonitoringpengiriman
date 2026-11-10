@@ -218,26 +218,24 @@
             let dataJson = { belum_kirim: [], stok_tangerang: [] };
             let stokTangerangData = [];
 
-            // 1. Ambil data lokal dari data.json
+            // 1. Ambil data pesanan "Belum Kirim" dari GitHub (data.json)
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
                 dataJson = await response.json();
-                stokTangerangData = dataJson.stok_tangerang || [];
             } catch (error) {
                 console.error("Gagal memuat data.json:", error);
             }
 
-            // 2. Coba ambil data realtime dari Google Sheet
+            // 2. Ambil data stok titipan secara REALTIME dari Google Sheet
             if (GOOGLE_SHEET_API_URL && !GOOGLE_SHEET_API_URL.includes("AKfycbx...")) {
                 try {
                     const sheetResponse = await fetch(GOOGLE_SHEET_API_URL);
                     const sheetData = await sheetResponse.json();
-                    
                     if (sheetData && Array.isArray(sheetData.stok_tangerang) && sheetData.stok_tangerang.length > 0) {
                         stokTangerangData = sheetData.stok_tangerang;
                     }
                 } catch (sheetErr) {
-                    console.warn("Gagal mengambil dari Apps Script, menggunakan data fallback dari data.json:", sheetErr);
+                    console.warn("Gagal mengambil data dari Google Sheet:", sheetErr);
                 }
             }
 
@@ -381,7 +379,6 @@
                     qtyClass = 'bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200';
                 }
 
-                // Memastikan nilai stok awal & keluar terbaca dengan aman
                 const valAwal = (item.stokAwal !== undefined && item.stokAwal !== "" && item.stokAwal !== null) ? item.stokAwal : "-";
                 const valKeluar = (item.stokKeluar !== undefined && item.stokKeluar !== "" && item.stokKeluar !== null) ? item.stokKeluar : "-";
 
