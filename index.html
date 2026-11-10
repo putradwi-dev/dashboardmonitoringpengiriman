@@ -222,6 +222,9 @@
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
                 dataJson = await response.json();
+                if (dataJson.stok_tangerang) {
+                    stokTangerangData = dataJson.stok_tangerang;
+                }
             } catch (error) {
                 console.error("Gagal memuat data.json:", error);
             }
@@ -231,11 +234,20 @@
                 try {
                     const sheetResponse = await fetch(GOOGLE_SHEET_API_URL);
                     const sheetData = await sheetResponse.json();
-                    if (sheetData && Array.isArray(sheetData.stok_tangerang) && sheetData.stok_tangerang.length > 0) {
-                        stokTangerangData = sheetData.stok_tangerang;
+                    
+                    // Cek berbagai kemungkinan struktur JSON dari Apps Script
+                    let fetchedList = [];
+                    if (sheetData && Array.isArray(sheetData.stok_tangerang)) {
+                        fetchedList = sheetData.stok_tangerang;
+                    } else if (Array.isArray(sheetData)) {
+                        fetchedList = sheetData;
+                    }
+
+                    if (fetchedList.length > 0) {
+                        stokTangerangData = fetchedList;
                     }
                 } catch (sheetErr) {
-                    console.warn("Gagal mengambil data dari Google Sheet:", sheetErr);
+                    console.warn("Gagal mengambil data dari Google Sheet, menggunakan cadangan lokal:", sheetErr);
                 }
             }
 
