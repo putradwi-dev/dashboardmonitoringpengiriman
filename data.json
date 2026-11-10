@@ -64,6 +64,20 @@
           "batal": false
         }
       ]
+    },
+    {
+      "grup": "OFFLINE 10/11/2026",
+      "items": [
+        {
+          "nama": "EXPO 1200 IC (KIRIM 16/11/2026)",
+          "qty": 4,
+          "no_pesanan": "PT. KOPI KINA INDONESIA",
+          "ekspedisi": "EKS. LAINNYA",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
@@ -185,12 +199,6 @@
       "nama": "TOPAZ 600 RSA",
       "jumlah": 1,
       "catatan": "PO.2026.10.00196 pengembalian dari 2610301EYMWCD4",
-      "tipe": "normal"
-    },
-    {
-      "nama": "EXPO 1200 IC GEA",
-      "jumlah": 4,
-      "catatan": "PT. KOPI KINA INDONESIA",
       "tipe": "normal"
     }
   ]
