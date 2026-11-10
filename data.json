@@ -121,6 +121,21 @@
       ]
     },
     {
+      "grup": "SHOPE TANGSEL 11/11/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM",
+          "qty": 2,
+          "no_pesanan": "2611111978HES7",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        }
+      ]
+    },
+    {
       "grup": "OFFLINE 10/11/2026",
       "items": [
         {
@@ -151,7 +166,7 @@
     },
     {
       "nama": "LOYANG 3CM GOMESIN",
-      "jumlah": 44,
+      "jumlah": 42,
       "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
     },
