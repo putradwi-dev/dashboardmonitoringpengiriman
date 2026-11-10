@@ -381,6 +381,7 @@
                     qtyClass = 'bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200';
                 }
 
+                // Memastikan nilai stok awal & keluar terbaca dengan aman
                 const valAwal = (item.stokAwal !== undefined && item.stokAwal !== "" && item.stokAwal !== null) ? item.stokAwal : "-";
                 const valKeluar = (item.stokKeluar !== undefined && item.stokKeluar !== "" && item.stokKeluar !== null) ? item.stokKeluar : "-";
 
