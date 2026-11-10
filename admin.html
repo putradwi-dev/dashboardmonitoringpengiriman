@@ -278,7 +278,6 @@
 
                     const displayStyle = isMatch ? '' : 'display: none;';
 
-                    // Lebar Kolom Diperbarui: Nama Barang (col-span-3), QTY (col-span-1), No Pesanan (col-span-3), Ekspedisi (col-span-1), Status & Catatan (col-span-3), Hapus (col-span-1) = 12 total grid
                     itemsHtml += `
                         <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
                             <div class="sm:col-span-3">
@@ -298,7 +297,8 @@
                                 <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-xs sm:text-sm font-extrabold text-stone-900 cursor-pointer focus:ring-2 focus:ring-amber-800 focus:outline-none">
                                     <option value="JNE" ${item.ekspedisi === 'JNE' ? 'selected' : ''}>JNE</option>
                                     <option value="J&T" ${item.ekspedisi === 'J&T' ? 'selected' : ''}>J&T</option>
-                                    <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
+                                    <option value="KURIR TOKO" ${item.ekspedisi === 'KURIR TOKO' ? 'selected' : ''}>KURIR TOKO</option>
+                                    <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT','KURIR TOKO'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
                                 </select>
                             </div>
                             <!-- Checkbox Status & Catatan Manual -->
@@ -544,7 +544,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Increase order number column width in admin panel",
+                    message: "Add KURIR TOKO to expedition options",
                     content: contentBase64,
                     sha: currentSha
                 };
