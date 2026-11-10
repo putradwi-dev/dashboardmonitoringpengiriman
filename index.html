@@ -242,9 +242,13 @@
                     const catatanManual = item.catatan_manual ? item.catatan_manual.trim() : '';
 
                     const ekspedisiClean = (item.ekspedisi || '').toUpperCase();
-                    const badgeEkspedisi = ekspedisiClean.includes('JNE')
-                        ? `<span class="bg-amber-50 text-amber-800 px-2.5 py-1 rounded-md text-xs sm:text-sm font-bold uppercase border border-amber-200 whitespace-nowrap inline-block">${item.ekspedisi}</span>`
-                        : `<span class="bg-stone-100 text-stone-800 px-2.5 py-1 rounded-md text-xs sm:text-sm font-bold uppercase border border-stone-200 whitespace-nowrap inline-block">${item.ekspedisi}</span>`;
+                    let badgeEkspedisi = `<span class="bg-stone-100 text-stone-800 px-2.5 py-1 rounded-md text-xs sm:text-sm font-bold uppercase border border-stone-200 whitespace-nowrap inline-block">${item.ekspedisi}</span>`;
+                    
+                    if (ekspedisiClean.includes('JNE')) {
+                        badgeEkspedisi = `<span class="bg-amber-50 text-amber-800 px-2.5 py-1 rounded-md text-xs sm:text-sm font-bold uppercase border border-amber-200 whitespace-nowrap inline-block">${item.ekspedisi}</span>`;
+                    } else if (ekspedisiClean.includes('KURIR TOKO')) {
+                        badgeEkspedisi = `<span class="bg-teal-50 text-teal-800 px-2.5 py-1 rounded-md text-xs sm:text-sm font-bold uppercase border border-teal-200 whitespace-nowrap inline-block">${item.ekspedisi}</span>`;
+                    }
 
                     let statusBadgesHtml = '';
                     let statusBadgesMobile = '';
@@ -272,7 +276,6 @@
 
                     const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${catatanManual} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
 
-                    // Lebar Kolom Diperbarui: Nama Barang 28%, Nomor Pesanan 26%, QTY 5%, Ekspedisi 16%, Status/Catatan 25%
                     tableRows += `
                         <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
                             <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[28%]">${item.nama}</td>
