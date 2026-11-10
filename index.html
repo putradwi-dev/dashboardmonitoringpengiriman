@@ -229,13 +229,13 @@
                 console.error("Gagal memuat data.json:", error);
             }
 
-            // 2. Ambil data stok titipan secara REALTIME dari Google Sheet
+            // 2. Ambil data stok titipan secara REALTIME dari Google Sheet (Anti-Cache)
             if (GOOGLE_SHEET_API_URL && !GOOGLE_SHEET_API_URL.includes("AKfycbx...")) {
                 try {
-                    const sheetResponse = await fetch(GOOGLE_SHEET_API_URL);
+                    const antiCacheUrl = GOOGLE_SHEET_API_URL + "&t=" + new Date().getTime();
+                    const sheetResponse = await fetch(antiCacheUrl);
                     const sheetData = await sheetResponse.json();
                     
-                    // Cek berbagai kemungkinan struktur JSON dari Apps Script
                     let fetchedList = [];
                     if (sheetData && Array.isArray(sheetData.stok_tangerang)) {
                         fetchedList = sheetData.stok_tangerang;
@@ -247,7 +247,7 @@
                         stokTangerangData = fetchedList;
                     }
                 } catch (sheetErr) {
-                    console.warn("Gagal mengambil data dari Google Sheet, menggunakan cadangan lokal:", sheetErr);
+                    console.warn("Gagal mengambil data dari Google Sheet:", sheetErr);
                 }
             }
 
@@ -373,7 +373,7 @@
             });
         }
 
-      function renderStokTangerang(items) {
+        function renderStokTangerang(items) {
             const tbody = document.getElementById('tbody-stok-tangerang');
             tbody.innerHTML = '';
 
@@ -391,7 +391,6 @@
                     qtyClass = 'bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200';
                 }
 
-                // Menangkap nilai stok awal dan keluar dari Apps Script
                 const valAwal = (item.stokAwal !== undefined && item.stokAwal !== "" && item.stokAwal !== null) ? item.stokAwal : "-";
                 const valKeluar = (item.stokKeluar !== undefined && item.stokKeluar !== "" && item.stokKeluar !== null) ? item.stokKeluar : "-";
 
@@ -411,7 +410,7 @@
                 tbody.appendChild(tr);
             });
         }
-        
+
         function updateStatistics(data) {
             let totalPesanan = 0;
             let totalKayu = 0;
@@ -529,7 +528,11 @@
             });
         }
 
-        window.onload = loadDashboardData;
+        // Auto-refresh data secara real-time setiap 10 detik dari Google Sheet
+        window.onload = function() {
+            loadDashboardData();
+            setInterval(loadDashboardData, 10000); 
+        };
     </script>
 </body>
 </html>
