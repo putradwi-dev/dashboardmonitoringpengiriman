@@ -138,8 +138,9 @@
                                 <thead>
                                     <tr class="bg-[#faf7f2] border-b border-amber-100 text-stone-700 text-sm uppercase tracking-wider">
                                         <th class="py-4 px-4 font-bold">Nama Barang</th>
-                                        <th class="py-4 px-4 font-bold text-center w-32">QTY</th>
-                                        <th class="py-4 px-4 font-bold">Status / Catatan</th>
+                                        <th class="py-4 px-4 font-bold text-center w-28">Stok Awal</th>
+                                        <th class="py-4 px-4 font-bold text-center w-28">Stok Keluar</th>
+                                        <th class="py-4 px-4 font-bold text-center w-28">Saldo</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody-stok-tangerang" class="divide-y divide-amber-50 text-base">
@@ -216,8 +217,8 @@
                 const data = await responseJson.json();
 
                 // 2. Ambil data stok secara real-time dari Google Sheets (Apps Script Web App)
-                // Ganti URL di bawah dengan URL Web App Apps Script Anda yang berakhiran /exec
-                const sheetApiUrl = 'https://script.google.com/macros/s/AKfycbyubZMKxaNS89ROsbayuHtDugIWjAf2nGESShZWA5N8wUwMnZgrmKSwk-6-xDnEO2b9/exec?target=dashboard';
+                // Pastikan URL di bawah ini berakhiran /exec?target=dashboard
+                const sheetApiUrl = 'PASTE_URL_WEB_APP_ANDA_DI_SINI?target=dashboard';
                 
                 let stokTangerangData = [];
                 try {
@@ -359,32 +360,17 @@
             tbody.innerHTML = '';
 
             items.forEach(item => {
-                let statusBadge = `<span class="text-stone-400 font-mono text-sm">-</span>`;
-                let rowBgClass = 'hover:bg-sky-100 transition-colors cursor-pointer';
-                let qtyClass = 'bg-stone-100 px-3.5 py-1 rounded-lg font-bold text-stone-800 text-base inline-block';
-
-                if (item.tipe === 'warning') {
-                    statusBadge = `<span class="text-red-700 font-bold bg-red-50 px-3 py-1 rounded-md text-sm border border-red-200">${item.catatan && item.catatan !== '-' ? item.catatan : '🛠️ Perlu di perbaiki'}</span>`;
-                } else if (item.tipe === 'priority') {
-                    statusBadge = `<span class="text-amber-900 font-extrabold bg-amber-100/90 px-3 py-1 rounded-md text-sm border border-amber-300">${item.catatan && item.catatan !== '-' ? item.catatan : '🔥 Utamakan habiskan ini'}</span>`;
-                    rowBgClass = 'hover:bg-sky-100 transition-colors bg-amber-50/30 cursor-pointer';
-                    qtyClass = 'bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200';
-                } else {
-                    if (item.catatan && item.catatan.trim() !== '' && item.catatan.trim() !== '-') {
-                        statusBadge = `<span class="text-stone-800 font-semibold bg-stone-100 px-3 py-1 rounded-md text-sm border border-stone-200">${item.catatan}</span>`;
-                    }
-                }
-
-                const searchStr = `${item.nama} ${item.catatan || ''}`.toLowerCase();
+                const searchStr = `${item.nama}`.toLowerCase();
 
                 const tr = document.createElement('tr');
-                tr.className = `item-row ${rowBgClass}`;
+                tr.className = `item-row hover:bg-sky-100 transition-colors cursor-pointer`;
                 tr.setAttribute('data-search', searchStr);
 
                 tr.innerHTML = `
-                    <td class="py-3.5 px-4 ${item.tipe === 'priority' ? 'font-bold text-stone-900' : 'font-semibold text-stone-800'} text-base">${item.nama}</td>
-                    <td class="py-3.5 px-4 text-center"><span class="${qtyClass}">${item.jumlah}</span></td>
-                    <td class="py-3.5 px-4">${statusBadge}</td>
+                    <td class="py-3.5 px-4 font-semibold text-stone-800 text-base">${item.nama}</td>
+                    <td class="py-3.5 px-4 text-center"><span class="bg-stone-100 px-3 py-1 rounded-lg font-bold text-stone-800 text-sm inline-block">${item.stokAwal}</span></td>
+                    <td class="py-3.5 px-4 text-center"><span class="bg-stone-100 px-3 py-1 rounded-lg font-bold text-stone-800 text-sm inline-block">${item.stokKeluar}</span></td>
+                    <td class="py-3.5 px-4 text-center"><span class="bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200">${item.jumlah}</span></td>
                 `;
 
                 tbody.appendChild(tr);
