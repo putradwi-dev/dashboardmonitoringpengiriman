@@ -220,9 +220,9 @@
 
                 // 2. Ambil data stok langsung dari Google Sheets (Apps Script Web App)
                 // Ganti URL di bawah ini dengan URL Web App Apps Script Google Sheets Anda
-                const sheetAppUrl = "URL_WEB_APP_APPS_SCRIPT_ANDA_DISINI"; 
+                const sheetAppUrl = "https://script.google.com/macros/s/AKfycbyubZMKxaNS89ROsbayuHtDugIWjAf2nGESShZWA5N8wUwMnZgrmKSwk-6-xDnEO2b9/exec"; 
 
-                if (sheetAppUrl && sheetAppUrl !== "URL_WEB_APP_APPS_SCRIPT_ANDA_DISINI") {
+                if (sheetAppUrl && sheetAppUrl !== "https://script.google.com/macros/s/AKfycbyubZMKxaNS89ROsbayuHtDugIWjAf2nGESShZWA5N8wUwMnZgrmKSwk-6-xDnEO2b9/exec") {
                     const resStok = await fetch(sheetAppUrl);
                     const stokRows = await resStok.json();
 
