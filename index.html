@@ -222,7 +222,6 @@
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
                 dataJson = await response.json();
-                stokTangerangData = dataJson.stok_tangerang || [];
             } catch (error) {
                 console.error("Gagal memuat data.json:", error);
             }
@@ -236,7 +235,7 @@
                         stokTangerangData = sheetData.stok_tangerang;
                     }
                 } catch (sheetErr) {
-                    console.warn("Gagal mengambil data dari Google Sheet, menggunakan data cadangan JSON:", sheetErr);
+                    console.warn("Gagal mengambil data dari Google Sheet:", sheetErr);
                 }
             }
 
@@ -380,9 +379,8 @@
                     qtyClass = 'bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200';
                 }
 
-                // Menyesuaikan pembacaan properti dari Apps Script
-                const valStokAwal = (item.stokAwal !== undefined && item.stokAwal !== "") ? item.stokAwal : "-";
-                const valStokKeluar = (item.stokKeluar !== undefined && item.stokKeluar !== "") ? item.stokKeluar : "-";
+                const valAwal = (item.stokAwal !== undefined && item.stokAwal !== "" && item.stokAwal !== null) ? item.stokAwal : "-";
+                const valKeluar = (item.stokKeluar !== undefined && item.stokKeluar !== "" && item.stokKeluar !== null) ? item.stokKeluar : "-";
 
                 const searchStr = `${item.nama}`.toLowerCase();
 
@@ -392,8 +390,8 @@
 
                 tr.innerHTML = `
                     <td class="py-3.5 px-4 font-bold text-stone-900 text-base">${item.nama}</td>
-                    <td class="py-3.5 px-3 text-center text-stone-700 font-medium">${valStokAwal}</td>
-                    <td class="py-3.5 px-3 text-center text-stone-700 font-medium">${valStokKeluar}</td>
+                    <td class="py-3.5 px-3 text-center text-stone-700 font-medium">${valAwal}</td>
+                    <td class="py-3.5 px-3 text-center text-stone-700 font-medium">${valKeluar}</td>
                     <td class="py-3.5 px-3 text-center"><span class="${qtyClass}">${item.jumlah}</span></td>
                 `;
 
