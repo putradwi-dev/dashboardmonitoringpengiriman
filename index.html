@@ -124,7 +124,7 @@
                             <div class="p-2 bg-emerald-700 text-white rounded-lg font-bold text-lg leading-none">🏢</div>
                             <div>
                                 <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">STOK TANGERANG TITIP DI PT. MBG</h2>
-                                <p class="text-stone-400 text-xs sm:text-sm">Stok fisik barang yang saat ini tersedia di gudang PT. MBG</p>
+                                <p class="text-stone-400 text-xs sm:text-sm">Stok fisik barang yang saat ini tersedia di gudang PT. MBG (Realtime Google Sheet)</p>
                             </div>
                         </div>
                         <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
@@ -143,7 +143,9 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbody-stok-tangerang" class="divide-y divide-amber-50 text-base">
-                                    <!-- Data Stok Dimuat dari JSON -->
+                                    <tr>
+                                        <td colspan="3" class="py-6 text-center text-stone-400 font-semibold animate-pulse">⏳ Memuat data stok dari Google Sheet...</td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -196,6 +198,9 @@
     </footer>
 
     <script>
+        // MASUKKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI (JANGAN LUPA TAMBAHKAN ?target=mbp DI AKHIR)
+        const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbyJ8O3gMBzGS_88pvQIonUoP2vaSm_A_7psd6nHQzKcs4hY0zdYx_a2mpHyqMocqChb/exec?target=mbp";
+
         function getItemStatus(item) {
             let isKayu = !!item.kayu;
             let isTerlambat = !!item.terlambat;
@@ -210,16 +215,34 @@
         }
 
         async function loadDashboardData() {
+            let dataJson = { belum_kirim: [], stok_tangerang: [] };
+            let stokTangerangData = [];
+
+            // 1. Ambil data pesanan "Belum Kirim" dari GitHub (data.json)
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
-                const data = await response.json();
-
-                renderBelumKirim(data.belum_kirim || []);
-                renderStokTangerang(data.stok_tangerang || []);
-                updateStatistics(data);
+                dataJson = await response.json();
+                stokTangerangData = dataJson.stok_tangerang || [];
             } catch (error) {
                 console.error("Gagal memuat data.json:", error);
             }
+
+            // 2. Ambil data stok titipan secara REALTIME dari Google Sheet
+            if (GOOGLE_SHEET_API_URL && !GOOGLE_SHEET_API_URL.includes("AKfycbx...")) {
+                try {
+                    const sheetResponse = await fetch(GOOGLE_SHEET_API_URL);
+                    const sheetData = await sheetResponse.json();
+                    if (sheetData && sheetData.stok_tangerang && sheetData.stok_tangerang.length > 0) {
+                        stokTangerangData = sheetData.stok_tangerang;
+                    }
+                } catch (sheetErr) {
+                    console.warn("Gagal mengambil data dari Google Sheet, menggunakan data cadangan JSON:", sheetErr);
+                }
+            }
+
+            renderBelumKirim(dataJson.belum_kirim || []);
+            renderStokTangerang(stokTangerangData);
+            updateStatistics(dataJson);
         }
 
         function renderBelumKirim(groups) {
@@ -299,7 +322,7 @@
                             </div>
                             <div>
                                 <span class="text-xs sm:text-sm text-stone-400 block uppercase font-medium">Nomor Pesanan</span>
-                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-white px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
+                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-[#faf7f2] px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
                             </div>
                             ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
                         </div>
@@ -342,6 +365,11 @@
         function renderStokTangerang(items) {
             const tbody = document.getElementById('tbody-stok-tangerang');
             tbody.innerHTML = '';
+
+            if (!items || items.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="3" class="py-4 text-center text-stone-400">Belum ada data stok titipan.</td></tr>`;
+                return;
+            }
 
             items.forEach(item => {
                 let statusBadge = `<span class="text-stone-400 font-mono text-sm">-</span>`;
