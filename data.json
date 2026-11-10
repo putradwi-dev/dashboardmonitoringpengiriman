@@ -31,46 +31,6 @@
       ]
     },
     {
-      "grup": "TOKOPEDIA ADT 10/11/2026",
-      "items": [
-        {
-          "nama": "AIB 1,3L",
-          "qty": 6,
-          "no_pesanan": "587069611841324354",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 10/11/2026",
-      "items": [
-        {
-          "nama": "DH 10",
-          "qty": 1,
-          "no_pesanan": "261109THSPF8U4",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        },
-        {
-          "nama": "1600PT & 1520PT",
-          "qty": 5,
-          "no_pesanan": "261110VES6XYNH",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        }
-      ]
-    },
-    {
       "grup": "SHOPE ADT 10/11/2026",
       "items": [
         {
