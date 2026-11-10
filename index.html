@@ -267,14 +267,14 @@
 
                     const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
 
-                    // Diubah ke hover:bg-sky-100 (biru muda)
+                    // Lebar Kolom Diperbarui: Nama Barang 34%, No Pesanan 22%, QTY 6%, Ekspedisi 9%, Status/Catatan 29%
                     tableRows += `
                         <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
-                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[26%]">${item.nama}</td>
-                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[24%]">${item.no_pesanan}</td>
-                            <td class="py-3.5 px-2 text-center w-[7%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
-                            <td class="py-3.5 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
-                            <td class="py-3.5 px-4 w-[33%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
+                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[34%]">${item.nama}</td>
+                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[22%]">${item.no_pesanan}</td>
+                            <td class="py-3.5 px-2 text-center w-[6%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
+                            <td class="py-3.5 px-2 w-[9%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
+                            <td class="py-3.5 px-4 w-[29%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
                         </tr>
                     `;
 
@@ -307,11 +307,11 @@
                         <table class="w-full text-left text-base table-fixed">
                             <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-100 uppercase text-sm">
                                 <tr>
-                                    <th class="py-4 px-4 w-[26%]">Nama Barang</th>
-                                    <th class="py-4 px-4 w-[24%]">Nomor Pesanan</th>
-                                    <th class="py-4 px-2 text-center w-[7%]" style="padding-left: 2px; padding-right: 2px;">QTY</th>
-                                    <th class="py-4 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
-                                    <th class="py-4 px-4 w-[33%]">Status / Catatan</th>
+                                    <th class="py-4 px-4 w-[34%]">Nama Barang</th>
+                                    <th class="py-4 px-4 w-[22%]">Nomor Pesanan</th>
+                                    <th class="py-4 px-2 text-center w-[6%]" style="padding-left: 2px; padding-right: 2px;">QTY</th>
+                                    <th class="py-4 px-2 w-[9%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
+                                    <th class="py-4 px-4 w-[29%]">Status / Catatan</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-amber-50">
