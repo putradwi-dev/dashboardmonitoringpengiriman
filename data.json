@@ -1,43 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 7/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 2,
-          "no_pesanan": "587026599850575513",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA MT 9/11/2026",
-      "items": [
-        {
-          "nama": "AB 208",
-          "qty": 1,
-          "no_pesanan": "587046600610252509",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false
-        },
-        {
-          "nama": "CF 310",
-          "qty": 1,
-          "no_pesanan": "587073363542246692",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 7/11/2026",
       "items": [
         {
@@ -119,29 +82,6 @@
           "no_pesanan": "261109THSPF8U4",
           "ekspedisi": "J&T",
           "kayu": false,
-          "terlambat": false,
-          "batal": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE TANGSEL 9/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM GOMESIN",
-          "qty": 2,
-          "no_pesanan": "261107NN4JYUTF",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false
-        },
-        {
-          "nama": "LOYANG 3CM GOMESIN",
-          "qty": 2,
-          "no_pesanan": "261108Q291R17J",
-          "ekspedisi": "J&T",
-          "kayu": true,
           "terlambat": false,
           "batal": false
         }
