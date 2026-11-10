@@ -36,6 +36,20 @@
           "batal": false
         }
       ]
+    },
+    {
+      "grup": "TOKOPEDIA ADT 10/11/2026",
+      "items": [
+        {
+          "nama": "AIB 1,3L",
+          "qty": 6,
+          "no_pesanan": "587069611841324354",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
