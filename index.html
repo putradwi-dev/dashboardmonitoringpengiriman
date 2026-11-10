@@ -143,7 +143,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="tbody-stok-tangerang" class="divide-y divide-amber-50 text-base">
-                                    <!-- Data Stok Dimuat dari Google Sheets / JSON -->
+                                    <!-- Data Stok Dimuat dari JSON -->
                                 </tbody>
                             </table>
                         </div>
@@ -211,58 +211,14 @@
 
         async function loadDashboardData() {
             try {
-                // 1. Ambil data pesanan dari data.json
                 const response = await fetch('data.json?v=' + new Date().getTime());
                 const data = await response.json();
 
                 renderBelumKirim(data.belum_kirim || []);
+                renderStokTangerang(data.stok_tangerang || []);
                 updateStatistics(data);
-
-                // 2. Ambil data stok langsung dari Google Sheets (Apps Script Web App)
-                // Ganti URL di bawah ini dengan URL Web App Apps Script Google Sheets Anda
-                const sheetAppUrl = "https://script.google.com/macros/s/AKfycbyubZMKxaNS89ROsbayuHtDugIWjAf2nGESShZWA5N8wUwMnZgrmKSwk-6-xDnEO2b9/exec"; 
-
-                if (sheetAppUrl && sheetAppUrl !== "https://script.google.com/macros/s/AKfycbyubZMKxaNS89ROsbayuHtDugIWjAf2nGESShZWA5N8wUwMnZgrmKSwk-6-xDnEO2b9/exec") {
-                    const resStok = await fetch(sheetAppUrl);
-                    const stokRows = await resStok.json();
-
-                    let stokTangerangParsed = [];
-                    let masukSeksiTitip = false;
-
-                    stokRows.forEach(row => {
-                        let barisBarang = row.barang ? row.barang.toString().toUpperCase() : "";
-                        
-                        // Deteksi seksi TITIP DI MBG
-                        if (row.isHeader && barisBarang.includes("TITIP DI MBG")) {
-                            masukSeksiTitip = true;
-                            return;
-                        }
-                        
-                        // Jika mendeteksi header seksi baru setelahnya, hentikan
-                        if (row.isHeader && masukSeksiTitip && !barisBarang.includes("TITIP DI MBG")) {
-                            masukSeksiTitip = false;
-                        }
-
-                        // Ambil baris data dalam seksi TITIP DI MBG
-                        if (masukSeksiTitip && !row.isHeader && row.barang && row.barang !== "") {
-                            let qtyVal = Number(row.saldo) || 0;
-                            stokTangerangParsed.push({
-                                nama: row.barang,
-                                jumlah: qtyVal,
-                                catatan: row.keterangan || "-",
-                                tipe: "normal"
-                            });
-                        }
-                    });
-
-                    renderStokTangerang(stokTangerangParsed);
-                } else {
-                    // Fallback jika URL belum diisi
-                    renderStokTangerang(data.stok_tangerang || []);
-                }
-
             } catch (error) {
-                console.error("Gagal memuat data:", error);
+                console.error("Gagal memuat data.json:", error);
             }
         }
 
