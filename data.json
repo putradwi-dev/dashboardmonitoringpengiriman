@@ -86,21 +86,6 @@
       ]
     },
     {
-      "grup": "SHOPE TANGSEL 10/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 2,
-          "no_pesanan": "261110UGYQ4REQ",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        }
-      ]
-    },
-    {
       "grup": "OFFLINE 10/11/2026",
       "items": [
         {
