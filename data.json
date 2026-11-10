@@ -9,7 +9,7 @@
           "no_pesanan": "587088632954193044",
           "ekspedisi": "J&T",
           "kayu": true,
-          "terlambat": false,
+          "terlambat": true,
           "batal": false,
           "catatan_manual": ""
         }
@@ -22,6 +22,71 @@
           "nama": "AP 6430",
           "qty": 2,
           "no_pesanan": "587097360324331355",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE MT 11/11/2026",
+      "items": [
+        {
+          "nama": "D8SM & JL T12YF",
+          "qty": 1,
+          "no_pesanan": "2611110UC0HMY2",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "DZM 350",
+          "qty": 1,
+          "no_pesanan": "2611110VKWFNS9",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "2611110VQ5FKUS",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "TOPAZ 600",
+          "qty": 1,
+          "no_pesanan": "261111134QVKJX",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "LB 20",
+          "qty": 1,
+          "no_pesanan": "2611111BQ1FQXM",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "RFL 12GD",
+          "qty": 1,
+          "no_pesanan": "2611111BW6VRDQ",
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false,
@@ -160,7 +225,7 @@
     },
     {
       "nama": "D8SM GETRA",
-      "jumlah": 4,
+      "jumlah": 3,
       "catatan": "PO.2026.11.00005",
       "tipe": "normal"
     },
