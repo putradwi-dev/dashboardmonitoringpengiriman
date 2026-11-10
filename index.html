@@ -218,7 +218,7 @@
 
                 // 2. Ambil data stok secara real-time dari Google Sheets (Apps Script Web App)
                 // Pastikan URL di bawah ini berakhiran /exec?target=dashboard
-                const sheetApiUrl = 'PASTE_URL_WEB_APP_ANDA_DI_SINI?target=dashboard';
+                const sheetApiUrl = 'https://script.google.com/macros/s/AKfycbyubZMKxaNS89ROsbayuHtDugIWjAf2nGESShZWA5N8wUwMnZgrmKSwk-6-xDnEO2b9/exec?target=dashboard';
                 
                 let stokTangerangData = [];
                 try {
@@ -356,26 +356,26 @@
         }
 
         function renderStokTangerang(items) {
-            const tbody = document.getElementById('tbody-stok-tangerang');
-            tbody.innerHTML = '';
+    const tbody = document.getElementById('tbody-stok-tangerang');
+    tbody.innerHTML = '';
 
-            items.forEach(item => {
-                const searchStr = `${item.nama}`.toLowerCase();
+    items.forEach(item => {
+        const searchStr = `${item.nama}`.toLowerCase();
 
-                const tr = document.createElement('tr');
-                tr.className = `item-row hover:bg-sky-100 transition-colors cursor-pointer`;
-                tr.setAttribute('data-search', searchStr);
+        const tr = document.createElement('tr');
+        tr.className = `item-row hover:bg-sky-100 transition-colors cursor-pointer`;
+        tr.setAttribute('data-search', searchStr);
 
-                tr.innerHTML = `
-                    <td class="py-3.5 px-4 font-semibold text-stone-800 text-base">${item.nama}</td>
-                    <td class="py-3.5 px-4 text-center"><span class="bg-stone-100 px-3 py-1 rounded-lg font-bold text-stone-800 text-sm inline-block">${item.stokAwal}</span></td>
-                    <td class="py-3.5 px-4 text-center"><span class="bg-stone-100 px-3 py-1 rounded-lg font-bold text-stone-800 text-sm inline-block">${item.stokKeluar}</span></td>
-                    <td class="py-3.5 px-4 text-center"><span class="bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200">${item.jumlah}</span></td>
-                `;
+        tr.innerHTML = `
+            <td class="py-3.5 px-4 font-semibold text-stone-800 text-base">${item.nama}</td>
+            <td class="py-3.5 px-4 text-center"><span class="bg-stone-100 px-3 py-1 rounded-lg font-bold text-stone-800 text-sm inline-block">${item.stokAwal !== 0 ? item.stokAwal : '-'}</span></td>
+            <td class="py-3.5 px-4 text-center"><span class="bg-stone-100 px-3 py-1 rounded-lg font-bold text-stone-800 text-sm inline-block">${item.stokKeluar !== 0 ? item.stokKeluar : '-'}</span></td>
+            <td class="py-3.5 px-4 text-center"><span class="bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200">${item.jumlah}</span></td>
+        `;
 
-                tbody.appendChild(tr);
-            });
-        }
+        tbody.appendChild(tr);
+    });
+}
 
         function updateStatistics(data) {
             let totalPesanan = 0;
