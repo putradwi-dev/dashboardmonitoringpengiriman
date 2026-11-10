@@ -239,6 +239,7 @@
                     const isTerlambat = statusObj.isTerlambat;
                     const isBatal = statusObj.isBatal;
                     const itemQty = item.qty !== undefined ? item.qty : 1;
+                    const catatanManual = item.catatan_manual ? item.catatan_manual.trim() : '';
 
                     const ekspedisiClean = (item.ekspedisi || '').toUpperCase();
                     const badgeEkspedisi = ekspedisiClean.includes('JNE')
@@ -260,14 +261,17 @@
                         statusBadgesHtml += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2.5 py-1 rounded-md font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ MALAM INI BATAL</span>`;
                         statusBadgesMobile += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ MALAM INI BATAL</span>`;
                     }
+                    if (catatanManual !== '') {
+                        statusBadgesHtml += `<span class="bg-sky-50 text-sky-800 text-xs sm:text-sm px-2.5 py-1 rounded-md font-bold border border-sky-200 inline-block">${catatanManual}</span>`;
+                        statusBadgesMobile += `<span class="bg-sky-50 text-sky-800 text-xs sm:text-sm px-2.5 py-1 rounded font-bold border border-sky-200 inline-block">${catatanManual}</span>`;
+                    }
 
-                    if (!isKayu && !isTerlambat && !isBatal) {
+                    if (!isKayu && !isTerlambat && !isBatal && catatanManual === '') {
                         statusBadgesHtml = `<span class="text-stone-400 font-mono text-sm">-</span>`;
                     }
 
-                    const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
+                    const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${catatanManual} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
 
-                    // Lebar Kolom Diperbarui: Nama Barang 34%, No Pesanan 22%, QTY 6%, Ekspedisi 9%, Status/Catatan 29%
                     tableRows += `
                         <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
                             <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[34%]">${item.nama}</td>
