@@ -124,7 +124,7 @@
                             <div class="p-2 bg-emerald-700 text-white rounded-lg font-bold text-lg leading-none">🏢</div>
                             <div>
                                 <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">STOK TANGERANG TITIP DI PT. MBG</h2>
-                                <p class="text-stone-400 text-xs sm:text-sm">Stok fisik barang yang tersedia di gudang PT. MBG (Realtime Google Sheet)</p>
+                                <p class="text-stone-400 text-xs sm:text-sm">Stok fisik barang yang saat ini tersedia di gudang PT. MBG</p>
                             </div>
                         </div>
                         <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
@@ -138,15 +138,12 @@
                                 <thead>
                                     <tr class="bg-[#faf7f2] border-b border-amber-100 text-stone-700 text-sm uppercase tracking-wider">
                                         <th class="py-4 px-4 font-bold">Nama Barang</th>
-                                        <th class="py-4 px-3 font-bold text-center w-32">Stok Awal</th>
-                                        <th class="py-4 px-3 font-bold text-center w-32">Stok Keluar</th>
-                                        <th class="py-4 px-3 font-bold text-center w-32">Saldo</th>
+                                        <th class="py-4 px-4 font-bold text-center w-32">QTY</th>
+                                        <th class="py-4 px-4 font-bold">Status / Catatan</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody-stok-tangerang" class="divide-y divide-amber-50 text-base">
-                                    <tr>
-                                        <td colspan="4" class="py-6 text-center text-stone-400 font-semibold animate-pulse">⏳ Memuat data stok dari Google Sheet...</td>
-                                    </tr>
+                                    <!-- Data Stok Dimuat dari JSON -->
                                 </tbody>
                             </table>
                         </div>
@@ -199,8 +196,6 @@
     </footer>
 
     <script>
-        const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbyJ803gMBzGS_88pvQIonUoP2vaSm_A_7psd6nHQzKcs4hY0zdYx_a2mpHyqMocqChb/exec?target=mbp";
-
         function getItemStatus(item) {
             let isKayu = !!item.kayu;
             let isTerlambat = !!item.terlambat;
@@ -215,45 +210,16 @@
         }
 
         async function loadDashboardData() {
-            let dataJson = { belum_kirim: [], stok_tangerang: [] };
-            let stokTangerangData = [];
-
-            // 1. Ambil data pesanan "Belum Kirim" dari GitHub (data.json)
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
-                dataJson = await response.json();
-                if (dataJson.stok_tangerang) {
-                    stokTangerangData = dataJson.stok_tangerang;
-                }
+                const data = await response.json();
+
+                renderBelumKirim(data.belum_kirim || []);
+                renderStokTangerang(data.stok_tangerang || []);
+                updateStatistics(data);
             } catch (error) {
                 console.error("Gagal memuat data.json:", error);
             }
-
-            // 2. Ambil data stok titipan secara REALTIME dari Google Sheet (Anti-Cache)
-            if (GOOGLE_SHEET_API_URL && !GOOGLE_SHEET_API_URL.includes("AKfycbx...")) {
-                try {
-                    const antiCacheUrl = GOOGLE_SHEET_API_URL + "&t=" + new Date().getTime();
-                    const sheetResponse = await fetch(antiCacheUrl);
-                    const sheetData = await sheetResponse.json();
-                    
-                    let fetchedList = [];
-                    if (sheetData && Array.isArray(sheetData.stok_tangerang)) {
-                        fetchedList = sheetData.stok_tangerang;
-                    } else if (Array.isArray(sheetData)) {
-                        fetchedList = sheetData;
-                    }
-
-                    if (fetchedList.length > 0) {
-                        stokTangerangData = fetchedList;
-                    }
-                } catch (sheetErr) {
-                    console.warn("Gagal mengambil data dari Google Sheet:", sheetErr);
-                }
-            }
-
-            renderBelumKirim(dataJson.belum_kirim || []);
-            renderStokTangerang(stokTangerangData);
-            updateStatistics(dataJson);
         }
 
         function renderBelumKirim(groups) {
@@ -333,7 +299,7 @@
                             </div>
                             <div>
                                 <span class="text-xs sm:text-sm text-stone-400 block uppercase font-medium">Nomor Pesanan</span>
-                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-[#faf7f2] px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
+                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-white px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
                             </div>
                             ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
                         </div>
@@ -377,35 +343,33 @@
             const tbody = document.getElementById('tbody-stok-tangerang');
             tbody.innerHTML = '';
 
-            if (!items || items.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="py-4 text-center text-stone-400">Belum ada data stok titipan.</td></tr>`;
-                return;
-            }
-
             items.forEach(item => {
-                let qtyClass = 'bg-stone-100 px-3.5 py-1 rounded-lg font-bold text-stone-800 text-base inline-block';
+                let statusBadge = `<span class="text-stone-400 font-mono text-sm">-</span>`;
                 let rowBgClass = 'hover:bg-sky-100 transition-colors cursor-pointer';
+                let qtyClass = 'bg-stone-100 px-3.5 py-1 rounded-lg font-bold text-stone-800 text-base inline-block';
 
-                if (item.tipe === 'priority') {
+                if (item.tipe === 'warning') {
+                    statusBadge = `<span class="text-red-700 font-bold bg-red-50 px-3 py-1 rounded-md text-sm border border-red-200">${item.catatan && item.catatan !== '-' ? item.catatan : '🛠️ Perlu di perbaiki'}</span>`;
+                } else if (item.tipe === 'priority') {
+                    statusBadge = `<span class="text-amber-900 font-extrabold bg-amber-100/90 px-3 py-1 rounded-md text-sm border border-amber-300">${item.catatan && item.catatan !== '-' ? item.catatan : '🔥 Utamakan habiskan ini'}</span>`;
                     rowBgClass = 'hover:bg-sky-100 transition-colors bg-amber-50/30 cursor-pointer';
                     qtyClass = 'bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200';
+                } else {
+                    if (item.catatan && item.catatan.trim() !== '' && item.catatan.trim() !== '-') {
+                        statusBadge = `<span class="text-stone-800 font-semibold bg-stone-100 px-3 py-1 rounded-md text-sm border border-stone-200">${item.catatan}</span>`;
+                    }
                 }
 
-                // Memastikan nilai stok awal dan keluar terbaca dengan benar (jika kosong/0, tangani dengan rapi)
-                const valAwal = (item.stokAwal !== undefined && item.stokAwal !== "" && item.stokAwal !== null) ? item.stokAwal : "-";
-                const valKeluar = (item.stokKeluar !== undefined && item.stokKeluar !== "" && item.stokKeluar !== null) ? item.stokKeluar : "-";
-
-                const searchStr = `${item.nama}`.toLowerCase();
+                const searchStr = `${item.nama} ${item.catatan || ''}`.toLowerCase();
 
                 const tr = document.createElement('tr');
                 tr.className = `item-row ${rowBgClass}`;
                 tr.setAttribute('data-search', searchStr);
 
                 tr.innerHTML = `
-                    <td class="py-3.5 px-4 font-bold text-stone-900 text-base">${item.nama}</td>
-                    <td class="py-3.5 px-3 text-center text-stone-700 font-medium">${valAwal}</td>
-                    <td class="py-3.5 px-3 text-center text-stone-700 font-medium">${valKeluar}</td>
-                    <td class="py-3.5 px-3 text-center"><span class="${qtyClass}">${item.jumlah}</span></td>
+                    <td class="py-3.5 px-4 ${item.tipe === 'priority' ? 'font-bold text-stone-900' : 'font-semibold text-stone-800'} text-base">${item.nama}</td>
+                    <td class="py-3.5 px-4 text-center"><span class="${qtyClass}">${item.jumlah}</span></td>
+                    <td class="py-3.5 px-4">${statusBadge}</td>
                 `;
 
                 tbody.appendChild(tr);
@@ -529,11 +493,7 @@
             });
         }
 
-        // Auto-refresh data secara real-time setiap 10 detik dari Google Sheet
-        window.onload = function() {
-            loadDashboardData();
-            setInterval(loadDashboardData, 10000); 
-        };
+        window.onload = loadDashboardData;
     </script>
 </body>
 </html>
