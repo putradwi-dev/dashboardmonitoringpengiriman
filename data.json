@@ -4,9 +4,23 @@
       "grup": "TOKOPEDIA MT 10/11/2026",
       "items": [
         {
-          "nama": "AB 108, AGATE 300, EXPO 37, AB 208",
+          "nama": "AB 108 | AGATE 300 | EXPO 37 | AB 208",
           "qty": 1,
           "no_pesanan": "587088632954193044",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false
+        }
+      ]
+    },
+    {
+      "grup": "TOKOPEDIA ADT 10/11/2026",
+      "items": [
+        {
+          "nama": "AIB 1,3L",
+          "qty": 6,
+          "no_pesanan": "587069611841324354",
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false,
@@ -32,20 +46,6 @@
           "no_pesanan": "261110VES6XYNH",
           "ekspedisi": "J&T",
           "kayu": false,
-          "terlambat": false,
-          "batal": false
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA ADT 10/11/2026",
-      "items": [
-        {
-          "nama": "AIB 1,3L",
-          "qty": 6,
-          "no_pesanan": "587069611841324354",
-          "ekspedisi": "J&T",
-          "kayu": true,
           "terlambat": false,
           "batal": false
         }
