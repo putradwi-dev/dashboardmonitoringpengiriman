@@ -122,6 +122,15 @@
         };
         let currentSha = "";
 
+        const STORE_OPTIONS = [
+            "TOKOPEDIA MT",
+            "TOKOPEDIA ADT",
+            "SHOPE MT",
+            "SHOPE ADT",
+            "SHOPE TANGSEL",
+            "OFFLINE"
+        ];
+
         window.onload = function() {
             document.getElementById('ghUsername').value = localStorage.getItem('mbp_gh_user') || '';
             document.getElementById('ghRepo').value = localStorage.getItem('mbp_gh_repo') || '';
@@ -198,6 +207,53 @@
             renderStok();
         }
 
+        // Helper untuk memisahkan teks grup lama (misal: "SHOPE MT 7/11/2026") menjadi nama toko dan tanggal (YYYY-MM-DD)
+        function parseGroupName(fullGrup) {
+            if (!fullGrup) return { store: "TOKOPEDIA MT", dateStr: new Date().toISOString().slice(0, 10) };
+            
+            // Cek apakah ada format tanggal di bagian belakang (DD/MM/YYYY atau D/M/YYYY atau standar)
+            // Contoh string: "SHOPE MT 7/11/2026" atau "OFFLINE"
+            let foundStore = STORE_OPTIONS.find(s => fullGrup.toUpperCase().startsWith(s));
+            if (!foundStore) {
+                // Jika tidak ditemukan persis, ambil kata pertama atau default
+                return { store: STORE_OPTIONS[0], dateStr: new Date().toISOString().slice(0, 10) };
+            }
+
+            let remainder = fullGrup.substring(foundStore.length).trim();
+            let dateStr = new Date().toISOString().slice(0, 10);
+
+            if (remainder) {
+                // Coba parse jika formatnya DD/MM/YYYY
+                let parts = remainder.split('/');
+                if (parts.length === 3) {
+                    let d = parts[0].padStart(2, '0');
+                    let m = parts[1].padStart(2, '0');
+                    let y = parts[2];
+                    dateStr = `${y}-${m}-${d}`;
+                }
+            }
+            return { store: foundStore, dateStr };
+        }
+
+        function updateGroupComposite(gIdx) {
+            const storeSelect = document.getElementById(`store_select_${gIdx}`);
+            const dateInput = document.getElementById(`date_input_${gIdx}`);
+            if (!storeSelect || !dateInput) return;
+
+            let storeName = storeSelect.value;
+            let dateVal = dateInput.value; // format: YYYY-MM-DD
+
+            if (dateVal) {
+                let parts = dateVal.split('-');
+                if (parts.length === 3) {
+                    let formattedDate = `${parseInt(parts[2])}/${parseInt(parts[1])}/${parts[0]}`;
+                    currentData.belum_kirim[gIdx].grup = `${storeName} ${formattedDate}`;
+                    return;
+                }
+            }
+            currentData.belum_kirim[gIdx].grup = storeName;
+        }
+
         function renderBelumKirim() {
             const container = document.getElementById('belumKirimContainer');
             container.innerHTML = '';
@@ -213,7 +269,6 @@
                     item.terlambat = !!item.terlambat;
                     item.batal = !!item.batal;
 
-                    // Logika Filter Pencarian Belum Kirim
                     const namaBarang = (item.nama || '').toLowerCase();
                     const noPesanan = (item.no_pesanan || '').toLowerCase();
                     const namaGrup = (group.grup || '').toLowerCase();
@@ -248,7 +303,7 @@
                                     <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
                                 </select>
                             </div>
-                            <!-- Checkbox Status (Kayu, Terlambat, MIB) -->
+                            <!-- Checkbox Status -->
                             <div class="sm:col-span-3 flex flex-wrap items-center justify-center gap-1.5 bg-[#faf7f2] px-2 py-2 rounded-lg border border-stone-200">
                                 <label class="flex items-center gap-0.5 text-[11px] font-bold text-stone-800 cursor-pointer">
                                     <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="w-3.5 h-3.5 rounded text-amber-800 focus:ring-amber-700"> Kayu
@@ -270,7 +325,11 @@
 
                 if (keyword !== '' && !hasVisibleItem) return;
 
-                const gDiv = document.createElement('div');
+                const parsed = parseGroupName(group.grup);
+
+                let storeOptionsHtml = STORE_OPTIONS.map(opt => `<option value="${opt}" ${parsed.store === opt ? 'selected' : ''}>${opt}</option>`).join('');
+
+                let gDiv = document.createElement('div');
                 gDiv.className = "bg-[#fdfbf7] p-4 rounded-xl border border-amber-200/80 space-y-3";
 
                 let moveButtons = '';
@@ -287,9 +346,14 @@
 
                 gDiv.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between pb-2 border-b border-amber-200/60 gap-2">
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2 flex-wrap">
                             <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
-                            <input type="text" value="${group.grup || ''}" onchange="updateGroupName(${gIdx}, this.value)" class="font-black text-amber-950 text-base sm:text-lg bg-white border border-amber-200 rounded-lg px-3 py-1.5 uppercase tracking-wide w-72 sm:w-96 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                            <!-- Dropdown Pilih Toko -->
+                            <select id="store_select_${gIdx}" onchange="updateGroupComposite(${gIdx})" class="font-bold text-amber-950 text-sm sm:text-base bg-white border border-amber-200 rounded-lg px-3 py-1.5 uppercase tracking-wide focus:ring-2 focus:ring-amber-800 focus:outline-none cursor-pointer">
+                                ${storeOptionsHtml}
+                            </select>
+                            <!-- Input Pilih Tanggal -->
+                            <input type="date" id="date_input_${gIdx}" value="${parsed.dateStr}" onchange="updateGroupComposite(${gIdx})" class="font-semibold text-stone-800 text-sm bg-white border border-amber-200 rounded-lg px-2.5 py-1.5 focus:ring-2 focus:ring-amber-800 focus:outline-none cursor-pointer">
                             ${moveButtons}
                         </div>
                         <div class="flex items-center gap-2">
@@ -348,7 +412,6 @@
             });
         }
 
-        function updateGroupName(gIdx, val) { currentData.belum_kirim[gIdx].grup = val; }
         function updateItemName(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].nama = val; }
         function updateItemQty(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].qty = Number(val) || 1; }
         function updateItemNo(gIdx, iIdx, val) { 
@@ -401,8 +464,15 @@
         
         function addBelumKirimGroup() {
             if (!currentData.belum_kirim) currentData.belum_kirim = [];
+            
+            // Format default tanggal hari ini (DD/MM/YYYY)
+            let today = new Date();
+            let d = today.getDate();
+            let m = today.getMonth() + 1;
+            let y = today.getFullYear();
+
             currentData.belum_kirim.push({ 
-                grup: "GRUP BARU", 
+                grup: `TOKOPEDIA MT ${d}/${m}/${y}`, 
                 items: [
                     { nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false }
                 ] 
@@ -475,7 +545,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Change Batal label to MIB (Malam Ini Batal)",
+                    message: "Update store options and group dates",
                     content: contentBase64,
                     sha: currentSha
                 };
