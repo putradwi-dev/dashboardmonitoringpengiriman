@@ -128,7 +128,7 @@
                             </div>
                         </div>
                         <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
-                            Stok Di Gudang MBG (Realtime Sheets)
+                            Stok Di Gudang MBG
                         </span>
                     </div>
 
@@ -138,13 +138,12 @@
                                 <thead>
                                     <tr class="bg-[#faf7f2] border-b border-amber-100 text-stone-700 text-sm uppercase tracking-wider">
                                         <th class="py-4 px-4 font-bold">Nama Barang</th>
-                                        <th class="py-4 px-6 font-bold text-center w-40 whitespace-nowrap">Stok Awal</th>
-                                        <th class="py-4 px-6 font-bold text-center w-40 whitespace-nowrap">Stok Keluar</th>
-                                        <th class="py-4 px-6 font-bold text-center w-40 whitespace-nowrap">Saldo</th>
+                                        <th class="py-4 px-4 font-bold text-center w-32">QTY</th>
+                                        <th class="py-4 px-4 font-bold">Status / Catatan</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody-stok-tangerang" class="divide-y divide-amber-50 text-base">
-                                    <!-- Data Stok Dimuat dari Google Sheets -->
+                                    <!-- Data Stok Dimuat dari JSON -->
                                 </tbody>
                             </table>
                         </div>
@@ -212,28 +211,14 @@
 
         async function loadDashboardData() {
             try {
-                // 1. Ambil data pesanan dari GitHub (data.json)
-                const responseJson = await fetch('data.json?v=' + new Date().getTime());
-                const data = await responseJson.json();
-
-                // 2. Ambil data stok secara real-time dari Google Sheets (Apps Script Web App)
-                const sheetApiUrl = 'https://script.google.com/macros/s/AKfycbzubZMKxaNS89ROsbayuHtDugIWjAf2GESShZWA5N8uWmZgrmKSwk-6-xDnE02b9/exec?target=dashboard';
-                
-                let stokTangerangData = [];
-                try {
-                    const responseSheet = await fetch(sheetApiUrl);
-                    const sheetData = await responseSheet.json();
-                    stokTangerangData = sheetData.stok_tangerang || [];
-                } catch (sheetErr) {
-                    console.error("Gagal mengambil data dari Google Sheets, menggunakan data cadangan:", sheetErr);
-                    stokTangerangData = data.stok_tangerang || [];
-                }
+                const response = await fetch('data.json?v=' + new Date().getTime());
+                const data = await response.json();
 
                 renderBelumKirim(data.belum_kirim || []);
-                renderStokTangerang(stokTangerangData);
+                renderStokTangerang(data.stok_tangerang || []);
                 updateStatistics(data);
             } catch (error) {
-                console.error("Gagal memuat data dashboard:", error);
+                console.error("Gagal memuat data.json:", error);
             }
         }
 
@@ -354,30 +339,43 @@
             });
         }
 
-      function renderStokTangerang(items) {
-    const tbody = document.getElementById('tbody-stok-tangerang');
-    tbody.innerHTML = '';
+        function renderStokTangerang(items) {
+            const tbody = document.getElementById('tbody-stok-tangerang');
+            tbody.innerHTML = '';
 
-    items.forEach(item => {
-        const searchStr = `${item.nama}`.toLowerCase();
+            items.forEach(item => {
+                let statusBadge = `<span class="text-stone-400 font-mono text-sm">-</span>`;
+                let rowBgClass = 'hover:bg-sky-100 transition-colors cursor-pointer';
+                let qtyClass = 'bg-stone-100 px-3.5 py-1 rounded-lg font-bold text-stone-800 text-base inline-block';
 
-        const tr = document.createElement('tr');
-        tr.className = `item-row hover:bg-sky-100 transition-colors cursor-pointer`;
-        tr.setAttribute('data-search', searchStr);
+                if (item.tipe === 'warning') {
+                    statusBadge = `<span class="text-red-700 font-bold bg-red-50 px-3 py-1 rounded-md text-sm border border-red-200">${item.catatan && item.catatan !== '-' ? item.catatan : '🛠️ Perlu di perbaiki'}</span>`;
+                } else if (item.tipe === 'priority') {
+                    statusBadge = `<span class="text-amber-900 font-extrabold bg-amber-100/90 px-3 py-1 rounded-md text-sm border border-amber-300">${item.catatan && item.catatan !== '-' ? item.catatan : '🔥 Utamakan habiskan ini'}</span>`;
+                    rowBgClass = 'hover:bg-sky-100 transition-colors bg-amber-50/30 cursor-pointer';
+                    qtyClass = 'bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200';
+                } else {
+                    if (item.catatan && item.catatan.trim() !== '' && item.catatan.trim() !== '-') {
+                        statusBadge = `<span class="text-stone-800 font-semibold bg-stone-100 px-3 py-1 rounded-md text-sm border border-stone-200">${item.catatan}</span>`;
+                    }
+                }
 
-        let valAwal = (item.stok_awal !== undefined && item.stok_awal !== "" && item.stok_awal !== 0) ? item.stok_awal : '-';
-        let valKeluar = (item.stok_keluar !== undefined && item.stok_keluar !== "" && item.stok_keluar !== 0) ? item.stok_keluar : '-';
+                const searchStr = `${item.nama} ${item.catatan || ''}`.toLowerCase();
 
-        tr.innerHTML = `
-            <td class="py-3.5 px-4 font-semibold text-stone-800 text-base">${item.nama}</td>
-            <td class="py-3.5 px-6 text-center"><span class="bg-stone-100 px-4 py-1.5 rounded-lg font-bold text-stone-800 text-sm inline-block">${valAwal}</span></td>
-            <td class="py-3.5 px-6 text-center"><span class="bg-stone-100 px-4 py-1.5 rounded-lg font-bold text-stone-800 text-sm inline-block">${valKeluar}</span></td>
-            <td class="py-3.5 px-6 text-center"><span class="bg-amber-100 text-amber-900 px-4 py-1.5 rounded-lg font-extrabold text-base inline-block border border-amber-200">${item.jumlah}</span></td>
-        `;
+                const tr = document.createElement('tr');
+                tr.className = `item-row ${rowBgClass}`;
+                tr.setAttribute('data-search', searchStr);
 
-        tbody.appendChild(tr);
-    });
-}
+                tr.innerHTML = `
+                    <td class="py-3.5 px-4 ${item.tipe === 'priority' ? 'font-bold text-stone-900' : 'font-semibold text-stone-800'} text-base">${item.nama}</td>
+                    <td class="py-3.5 px-4 text-center"><span class="${qtyClass}">${item.jumlah}</span></td>
+                    <td class="py-3.5 px-4">${statusBadge}</td>
+                `;
+
+                tbody.appendChild(tr);
+            });
+        }
+
         function updateStatistics(data) {
             let totalPesanan = 0;
             let totalKayu = 0;
