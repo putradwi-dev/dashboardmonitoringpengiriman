@@ -129,10 +129,25 @@
       "grup": "SHOPE ADT 10/11/2026",
       "items": [
         {
-          "nama": "URC 1200",
+          "nama": "GEA URC 1200",
           "qty": 1,
           "no_pesanan": "261110W0WWA2JE",
           "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE ADT 11/11/2026",
+      "items": [
+        {
+          "nama": "RFL 12GD & XCC 180",
+          "qty": 1,
+          "no_pesanan": "261110043PFF1R",
+          "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false,
           "batal": false,
