@@ -27,6 +27,16 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": ""
+        },
+        {
+          "nama": "SJ 8503 & SJ 8564B",
+          "qty": 1,
+          "no_pesanan": "587111033694881618",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
         }
       ]
     },
