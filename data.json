@@ -112,6 +112,46 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": ""
+        },
+        {
+          "nama": "DH 10",
+          "qty": 1,
+          "no_pesanan": "11/12/2026",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "SH 8600E",
+          "qty": 1,
+          "no_pesanan": "26111132QFY4WS",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "26111132R519YY",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "CF 110",
+          "qty": 1,
+          "no_pesanan": "26111132T3WGA5",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
         }
       ]
     },
