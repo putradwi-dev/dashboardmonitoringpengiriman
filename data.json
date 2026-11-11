@@ -47,6 +47,16 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": ""
+        },
+        {
+          "nama": "2P HITAM",
+          "qty": 1,
+          "no_pesanan": "587119229958522404",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
         }
       ]
     },
