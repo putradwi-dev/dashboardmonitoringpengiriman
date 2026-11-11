@@ -231,6 +231,51 @@
       ]
     },
     {
+      "grup": "SHOPE MT 12/11/2026",
+      "items": [
+        {
+          "nama": "SF 400",
+          "qty": 1,
+          "no_pesanan": "2611112Q9UDDUF",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "RFL 12GD",
+          "qty": 1,
+          "no_pesanan": "2611112QA226KC",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "CF 110",
+          "qty": 1,
+          "no_pesanan": "2611112RW5K43C",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "CF 210",
+          "qty": 1,
+          "no_pesanan": "2611112S7N934C",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        }
+      ]
+    },
+    {
       "grup": "SHOPE ADT 10/11/2026",
       "items": [
         {
@@ -336,7 +381,7 @@
     },
     {
       "nama": "CF 110 RSA",
-      "jumlah": 3,
+      "jumlah": 2,
       "catatan": "PO.2026.10.00132",
       "tipe": "normal"
     },
@@ -408,7 +453,7 @@
     },
     {
       "nama": "CF 210 RSA",
-      "jumlah": 7,
+      "jumlah": 6,
       "catatan": "PO.2026.11.00019",
       "tipe": "normal"
     },
