@@ -245,12 +245,13 @@
                     let badgeEkspedisi = `<span class="bg-stone-100 text-stone-800 px-2.5 py-1 rounded-md text-xs sm:text-sm font-bold uppercase border border-stone-200 whitespace-nowrap inline-block">${item.ekspedisi}</span>`;
                     
                     if (ekspedisiClean.includes('JNE')) {
-                        // Menggunakan Logo JNE Trucking / JNE Express resmi
-                        badgeEkspedisi = `<img src="https://upload.wikimedia.org/wikipedia/commons/9/92/Logo_JNE.svg" alt="JNE Trucking" class="h-6 w-auto inline-block object-contain" title="JNE Trucking">`;
+                        // Desain badge khusus JNE Trucking (Biru Tegas & Elegan)
+                        badgeEkspedisi = `<span class="bg-blue-600 text-white px-2.5 py-1 rounded-md text-xs sm:text-sm font-extrabold tracking-wider uppercase shadow-sm whitespace-nowrap inline-block">🚚 JNE TRUCKING</span>`;
                     } else if (ekspedisiClean.includes('J&T')) {
-                        // Menggunakan Logo J&T Cargo / J&T Express resmi
-                        badgeEkspedisi = `<img src="https://upload.wikimedia.org/wikipedia/commons/b/b3/Logo_J%26T_Express.svg" alt="J&T Cargo" class="h-6 w-auto inline-block object-contain" title="J&T Cargo">`;
+                        // Desain badge khusus J&T Cargo (Hijau Tegas & Elegan)
+                        badgeEkspedisi = `<span class="bg-emerald-600 text-white px-2.5 py-1 rounded-md text-xs sm:text-sm font-extrabold tracking-wider uppercase shadow-sm whitespace-nowrap inline-block">📦 J&T CARGO</span>`;
                     } else if (ekspedisiClean.includes('KURIR TOKO')) {
+                        // Desain badge khusus Kurir Toko (Kemerahan)
                         badgeEkspedisi = `<span class="bg-rose-50 text-rose-700 px-2.5 py-1 rounded-md text-xs sm:text-sm font-bold uppercase border border-rose-200 whitespace-nowrap inline-block">${item.ekspedisi}</span>`;
                     }
 
@@ -487,6 +488,8 @@
                     row.style.display = '';
                 } else if (type === 'terlambat') {
                     row.style.display = isTerlambat ? '' : 'none';
+                } else if (type === 'kayu') {
+                    row.style.display = isIsKayuMatch(isKayu); // helper
                 } else if (type === 'kayu') {
                     row.style.display = isKayu ? '' : 'none';
                 } else if (type === 'batal') {
