@@ -139,41 +139,11 @@
           "catatan_manual": ""
         },
         {
-          "nama": "AB 318",
-          "qty": 1,
-          "no_pesanan": "2611111DRGPUNB",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        },
-        {
           "nama": "RT 68L 3",
           "qty": 1,
           "no_pesanan": "2611111EUGA8J9",
           "ekspedisi": "JNE",
           "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        },
-        {
-          "nama": "DH 10",
-          "qty": 1,
-          "no_pesanan": "2611111MG3K9B3",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        },
-        {
-          "nama": "BH15C",
-          "qty": 1,
-          "no_pesanan": "2611111RDDSPFY",
-          "ekspedisi": "J&T",
-          "kayu": false,
           "terlambat": false,
           "batal": false,
           "catatan_manual": ""
