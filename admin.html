@@ -249,6 +249,17 @@
             currentData.belum_kirim[gIdx].grup = storeName;
         }
 
+        // Fungsi mencocokkan barang pesanan dengan daftar Stok Titipan
+        function findStokTitipanMatch(namaBarangInput) {
+            if (!namaBarangInput || namaBarangInput.trim().length < 2) return null;
+            const inputClean = namaBarangInput.trim().toLowerCase();
+
+            return (currentData.stok_tangerang || []).find(stok => {
+                const stokNameClean = (stok.nama || '').trim().toLowerCase();
+                return stokNameClean.includes(inputClean) || inputClean.includes(stokNameClean);
+            });
+        }
+
         function renderBelumKirim() {
             const container = document.getElementById('belumKirimContainer');
             container.innerHTML = '';
@@ -278,48 +289,65 @@
 
                     const displayStyle = isMatch ? '' : 'display: none;';
 
+                    // Cek apakah ada barang yang cocok di stok titipan
+                    const matchedStok = findStokTitipanMatch(item.nama);
+                    let stokAlertBadge = '';
+                    if (matchedStok) {
+                        stokAlertBadge = `
+                            <div class="mt-1 flex items-center justify-between bg-amber-100/90 text-amber-900 border border-amber-300 px-2.5 py-1 rounded-lg text-xs font-bold">
+                                <span>📦 Ditemukan di Stok Titipan: <strong>${matchedStok.nama}</strong> (Tersedia: ${matchedStok.jumlah})</span>
+                                <button onclick="kurangiStokTitipanOtomatis('${matchedStok.nama}', ${item.qty || 1})" class="bg-amber-800 hover:bg-amber-900 text-white px-2 py-0.5 rounded text-[11px] font-bold transition-all ml-2">
+                                    Potong Stok (-${item.qty || 1})
+                                </button>
+                            </div>
+                        `;
+                    }
+
                     itemsHtml += `
-                        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
-                            <div class="sm:col-span-3">
-                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Nama Barang</label>
-                                <input type="text" value="${item.nama || ''}" onchange="updateItemName(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
-                            </div>
-                            <div class="sm:col-span-1">
-                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">QTY</label>
-                                <input type="number" min="1" value="${item.qty !== undefined ? item.qty : 1}" onchange="updateItemQty(${gIdx}, ${iIdx}, this.value)" placeholder="Qty" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-sm sm:text-base font-extrabold text-center text-stone-900 focus:ring-2 focus:ring-amber-800 focus:outline-none">
-                            </div>
-                            <div class="sm:col-span-3">
-                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">No. Pesanan</label>
-                                <input type="text" id="no_pesanan_${gIdx}_${iIdx}" value="${item.no_pesanan || ''}" oninput="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-mono font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
-                            </div>
-                            <div class="sm:col-span-1">
-                                <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Ekspedisi</label>
-                                <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-xs sm:text-sm font-extrabold text-stone-900 cursor-pointer focus:ring-2 focus:ring-amber-800 focus:outline-none">
-                                    <option value="JNE" ${item.ekspedisi === 'JNE' ? 'selected' : ''}>JNE</option>
-                                    <option value="J&T" ${item.ekspedisi === 'J&T' ? 'selected' : ''}>J&T</option>
-                                    <option value="KURIR TOKO" ${item.ekspedisi === 'KURIR TOKO' ? 'selected' : ''}>KURIR TOKO</option>
-                                    <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT','KURIR TOKO'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
-                                </select>
-                            </div>
-                            <!-- Checkbox Status & Catatan Manual -->
-                            <div class="sm:col-span-3 flex flex-col gap-1.5 bg-[#faf7f2] px-2.5 py-2 rounded-lg border border-stone-200">
-                                <div class="flex flex-wrap items-center justify-center gap-2">
-                                    <label class="flex items-center gap-0.5 text-[11px] font-bold text-stone-800 cursor-pointer">
-                                        <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="w-3.5 h-3.5 rounded text-amber-800 focus:ring-amber-700"> Kayu
-                                    </label>
-                                    <label class="flex items-center gap-0.5 text-[11px] font-bold text-red-700 cursor-pointer">
-                                        <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="w-3.5 h-3.5 rounded text-red-600 focus:ring-red-600"> Terlambat
-                                    </label>
-                                    <label class="flex items-center gap-0.5 text-[11px] font-bold text-orange-700 cursor-pointer" title="Malam Ini Batal">
-                                        <input type="checkbox" ${item.batal ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'batal', this.checked)" class="w-3.5 h-3.5 rounded text-orange-600 focus:ring-orange-600"> MIB
-                                    </label>
+                        <div class="space-y-1.5 bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
+                            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center">
+                                <div class="sm:col-span-3">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Nama Barang</label>
+                                    <input type="text" value="${item.nama || ''}" onchange="updateItemNameWithStokCheck(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                                 </div>
-                                <input type="text" value="${item.catatan_manual}" onchange="updateItemCatatanManual(${gIdx}, ${iIdx}, this.value)" placeholder="Catatan manual khusus..." class="w-full bg-white border border-stone-300 rounded px-2 py-1 text-xs text-stone-800 focus:ring-1 focus:ring-amber-800 focus:outline-none">
+                                <div class="sm:col-span-1">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">QTY</label>
+                                    <input type="number" min="1" value="${item.qty !== undefined ? item.qty : 1}" onchange="updateItemQty(${gIdx}, ${iIdx}, this.value)" placeholder="Qty" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-sm sm:text-base font-extrabold text-center text-stone-900 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                                </div>
+                                <div class="sm:col-span-3">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">No. Pesanan</label>
+                                    <input type="text" id="no_pesanan_${gIdx}_${iIdx}" value="${item.no_pesanan || ''}" oninput="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-mono font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                                </div>
+                                <div class="sm:col-span-1">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Ekspedisi</label>
+                                    <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-xs sm:text-sm font-extrabold text-stone-900 cursor-pointer focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                                        <option value="JNE" ${item.ekspedisi === 'JNE' ? 'selected' : ''}>JNE</option>
+                                        <option value="J&T" ${item.ekspedisi === 'J&T' ? 'selected' : ''}>J&T</option>
+                                        <option value="KURIR TOKO" ${item.ekspedisi === 'KURIR TOKO' ? 'selected' : ''}>KURIR TOKO</option>
+                                        <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT','KURIR TOKO'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
+                                    </select>
+                                </div>
+                                <!-- Checkbox Status & Catatan Manual -->
+                                <div class="sm:col-span-3 flex flex-col gap-1.5 bg-[#faf7f2] px-2.5 py-2 rounded-lg border border-stone-200">
+                                    <div class="flex flex-wrap items-center justify-center gap-2">
+                                        <label class="flex items-center gap-0.5 text-[11px] font-bold text-stone-800 cursor-pointer">
+                                            <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="w-3.5 h-3.5 rounded text-amber-800 focus:ring-amber-700"> Kayu
+                                        </label>
+                                        <label class="flex items-center gap-0.5 text-[11px] font-bold text-red-700 cursor-pointer">
+                                            <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="w-3.5 h-3.5 rounded text-red-600 focus:ring-red-600"> Terlambat
+                                        </label>
+                                        <label class="flex items-center gap-0.5 text-[11px] font-bold text-orange-700 cursor-pointer" title="Malam Ini Batal">
+                                            <input type="checkbox" ${item.batal ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'batal', this.checked)" class="w-3.5 h-3.5 rounded text-orange-600 focus:ring-orange-600"> MIB
+                                        </label>
+                                    </div>
+                                    <input type="text" value="${item.catatan_manual}" onchange="updateItemCatatanManual(${gIdx}, ${iIdx}, this.value)" placeholder="Catatan manual khusus..." class="w-full bg-white border border-stone-300 rounded px-2 py-1 text-xs text-stone-800 focus:ring-1 focus:ring-amber-800 focus:outline-none">
+                                </div>
+                                <!-- Tombol Hapus -->
+                                <div class="sm:col-span-1 text-center">
+                                    <button onclick="confirmDeleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs sm:text-sm font-bold px-2 py-2 rounded-lg border border-red-200 transition-all w-full shadow-sm">Hapus</button>
+                                </div>
                             </div>
-                            <!-- Tombol Hapus -->
-                            <div class="sm:col-span-1 text-center">
-                                <button onclick="confirmDeleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs sm:text-sm font-bold px-2 py-2 rounded-lg border border-red-200 transition-all w-full shadow-sm">Hapus</button>
-                            </div>
+                            ${stokAlertBadge}
                         </div>
                     `;
                 });
@@ -410,16 +438,69 @@
             });
         }
 
-        function updateItemName(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].nama = val; }
-        function updateItemQty(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].qty = Number(val) || 1; }
+        function updateItemName(gIdx, iIdx, val) { 
+            currentData.belum_kirim[gIdx].items[iIdx].nama = val; 
+        }
+
+        // Fungsi memperbarui nama barang + pemicu pop-up pengingat stok titipan
+        function updateItemNameWithStokCheck(gIdx, iIdx, val) {
+            updateItemName(gIdx, iIdx, val);
+
+            const item = currentData.belum_kirim[gIdx].items[iIdx];
+            const qtyOrder = item.qty || 1;
+            const matchedStok = findStokTitipanMatch(val);
+
+            if (matchedStok) {
+                setTimeout(() => {
+                    const confirmKurang = confirm(
+                        `⚠️ PENGINGAT STOK TITIPAN:\n\n` +
+                        `Barang "${val}" terdeteksi ada di Stok Titipan Gudang ("${matchedStok.nama}" dengan sisa stok: ${matchedStok.jumlah}).\n\n` +
+                        `Apakah Anda ingin otomatis memotong Stok Titipan sebanyak ${qtyOrder} item?`
+                    );
+
+                    if (confirmKurang) {
+                        kurangiStokTitipanOtomatis(matchedStok.nama, qtyOrder);
+                    } else {
+                        renderAllForms();
+                    }
+                }, 100);
+            } else {
+                renderAllForms();
+            }
+        }
+
+        // Fungsi memotong QTY atau menghapus stok titipan secara otomatis
+        function kurangiStokTitipanOtomatis(stokNama, qtyPotong) {
+            const idx = (currentData.stok_tangerang || []).findIndex(s => (s.nama || '').trim().toLowerCase() === stokNama.trim().toLowerCase());
+            if (idx !== -1) {
+                const sisa = currentData.stok_tangerang[idx].jumlah - qtyPotong;
+                if (sisa <= 0) {
+                    alert(`✓ Stok titipan "${currentData.stok_tangerang[idx].nama}" telah habis dan otomatis dihapus dari daftar stok.`);
+                    currentData.stok_tangerang.splice(idx, 1);
+                } else {
+                    currentData.stok_tangerang[idx].jumlah = sisa;
+                    alert(`✓ Stok titipan "${currentData.stok_tangerang[idx].nama}" berhasil dipotong ${qtyPotong}. Sisa stok sekarang: ${sisa}`);
+                }
+                renderAllForms();
+            }
+        }
+
+        function updateItemQty(gIdx, iIdx, val) { 
+            currentData.belum_kirim[gIdx].items[iIdx].qty = Number(val) || 1; 
+            renderBelumKirim();
+        }
+
         function updateItemNo(gIdx, iIdx, val) { 
             currentData.belum_kirim[gIdx].items[iIdx].no_pesanan = val; 
             checkDuplicates();
         }
+
         function updateItemExp(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].ekspedisi = val; }
+        
         function updateItemStatusCheckbox(gIdx, iIdx, field, isChecked) {
             currentData.belum_kirim[gIdx].items[iIdx][field] = isChecked;
         }
+
         function updateItemCatatanManual(gIdx, iIdx, val) {
             currentData.belum_kirim[gIdx].items[iIdx].catatan_manual = val;
         }
@@ -544,7 +625,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Add KURIR TOKO to expedition options",
+                    message: "Update stok titipan auto check and deduct feature",
                     content: contentBase64,
                     sha: currentSha
                 };
