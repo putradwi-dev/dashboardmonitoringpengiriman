@@ -60,14 +60,9 @@
                 <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base sm:text-lg">
                     2. Data Stok Tangerang Titip di PT. MBG
                 </h2>
-                <div class="flex items-center gap-2">
-                    <button onclick="openPasteStokModal()" class="bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-300 font-bold px-3.5 py-2 rounded-lg text-xs sm:text-sm transition-all flex items-center gap-1.5">
-                        📋 Paste dari Sheet
-                    </button>
-                    <button onclick="addStokItem()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold px-3.5 py-2 rounded-lg text-xs sm:text-sm transition-all">
-                        + Barang & Stok
-                    </button>
-                </div>
+                <button onclick="addStokItem()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold px-3.5 py-2 rounded-lg text-xs sm:text-sm transition-all">
+                    + Barang & Stok
+                </button>
             </div>
 
             <div class="overflow-x-auto rounded-xl border border-amber-100">
@@ -118,38 +113,6 @@
             </div>
         </div>
     </main>
-
-    <!-- MODAL IMPORT/PASTE DATA STOK DARI SHEET -->
-    <div id="pasteStokModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden">
-        <div class="bg-white w-full max-w-xl rounded-2xl p-6 shadow-2xl space-y-4 relative border border-amber-100">
-            <button onclick="closePasteStokModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600 text-lg font-bold">✕</button>
-            <div class="flex items-center gap-3">
-                <div class="p-2.5 bg-blue-100 text-blue-800 rounded-xl text-xl">📋</div>
-                <div>
-                    <h3 class="font-bold text-stone-800 text-lg">Paste Data Stok dari Google Sheets</h3>
-                    <p class="text-xs text-stone-500">Copy tabel dari Sheet (Nama Barang, Stok Awal, Out, Saldo), lalu paste di bawah ini.</p>
-                </div>
-            </div>
-
-            <div class="space-y-2">
-                <textarea id="pasteStokInput" rows="7" placeholder="Contoh hasil copy dari Sheet:
-DH 3P GOMESIN	1
-WK 120 GETRA	10	8	2
-LOYANG 3CM GOMESIN	100	58	42" class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl p-3 text-xs font-mono text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none"></textarea>
-            </div>
-
-            <div class="flex items-center justify-between pt-2">
-                <label class="flex items-center gap-2 text-xs font-semibold text-stone-700 cursor-pointer">
-                    <input type="checkbox" id="replaceExistingStok" checked class="w-4 h-4 text-amber-800 rounded">
-                    Gantikan seluruh stok yang ada sekarang
-                </label>
-                <div class="flex gap-2">
-                    <button onclick="closePasteStokModal()" class="px-4 py-2 bg-stone-100 hover:bg-stone-200 text-stone-700 rounded-lg text-xs font-bold">Batal</button>
-                    <button onclick="processPastedStok()" class="px-4 py-2 bg-blue-700 hover:bg-blue-800 text-white rounded-lg text-xs font-bold shadow-sm">Terapkan Data</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Global State Data -->
     <script>
@@ -565,85 +528,6 @@ LOYANG 3CM GOMESIN	100	58	42" class="w-full bg-[#faf7f2] border border-amber-200
             }
         }
 
-        // FUNGSIONALITAS IMPORT PASTE DARI SHEET
-        function openPasteStokModal() {
-            document.getElementById('pasteStokInput').value = '';
-            document.getElementById('pasteStokModal').classList.remove('hidden');
-        }
-
-        function closePasteStokModal() {
-            document.getElementById('pasteStokModal').classList.add('hidden');
-        }
-
-        function processPastedStok() {
-            const rawText = document.getElementById('pasteStokInput').value.trim();
-            if (!rawText) {
-                alert("Silakan paste/tempel data dari tabel Sheet terlebih dahulu.");
-                return;
-            }
-
-            const replaceExisting = document.getElementById('replaceExistingStok').checked;
-            const lines = rawText.split('\n');
-            const newStokItems = [];
-
-            lines.forEach(line => {
-                // Split berdasarkan tab (\t) dari copy-paste Excel/Sheets
-                let cols = line.split('\t').map(c => c.trim()).filter(c => c !== '');
-                if (cols.length === 0) return;
-
-                // Abaikan jika baris tersebut adalah Header tabel
-                const firstColUpper = cols[0].toUpperCase();
-                if (firstColUpper === 'NO' || firstColUpper === 'BARANG' || firstColUpper.includes('TITIP DI')) return;
-
-                let namaBarang = "";
-                let qty = 1;
-
-                // Jika kolom pertama angka (nomor urut)
-                if (!isNaN(cols[0]) && cols.length >= 2) {
-                    namaBarang = cols[1];
-                    // Saldo biasanya ada di kolom terakhir (kolom 5 / index 4) atau kolom ke-2 angka
-                    let numbers = cols.filter(c => !isNaN(c));
-                    if (numbers.length > 0) {
-                        qty = Number(numbers[numbers.length - 1]);
-                    }
-                } else {
-                    namaBarang = cols[0];
-                    // Cari angka saldo terakhir pada baris
-                    for (let i = cols.length - 1; i >= 1; i--) {
-                        if (!isNaN(cols[i])) {
-                            qty = Number(cols[i]);
-                            break;
-                        }
-                    }
-                }
-
-                if (namaBarang !== "") {
-                    newStokItems.push({
-                        nama: namaBarang,
-                        jumlah: qty,
-                        catatan: "-",
-                        tipe: "normal"
-                    });
-                }
-            });
-
-            if (newStokItems.length === 0) {
-                alert("Gagal membaca data baris. Pastikan Anda melakukan copy dari tabel Excel/Google Sheet.");
-                return;
-            }
-
-            if (replaceExisting) {
-                currentData.stok_tangerang = newStokItems;
-            } else {
-                if (!currentData.stok_tangerang) currentData.stok_tangerang = [];
-                currentData.stok_tangerang.push(...newStokItems);
-            }
-
-            renderStok();
-            closePasteStokModal();
-            alert(`✓ Berhasil memuat ${newStokItems.length} barang stok dari Sheet! Jangan lupa klik SIMPAN & UPDATE.`);
-        }
-
         async function saveToGitHub() {
             const user = localStorage.getItem('mbp_gh_user');
             const repo = localStorage.getItem('mbp_gh_repo');
@@ -660,7 +544,7 @@ LOYANG 3CM GOMESIN	100	58	42" class="w-full bg-[#faf7f2] border border-amber-200
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Update stok tangerang data via admin panel",
+                    message: "Add KURIR TOKO to expedition options",
                     content: contentBase64,
                     sha: currentSha
                 };
