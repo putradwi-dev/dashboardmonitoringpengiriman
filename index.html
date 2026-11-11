@@ -245,13 +245,12 @@
                     let badgeEkspedisi = `<span class="bg-stone-100 text-stone-800 px-2.5 py-1 rounded-md text-xs sm:text-sm font-bold uppercase border border-stone-200 whitespace-nowrap inline-block">${item.ekspedisi}</span>`;
                     
                     if (ekspedisiClean.includes('JNE')) {
-                        // Desain badge khusus JNE Trucking (Biru Tegas & Elegan)
-                        badgeEkspedisi = `<span class="bg-blue-600 text-white px-2.5 py-1 rounded-md text-xs sm:text-sm font-extrabold tracking-wider uppercase shadow-sm whitespace-nowrap inline-block">🚚 JNE TRUCKING</span>`;
+                        // Logo JNE Express (proporsional pas di kolom)
+                        badgeEkspedisi = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/jne.png" alt="JNE Express" class="h-6 w-auto max-w-[95px] inline-block object-contain" title="JNE Express" onerror="this.onerror=null; this.src='https://images.zonalogo.com/uploads/images/jne-logo-colored-618x256.png';">`;
                     } else if (ekspedisiClean.includes('J&T')) {
-                        // Desain badge khusus J&T Cargo (Hijau Tegas & Elegan)
-                        badgeEkspedisi = `<span class="bg-emerald-600 text-white px-2.5 py-1 rounded-md text-xs sm:text-sm font-extrabold tracking-wider uppercase shadow-sm whitespace-nowrap inline-block">📦 J&T CARGO</span>`;
+                        // Logo J&T Cargo (proporsional pas di kolom)
+                        badgeEkspedisi = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/jntcargo.png" alt="J&T Cargo" class="h-6 w-auto max-w-[95px] inline-block object-contain" title="J&T Cargo" onerror="this.onerror=null; this.src='https://images.zonalogo.com/uploads/images/jt-cargo-logo-colored-557x128.png';">`;
                     } else if (ekspedisiClean.includes('KURIR TOKO')) {
-                        // Desain badge khusus Kurir Toko (Kemerahan)
                         badgeEkspedisi = `<span class="bg-rose-50 text-rose-700 px-2.5 py-1 rounded-md text-xs sm:text-sm font-bold uppercase border border-rose-200 whitespace-nowrap inline-block">${item.ekspedisi}</span>`;
                     }
 
@@ -443,7 +442,7 @@
                 btn.innerText = "🖼️ Download Laporan sebagai Gambar (PNG)";
                 btn.disabled = false;
                 closeShareModal();
-            }).catch(err => {
+            }).catch_err => {
                 console.error("Gagal membuat gambar:", err);
                 alert("Gagal mengunduh gambar. Silakan coba lagi.");
                 btn.innerText = "🖼️ Download Laporan sebagai Gambar (PNG)";
@@ -488,8 +487,6 @@
                     row.style.display = '';
                 } else if (type === 'terlambat') {
                     row.style.display = isTerlambat ? '' : 'none';
-                } else if (type === 'kayu') {
-                    row.style.display = isIsKayuMatch(isKayu); // helper
                 } else if (type === 'kayu') {
                     row.style.display = isKayu ? '' : 'none';
                 } else if (type === 'batal') {
