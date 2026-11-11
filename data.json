@@ -172,6 +172,16 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": ""
+        },
+        {
+          "nama": "FJ 15GC",
+          "qty": 1,
+          "no_pesanan": "26111129XJHSQ5",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
         }
       ]
     },
