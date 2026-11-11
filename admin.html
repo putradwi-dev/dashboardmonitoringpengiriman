@@ -44,9 +44,14 @@
                 <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base sm:text-lg">
                     1. Data Pesanan Belum Kirim
                 </h2>
-                <button onclick="addBelumKirimGroup()" class="bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3.5 py-2 rounded-lg text-xs sm:text-sm transition-all">
-                    + E-Commerce Baru
-                </button>
+                <div class="flex items-center gap-2">
+                    <button onclick="markAllExistingAsStockDeducted()" class="bg-stone-100 hover:bg-stone-200 text-stone-700 border border-stone-300 font-bold px-3.5 py-2 rounded-lg text-xs transition-all" title="Menandai semua pesanan yang ada saat ini sebagai sudah potong stok">
+                        ✓ Tandai Semua Sudah Potong Stok
+                    </button>
+                    <button onclick="addBelumKirimGroup()" class="bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3.5 py-2 rounded-lg text-xs sm:text-sm transition-all">
+                        + E-Commerce Baru
+                    </button>
+                </div>
             </div>
 
             <div id="belumKirimContainer" class="space-y-6">
@@ -249,7 +254,6 @@
             currentData.belum_kirim[gIdx].grup = storeName;
         }
 
-        // Fungsi mencocokkan barang pesanan dengan daftar Stok Titipan
         function findStokTitipanMatch(namaBarangInput) {
             if (!namaBarangInput || namaBarangInput.trim().length < 2) return null;
             const inputClean = namaBarangInput.trim().toLowerCase();
@@ -258,6 +262,19 @@
                 const stokNameClean = (stok.nama || '').trim().toLowerCase();
                 return stokNameClean.includes(inputClean) || inputClean.includes(stokNameClean);
             });
+        }
+
+        // Tombol pintasan untuk menandai semua pesanan yang sudah ada agar tidak muncul notifikasi potong stok
+        function markAllExistingAsStockDeducted() {
+            if (confirm("Tandai semua pesanan yang ada saat ini sebagai 'Sudah Potong Stok'? (Notifikasi kuning untuk data lama akan hilang)")) {
+                (currentData.belum_kirim || []).forEach(group => {
+                    (group.items || []).forEach(item => {
+                        item.potong_stok = true;
+                    });
+                });
+                renderAllForms();
+                alert("✓ Semua pesanan saat ini telah ditandai sudah potong stok!");
+            }
         }
 
         function renderBelumKirim() {
@@ -275,7 +292,7 @@
                     item.terlambat = !!item.terlambat;
                     item.batal = !!item.batal;
                     item.catatan_manual = item.catatan_manual || '';
-                    item.potong_stok = !!item.potong_stok; // penanda status potong stok
+                    item.potong_stok = !!item.potong_stok;
 
                     const namaBarang = (item.nama || '').toLowerCase();
                     const noPesanan = (item.no_pesanan || '').toLowerCase();
@@ -290,12 +307,11 @@
 
                     const displayStyle = isMatch ? '' : 'display: none;';
 
-                    // Cek stok titipan atau penanda status sudah dipotong
                     const matchedStok = findStokTitipanMatch(item.nama);
                     let stokAlertBadge = '';
 
+                    // Jika sudah potong stok atau sengaja ditandai aman, tampilkan badge hijau
                     if (item.potong_stok) {
-                        // Tampilan jika sudah dipotong stok
                         stokAlertBadge = `
                             <div class="mt-1 flex items-center justify-between bg-emerald-50 text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-lg text-xs font-bold">
                                 <span>📦 Status Stok Titipan: <strong>Sudah Potong Stok</strong></span>
@@ -303,7 +319,7 @@
                             </div>
                         `;
                     } else if (matchedStok) {
-                        // Tampilan jika stok ditemukan dan belum dipotong
+                        // Hanya muncul jika data BARU dan belum dipotong stoknya
                         stokAlertBadge = `
                             <div class="mt-1 flex items-center justify-between bg-amber-100/90 text-amber-900 border border-amber-300 px-2.5 py-1 rounded-lg text-xs font-bold">
                                 <span>📦 Ditemukan di Stok Titipan: <strong>${matchedStok.nama}</strong> (Tersedia: ${matchedStok.jumlah})</span>
@@ -453,7 +469,6 @@
             currentData.belum_kirim[gIdx].items[iIdx].nama = val; 
         }
 
-        // Fungsi memperbarui nama barang + pemicu pop-up pengingat stok titipan
         function updateItemNameWithStokCheck(gIdx, iIdx, val) {
             updateItemName(gIdx, iIdx, val);
 
@@ -461,6 +476,7 @@
             const qtyOrder = item.qty || 1;
             const matchedStok = findStokTitipanMatch(val);
 
+            // Jika mengetik barang baru dan belum dipotong stok, baru munculkan pop-up peringatan
             if (matchedStok && !item.potong_stok) {
                 setTimeout(() => {
                     const confirmKurang = confirm(
@@ -480,11 +496,9 @@
             }
         }
 
-        // Fungsi memotong QTY atau menghapus stok titipan secara otomatis + memberi penanda sudah potong
         function kurangiStokTitipanOtomatis(gIdx, iIdx, stokNama, qtyPotong) {
             const idx = (currentData.stok_tangerang || []).findIndex(s => (s.nama || '').trim().toLowerCase() === stokNama.trim().toLowerCase());
             
-            // Tandai item pesanan bahwa stoknya telah dipotong
             if (currentData.belum_kirim[gIdx] && currentData.belum_kirim[gIdx].items[iIdx]) {
                 currentData.belum_kirim[gIdx].items[iIdx].potong_stok = true;
             }
@@ -579,6 +593,7 @@
 
         function addBelumKirimItem(gIdx) {
             if (!currentData.belum_kirim[gIdx].items) currentData.belum_kirim[gIdx].items = [];
+            // Untuk pesanan BARU, potong_stok otomatis false (sehingga fitur notifikasi aktif)
             currentData.belum_kirim[gIdx].items.push({ nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, catatan_manual: "", potong_stok: false });
             renderBelumKirim();
         }
@@ -642,7 +657,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Update admin with stock deduction status badge indicator",
+                    message: "Update admin stock deduction logic for new entries only",
                     content: contentBase64,
                     sha: currentSha
                 };
