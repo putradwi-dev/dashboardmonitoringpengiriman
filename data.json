@@ -9,7 +9,7 @@
           "no_pesanan": "587111033694881618",
           "ekspedisi": "J&T",
           "kayu": false,
-          "terlambat": false,
+          "terlambat": true,
           "batal": false,
           "catatan_manual": ""
         },
