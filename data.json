@@ -186,21 +186,6 @@
       ]
     },
     {
-      "grup": "SHOPE TANGSEL 11/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 2,
-          "no_pesanan": "2611111978HES7",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        }
-      ]
-    },
-    {
       "grup": "OFFLINE 10/11/2026",
       "items": [
         {
@@ -255,13 +240,13 @@
     },
     {
       "nama": "AB 108 GEA",
-      "jumlah": 3,
+      "jumlah": 2,
       "catatan": "PO.2026.09.00180 & PO.2026.10.00043",
       "tipe": "normal"
     },
     {
       "nama": "CF 110 RSA",
-      "jumlah": 2,
+      "jumlah": 1,
       "catatan": "PO.2026.10.00132",
       "tipe": "normal"
     },
@@ -317,12 +302,6 @@
       "nama": "D8SM GETRA",
       "jumlah": 3,
       "catatan": "PO.2026.11.00005",
-      "tipe": "normal"
-    },
-    {
-      "nama": "AB 318 GEA",
-      "jumlah": 1,
-      "catatan": "PO.2026.11.00003",
       "tipe": "normal"
     },
     {
