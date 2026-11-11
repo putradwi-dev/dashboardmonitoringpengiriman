@@ -1,49 +1,14 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 10/11/2026",
-      "items": [
-        {
-          "nama": "AB 108 | AGATE 300 | EXPO 37 | AB 208",
-          "qty": 1,
-          "no_pesanan": "587088632954193044",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": true,
-          "batal": false,
-          "catatan_manual": ""
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA MT 11/11/2026",
       "items": [
-        {
-          "nama": "AP 6430",
-          "qty": 2,
-          "no_pesanan": "587097360324331355",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        },
         {
           "nama": "SJ 8503 & SJ 8564B",
           "qty": 1,
           "no_pesanan": "587111033694881618",
           "ekspedisi": "J&T",
           "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        },
-        {
-          "nama": "TB 3",
-          "qty": 1,
-          "no_pesanan": "587113116677867207",
-          "ekspedisi": "J&T",
-          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": ""
@@ -239,36 +204,6 @@
           "no_pesanan": "2611112S7N934C",
           "ekspedisi": "J&T",
           "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE ADT 10/11/2026",
-      "items": [
-        {
-          "nama": "GEA URC 1200",
-          "qty": 1,
-          "no_pesanan": "261110W0WWA2JE",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": ""
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE ADT 11/11/2026",
-      "items": [
-        {
-          "nama": "RFL 12GD & XCC 180",
-          "qty": 1,
-          "no_pesanan": "261110043PFF1R",
-          "ekspedisi": "J&T",
-          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": ""
