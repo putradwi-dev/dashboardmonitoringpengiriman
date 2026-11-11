@@ -182,6 +182,16 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": ""
+        },
+        {
+          "nama": "RFL 24GD",
+          "qty": 1,
+          "no_pesanan": "2611110VNHXMHB",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
         }
       ]
     },
