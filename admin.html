@@ -264,17 +264,21 @@
             });
         }
 
-        // Tombol pintasan untuk menandai semua pesanan yang sudah ada agar tidak muncul notifikasi potong stok
+        // Tombol pintasan untuk menandai HANYA pesanan yang cocok dengan stok titipan
         function markAllExistingAsStockDeducted() {
-            if (confirm("Tandai semua pesanan yang ada saat ini sebagai 'Sudah Potong Stok'? (Notifikasi kuning untuk data lama akan hilang)")) {
+            if (confirm("Tandai pesanan yang ada di Stok Titipan sebagai 'Sudah Potong Stok'? (Pesanan lain yang tidak ada di stok titipan akan dibiarkan bersih)")) {
                 (currentData.belum_kirim || []).forEach(group => {
                     (group.items || []).forEach(item => {
-                        item.potong_stok = true;
+                        // Hanya tandai jika nama barangnya benar-benar ada/cocok di daftar stok titipan
+                        const matchedStok = findStokTitipanMatch(item.nama);
+                        if (matchedStok) {
+                            item.potong_stok = true;
+                        }
                     });
                 });
                 renderAllForms();
-                alert("✓ Semua pesanan saat ini telah ditandai sudah potong stok!");
-            }
+                alert("✓ Pesanan dari stok titipan telah ditandai sudah potong stok!");
+              }
         }
 
         function renderBelumKirim() {
