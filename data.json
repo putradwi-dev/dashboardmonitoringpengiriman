@@ -162,6 +162,16 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": ""
+        },
+        {
+          "nama": "RFL 12GD",
+          "qty": 1,
+          "no_pesanan": "2611111YH10W5H",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
         }
       ]
     },
