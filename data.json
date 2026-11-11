@@ -152,6 +152,36 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": ""
+        },
+        {
+          "nama": "AB 108",
+          "qty": 1,
+          "no_pesanan": "2611113307FMW2",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "B 20HJ",
+          "qty": 1,
+          "no_pesanan": "26111132V5RK6U",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
+        },
+        {
+          "nama": "SH 8600E",
+          "qty": 1,
+          "no_pesanan": "2611110VMVX8Y1",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": ""
         }
       ]
     },
