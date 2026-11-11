@@ -275,6 +275,7 @@
                     item.terlambat = !!item.terlambat;
                     item.batal = !!item.batal;
                     item.catatan_manual = item.catatan_manual || '';
+                    item.potong_stok = !!item.potong_stok; // penanda status potong stok
 
                     const namaBarang = (item.nama || '').toLowerCase();
                     const noPesanan = (item.no_pesanan || '').toLowerCase();
@@ -289,14 +290,24 @@
 
                     const displayStyle = isMatch ? '' : 'display: none;';
 
-                    // Cek apakah ada barang yang cocok di stok titipan
+                    // Cek stok titipan atau penanda status sudah dipotong
                     const matchedStok = findStokTitipanMatch(item.nama);
                     let stokAlertBadge = '';
-                    if (matchedStok) {
+
+                    if (item.potong_stok) {
+                        // Tampilan jika sudah dipotong stok
+                        stokAlertBadge = `
+                            <div class="mt-1 flex items-center justify-between bg-emerald-50 text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-lg text-xs font-bold">
+                                <span>📦 Status Stok Titipan: <strong>Sudah Potong Stok</strong></span>
+                                <span class="bg-emerald-700 text-white px-2 py-0.5 rounded text-[11px] font-bold">✓ Sudah potong stok</span>
+                            </div>
+                        `;
+                    } else if (matchedStok) {
+                        // Tampilan jika stok ditemukan dan belum dipotong
                         stokAlertBadge = `
                             <div class="mt-1 flex items-center justify-between bg-amber-100/90 text-amber-900 border border-amber-300 px-2.5 py-1 rounded-lg text-xs font-bold">
                                 <span>📦 Ditemukan di Stok Titipan: <strong>${matchedStok.nama}</strong> (Tersedia: ${matchedStok.jumlah})</span>
-                                <button onclick="kurangiStokTitipanOtomatis('${matchedStok.nama}', ${item.qty || 1})" class="bg-amber-800 hover:bg-amber-900 text-white px-2 py-0.5 rounded text-[11px] font-bold transition-all ml-2">
+                                <button onclick="kurangiStokTitipanOtomatis(${gIdx}, ${iIdx}, '${matchedStok.nama}', ${item.qty || 1})" class="bg-amber-800 hover:bg-amber-900 text-white px-2 py-0.5 rounded text-[11px] font-bold transition-all ml-2 shadow-sm">
                                     Potong Stok (-${item.qty || 1})
                                 </button>
                             </div>
@@ -450,7 +461,7 @@
             const qtyOrder = item.qty || 1;
             const matchedStok = findStokTitipanMatch(val);
 
-            if (matchedStok) {
+            if (matchedStok && !item.potong_stok) {
                 setTimeout(() => {
                     const confirmKurang = confirm(
                         `⚠️ PENGINGAT STOK TITIPAN:\n\n` +
@@ -459,7 +470,7 @@
                     );
 
                     if (confirmKurang) {
-                        kurangiStokTitipanOtomatis(matchedStok.nama, qtyOrder);
+                        kurangiStokTitipanOtomatis(gIdx, iIdx, matchedStok.nama, qtyOrder);
                     } else {
                         renderAllForms();
                     }
@@ -469,9 +480,15 @@
             }
         }
 
-        // Fungsi memotong QTY atau menghapus stok titipan secara otomatis
-        function kurangiStokTitipanOtomatis(stokNama, qtyPotong) {
+        // Fungsi memotong QTY atau menghapus stok titipan secara otomatis + memberi penanda sudah potong
+        function kurangiStokTitipanOtomatis(gIdx, iIdx, stokNama, qtyPotong) {
             const idx = (currentData.stok_tangerang || []).findIndex(s => (s.nama || '').trim().toLowerCase() === stokNama.trim().toLowerCase());
+            
+            // Tandai item pesanan bahwa stoknya telah dipotong
+            if (currentData.belum_kirim[gIdx] && currentData.belum_kirim[gIdx].items[iIdx]) {
+                currentData.belum_kirim[gIdx].items[iIdx].potong_stok = true;
+            }
+
             if (idx !== -1) {
                 const sisa = currentData.stok_tangerang[idx].jumlah - qtyPotong;
                 if (sisa <= 0) {
@@ -481,8 +498,8 @@
                     currentData.stok_tangerang[idx].jumlah = sisa;
                     alert(`✓ Stok titipan "${currentData.stok_tangerang[idx].nama}" berhasil dipotong ${qtyPotong}. Sisa stok sekarang: ${sisa}`);
                 }
-                renderAllForms();
             }
+            renderAllForms();
         }
 
         function updateItemQty(gIdx, iIdx, val) { 
@@ -554,7 +571,7 @@
             currentData.belum_kirim.push({ 
                 grup: `TOKOPEDIA MT ${d}/${m}/${y}`, 
                 items: [
-                    { nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, catatan_manual: "" }
+                    { nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, catatan_manual: "", potong_stok: false }
                 ] 
             });
             renderBelumKirim();
@@ -562,7 +579,7 @@
 
         function addBelumKirimItem(gIdx) {
             if (!currentData.belum_kirim[gIdx].items) currentData.belum_kirim[gIdx].items = [];
-            currentData.belum_kirim[gIdx].items.push({ nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, catatan_manual: "" });
+            currentData.belum_kirim[gIdx].items.push({ nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, catatan_manual: "", potong_stok: false });
             renderBelumKirim();
         }
 
@@ -625,7 +642,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Update stok titipan auto check and deduct feature",
+                    message: "Update admin with stock deduction status badge indicator",
                     content: contentBase64,
                     sha: currentSha
                 };
