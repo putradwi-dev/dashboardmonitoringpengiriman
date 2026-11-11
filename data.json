@@ -11,7 +11,8 @@
           "kayu": false,
           "terlambat": true,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         },
         {
           "nama": "2P HITAM",
@@ -21,7 +22,8 @@
           "kayu": true,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
@@ -36,7 +38,8 @@
           "kayu": true,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         },
         {
           "nama": "CF 1200",
@@ -46,7 +49,8 @@
           "kayu": true,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         },
         {
           "nama": "RFL 24GD",
@@ -56,7 +60,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         },
         {
           "nama": "GM DBF 1000",
@@ -66,7 +71,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
@@ -81,7 +87,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         },
         {
           "nama": "RFL 12GD",
@@ -91,7 +98,8 @@
           "kayu": true,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         },
         {
           "nama": "CF 110",
@@ -101,7 +109,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": true
         },
         {
           "nama": "CF 210",
@@ -111,7 +120,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": true
         },
         {
           "nama": "DH 10",
@@ -121,7 +131,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         },
         {
           "nama": "SH 8600E",
@@ -131,7 +142,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         },
         {
           "nama": "AB 318",
@@ -141,7 +153,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": true
         },
         {
           "nama": "CF 110",
@@ -151,7 +164,8 @@
           "kayu": true,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": true
         },
         {
           "nama": "AB 108",
@@ -161,7 +175,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": true
         },
         {
           "nama": "B 20HJ",
@@ -171,7 +186,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         },
         {
           "nama": "SH 8600E",
@@ -181,7 +197,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": ""
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
@@ -196,7 +213,8 @@
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": "KIRIM TANGGAL 16/11/2026"
+          "catatan_manual": "KIRIM TANGGAL 16/11/2026",
+          "potong_stok": false
         }
       ]
     }
