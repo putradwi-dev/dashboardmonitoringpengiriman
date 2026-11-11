@@ -218,7 +218,7 @@
           "qty": 1,
           "no_pesanan": "2611112QA226KC",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": ""
