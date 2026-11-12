@@ -237,6 +237,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "TOPAZ 600",
+          "qty": 1,
+          "no_pesanan": "2611124D21GFKF",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
