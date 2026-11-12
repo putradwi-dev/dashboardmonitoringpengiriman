@@ -112,7 +112,7 @@
                         </span>
                     </div>
 
-                    <div id="container-belum-kirim" class="p-4 sm:p-6 space-y-8">
+                    <div id="container-belum-kirim" class="p-4 sm:p-6 space-y-6">
                         <!-- Data Belum Kirim Dimuat dari JSON -->
                     </div>
                 </section>
@@ -228,7 +228,8 @@
 
             groups.forEach((group, index) => {
                 const groupDiv = document.createElement('div');
-                groupDiv.className = `data-group space-y-3 ${index > 0 ? 'pt-4 border-t border-amber-100' : ''}`;
+                // Garis tepi tiap tabel dibuat border gelap tegas dan berjarak
+                groupDiv.className = `data-group bg-white p-4 sm:p-5 rounded-2xl border-2 border-stone-900 shadow-sm space-y-4 mb-6`;
 
                 let tableRows = '';
                 let mobileCards = '';
