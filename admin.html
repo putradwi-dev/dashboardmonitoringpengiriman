@@ -389,7 +389,7 @@
                 let storeOptionsHtml = STORE_OPTIONS.map(opt => `<option value="${opt}" ${parsed.store === opt ? 'selected' : ''}>${opt}</option>`).join('');
 
                 let gDiv = document.createElement('div');
-                gDiv.className = "bg-[#fdfbf7] p-4 rounded-xl border border-amber-200/80 space-y-3";
+                gDiv.className = "bg-white p-4 sm:p-5 rounded-2xl border-2 border-stone-900 shadow-sm space-y-4 mb-6";
 
                 let moveButtons = '';
                 if ((currentData.belum_kirim || []).length > 1) {
