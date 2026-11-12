@@ -237,6 +237,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "2611124QYRTJFB",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
         }
       ]
     },
@@ -437,12 +448,6 @@
     },
     {
       "nama": "CF 110 RSA",
-      "jumlah": 1,
-      "catatan": "PO.2026.11.00021",
-      "tipe": "normal"
-    },
-    {
-      "nama": "AB 318 GEA",
       "jumlah": 1,
       "catatan": "PO.2026.11.00021",
       "tipe": "normal"
