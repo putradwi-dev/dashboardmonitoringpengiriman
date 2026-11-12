@@ -133,7 +133,7 @@
           "qty": 1,
           "no_pesanan": "2611112S7N934C",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
