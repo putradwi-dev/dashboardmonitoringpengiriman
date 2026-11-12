@@ -199,6 +199,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "D8SM",
+          "qty": 1,
+          "no_pesanan": "26111238XAWYE0",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
         }
       ]
     },
@@ -318,7 +329,7 @@
     },
     {
       "nama": "D8SM GETRA",
-      "jumlah": 3,
+      "jumlah": 2,
       "catatan": "PO.2026.11.00005",
       "tipe": "normal"
     },
