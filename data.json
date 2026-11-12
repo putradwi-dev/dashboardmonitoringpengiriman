@@ -226,6 +226,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": true
+        },
+        {
+          "nama": "Ab 506",
+          "qty": 1,
+          "no_pesanan": "2611112QXYHWN0",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
