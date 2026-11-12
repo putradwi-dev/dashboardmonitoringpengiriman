@@ -230,6 +230,22 @@
       ]
     },
     {
+      "grup": "SHOPE ADT 12/11/2026",
+      "items": [
+        {
+          "nama": "DH 2P MERAH",
+          "qty": 1,
+          "no_pesanan": "2611112XHCE5VH",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
       "grup": "OFFLINE 10/11/2026",
       "items": [
         {
