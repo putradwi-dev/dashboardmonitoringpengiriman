@@ -9,7 +9,7 @@
           "no_pesanan": "587111033694881618",
           "ekspedisi": "J&T",
           "kayu": false,
-          "terlambat": true,
+          "terlambat": false,
           "batal": true,
           "catatan_manual": "",
           "potong_stok": false
@@ -25,8 +25,8 @@
           "no_pesanan": "2611111BW6VRDQ",
           "ekspedisi": "J&T",
           "kayu": true,
-          "terlambat": true,
-          "batal": false,
+          "terlambat": false,
+          "batal": true,
           "catatan_manual": "",
           "potong_stok": false
         }
