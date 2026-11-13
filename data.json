@@ -10,36 +10,9 @@
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": true,
-          "batal": false,
+          "batal": true,
           "catatan_manual": "",
           "potong_stok": false
-        },
-        {
-          "nama": "DH 2P HITAM",
-          "qty": 1,
-          "no_pesanan": "587119229958522404",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA MT 12/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 2,
-          "no_pesanan": "587118340681402069",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
         }
       ]
     },
@@ -52,40 +25,7 @@
           "no_pesanan": "2611111BW6VRDQ",
           "ekspedisi": "J&T",
           "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
-          "nama": "CF 1200",
-          "qty": 1,
-          "no_pesanan": "26111129AU85QM",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
-          "nama": "RFL 24GD",
-          "qty": 1,
-          "no_pesanan": "2611110VNHXMHB",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
-          "nama": "GM DBF 1000",
-          "qty": 1,
-          "no_pesanan": "2611112DTDYR8A",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
+          "terlambat": true,
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
@@ -107,50 +47,6 @@
           "potong_stok": false
         },
         {
-          "nama": "RFL 12GD",
-          "qty": 1,
-          "no_pesanan": "2611112QA226KC",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
-          "nama": "CF 110",
-          "qty": 1,
-          "no_pesanan": "2611112RW5K43C",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        },
-        {
-          "nama": "CF 210",
-          "qty": 1,
-          "no_pesanan": "2611112S7N934C",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        },
-        {
-          "nama": "DH 10",
-          "qty": 1,
-          "no_pesanan": "26111131T0UN6J",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
           "nama": "SH 8600E",
           "qty": 1,
           "no_pesanan": "26111132QFY4WS",
@@ -162,86 +58,9 @@
           "potong_stok": false
         },
         {
-          "nama": "AB 318",
-          "qty": 1,
-          "no_pesanan": "26111132R519YY",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        },
-        {
-          "nama": "CF 110",
-          "qty": 1,
-          "no_pesanan": "26111132T3WGA5",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        },
-        {
-          "nama": "AB 108",
-          "qty": 1,
-          "no_pesanan": "2611113307FMW2",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        },
-        {
-          "nama": "B 20HJ",
-          "qty": 1,
-          "no_pesanan": "26111132V5RK6U",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
-          "nama": "SH 8600E",
-          "qty": 1,
-          "no_pesanan": "2611110VMVX8Y1",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
           "nama": "D8SM",
           "qty": 1,
           "no_pesanan": "26111238XAWYE0",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        },
-        {
-          "nama": "AB 506",
-          "qty": 1,
-          "no_pesanan": "2611112QXYHWN0",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
-          "nama": "AB 318",
-          "qty": 1,
-          "no_pesanan": "2611124QYRTJFB",
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false,
