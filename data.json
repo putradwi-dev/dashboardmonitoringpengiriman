@@ -137,12 +137,6 @@
       "tipe": "normal"
     },
     {
-      "nama": "CF 160 RSA",
-      "jumlah": 1,
-      "catatan": "PO.2026.10.00150",
-      "tipe": "normal"
-    },
-    {
       "nama": "GMB 50 INOX GEA",
       "jumlah": 1,
       "catatan": "PO.2026.10.00150",
@@ -198,7 +192,7 @@
     },
     {
       "nama": "CF 210 RSA",
-      "jumlah": 6,
+      "jumlah": 4,
       "catatan": "PO.2026.11.00019",
       "tipe": "normal"
     },
@@ -216,7 +210,7 @@
     },
     {
       "nama": "AB 208 GEA",
-      "jumlah": 3,
+      "jumlah": 1,
       "catatan": "PO.2026.11.00019",
       "tipe": "normal"
     },
