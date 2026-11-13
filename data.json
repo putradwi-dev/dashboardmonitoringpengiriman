@@ -192,7 +192,7 @@
     },
     {
       "nama": "CF 210 RSA",
-      "jumlah": 4,
+      "jumlah": 6,
       "catatan": "PO.2026.11.00019",
       "tipe": "normal"
     },
@@ -210,7 +210,7 @@
     },
     {
       "nama": "AB 208 GEA",
-      "jumlah": 1,
+      "jumlah": 3,
       "catatan": "PO.2026.11.00019",
       "tipe": "normal"
     },
@@ -236,6 +236,12 @@
       "nama": "CF 110 RSA",
       "jumlah": 1,
       "catatan": "PO.2026.11.00021",
+      "tipe": "normal"
+    },
+    {
+      "nama": "CF 160 RSA",
+      "jumlah": 1,
+      "catatan": "PO.2026.10.00150",
       "tipe": "normal"
     }
   ]
