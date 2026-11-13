@@ -17,6 +17,22 @@
       ]
     },
     {
+      "grup": "TOKOPEDIA MT 13/11/2026",
+      "items": [
+        {
+          "nama": "ELW 660",
+          "qty": 1,
+          "no_pesanan": "587158691605153705",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 11/11/2026",
       "items": [
         {
@@ -71,6 +87,22 @@
       ]
     },
     {
+      "grup": "SHOPE TANGSEL 13/11/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM",
+          "qty": 2,
+          "no_pesanan": "2611137DGQDCXA",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
+        }
+      ]
+    },
+    {
       "grup": "OFFLINE 10/11/2026",
       "items": [
         {
@@ -102,7 +134,7 @@
     },
     {
       "nama": "LOYANG 3CM GOMESIN",
-      "jumlah": 40,
+      "jumlah": 38,
       "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
     },
