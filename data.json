@@ -59,17 +59,6 @@
           "potong_stok": false
         },
         {
-          "nama": "KS 10000",
-          "qty": 2,
-          "no_pesanan": "26111375KUGW7E",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
           "nama": "GM BSF 501",
           "qty": 1,
           "no_pesanan": "2611137UX9Y6BQ",
