@@ -209,6 +209,22 @@
             return { isKayu, isTerlambat, isBatal };
         }
 
+        function formatGroupHeaderTitle(fullGrup) {
+            if (!fullGrup) return { storeName: "GROUP", dateStr: "" };
+            
+            const parts = fullGrup.trim().split(' ');
+            let dateStr = "";
+            let storeName = fullGrup;
+
+            const lastPart = parts[parts.length - 1];
+            if (lastPart && lastPart.includes('/')) {
+                dateStr = lastPart;
+                storeName = parts.slice(0, parts.length - 1).join(' ');
+            }
+
+            return { storeName, dateStr };
+        }
+
         async function loadDashboardData() {
             try {
                 const response = await fetch('data.json?v=' + new Date().getTime());
@@ -318,11 +334,14 @@
                     ecomLogoHtml = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/offline.png" alt="Offline" class="h-8 sm:h-9 w-auto object-contain" title="Offline" onerror="this.style.display='none';">`;
                 }
 
+                const parsedHeader = formatGroupHeaderTitle(group.grup);
+
                 groupDiv.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between gap-2 pb-1">
-                        <div class="flex items-center gap-2">
+                        <div class="flex items-center gap-2.5 flex-wrap">
                             <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
-                            <h3 class="font-bold text-amber-950 text-base sm:text-lg uppercase tracking-wide">${group.grup}</h3>
+                            <h3 class="font-extrabold text-amber-950 text-base sm:text-lg tracking-wide">${parsedHeader.storeName}</h3>
+                            ${parsedHeader.dateStr ? `<span class="bg-amber-100/80 text-amber-900 border border-amber-200 text-xs sm:text-sm font-bold px-2.5 py-0.5 rounded-lg flex items-center gap-1 shadow-xs">📅 ${parsedHeader.dateStr}</span>` : ''}
                             <span class="text-xs sm:text-sm bg-amber-50 text-amber-800 px-2.5 py-0.5 rounded-full font-semibold border border-amber-200/60">${group.items.length} Pesanan</span>
                         </div>
                         <div>${ecomLogoHtml}</div>
