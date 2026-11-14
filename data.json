@@ -4,34 +4,12 @@
       "grup": "SHOPE MT 14/11/2026",
       "items": [
         {
-          "nama": "UCC 120 & AB 318",
-          "qty": 1,
-          "no_pesanan": "2611137P6392W2",
-          "ekspedisi": "KURIR TOKO",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "KIRIM HARI INI JAM 10 MALAM",
-          "potong_stok": false
-        },
-        {
-          "nama": "GT 06",
-          "qty": 1,
-          "no_pesanan": "2611137SC8DR2H",
-          "ekspedisi": "KURIR TOKO",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "KIRIM HARI INI JAM 10 MALAM",
-          "potong_stok": false
-        },
-        {
           "nama": "C70",
           "qty": 1,
           "no_pesanan": "2611137N2VYVDY",
           "ekspedisi": "JNE",
           "kayu": false,
-          "terlambat": false,
+          "terlambat": true,
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
@@ -42,7 +20,7 @@
           "no_pesanan": "2611137NHDCAGQ",
           "ekspedisi": "JNE",
           "kayu": false,
-          "terlambat": false,
+          "terlambat": true,
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
@@ -53,7 +31,7 @@
           "no_pesanan": "2611137FYA811X",
           "ekspedisi": "J&T",
           "kayu": false,
-          "terlambat": false,
+          "terlambat": true,
           "batal": false,
           "catatan_manual": "BANTU SCAN MINGGU MALAM",
           "potong_stok": false
