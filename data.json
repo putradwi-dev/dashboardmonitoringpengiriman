@@ -105,6 +105,22 @@
       ]
     },
     {
+      "grup": "SHOPE ADT 14/11/2026",
+      "items": [
+        {
+          "nama": "D8SM",
+          "qty": 1,
+          "no_pesanan": "2611149YVM4467",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
+        }
+      ]
+    },
+    {
       "grup": "SHOPE TANGSEL 14/11/2026",
       "items": [
         {
@@ -220,12 +236,6 @@
       "nama": "EXPO 37 GEA",
       "jumlah": 1,
       "catatan": "PO.2026.10.00185",
-      "tipe": "normal"
-    },
-    {
-      "nama": "D8SM GETRA",
-      "jumlah": 1,
-      "catatan": "PO.2026.11.00005",
       "tipe": "normal"
     },
     {
