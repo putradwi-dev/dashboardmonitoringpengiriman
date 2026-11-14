@@ -90,6 +90,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": true
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "2611149UUSBDYY",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
