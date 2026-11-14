@@ -1,22 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "SHOPE MT 11/11/2026",
-      "items": [
-        {
-          "nama": "RFL 12GD",
-          "qty": 1,
-          "no_pesanan": "2611111BW6VRDQ",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": true,
-          "catatan_manual": "",
-          "potong_stok": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 14/11/2026",
       "items": [
         {
@@ -99,12 +83,12 @@
       ]
     },
     {
-      "grup": "SHOPE TANGSEL 13/11/2026",
+      "grup": "SHOPE TANGSEL 14/11/2026",
       "items": [
         {
           "nama": "LOYANG 3CM",
           "qty": 2,
-          "no_pesanan": "2611137DGQDCXA",
+          "no_pesanan": "2611149854MJSK",
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false,
@@ -146,7 +130,7 @@
     },
     {
       "nama": "LOYANG 3CM GOMESIN",
-      "jumlah": 38,
+      "jumlah": 36,
       "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
     },
