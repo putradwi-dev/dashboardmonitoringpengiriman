@@ -105,6 +105,22 @@
       ]
     },
     {
+      "grup": "SHOPE MT 16/11/2026",
+      "items": [
+        {
+          "nama": "AB 208",
+          "qty": 1,
+          "no_pesanan": "",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "2611137S20D2UJ",
+          "potong_stok": true
+        }
+      ]
+    },
+    {
       "grup": "SHOPE ADT 14/11/2026",
       "items": [
         {
@@ -264,7 +280,7 @@
     },
     {
       "nama": "AB 208 GEA",
-      "jumlah": 3,
+      "jumlah": 2,
       "catatan": "PO.2026.11.00019",
       "tipe": "normal"
     },
