@@ -110,12 +110,12 @@
         {
           "nama": "AB 208",
           "qty": 1,
-          "no_pesanan": "",
+          "no_pesanan": "2611137S20D2UJ",
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": "2611137S20D2UJ",
+          "catatan_manual": "",
           "potong_stok": true
         }
       ]
