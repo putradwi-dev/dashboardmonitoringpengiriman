@@ -279,13 +279,13 @@
                     const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${catatanManual} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
 
                     tableRows += `
-                    <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
-                        <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[24%]">${item.nama}</td>
-                        <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[24%]">${item.no_pesanan}</td>
-                        <td class="py-3.5 px-2 text-center w-[5%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
-                        <td class="py-3.5 px-2 w-[13%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
-                        <td class="py-3.5 px-4 w-[34%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
-                    </tr>
+                        <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
+                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[24%]">${item.nama}</td>
+                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[24%]">${item.no_pesanan}</td>
+                            <td class="py-3.5 px-2 text-center w-[5%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
+                            <td class="py-3.5 px-2 w-[13%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
+                            <td class="py-3.5 px-4 w-[34%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
+                        </tr>
                     `;
 
                     mobileCards += `
@@ -306,7 +306,7 @@
                     `;
                 });
 
-                // Deteksi logo e-commerce untuk pojok kanan atas berdasarkan nama grup
+                // Deteksi logo e-commerce / offline untuk pojok kanan atas berdasarkan nama grup
                 let groupNameUpper = (group.grup || '').toUpperCase();
                 let ecomLogoHtml = '';
 
@@ -314,6 +314,8 @@
                     ecomLogoHtml = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/tokopedia.png" alt="Tokopedia" class="h-8 sm:h-9 w-auto object-contain" title="Tokopedia" onerror="this.style.display='none';">`;
                 } else if (groupNameUpper.includes('SHOPE')) {
                     ecomLogoHtml = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/shopee.png" alt="Shopee" class="h-6 sm:h-7 w-auto object-contain" title="Shopee" onerror="this.style.display='none';">`;
+                } else if (groupNameUpper.includes('OFFLINE')) {
+                    ecomLogoHtml = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/offline.png" alt="Offline" class="h-7 sm:h-8 w-auto object-contain" title="Offline" onerror="this.style.display='none';">`;
                 }
 
                 groupDiv.innerHTML = `
