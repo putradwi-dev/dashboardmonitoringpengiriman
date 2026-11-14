@@ -59,17 +59,6 @@
           "potong_stok": false
         },
         {
-          "nama": "FJ 15GC",
-          "qty": 1,
-          "no_pesanan": "2611149B759J2U",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
           "nama": "GM BS31",
           "qty": 1,
           "no_pesanan": "2611137FYA811X",
@@ -79,17 +68,6 @@
           "batal": false,
           "catatan_manual": "BANTU SCAN MINGGU MALAM",
           "potong_stok": false
-        },
-        {
-          "nama": "D8SM",
-          "qty": 1,
-          "no_pesanan": "2611149HV91E6G",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
         },
         {
           "nama": "AB 318",
