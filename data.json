@@ -4,17 +4,6 @@
       "grup": "SHOPE MT 14/11/2026",
       "items": [
         {
-          "nama": "EXPO 37",
-          "qty": 1,
-          "no_pesanan": "2611137M7Q7GSD",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        },
-        {
           "nama": "UCC 120 & AB 318",
           "qty": 1,
           "no_pesanan": "2611137P6392W2",
