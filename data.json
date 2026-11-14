@@ -1,38 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 11/11/2026",
-      "items": [
-        {
-          "nama": "SJ 8503 & SJ 8564B",
-          "qty": 1,
-          "no_pesanan": "587111033694881618",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": true,
-          "catatan_manual": "",
-          "potong_stok": false
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA MT 13/11/2026",
-      "items": [
-        {
-          "nama": "ELW 660",
-          "qty": 1,
-          "no_pesanan": "587158691605153705",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 11/11/2026",
       "items": [
         {
@@ -49,34 +17,12 @@
       ]
     },
     {
-      "grup": "SHOPE MT 12/11/2026",
+      "grup": "SHOPE MT 14/11/2026",
       "items": [
         {
-          "nama": "SF 400",
+          "nama": "EXPO 37",
           "qty": 1,
-          "no_pesanan": "2611112Q9UDDUF",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
-          "nama": "SH 8600E",
-          "qty": 1,
-          "no_pesanan": "26111132QFY4WS",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
-          "nama": "D8SM",
-          "qty": 1,
-          "no_pesanan": "26111238XAWYE0",
+          "no_pesanan": "2611137M7Q7GSD",
           "ekspedisi": "J&T",
           "kayu": true,
           "terlambat": false,
@@ -196,12 +142,6 @@
       "nama": "CF 310 RSA",
       "jumlah": 1,
       "catatan": "PO.2026.10.00174",
-      "tipe": "normal"
-    },
-    {
-      "nama": "EXPO 37 GEA",
-      "jumlah": 1,
-      "catatan": "PO.2026.10.00087",
       "tipe": "normal"
     },
     {
