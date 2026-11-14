@@ -68,6 +68,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "GM BS31",
+          "qty": 1,
+          "no_pesanan": "2611137FYA811X",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "BANTU SCAN MINGGU MALAM",
+          "potong_stok": false
         }
       ]
     },
