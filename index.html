@@ -3,125 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitoring Pengiriman Pesanan - PT. MBP</title>
+    <title>Dashboard Monitoring Pengiriman - PT. MBP</title>
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/favicon.png">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-        @media print {
-            .no-print { display: none !important; }
-            body { background-color: white !important; }
-        }
-    </style>
+    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
 <body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-16">
 
-    <!-- Header -->
-    <header class="bg-amber-950 text-amber-50 shadow-md sticky top-0 z-30">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <div>
-                <h1 class="font-extrabold text-lg sm:text-xl tracking-tight">Monitoring Pengiriman Pesanan Titip Proses PT. MBP</h1>
-                <p id="lastUpdatedText" class="text-xs text-amber-200/80 font-medium mt-0.5">Memuat data terbaru...</p>
+    <!-- Header Utama -->
+    <header class="bg-amber-950 text-amber-50 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <h1 class="font-extrabold text-lg sm:text-xl">Monitoring Pengiriman Pesanan Titip Proses PT. MBP</h1>
             </div>
-            <div class="flex items-center gap-2 no-print">
-                <button onclick="loadData()" class="bg-amber-800 hover:bg-amber-700 text-amber-50 font-bold px-3.5 py-2 rounded-xl text-xs transition-all shadow-sm flex items-center gap-1.5">
-                    🔄 Refresh Data
-                </button>
+            <div class="flex items-center gap-2">
+                <a href="admin.html" class="bg-amber-800 hover:bg-amber-900 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs sm:text-sm transition-all shadow-sm">
+                    ⚙️ Admin Panel
+                </a>
             </div>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 mt-6 space-y-8">
-        <!-- Kotak Pencarian & Filter -->
-        <div class="bg-white p-4 rounded-2xl border border-amber-100 shadow-sm flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 no-print">
-            <div class="w-full md:w-96">
-                <input type="text" id="searchInput" oninput="filterData()" placeholder="🔍 Cari nama barang, no. pesanan, atau toko..." class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+    <main class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
+        
+        <!-- Search & Filter Bar -->
+        <div class="bg-white p-4 rounded-2xl border border-amber-100 shadow-sm flex flex-col md:flex-row gap-3 justify-between items-center">
+            <div class="w-full md:w-80">
+                <input type="text" id="searchInput" oninput="filterData()" placeholder="🔍 Cari pesanan, barang, atau no nota..." class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
             </div>
-            <div class="flex flex-wrap items-center gap-2 text-xs font-bold">
-                <span class="px-3 py-1.5 rounded-lg bg-amber-50 text-amber-900 border border-amber-200" id="totalOrdersBadge">Total Pesanan: 0</span>
-                <span class="px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-900 border border-emerald-200" id="totalStokBadge">Item Stok Titipan: 0</span>
+            <!-- Quick Summary Badges -->
+            <div id="summaryBadges" class="flex flex-wrap gap-2 text-xs font-bold text-stone-700">
+                <!-- Dirender secara dinamis -->
             </div>
         </div>
 
-        <!-- SECTION 1: DATA PESANAN BELUM KIRIM -->
-        <section class="space-y-4">
-            <div class="flex items-center justify-between">
-                <h2 class="font-extrabold text-stone-900 text-lg sm:text-xl flex items-center gap-2">
-                    📦 Daftar Pesanan Belum Kirim
+        <!-- SECTION 1: BELUM KIRIM -->
+        <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
+                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base sm:text-lg">
+                    📦 Data Pesanan Belum Kirim
                 </h2>
+                <span id="totalBelumKirimBadge" class="bg-amber-100 text-amber-900 px-3 py-1 rounded-full text-xs font-extrabold">0 Pesanan</span>
             </div>
 
-            <div id="belumKirimContainer" class="space-y-8">
-                <!-- Kontainer per tanggal dan tabel e-commerce dirender secara dinamis -->
+            <div id="belumKirimContainer" class="space-y-6">
+                <!-- Data akan dirender secara dinamis dengan pembungkus tanggal -->
             </div>
         </section>
 
-        <!-- SECTION 2: DATA STOK TANGERANG TITIP DI PT. MBG -->
-        <section class="bg-white p-5 sm:p-6 rounded-3xl border-2 border-stone-800 shadow-sm space-y-4">
-            <div class="flex items-center justify-between border-b-2 border-stone-200 pb-3">
-                <h2 class="font-extrabold text-stone-900 text-base sm:text-lg flex items-center gap-2">
-                    🏭 Data Stok Tangerang Titip di PT. MBG
+        <!-- SECTION 2: STOK TANGERANG -->
+        <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
+                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base sm:text-lg">
+                    📊 Data Stok Tangerang Titip di PT. MBG
                 </h2>
+                <span id="totalStokBadge" class="bg-emerald-100 text-emerald-900 px-3 py-1 rounded-full text-xs font-extrabold">0 Item</span>
             </div>
 
-            <div class="overflow-x-auto rounded-2xl border border-amber-100">
-                <table class="w-full text-left text-xs sm:text-sm">
+            <div class="overflow-x-auto rounded-xl border border-amber-100">
+                <table class="w-full text-center text-xs sm:text-sm">
                     <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-amber-100 text-xs">
                         <tr>
-                            <th class="py-3.5 px-4">Nama Barang</th>
-                            <th class="py-3.5 px-4 text-center w-24">QTY</th>
-                            <th class="py-3.5 px-4">Status / Catatan</th>
+                            <th class="py-3 px-3 w-1/3">Nama Barang</th>
+                            <th class="py-3 px-3 w-24">QTY</th>
+                            <th class="py-3 px-3">Tipe / Status Khusus</th>
+                            <th class="py-3 px-3">Catatan</th>
                         </tr>
                     </thead>
-                    <tbody id="stokContainer" class="divide-y divide-amber-50 bg-white">
+                    <tbody id="stokContainer" class="divide-y divide-amber-50">
                         <!-- Items Stok dirender secara dinamis -->
                     </tbody>
                 </table>
             </div>
         </section>
+
     </main>
 
-    <footer class="max-w-6xl mx-auto px-4 mt-12 text-center text-xs text-stone-400 font-medium">
-        Dashboard Monitoring Pengiriman & Stok Titipan • PT. MBP
-    </footer>
-
+    <!-- Global State Data & Render Script -->
     <script>
-        let appData = {
+        let globalData = {
             belum_kirim: [],
             stok_tangerang: []
         };
 
-        // URL raw data.json dari GitHub repository Anda
-        const DATA_URL = "https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/data.json";
-
         window.onload = function() {
-            loadData();
+            fetchData();
+            // Refresh data otomatis setiap 30 detik agar selalu sinkron dengan admin
+            setInterval(fetchData, 30000);
         };
 
-        async function loadData() {
-            const statusText = document.getElementById('lastUpdatedText');
-            statusText.innerText = "Memuat data terbaru...";
+        async function fetchData() {
             try {
-                // Tambahkan timestamp untuk mencegah cache browser
-                const response = await fetch(`${DATA_URL}?t=${new Date().getTime()}`);
-                if (!response.ok) throw new Error("Gagal memuat data.json");
-                appData = await response.json();
-
-                const now = new Date();
-                statusText.innerText = `Terakhir diperbarui: ${now.toLocaleDateString('id-ID')} pukul ${now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' })}`;
-                
+                // Memuat data terbaru dari data.json di repository GitHub
+                const response = await fetch('data.json?t=' + new Date().getTime());
+                if (!response.ok) throw new Error("Gagal memuat data dari server.");
+                globalData = await response.json();
                 renderAll();
-            } catch (error) {
-                console.error(error);
-                statusText.innerText = "⚠️ Gagal memuat data terbaru.";
+            } catch (err) {
+                console.error("Error fetching data:", err);
             }
-        }
-
-        function renderAll() {
-            renderBelumKirim();
-            renderStok();
         }
 
         function filterData() {
@@ -138,216 +120,214 @@
             return 0;
         }
 
-        function getStoreBadgeHtml(grupName) {
-            const upper = (grupName || '').toUpperCase();
-            if (upper.includes('SHOPE')) {
-                return `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/shopee.png" alt="Shopee" class="h-5 w-5 object-contain rounded" onerror="this.style.display='none'">`;
-            } else if (upper.includes('TOKOPEDIA')) {
-                return `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/tokopedia.png" alt="Tokopedia" class="h-5 w-5 object-contain rounded" onerror="this.style.display='none'">`;
-            } else if (upper.includes('OFFLINE')) {
-                return `<span class="w-3.5 h-3.5 rounded-full bg-amber-700 inline-block"></span>`;
-            }
-            return `<span class="w-3.5 h-3.5 rounded-full bg-stone-600 inline-block"></span>`;
+        function renderAll() {
+            renderSummaryBadges();
+            renderBelumKirim();
+            renderStok();
         }
 
-        function getEkspedisiBadgeHtml(eks) {
-            const val = (eks || '').toUpperCase();
-            if (val === 'JNE') {
-                return `<span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 border border-blue-200 px-2.5 py-1 rounded-lg font-extrabold text-xs">
-                            <img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/jne.png" alt="JNE" class="h-3.5 object-contain" onerror="this.style.display='none'"> JNE
-                        </span>`;
-            } else if (val === 'J&T') {
-                return `<span class="inline-flex items-center gap-1.5 bg-red-50 text-red-800 border border-red-200 px-2.5 py-1 rounded-lg font-extrabold text-xs">
-                            <img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/jnt.png" alt="J&T" class="h-3.5 object-contain" onerror="this.style.display='none'"> J&T
-                        </span>`;
-            } else if (val === 'KURIR TOKO') {
-                return `<span class="inline-flex items-center gap-1.5 bg-rose-50 text-rose-800 border border-rose-200 px-2.5 py-1 rounded-lg font-extrabold text-xs">
-                            KURIR TOKO
-                        </span>`;
-            }
-            return `<span class="inline-flex items-center bg-stone-100 text-stone-800 border border-stone-200 px-2.5 py-1 rounded-lg font-extrabold text-xs">${val || '-'}</span>`;
+        function renderSummaryBadges() {
+            let totalPesanan = 0;
+            (globalData.belum_kirim || []).forEach(g => {
+                totalPesanan += (g.items || []).length;
+            });
+            document.getElementById('totalBelumKirimBadge').innerText = `${totalPesanan} Pesanan`;
+
+            let totalStokItems = 0;
+            (globalData.stok_tangerang || []).forEach(s => {
+                totalStokItems += (Number(s.jumlah) || 0);
+            });
+            document.getElementById('totalStokBadge').innerText = `${totalStokItems} Item`;
+
+            const badgesEl = document.getElementById('summaryBadges');
+            badgesEl.innerHTML = `
+                <div class="bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-xl">Total Kelompok E-Commerce: <strong>${(globalData.belum_kirim || []).length}</strong></div>
+                <div class="bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-xl">Jenis Barang Stok: <strong>${(globalData.stok_tangerang || []).length}</strong></div>
+            `;
         }
 
         function renderBelumKirim() {
             const container = document.getElementById('belumKirimContainer');
             container.innerHTML = '';
 
-            const groups = appData.belum_kirim || [];
-            const keyword = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+            const groups = globalData.belum_kirim || [];
+            if (groups.length === 0) {
+                container.innerHTML = '<p class="text-center text-stone-400 py-6 text-sm">Belum ada data pesanan.</p>';
+                return;
+            }
 
-            // Urutkan dari tanggal tua ke muda (pertahankan urutan manual admin jika tanggal sama)
+            // Urutkan grup berdasarkan tanggal tertua ke terbaru, pertahankan urutan manual jika tanggal sama
             const sortedGroups = groups.map((g, idx) => ({ g, idx })).sort((a, b) => {
                 const diff = extractDateFromGroup(a.g.grup) - extractDateFromGroup(b.g.grup);
                 return diff !== 0 ? diff : a.idx - b.idx;
             }).map(item => item.g);
 
-            let totalOrdersCount = 0;
-            let lastDateStr = '';
-            let currentWrapper = null;
-            let currentStoreCardsWrapper = null;
+            const keyword = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
 
+            // Kelompokkan data berdasarkan tanggal pesanan masuk
+            const groupedByDate = {};
             sortedGroups.forEach(group => {
-                const items = group.items || [];
-                const filteredItems = items.filter(item => {
-                    if (!keyword) return true;
-                    const nama = (item.nama || '').toLowerCase();
-                    const no = (item.no_pesanan || '').toLowerCase();
-                    const grup = (group.grup || '').toLowerCase();
-                    const cat = (item.catatan_manual || '').toLowerCase();
-                    return nama.includes(keyword) || no.includes(keyword) || grup.includes(keyword) || cat.includes(keyword);
-                });
-
-                if (filteredItems.length === 0) return;
-                totalOrdersCount += filteredItems.length;
-
                 const dateMatch = (group.grup || '').match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
-                const currentDateStr = dateMatch ? dateMatch[1] : 'TANPA TANGGAL';
-
-                // Buat wadah kontainer besar yang menyatukan label tanggal dengan semua tabel e-commerce di tanggal tersebut
-                if (currentDateStr !== lastDateStr) {
-                    lastDateStr = currentDateStr;
-
-                    currentWrapper = document.createElement('div');
-                    currentWrapper.className = "bg-white rounded-3xl border-2 border-stone-900 shadow-sm overflow-hidden";
-
-                    currentWrapper.innerHTML = `
-                        <div class="bg-stone-900 text-amber-50 px-5 py-3.5 flex items-center justify-between">
-                            <div class="flex items-center gap-2.5 text-sm sm:text-base font-extrabold tracking-wide uppercase">
-                                <span>📅 TANGGAL PESANAN MASUK: ${currentDateStr}</span>
-                            </div>
-                        </div>
-                        <div class="p-4 sm:p-5 space-y-5 store-cards-wrapper bg-white"></div>
-                    `;
-                    container.appendChild(currentWrapper);
-                    currentStoreCardsWrapper = currentWrapper.querySelector('.store-cards-wrapper');
+                const dateStr = dateMatch ? dateMatch[1] : 'Tanpa Tanggal';
+                if (!groupedByDate[dateStr]) {
+                    groupedByDate[dateStr] = [];
                 }
-
-                // Render tabel e-commerce di dalam wadah tanggal tersebut
-                const isOffline = (group.grup || '').toUpperCase().includes('OFFLINE');
-                let rowsHtml = '';
-
-                filteredItems.forEach(item => {
-                    let badges = [];
-                    if (item.kayu) {
-                        badges.push(`<span class="bg-amber-100 text-amber-900 border border-amber-300 px-2.5 py-0.5 rounded-md font-extrabold text-[11px]">PACKING KAYU</span>`);
-                    }
-                    if (item.terlambat) {
-                        badges.push(`<span class="bg-red-100 text-red-700 border border-red-300 px-2.5 py-0.5 rounded-md font-extrabold text-[11px] animate-pulse">TERLAMBAT</span>`);
-                    }
-                    if (item.batal) {
-                        badges.push(`<span class="bg-orange-100 text-orange-800 border border-orange-300 px-2.5 py-0.5 rounded-md font-extrabold text-[11px]">MIB (MALAM INI BATAL)</span>`);
-                    }
-                    if (item.catatan_manual && item.catatan_manual.trim() !== '') {
-                        badges.push(`<span class="bg-sky-50 text-sky-800 border border-sky-200 px-2.5 py-0.5 rounded-md font-bold text-[11px]">${item.catatan_manual}</span>`);
-                    }
-
-                    const statusHtml = badges.length > 0 ? `<div class="flex flex-wrap gap-1.5">${badges.join('')}</div>` : `<span class="text-stone-400 text-xs font-medium">-</span>`;
-
-                    rowsHtml += `
-                        <tr class="hover:bg-amber-50/40 transition-colors">
-                            <td class="py-3.5 px-4 font-extrabold text-stone-900">${item.nama || '-'}</td>
-                            <td class="py-3.5 px-4 font-mono font-bold text-stone-700">${item.no_pesanan || '-'}</td>
-                            <td class="py-3.5 px-4 text-center">
-                                <span class="inline-block bg-amber-100/80 text-amber-950 border border-amber-300 font-extrabold px-2.5 py-0.5 rounded-lg text-xs">${item.qty || 1}</span>
-                            </td>
-                            <td class="py-3.5 px-4">${getEkspedisiBadgeHtml(item.ekspedisi)}</td>
-                            <td class="py-3.5 px-4">${statusHtml}</td>
-                        </tr>
-                    `;
-                });
-
-                const storeCard = document.createElement('div');
-                storeCard.className = "bg-[#faf7f2] rounded-2xl border border-amber-200/90 p-4 sm:p-5 space-y-3.5 shadow-sm";
-                storeCard.innerHTML = `
-                    <div class="flex flex-wrap items-center justify-between gap-2">
-                        <div class="flex items-center gap-2.5">
-                            ${getStoreBadgeHtml(group.grup)}
-                            <h3 class="font-extrabold text-amber-950 text-base sm:text-lg tracking-tight uppercase">${group.grup}</h3>
-                            <span class="bg-amber-100 text-amber-900 border border-amber-200 text-xs font-bold px-2.5 py-0.5 rounded-full">
-                                ${filteredItems.length} Pesanan
-                            </span>
-                        </div>
-                        ${isOffline ? `<span class="text-xs font-extrabold text-cyan-800 tracking-wider uppercase text-right">TRANSAKSI<br class="hidden sm:inline"> OFFLINE</span>` : ''}
-                    </div>
-
-                    <div class="overflow-x-auto rounded-xl border border-amber-200/70 bg-white">
-                        <table class="w-full text-left text-xs sm:text-sm">
-                            <thead class="bg-[#fdfbf7] font-bold text-stone-500 uppercase border-b border-amber-100 text-[11px] tracking-wider">
-                                <tr>
-                                    <th class="py-3 px-4 w-1/4">Nama Barang</th>
-                                    <th class="py-3 px-4 w-1/4">Nomor Pesanan</th>
-                                    <th class="py-3 px-4 text-center w-16">QTY</th>
-                                    <th class="py-3 px-4 w-36">Ekspedisi</th>
-                                    <th class="py-3 px-4">Status / Catatan</th>
-                                </tr>
-                            </thead>
-                            <tbody class="divide-y divide-amber-50">
-                                ${rowsHtml}
-                            </tbody>
-                        </table>
-                    </div>
-                `;
-
-                currentStoreCardsWrapper.appendChild(storeCard);
+                groupedByDate[dateStr].push(group);
             });
 
-            document.getElementById('totalOrdersBadge').innerText = `Total Pesanan: ${totalOrdersCount}`;
+            // Render per tanggal dengan kontainer pembungkus utama
+            Object.keys(groupedByDate).forEach(dateStr => {
+                const storeGroups = groupedByDate[dateStr];
 
-            if (totalOrdersCount === 0) {
-                container.innerHTML = `
-                    <div class="bg-white p-8 rounded-2xl border border-amber-100 text-center text-stone-500 font-semibold text-sm">
-                        Tidak ada data pesanan yang ditemukan.
+                // Cek apakah ada item yang cocok dengan keyword pencarian di tanggal ini
+                let hasVisibleGroupInDate = false;
+                storeGroups.forEach(group => {
+                    const hasMatch = (group.items || []).some(item => {
+                        return keyword === '' || 
+                            (item.nama || '').toLowerCase().includes(keyword) || 
+                            (item.no_pesanan || '').toLowerCase().includes(keyword) || 
+                            (group.grup || '').toLowerCase().includes(keyword) ||
+                            (item.catatan_manual || '').toLowerCase().includes(keyword);
+                    });
+                    if (hasMatch) hasVisibleGroupInDate = true;
+                });
+
+                if (keyword !== '' && !hasVisibleGroupInDate) return;
+
+                // Wrapper Kotak Utama untuk Tanggal Pesanan Masuk
+                const dateWrapper = document.createElement('div');
+                dateWrapper.className = "bg-[#fdfbf7] p-4 sm:p-5 rounded-2xl border-2 border-stone-800 shadow-sm space-y-4 mb-6";
+
+                // Label Header Tanggal
+                let htmlContent = `
+                    <div class="inline-block bg-stone-900 text-amber-50 px-4 py-2 rounded-xl shadow-sm text-sm sm:text-base font-extrabold tracking-wide uppercase border border-amber-500/30 mb-2">
+                        📅 TANGGAL PESANAN MASUK: ${dateStr}
                     </div>
+                    <div class="space-y-4">
                 `;
-            }
+
+                storeGroups.forEach(group => {
+                    let itemsHtml = '';
+                    let visibleItemCount = 0;
+
+                    (group.items || []).forEach(item => {
+                        const namaBarang = (item.nama || '').toLowerCase();
+                        const noPesanan = (item.no_pesanan || '').toLowerCase();
+                        const namaGrup = (group.grup || '').toLowerCase();
+                        const catatanManualStr = (item.catatan_manual || '').toLowerCase();
+
+                        const isMatch = keyword === '' || namaBarang.includes(keyword) || noPesanan.includes(keyword) || namaGrup.includes(keyword) || catatanManualStr.includes(keyword);
+
+                        if (!isMatch && keyword !== '') return;
+                        visibleItemCount++;
+
+                        let statusBadges = [];
+                        if (item.kayu) statusBadges.push(`<span class="bg-amber-100 text-amber-900 border border-amber-300 font-bold px-2 py-0.5 rounded text-xs">Kayu</span>`);
+                        if (item.terlambat) statusBadges.push(`<span class="bg-red-100 text-red-800 border border-red-300 font-bold px-2 py-0.5 rounded text-xs">Terlambat</span>`);
+                        if (item.batal) statusBadges.push(`<span class="bg-orange-100 text-orange-900 border border-orange-300 font-bold px-2 py-0.5 rounded text-xs">MIB Malam Ini Batal</span>`);
+                        if (item.catatan_manual) statusBadges.push(`<span class="bg-sky-50 text-sky-800 border border-sky-200 font-semibold px-2.5 py-1 rounded-lg text-xs">${item.catatan_manual}</span>`);
+
+                        let statusContent = statusBadges.length > 0 ? `<div class="flex flex-wrap gap-1.5 items-center">${statusBadges.join('')}</div>` : `<span class="text-stone-400 text-xs italic">-</span>`;
+
+                        itemsHtml += `
+                            <tr class="hover:bg-[#faf7f2] transition-colors">
+                                <td class="py-3 px-3 font-bold text-stone-900 text-left">${item.nama || '-'}</td>
+                                <td class="py-3 px-3 font-mono text-stone-700 text-left">${item.no_pesanan || '-'}</td>
+                                <td class="py-3 px-3 text-center">
+                                    <span class="bg-amber-50 border border-amber-200 text-amber-900 font-extrabold px-2.5 py-1 rounded-md text-xs">${item.qty !== undefined ? item.qty : 1}</span>
+                                </td>
+                                <td class="py-3 px-3 font-bold text-stone-800 text-center">${item.ekspedisi || '-'}</td>
+                                <td class="py-3 px-3 text-left">${statusContent}</td>
+                            </tr>
+                        `;
+                    });
+
+                    if (keyword !== '' && visibleItemCount === 0) return;
+
+                    let storeNameOnly = group.grup;
+                    ['TOKOPEDIA MT', 'TOKOPEDIA ADT', 'SHOPE MT', 'SHOPE ADT', 'SHOPE TANGSEL', 'OFFLINE'].forEach(s => {
+                        if (storeNameOnly.toUpperCase().startsWith(s)) {
+                            storeNameOnly = s;
+                        }
+                    });
+
+                    let badgeColor = "bg-amber-50 text-amber-900 border-amber-200";
+                    if (group.grup.toUpperCase().includes("SHOPE")) badgeColor = "bg-orange-50 text-orange-900 border-orange-200";
+                    if (group.grup.toUpperCase().includes("OFFLINE")) badgeColor = "bg-stone-100 text-stone-800 border-stone-300";
+
+                    let totalGroupQty = (group.items || []).reduce((sum, item) => sum + (Number(item.qty) || 1), 0);
+
+                    htmlContent += `
+                        <div class="bg-white p-4 rounded-xl border border-amber-200 shadow-sm space-y-3">
+                            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-100 pb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-amber-700"></span>
+                                    <h3 class="font-extrabold text-amber-950 text-sm sm:text-base tracking-wide">${group.grup}</h3>
+                                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-full border ${badgeColor}">${(group.items || []).length} Pesanan (${totalGroupQty} Qty)</span>
+                                </div>
+                                ${group.grup.toUpperCase().includes("OFFLINE") ? '<span class="text-xs font-extrabold text-cyan-800 bg-cyan-50 border border-cyan-200 px-2.5 py-1 rounded-lg">TRANSAKSI OFFLINE</span>' : ''}
+                            </div>
+                            <div class="overflow-x-auto rounded-lg border border-amber-100">
+                                <table class="w-full text-xs sm:text-sm">
+                                    <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-amber-100 text-xs">
+                                        <tr>
+                                            <th class="py-2.5 px-3 text-left w-1/4">Nama Barang</th>
+                                            <th class="py-2.5 px-3 text-left w-1/4">Nomor Pesanan</th>
+                                            <th class="py-2.5 px-3 text-center w-20">QTY</th>
+                                            <th class="py-2.5 px-3 text-center w-28">Ekspedisi</th>
+                                            <th class="py-2.5 px-3 text-left">Status / Catatan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-amber-50">
+                                        ${itemsHtml}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                htmlContent += `</div>`;
+                dateWrapper.innerHTML = htmlContent;
+                container.appendChild(dateWrapper);
+            });
         }
 
         function renderStok() {
             const container = document.getElementById('stokContainer');
             container.innerHTML = '';
 
-            const stokList = appData.stok_tangerang || [];
-            const keyword = (document.getElementById('searchInput')?.value || '').toLowerCase().trim();
+            const keyword = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
+            const stokList = globalData.stok_tangerang || [];
 
-            let visibleCount = 0;
+            if (stokList.length === 0) {
+                container.innerHTML = '<tr><td colspan="4" class="py-4 text-stone-400 text-center text-sm">Belum ada data stok.</td></tr>';
+                return;
+            }
 
             stokList.forEach(item => {
-                const nama = (item.nama || '').toLowerCase();
-                const catatan = (item.catatan || '').toLowerCase();
+                const namaStok = (item.nama || '').toLowerCase();
+                const catatanStok = (item.catatan || '').toLowerCase();
+                const isMatch = keyword === '' || namaStok.includes(keyword) || catatanStok.includes(keyword);
 
-                if (keyword && !nama.includes(keyword) && !catatan.includes(keyword)) return;
-                visibleCount++;
+                if (!isMatch) return;
 
-                let statusBadge = '';
-                if (item.tipe === 'priority') {
-                    statusBadge = `<span class="bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-md font-extrabold text-[11px] mr-1.5">UTAMAKAN HABISKAN INI</span>`;
-                } else if (item.tipe === 'warning') {
-                    statusBadge = `<span class="bg-amber-100 text-amber-800 border border-amber-300 px-2.5 py-0.5 rounded-md font-extrabold text-[11px] mr-1.5">PERLU DIPERBAIKI</span>`;
-                }
-
-                const catatanText = (item.catatan && item.catatan !== '-') ? `<span class="font-semibold text-stone-700">${item.catatan}</span>` : `<span class="text-stone-400">-</span>`;
+                let badgeStyle = "text-stone-700";
+                if (item.tipe === 'warning') badgeStyle = "bg-amber-100 text-amber-900 border border-amber-300 px-2 py-0.5 rounded font-bold";
+                if (item.tipe === 'priority') badgeStyle = "bg-red-100 text-red-900 border border-red-300 px-2 py-0.5 rounded font-bold";
 
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-[#faf7f2] transition-colors";
+                tr.className = "hover:bg-[#faf7f2]";
                 tr.innerHTML = `
-                    <td class="py-3.5 px-4 font-extrabold text-stone-900">${item.nama || '-'}</td>
-                    <td class="py-3.5 px-4 text-center">
-                        <span class="inline-block bg-emerald-50 text-emerald-900 border border-emerald-200 font-extrabold px-3 py-0.5 rounded-lg text-xs">${item.jumlah || 0}</span>
+                    <td class="py-3 px-3 font-bold text-stone-900">${item.nama || '-'}</td>
+                    <td class="py-3 px-3 font-extrabold text-stone-900">
+                        <span class="bg-emerald-50 border border-emerald-200 text-emerald-900 px-2.5 py-1 rounded-md text-xs">${item.jumlah !== undefined ? item.jumlah : 0}</span>
                     </td>
-                    <td class="py-3.5 px-4">${statusBadge}${catatanText}</td>
+                    <td class="py-3 px-3"><span class="${badgeStyle}">${item.tipe === 'priority' ? 'Utamakan Habiskan' : (item.tipe === 'warning' ? 'Perlu Diperhatikan' : 'Normal')}</span></td>
+                    <td class="py-3 px-3 text-stone-600">${item.catatan || '-'}</td>
                 `;
                 container.appendChild(tr);
             });
-
-            document.getElementById('totalStokBadge').innerText = `Item Stok Titipan: ${visibleCount}`;
-
-            if (visibleCount === 0) {
-                container.innerHTML = `
-                    <tr>
-                        <td colspan="3" class="py-6 text-center text-stone-400 font-semibold text-xs">Tidak ada data stok titipan yang cocok.</td>
-                    </tr>
-                `;
-            }
         }
     </script>
 </body>
