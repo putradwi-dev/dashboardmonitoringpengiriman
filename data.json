@@ -241,6 +241,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": true
+        },
+        {
+          "nama": "LOYANG 3CM",
+          "qty": 2,
+          "no_pesanan": "261116E0MB87YP",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
         }
       ]
     }
@@ -260,7 +271,7 @@
     },
     {
       "nama": "LOYANG 3CM GOMESIN",
-      "jumlah": 28,
+      "jumlah": 26,
       "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
     },
