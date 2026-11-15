@@ -199,22 +199,6 @@
           "potong_stok": false
         }
       ]
-    },
-    {
-      "grup": "TOKOPEDIA ADT 9/11/2026",
-      "items": [
-        {
-          "nama": "tes",
-          "qty": 1,
-          "no_pesanan": "tes",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        }
-      ]
     }
   ],
   "stok_tangerang": [
