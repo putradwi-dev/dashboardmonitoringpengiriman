@@ -196,6 +196,15 @@
     </footer>
 
     <script>
+        const STORE_OPTIONS = [
+            "TOKOPEDIA MT",
+            "TOKOPEDIA ADT",
+            "SHOPE MT",
+            "SHOPE ADT",
+            "SHOPE TANGSEL",
+            "OFFLINE"
+        ];
+
         function getItemStatus(item) {
             let isKayu = !!item.kayu;
             let isTerlambat = !!item.terlambat;
@@ -207,22 +216,6 @@
                 isTerlambat = (s === 'terlambat' || s === 'keduanya');
             }
             return { isKayu, isTerlambat, isBatal };
-        }
-
-        function formatGroupHeaderTitle(fullGrup) {
-            if (!fullGrup) return { storeName: "GROUP", dateStr: "" };
-            
-            const parts = fullGrup.trim().split(' ');
-            let dateStr = "";
-            let storeName = fullGrup;
-
-            const lastPart = parts[parts.length - 1];
-            if (lastPart && lastPart.includes('/')) {
-                dateStr = lastPart;
-                storeName = parts.slice(0, parts.length - 1).join(' ');
-            }
-
-            return { storeName, dateStr };
         }
 
         async function loadDashboardData() {
@@ -322,8 +315,14 @@
                     `;
                 });
 
+                // Parse nama grup untuk memisahkan Store Name dan Tanggal agar tanggal lebih tegas dan mencolok
+                let fullGrup = group.grup || '';
+                let matchedStore = STORE_OPTIONS.find(s => fullGrup.toUpperCase().startsWith(s));
+                let storeName = matchedStore ? matchedStore : fullGrup;
+                let dateStr = matchedStore ? fullGrup.substring(matchedStore.length).trim() : '';
+
                 // Deteksi logo e-commerce / offline untuk pojok kanan atas berdasarkan nama grup
-                let groupNameUpper = (group.grup || '').toUpperCase();
+                let groupNameUpper = fullGrup.toUpperCase();
                 let ecomLogoHtml = '';
 
                 if (groupNameUpper.includes('TOKOPEDIA')) {
@@ -334,15 +333,16 @@
                     ecomLogoHtml = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/offline.png" alt="Offline" class="h-8 sm:h-9 w-auto object-contain" title="Offline" onerror="this.style.display='none';">`;
                 }
 
-                const parsedHeader = formatGroupHeaderTitle(group.grup);
+                // Desain Badge Tanggal yang Tegas, Kontras, dan Mudah Dilihat
+                let dateBadgeHtml = dateStr ? `<span class="bg-stone-900 text-amber-300 font-extrabold px-3.5 py-1.5 rounded-xl text-xs sm:text-sm shadow-sm border border-stone-700 flex items-center gap-1.5 uppercase tracking-wide">📅 ${dateStr}</span>` : '';
 
                 groupDiv.innerHTML = `
-                    <div class="flex flex-wrap items-center justify-between gap-2 pb-1">
+                    <div class="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-amber-100 mb-2">
                         <div class="flex items-center gap-2.5 flex-wrap">
-                            <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
-                            <h3 class="font-extrabold text-amber-950 text-base sm:text-lg tracking-wide">${parsedHeader.storeName}</h3>
-                            ${parsedHeader.dateStr ? `<span class="bg-amber-100/80 text-amber-900 border border-amber-200 text-xs sm:text-sm font-bold px-2.5 py-0.5 rounded-lg flex items-center gap-1 shadow-xs">📅 ${parsedHeader.dateStr}</span>` : ''}
-                            <span class="text-xs sm:text-sm bg-amber-50 text-amber-800 px-2.5 py-0.5 rounded-full font-semibold border border-amber-200/60">${group.items.length} Pesanan</span>
+                            <span class="w-4 h-4 rounded-full bg-amber-800 shadow-sm"></span>
+                            <h3 class="font-extrabold text-amber-950 text-base sm:text-lg uppercase tracking-wide">${storeName}</h3>
+                            ${dateBadgeHtml}
+                            <span class="text-xs sm:text-sm bg-amber-100/90 text-amber-900 px-3 py-1 rounded-full font-bold border border-amber-200">${group.items.length} Pesanan</span>
                         </div>
                         <div>${ecomLogoHtml}</div>
                     </div>
