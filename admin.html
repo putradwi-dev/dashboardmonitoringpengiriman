@@ -264,12 +264,10 @@
             });
         }
 
-        // Tombol pintasan untuk menandai HANYA pesanan yang cocok dengan stok titipan
         function markAllExistingAsStockDeducted() {
             if (confirm("Tandai pesanan yang ada di Stok Titipan sebagai 'Sudah Potong Stok'? (Pesanan lain yang tidak ada di stok titipan akan dibiarkan bersih)")) {
                 (currentData.belum_kirim || []).forEach(group => {
                     (group.items || []).forEach(item => {
-                        // Hanya tandai jika nama barangnya benar-benar ada/cocok di daftar stok titipan
                         const matchedStok = findStokTitipanMatch(item.nama);
                         if (matchedStok) {
                             item.potong_stok = true;
@@ -281,13 +279,47 @@
               }
         }
 
+        function extractDateFromGroup(grupStr) {
+            const match = grupStr.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+            if (match) {
+                const [, d, m, y] = match;
+                return new Date(`${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`);
+            }
+            return new Date(0);
+        }
+
         function renderBelumKirim() {
             const container = document.getElementById('belumKirimContainer');
             container.innerHTML = '';
 
-            const keyword = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
+            const groups = currentData.belum_kirim || [];
+            if (groups.length === 0) return;
 
-            (currentData.belum_kirim || []).forEach((group, gIdx) => {
+            // Urutkan groups dari tanggal yang lebih tua ke yang lebih muda (Ascending)
+            const sortedGroups = groups.map((g, originalIndex) => ({ g, originalIndex })).sort((a, b) => {
+                return extractDateFromGroup(a.g.grup) - extractDateFromGroup(b.g.grup);
+            });
+
+            const keyword = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
+            let lastDateStr = '';
+
+            sortedGroups.forEach(({ g: group, originalIndex: gIdx }) => {
+                const dateMatch = group.grup.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+                const currentDateStr = dateMatch ? dateMatch[1] : '';
+
+                if (currentDateStr && currentDateStr !== lastDateStr) {
+                    lastDateStr = currentDateStr;
+                    const dateDivider = document.createElement('div');
+                    dateDivider.className = "flex items-center gap-4 pt-4 pb-2 mb-2 date-section-divider";
+                    dateDivider.innerHTML = `
+                        <div class="flex items-center gap-2 bg-stone-900 text-amber-50 px-4 py-2 rounded-xl shadow-sm text-sm sm:text-base font-extrabold tracking-wide uppercase border border-amber-500/30">
+                            <span>📅 Tanggal Pesanan Masuk: ${currentDateStr}</span>
+                        </div>
+                        <div class="flex-grow border-t-2 border-stone-300"></div>
+                    `;
+                    container.appendChild(dateDivider);
+                }
+
                 let itemsHtml = '';
                 let hasVisibleItem = false;
 
@@ -310,11 +342,9 @@
                     }
 
                     const displayStyle = isMatch ? '' : 'display: none;';
-
                     const matchedStok = findStokTitipanMatch(item.nama);
                     let stokAlertBadge = '';
 
-                    // Jika sudah potong stok atau sengaja ditandai aman, tampilkan badge hijau
                     if (item.potong_stok) {
                         stokAlertBadge = `
                             <div class="mt-1 flex items-center justify-between bg-emerald-50 text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-lg text-xs font-bold">
@@ -323,7 +353,6 @@
                             </div>
                         `;
                     } else if (matchedStok) {
-                        // Hanya muncul jika data BARU dan belum dipotong stoknya
                         stokAlertBadge = `
                             <div class="mt-1 flex items-center justify-between bg-amber-100/90 text-amber-900 border border-amber-300 px-2.5 py-1 rounded-lg text-xs font-bold">
                                 <span>📦 Ditemukan di Stok Titipan: <strong>${matchedStok.nama}</strong> (Tersedia: ${matchedStok.jumlah})</span>
@@ -358,7 +387,6 @@
                                         <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT','KURIR TOKO'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
                                     </select>
                                 </div>
-                                <!-- Checkbox Status & Catatan Manual -->
                                 <div class="sm:col-span-3 flex flex-col gap-1.5 bg-[#faf7f2] px-2.5 py-2 rounded-lg border border-stone-200">
                                     <div class="flex flex-wrap items-center justify-center gap-2">
                                         <label class="flex items-center gap-0.5 text-[11px] font-bold text-stone-800 cursor-pointer">
@@ -373,7 +401,6 @@
                                     </div>
                                     <input type="text" value="${item.catatan_manual}" onchange="updateItemCatatanManual(${gIdx}, ${iIdx}, this.value)" placeholder="Catatan manual khusus..." class="w-full bg-white border border-stone-300 rounded px-2 py-1 text-xs text-stone-800 focus:ring-1 focus:ring-amber-800 focus:outline-none">
                                 </div>
-                                <!-- Tombol Hapus -->
                                 <div class="sm:col-span-1 text-center">
                                     <button onclick="confirmDeleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs sm:text-sm font-bold px-2 py-2 rounded-lg border border-red-200 transition-all w-full shadow-sm">Hapus</button>
                                 </div>
@@ -391,18 +418,6 @@
                 let gDiv = document.createElement('div');
                 gDiv.className = "bg-white p-4 sm:p-5 rounded-2xl border-2 border-stone-900 shadow-sm space-y-4 mb-6";
 
-                let moveButtons = '';
-                if ((currentData.belum_kirim || []).length > 1) {
-                    moveButtons = `<div class="flex items-center gap-1.5 border-l border-amber-200 pl-2.5 ml-1">`;
-                    if (gIdx > 0) {
-                        moveButtons += `<button onclick="moveGroup(${gIdx}, -1)" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-semibold px-2 py-1 rounded text-xs transition-all">Geser ke Atas</button>`;
-                    }
-                    if (gIdx < currentData.belum_kirim.length - 1) {
-                        moveButtons += `<button onclick="moveGroup(${gIdx}, 1)" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-semibold px-2 py-1 rounded text-xs transition-all">Geser ke Bawah</button>`;
-                    }
-                    moveButtons += `</div>`;
-                }
-
                 gDiv.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between pb-2 border-b border-amber-200/60 gap-2">
                         <div class="flex items-center gap-2 flex-wrap">
@@ -411,7 +426,6 @@
                                 ${storeOptionsHtml}
                             </select>
                             <input type="date" id="date_input_${gIdx}" value="${parsed.dateStr}" onchange="updateGroupComposite(${gIdx})" class="font-semibold text-stone-800 text-sm bg-white border border-amber-200 rounded-lg px-2.5 py-1.5 focus:ring-2 focus:ring-amber-800 focus:outline-none cursor-pointer">
-                            ${moveButtons}
                         </div>
                         <div class="flex items-center gap-2">
                             <button onclick="addBelumKirimItem(${gIdx})" class="bg-amber-800 text-white font-bold px-3 py-1.5 rounded-lg text-xs sm:text-sm hover:bg-amber-900 transition-all">+ Pesanan</button>
@@ -480,7 +494,6 @@
             const qtyOrder = item.qty || 1;
             const matchedStok = findStokTitipanMatch(val);
 
-            // Jika mengetik barang baru dan belum dipotong stok, baru munculkan pop-up peringatan
             if (matchedStok && !item.potong_stok) {
                 setTimeout(() => {
                     const confirmKurang = confirm(
@@ -597,7 +610,6 @@
 
         function addBelumKirimItem(gIdx) {
             if (!currentData.belum_kirim[gIdx].items) currentData.belum_kirim[gIdx].items = [];
-            // Untuk pesanan BARU, potong_stok otomatis false (sehingga fitur notifikasi aktif)
             currentData.belum_kirim[gIdx].items.push({ nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, catatan_manual: "", potong_stok: false });
             renderBelumKirim();
         }
@@ -614,17 +626,6 @@
                 currentData.belum_kirim.splice(gIdx, 1);
                 renderBelumKirim();
             }
-        }
-
-        function moveGroup(gIdx, direction) {
-            const newIdx = gIdx + direction;
-            if (newIdx < 0 || newIdx >= currentData.belum_kirim.length) return;
-            
-            const temp = currentData.belum_kirim[gIdx];
-            currentData.belum_kirim[gIdx] = currentData.belum_kirim[newIdx];
-            currentData.belum_kirim[newIdx] = temp;
-            
-            renderBelumKirim();
         }
 
         function updateStokNama(idx, val) { currentData.stok_tangerang[idx].nama = val; }
@@ -661,7 +662,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Update admin stock deduction logic for new entries only",
+                    message: "Update admin sorting and date dividers layout",
                     content: contentBase64,
                     sha: currentSha
                 };
