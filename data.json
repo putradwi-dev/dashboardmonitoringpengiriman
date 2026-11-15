@@ -1,28 +1,17 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 16/11/2026",
+      "grup": "OFFLINE 10/11/2026",
       "items": [
         {
-          "nama": "D8SM",
-          "qty": 1,
-          "no_pesanan": "587198502414353618",
-          "ekspedisi": "J&T",
+          "nama": "EXPO 1200 IC",
+          "qty": 4,
+          "no_pesanan": "PT. KOPI KINA INDONESIA",
+          "ekspedisi": "KURIR TOKO",
           "kayu": false,
           "terlambat": false,
           "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
-          "nama": "D8SM",
-          "qty": 1,
-          "no_pesanan": "587200005459969872",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
+          "catatan_manual": "KIRIM TANGGAL 16/11/2026",
           "potong_stok": false
         }
       ]
@@ -69,6 +58,49 @@
           "no_pesanan": "2611149UUSBDYY",
           "ekspedisi": "J&T",
           "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE ADT 14/11/2026",
+      "items": [
+        {
+          "nama": "D8SM",
+          "qty": 1,
+          "no_pesanan": "2611149YVM4467",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
+        }
+      ]
+    },
+    {
+      "grup": "TOKOPEDIA MT 16/11/2026",
+      "items": [
+        {
+          "nama": "D8SM",
+          "qty": 1,
+          "no_pesanan": "587198502414353618",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "D8SM",
+          "qty": 1,
+          "no_pesanan": "587200005459969872",
+          "ekspedisi": "J&T",
+          "kayu": false,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
@@ -137,14 +169,14 @@
       ]
     },
     {
-      "grup": "SHOPE ADT 14/11/2026",
+      "grup": "SHOPE TANGSEL 16/11/2026",
       "items": [
         {
-          "nama": "D8SM",
-          "qty": 1,
-          "no_pesanan": "2611149YVM4467",
+          "nama": "LOYANG 3CM",
+          "qty": 3,
+          "no_pesanan": "261115BTX32VC4",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
@@ -164,38 +196,6 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE TANGSEL 16/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 3,
-          "no_pesanan": "261115BTX32VC4",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        }
-      ]
-    },
-    {
-      "grup": "OFFLINE 10/11/2026",
-      "items": [
-        {
-          "nama": "EXPO 1200 IC",
-          "qty": 4,
-          "no_pesanan": "PT. KOPI KINA INDONESIA",
-          "ekspedisi": "KURIR TOKO",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "KIRIM TANGGAL 16/11/2026",
           "potong_stok": false
         }
       ]
