@@ -1,6 +1,22 @@
 {
   "belum_kirim": [
     {
+      "grup": "TOKOPEDIA MT 16/11/2026",
+      "items": [
+        {
+          "nama": "D8SM",
+          "qty": 1,
+          "no_pesanan": "587198502414353618",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 14/11/2026",
       "items": [
         {
@@ -69,6 +85,28 @@
           "no_pesanan": "261114A5MPWWAB",
           "ekspedisi": "J&T",
           "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "CF 110",
+          "qty": 1,
+          "no_pesanan": "261115BVA1P3QB",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
+        },
+        {
+          "nama": "GF 457",
+          "qty": 1,
+          "no_pesanan": "261115CG0DTCDC",
+          "ekspedisi": "J&T",
+          "kayu": false,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
@@ -150,12 +188,6 @@
       "nama": "AB 108 GEA",
       "jumlah": 2,
       "catatan": "PO.2026.09.00180 & PO.2026.10.00043",
-      "tipe": "normal"
-    },
-    {
-      "nama": "CF 110 RSA",
-      "jumlah": 1,
-      "catatan": "PO.2026.10.00132",
       "tipe": "normal"
     },
     {
