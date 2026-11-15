@@ -3,366 +3,689 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel - Monitoring Pengiriman PT. MBP</title>
+    <title>Input Data Pengiriman - PT. MBP</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/favicon.png">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; }
-    </style>
+    <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-12 flex flex-col justify-between">
+<body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-16">
 
-    <div>
-        <!-- Header Section -->
-        <header class="bg-gradient-to-r from-amber-900 via-stone-800 to-amber-800 text-white shadow-lg">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div>
-                        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2 text-amber-50">
-                            ⚙️ Admin Panel PT. MBP
-                        </h1>
-                        <p class="text-amber-200/80 text-xs sm:text-sm mt-1">Kelola data pengiriman dan titipan stok gudang</p>
-                    </div>
-                    <div class="flex items-center gap-2.5">
-                        <a href="index.html" target="_blank" class="bg-amber-700 hover:bg-amber-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
-                            🌐 Lihat Web Utama
-                        </a>
-                        <button onclick="saveData()" id="saveBtn" class="bg-emerald-700 hover:bg-emerald-800 text-white px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm">
-                            💾 Simpan Perubahan
-                        </button>
-                    </div>
+    <!-- Header Admin -->
+    <header class="bg-amber-950 text-amber-50 shadow-md">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <h1 class="font-extrabold text-lg sm:text-xl">Input Data Pengiriman Pesanan Titip Proses PT. MBP</h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
+        <!-- Tombol Aksi Utama & Kotak Pencarian -->
+        <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 bg-white p-4 rounded-2xl border border-amber-100 shadow-sm">
+            <div class="flex items-center gap-3">
+                <button onclick="saveToGitHub()" class="bg-cyan-700 hover:bg-cyan-800 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-all flex items-center gap-2 shadow-md">
+                    SIMPAN & UPDATE
+                </button>
+                <div id="globalDuplicateWarning" class="hidden bg-red-100 border border-red-300 text-red-700 px-3 py-1.5 rounded-lg text-xs font-bold animate-pulse">
+                    ⚠️ Peringatan: Duplikat!
                 </div>
             </div>
-        </header>
+            <!-- Kotak Pencarian Universal -->
+            <div class="w-full md:w-80">
+                <input type="text" id="searchInput" oninput="filterData()" placeholder="🔍 Cari pesanan, barang, atau stok..." class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+            </div>
+        </div>
 
-        <main class="max-w-6xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
-
-            <!-- Status Alert Box -->
-            <div id="alertBox" class="hidden p-4 rounded-xl text-xs sm:text-sm font-semibold shadow-sm transition-all"></div>
-
-            <!-- SECTION 1: KELOLA BELUM KIRIM -->
-            <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
-                <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                    <div class="flex items-center gap-3">
-                        <div class="p-2 bg-amber-600 text-white rounded-lg font-bold text-lg leading-none">⏳</div>
-                        <div>
-                            <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">KELOLA BELUM KIRIM</h2>
-                            <p class="text-stone-400 text-xs sm:text-sm">Tambah, edit, atau hapus daftar pesanan pengiriman</p>
-                        </div>
-                    </div>
-                    <button onclick="addBelumKirimGroup()" class="bg-amber-600 hover:bg-amber-500 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1 shadow-sm">
-                        ➕ Tambah Grup Baru
+        <!-- SECTION 1: EDIT KATEGORI BELUM KIRIM -->
+        <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
+                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base sm:text-lg">
+                    1. Data Pesanan Belum Kirim
+                </h2>
+                <div class="flex items-center gap-2">
+                    <button onclick="markAllExistingAsStockDeducted()" class="bg-stone-100 hover:bg-stone-200 text-stone-700 border border-stone-300 font-bold px-3.5 py-2 rounded-lg text-xs transition-all" title="Menandai semua pesanan yang ada saat ini sebagai sudah potong stok">
+                        ✓ Tandai Semua Sudah Potong Stok
+                    </button>
+                    <button onclick="addBelumKirimGroup()" class="bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3.5 py-2 rounded-lg text-xs sm:text-sm transition-all">
+                        + E-Commerce Baru
                     </button>
                 </div>
+            </div>
 
-                <div id="admin-container-belum-kirim" class="p-4 sm:p-6 space-y-6">
-                    <!-- Form Belum Kirim Dimuat Dinamis -->
+            <div id="belumKirimContainer" class="space-y-6">
+                <!-- Form Grup Belum Kirim akan dirender secara dinamis -->
+            </div>
+        </section>
+
+        <!-- SECTION 2: EDIT STOK TANGERANG -->
+        <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
+                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base sm:text-lg">
+                    2. Data Stok Tangerang Titip di PT. MBG
+                </h2>
+                <button onclick="addStokItem()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold px-3.5 py-2 rounded-lg text-xs sm:text-sm transition-all">
+                    + Barang & Stok
+                </button>
+            </div>
+
+            <div class="overflow-x-auto rounded-xl border border-amber-100">
+                <table class="w-full text-center text-xs sm:text-sm">
+                    <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-amber-100 text-xs">
+                        <tr>
+                            <th class="py-3 px-3 w-1/3">Nama Barang</th>
+                            <th class="py-3 px-3 w-24">QTY</th>
+                            <th class="py-3 px-3">Tipe / Status Khusus</th>
+                            <th class="py-3 px-3">Catatan</th>
+                            <th class="py-3 px-3 text-center w-16">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stokContainer" class="divide-y divide-amber-50">
+                        <!-- Items Stok dirender secara dinamis -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Pengaturan GitHub Token & Repo -->
+        <div class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
+            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
+                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-sm sm:text-base">
+                    🔑 Pengaturan Kunci Akses (GitHub Token)
+                </h2>
+                <span id="configStatus" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-red-100 text-red-700">Belum Terhubung</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">Username GitHub:</label>
+                    <input type="text" id="ghUsername" placeholder="Contoh: putradwi-dev" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-800 focus:outline-none">
                 </div>
-            </section>
-
-            <!-- SECTION 2: KELOLA STOK TANGERANG (TITIP DI PT. MBG) -->
-            <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
-                <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                    <div class="flex items-center gap-3">
-                        <div class="p-2 bg-emerald-700 text-white rounded-lg font-bold text-lg leading-none">🏢</div>
-                        <div>
-                            <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">STOK TANGERANG TITIP DI PT. MBG</h2>
-                            <p class="text-stone-400 text-xs sm:text-sm">Kelola stok fisik barang di gudang PT. MBG</p>
-                        </div>
-                    </div>
-                    <button onclick="addStokTangerangItem()" class="bg-emerald-700 hover:bg-emerald-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1 shadow-sm">
-                        ➕ Tambah Item Stok
-                    </button>
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">Nama Repository:</label>
+                    <input type="text" id="ghRepo" placeholder="Contoh: dashboard-mbp" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-800 focus:outline-none">
                 </div>
-
-                <div class="p-4 sm:p-6">
-                    <div class="overflow-x-auto rounded-xl border border-amber-100">
-                        <table class="w-full text-left border-collapse">
-                            <thead>
-                                <tr class="bg-[#faf7f2] border-b border-amber-100 text-stone-700 text-sm uppercase tracking-wider">
-                                    <th class="py-3 px-4 font-bold">Nama Barang</th>
-                                    <th class="py-3 px-4 font-bold text-center w-28">Jumlah (QTY)</th>
-                                    <th class="py-3 px-4 font-bold w-44">Tipe / Status</th>
-                                    <th class="py-3 px-4 font-bold">Catatan Kustom</th>
-                                    <th class="py-3 px-4 font-bold text-center w-20">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody id="admin-tbody-stok-tangerang" class="divide-y divide-amber-50 text-sm">
-                                <!-- Data Stok Dimuat Dinamis -->
-                            </tbody>
-                        </table>
-                    </div>
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">GitHub Personal Access Token (PAT):</label>
+                    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx" class="w-full bg-[#fdfbf7] border border-amber-200 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-amber-800 focus:outline-none">
                 </div>
-            </section>
+            </div>
+            <div class="flex justify-between items-center pt-1">
+                <p class="text-[11px] text-stone-400">*Token ini disimpan dengan aman di penyimpanan lokal browser HP/Laptop Anda saja.</p>
+                <button onclick="saveConfig()" class="bg-stone-800 hover:bg-stone-900 text-white font-bold px-4 py-2 rounded-lg text-xs sm:text-sm transition-all shadow-sm">
+                    💾 Simpan Pengaturan Token
+                </button>
+            </div>
+        </div>
+    </main>
 
-        </main>
-    </div>
-
-    <!-- Footer -->
-    <footer class="max-w-6xl mx-auto px-4 mt-12 text-center text-stone-600 text-xs sm:text-sm space-y-1">
-        <p class="font-semibold">ADMIN PANEL - PT. MBP © 2026</p>
-        <p class="text-stone-400 font-medium">by putradwi-dev</p>
-    </footer>
-
+    <!-- Global State Data -->
     <script>
-        let globalData = { belum_kirim: [], stok_tangerang: [] };
+        let currentData = {
+            belum_kirim: [],
+            stok_tangerang: []
+        };
+        let currentSha = "";
 
-        async function loadAdminData() {
-            try {
-                const response = await fetch('data.json?v=' + new Date().getTime());
-                globalData = await response.json();
-                renderAdminBelumKirim();
-                renderAdminStokTangerang();
-            } catch (error) {
-                showAlert("Gagal memuat data.json: " + error, "error");
+        const STORE_OPTIONS = [
+            "TOKOPEDIA MT",
+            "TOKOPEDIA ADT",
+            "SHOPE MT",
+            "SHOPE ADT",
+            "SHOPE TANGSEL",
+            "OFFLINE"
+        ];
+
+        window.onload = function() {
+            document.getElementById('ghUsername').value = localStorage.getItem('mbp_gh_user') || '';
+            document.getElementById('ghRepo').value = localStorage.getItem('mbp_gh_repo') || '';
+            document.getElementById('ghToken').value = localStorage.getItem('mbp_gh_token') || '';
+            
+            checkConfigStatus();
+            if (localStorage.getItem('mbp_gh_token')) {
+                loadFromGitHub();
+            }
+        };
+
+        function saveConfig() {
+            localStorage.setItem('mbp_gh_user', document.getElementById('ghUsername').value.trim());
+            localStorage.setItem('mbp_gh_repo', document.getElementById('ghRepo').value.trim());
+            localStorage.setItem('mbp_gh_token', document.getElementById('ghToken').value.trim());
+            checkConfigStatus();
+            alert('✓ Pengaturan Token berhasil disimpan di browser!');
+            loadFromGitHub();
+        }
+
+        function checkConfigStatus() {
+            const token = localStorage.getItem('mbp_gh_token');
+            const user = localStorage.getItem('mbp_gh_user');
+            const repo = localStorage.getItem('mbp_gh_repo');
+            const statusEl = document.getElementById('configStatus');
+
+            if (token && user && repo) {
+                statusEl.innerText = "✓ Kunci Akses Dikonfigurasi";
+                statusEl.className = "text-xs font-semibold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800";
+            } else {
+                statusEl.innerText = "⚠️ Belum Terhubung";
+                statusEl.className = "text-xs font-semibold px-2.5 py-0.5 rounded-full bg-red-100 text-red-700";
             }
         }
 
-        function showAlert(message, type = 'success') {
-            const box = document.getElementById('alertBox');
-            box.className = `p-4 rounded-xl text-xs sm:text-sm font-semibold shadow-sm transition-all ${type === 'success' ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-red-50 text-red-800 border border-red-200'}`;
-            box.innerText = message;
-            box.classList.remove('hidden');
-            setTimeout(() => { box.classList.add('hidden'); }, 4000);
-        }
+        async function loadFromGitHub() {
+            const user = localStorage.getItem('mbp_gh_user');
+            const repo = localStorage.getItem('mbp_gh_repo');
+            const token = localStorage.getItem('mbp_gh_token');
 
-        function extractDateFromGroup(grupStr) {
-            const match = grupStr.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
-            if (match) {
-                const [, d, m, y] = match;
-                return new Date(`${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`);
-            }
-            return new Date(0);
-        }
-
-        // --- SECTION 1: BELUM KIRIM (DENGAN URUTAN TANGGAL & PEMISAH) ---
-        function renderAdminBelumKirim() {
-            const container = document.getElementById('admin-container-belum-kirim');
-            container.innerHTML = '';
-
-            if (!globalData.belum_kirim || globalData.belum_kirim.length === 0) {
-                container.innerHTML = `<p class="text-stone-400 text-center py-4 text-sm">Belum ada data grup pengiriman.</p>`;
+            if (!user || !repo || !token) {
+                alert('Silakan lengkapi dan simpan Pengaturan Token terlebih dahulu.');
                 return;
             }
 
-            // Urutkan groups dari tanggal tua ke muda (Ascending)
-            const sortedIndices = globalData.belum_kirim.map((g, idx) => ({ group: g, originalIndex: idx })).sort((a, b) => {
-                return extractDateFromGroup(a.group.grup) - extractDateFromGroup(b.group.grup);
-            });
+            try {
+                const url = `https://api.github.com/repos/${user}/${repo}/contents/data.json`;
+                const response = await fetch(url, {
+                    headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
+                });
 
-            let lastDateStr = '';
+                if (!response.ok) throw new Error("Gagal mengambil data dari GitHub.");
 
-            sortedIndices.forEach(({ group, originalIndex: gIndex }) => {
-                const dateMatch = group.grup.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
-                const currentDateStr = dateMatch ? dateMatch[1] : '';
+                const resData = await response.json();
+                currentSha = resData.sha;
+                
+                const jsonText = decodeURIComponent(escape(atob(resData.content)));
+                currentData = JSON.parse(jsonText);
 
-                // Buat tajuk pemisah tanggal jika tanggal berubah
-                if (currentDateStr && currentDateStr !== lastDateStr) {
-                    lastDateStr = currentDateStr;
-                    const dateDivider = document.createElement('div');
-                    dateDivider.className = "flex items-center gap-4 pt-4 pb-2 mb-2";
-                    dateDivider.innerHTML = `
-                        <div class="flex items-center gap-2 bg-stone-900 text-amber-50 px-4 py-2 rounded-xl shadow-sm text-sm sm:text-base font-extrabold tracking-wide uppercase border border-amber-500/30">
-                            <span>📅 Tanggal Pesanan Masuk: ${currentDateStr}</span>
-                        </div>
-                        <div class="flex-grow border-t-2 border-stone-300"></div>
-                    `;
-                    container.appendChild(dateDivider);
+                renderAllForms();
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+
+        function renderAllForms() {
+            renderBelumKirim();
+            renderStok();
+            checkDuplicates();
+        }
+
+        function filterData() {
+            renderBelumKirim();
+            renderStok();
+        }
+
+        function parseGroupName(fullGrup) {
+            if (!fullGrup) return { store: "TOKOPEDIA MT", dateStr: new Date().toISOString().slice(0, 10) };
+            
+            let foundStore = STORE_OPTIONS.find(s => fullGrup.toUpperCase().startsWith(s));
+            if (!foundStore) {
+                return { store: STORE_OPTIONS[0], dateStr: new Date().toISOString().slice(0, 10) };
+            }
+
+            let remainder = fullGrup.substring(foundStore.length).trim();
+            let dateStr = new Date().toISOString().slice(0, 10);
+
+            if (remainder) {
+                let parts = remainder.split('/');
+                if (parts.length === 3) {
+                    let d = parts[0].padStart(2, '0');
+                    let m = parts[1].padStart(2, '0');
+                    let y = parts[2];
+                    dateStr = `${y}-${m}-${d}`;
                 }
+            }
+            return { store: foundStore, dateStr };
+        }
 
-                const groupDiv = document.createElement('div');
-                groupDiv.className = "bg-[#fdfbf7] p-4 sm:p-5 rounded-2xl border-2 border-stone-900 shadow-sm space-y-4 mb-6";
+        function updateGroupComposite(gIdx) {
+            const storeSelect = document.getElementById(`store_select_${gIdx}`);
+            const dateInput = document.getElementById(`date_input_${gIdx}`);
+            if (!storeSelect || !dateInput) return;
 
+            let storeName = storeSelect.value;
+            let dateVal = dateInput.value;
+
+            if (dateVal) {
+                let parts = dateVal.split('-');
+                if (parts.length === 3) {
+                    let formattedDate = `${parseInt(parts[2])}/${parseInt(parts[1])}/${parts[0]}`;
+                    currentData.belum_kirim[gIdx].grup = `${storeName} ${formattedDate}`;
+                    return;
+                }
+            }
+            currentData.belum_kirim[gIdx].grup = storeName;
+        }
+
+        function findStokTitipanMatch(namaBarangInput) {
+            if (!namaBarangInput || namaBarangInput.trim().length < 2) return null;
+            const inputClean = namaBarangInput.trim().toLowerCase();
+
+            return (currentData.stok_tangerang || []).find(stok => {
+                const stokNameClean = (stok.nama || '').trim().toLowerCase();
+                return stokNameClean.includes(inputClean) || inputClean.includes(stokNameClean);
+            });
+        }
+
+        // Tombol pintasan untuk menandai HANYA pesanan yang cocok dengan stok titipan
+        function markAllExistingAsStockDeducted() {
+            if (confirm("Tandai pesanan yang ada di Stok Titipan sebagai 'Sudah Potong Stok'? (Pesanan lain yang tidak ada di stok titipan akan dibiarkan bersih)")) {
+                (currentData.belum_kirim || []).forEach(group => {
+                    (group.items || []).forEach(item => {
+                        // Hanya tandai jika nama barangnya benar-benar ada/cocok di daftar stok titipan
+                        const matchedStok = findStokTitipanMatch(item.nama);
+                        if (matchedStok) {
+                            item.potong_stok = true;
+                        }
+                    });
+                });
+                renderAllForms();
+                alert("✓ Pesanan dari stok titipan telah ditandai sudah potong stok!");
+              }
+        }
+
+        function renderBelumKirim() {
+            const container = document.getElementById('belumKirimContainer');
+            container.innerHTML = '';
+
+            const keyword = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
+
+            (currentData.belum_kirim || []).forEach((group, gIdx) => {
                 let itemsHtml = '';
-                group.items.forEach((item, iIndex) => {
-                    let isKayu = !!item.kayu;
-                    let isTerlambat = !!item.terlambat;
-                    let isBatal = !!item.batal;
-                    if (!isKayu && !isTerlambat && !isBatal && typeof item.status === 'string') {
-                        const s = item.status.toLowerCase();
-                        isKayu = (s === 'kayu' || s === 'keduanya');
-                        isTerlambat = (s === 'terlambat' || s === 'keduanya');
+                let hasVisibleItem = false;
+
+                (group.items || []).forEach((item, iIdx) => {
+                    item.kayu = !!item.kayu;
+                    item.terlambat = !!item.terlambat;
+                    item.batal = !!item.batal;
+                    item.catatan_manual = item.catatan_manual || '';
+                    item.potong_stok = !!item.potong_stok;
+
+                    const namaBarang = (item.nama || '').toLowerCase();
+                    const noPesanan = (item.no_pesanan || '').toLowerCase();
+                    const namaGrup = (group.grup || '').toLowerCase();
+                    const catatanManualStr = item.catatan_manual.toLowerCase();
+
+                    const isMatch = keyword === '' || namaBarang.includes(keyword) || noPesanan.includes(keyword) || namaGrup.includes(keyword) || catatanManualStr.includes(keyword);
+
+                    if (isMatch) {
+                        hasVisibleItem = true;
                     }
-                    const itemQty = item.qty !== undefined ? item.qty : 1;
-                    const catatanManual = item.catatan_manual || '';
+
+                    const displayStyle = isMatch ? '' : 'display: none;';
+
+                    const matchedStok = findStokTitipanMatch(item.nama);
+                    let stokAlertBadge = '';
+
+                    // Jika sudah potong stok atau sengaja ditandai aman, tampilkan badge hijau
+                    if (item.potong_stok) {
+                        stokAlertBadge = `
+                            <div class="mt-1 flex items-center justify-between bg-emerald-50 text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-lg text-xs font-bold">
+                                <span>📦 Status Stok Titipan: <strong>Sudah Potong Stok</strong></span>
+                                <span class="bg-emerald-700 text-white px-2 py-0.5 rounded text-[11px] font-bold">✓ Sudah potong stok</span>
+                            </div>
+                        `;
+                    } else if (matchedStok) {
+                        // Hanya muncul jika data BARU dan belum dipotong stoknya
+                        stokAlertBadge = `
+                            <div class="mt-1 flex items-center justify-between bg-amber-100/90 text-amber-900 border border-amber-300 px-2.5 py-1 rounded-lg text-xs font-bold">
+                                <span>📦 Ditemukan di Stok Titipan: <strong>${matchedStok.nama}</strong> (Tersedia: ${matchedStok.jumlah})</span>
+                                <button onclick="kurangiStokTitipanOtomatis(${gIdx}, ${iIdx}, '${matchedStok.nama}', ${item.qty || 1})" class="bg-amber-800 hover:bg-amber-900 text-white px-2 py-0.5 rounded text-[11px] font-bold transition-all ml-2 shadow-sm">
+                                    Potong Stok (-${item.qty || 1})
+                                </button>
+                            </div>
+                        `;
+                    }
 
                     itemsHtml += `
-                        <div class="bg-white p-3.5 rounded-xl border border-amber-200/70 space-y-3 shadow-sm">
-                            <div class="grid grid-cols-1 md:grid-cols-12 gap-2.5 items-center">
-                                <div class="md:col-span-3">
-                                    <label class="text-[10px] uppercase font-bold text-stone-400 block mb-1">Nama Barang</label>
-                                    <input type="text" value="${item.nama}" onchange="updateItemField(${gIndex}, ${iIndex}, 'nama', this.value)" class="w-full bg-[#faf7f2] border border-amber-200 rounded-lg px-3 py-1.5 text-sm font-bold text-stone-900 focus:outline-none focus:ring-2 focus:ring-amber-700">
+                        <div class="space-y-1.5 bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
+                            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center">
+                                <div class="sm:col-span-3">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Nama Barang</label>
+                                    <input type="text" value="${item.nama || ''}" onchange="updateItemNameWithStokCheck(${gIdx}, ${iIdx}, this.value)" placeholder="Nama Barang" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                                 </div>
-                                <div class="md:col-span-3">
-                                    <label class="text-[10px] uppercase font-bold text-stone-400 block mb-1">Nomor Pesanan</label>
-                                    <input type="text" value="${item.no_pesanan}" onchange="updateItemField(${gIndex}, ${iIndex}, 'no_pesanan', this.value)" class="w-full bg-[#faf7f2] border border-amber-200 rounded-lg px-3 py-1.5 text-sm font-mono text-stone-700 focus:outline-none focus:ring-2 focus:ring-amber-700">
+                                <div class="sm:col-span-1">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">QTY</label>
+                                    <input type="number" min="1" value="${item.qty !== undefined ? item.qty : 1}" onchange="updateItemQty(${gIdx}, ${iIdx}, this.value)" placeholder="Qty" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-sm sm:text-base font-extrabold text-center text-stone-900 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                                 </div>
-                                <div class="md:col-span-1">
-                                    <label class="text-[10px] uppercase font-bold text-stone-400 block mb-1">QTY</label>
-                                    <input type="number" min="1" value="${itemQty}" onchange="updateItemField(${gIndex}, ${iIndex}, 'qty', parseInt(this.value) || 1)" class="w-full bg-[#faf7f2] border border-amber-200 rounded-lg px-3 py-1.5 text-sm font-bold text-amber-900 text-center focus:outline-none focus:ring-2 focus:ring-amber-700">
+                                <div class="sm:col-span-3">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">No. Pesanan</label>
+                                    <input type="text" id="no_pesanan_${gIdx}_${iIdx}" value="${item.no_pesanan || ''}" oninput="updateItemNo(${gIdx}, ${iIdx}, this.value)" placeholder="Nomor Pesanan" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-3 py-2 text-sm sm:text-base font-mono font-bold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
                                 </div>
-                                <div class="md:col-span-2">
-                                    <label class="text-[10px] uppercase font-bold text-stone-400 block mb-1">Ekspedisi</label>
-                                    <select onchange="updateItemField(${gIndex}, ${iIndex}, 'ekspedisi', this.value)" class="w-full bg-[#faf7f2] border border-amber-200 rounded-lg px-3 py-1.5 text-sm font-bold text-stone-800 focus:outline-none focus:ring-2 focus:ring-amber-700">
-                                        <option value="JNE" ${item.ekspedisi.toUpperCase().includes('JNE') ? 'selected' : ''}>JNE</option>
-                                        <option value="J&T Cargo" ${item.ekspedisi.toUpperCase().includes('J&T') ? 'selected' : ''}>J&T Cargo</option>
-                                        <option value="KURIR TOKO" ${item.ekspedisi.toUpperCase().includes('KURIR TOKO') ? 'selected' : ''}>KURIR TOKO</option>
+                                <div class="sm:col-span-1">
+                                    <label class="block text-[11px] text-stone-400 font-bold uppercase sm:hidden mb-1">Ekspedisi</label>
+                                    <select onchange="updateItemExp(${gIdx}, ${iIdx}, this.value)" class="w-full bg-[#faf7f2] border border-stone-200 rounded-lg px-2 py-2 text-xs sm:text-sm font-extrabold text-stone-900 cursor-pointer focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                                        <option value="JNE" ${item.ekspedisi === 'JNE' ? 'selected' : ''}>JNE</option>
+                                        <option value="J&T" ${item.ekspedisi === 'J&T' ? 'selected' : ''}>J&T</option>
+                                        <option value="KURIR TOKO" ${item.ekspedisi === 'KURIR TOKO' ? 'selected' : ''}>KURIR TOKO</option>
+                                        <option value="EKS. LAINNYA" ${(!['JNE','J&T','SICEPAT','KURIR TOKO'].includes(item.ekspedisi)) ? 'selected' : ''}>Lainnya</option>
                                     </select>
                                 </div>
-                                <div class="md:col-span-3 flex items-end justify-between gap-2 pt-2 md:pt-0">
-                                    <div class="flex-grow">
-                                        <label class="text-[10px] uppercase font-bold text-stone-400 block mb-1">Catatan Kustom</label>
-                                        <input type="text" value="${catatanManual}" placeholder="Mis: Bantu Scan..." onchange="updateItemField(${gIndex}, ${iIndex}, 'catatan_manual', this.value)" class="w-full bg-[#faf7f2] border border-amber-200 rounded-lg px-3 py-1.5 text-xs text-stone-700 focus:outline-none">
+                                <!-- Checkbox Status & Catatan Manual -->
+                                <div class="sm:col-span-3 flex flex-col gap-1.5 bg-[#faf7f2] px-2.5 py-2 rounded-lg border border-stone-200">
+                                    <div class="flex flex-wrap items-center justify-center gap-2">
+                                        <label class="flex items-center gap-0.5 text-[11px] font-bold text-stone-800 cursor-pointer">
+                                            <input type="checkbox" ${item.kayu ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'kayu', this.checked)" class="w-3.5 h-3.5 rounded text-amber-800 focus:ring-amber-700"> Kayu
+                                        </label>
+                                        <label class="flex items-center gap-0.5 text-[11px] font-bold text-red-700 cursor-pointer">
+                                            <input type="checkbox" ${item.terlambat ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'terlambat', this.checked)" class="w-3.5 h-3.5 rounded text-red-600 focus:ring-red-600"> Terlambat
+                                        </label>
+                                        <label class="flex items-center gap-0.5 text-[11px] font-bold text-orange-700 cursor-pointer" title="Malam Ini Batal">
+                                            <input type="checkbox" ${item.batal ? 'checked' : ''} onclick="updateItemStatusCheckbox(${gIdx}, ${iIdx}, 'batal', this.checked)" class="w-3.5 h-3.5 rounded text-orange-600 focus:ring-orange-600"> MIB
+                                        </label>
                                     </div>
-                                    <button onclick="deleteItem(${gIndex}, ${iIndex})" class="bg-red-100 hover:bg-red-200 text-red-700 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all" title="Hapus Item">🗑️</button>
+                                    <input type="text" value="${item.catatan_manual}" onchange="updateItemCatatanManual(${gIdx}, ${iIdx}, this.value)" placeholder="Catatan manual khusus..." class="w-full bg-white border border-stone-300 rounded px-2 py-1 text-xs text-stone-800 focus:ring-1 focus:ring-amber-800 focus:outline-none">
+                                </div>
+                                <!-- Tombol Hapus -->
+                                <div class="sm:col-span-1 text-center">
+                                    <button onclick="confirmDeleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs sm:text-sm font-bold px-2 py-2 rounded-lg border border-red-200 transition-all w-full shadow-sm">Hapus</button>
                                 </div>
                             </div>
-
-                            <!-- Checkbox Flags -->
-                            <div class="flex flex-wrap items-center gap-4 pt-2 border-t border-amber-100 text-xs">
-                                <label class="flex items-center gap-1.5 cursor-pointer font-semibold text-amber-900">
-                                    <input type="checkbox" ${isKayu ? 'checked' : ''} onchange="updateItemFlag(${gIndex}, ${iIndex}, 'kayu', this.checked)" class="rounded text-amber-800 focus:ring-amber-700 w-4 h-4"> Packing Kayu
-                                </label>
-                                <label class="flex items-center gap-1.5 cursor-pointer font-semibold text-orange-600">
-                                    <input type="checkbox" ${isTerlambat ? 'checked' : ''} onchange="updateItemFlag(${gIndex}, ${iIndex}, 'terlambat', this.checked)" class="rounded text-orange-600 focus:ring-orange-500 w-4 h-4"> Terlambat
-                                </label>
-                                <label class="flex items-center gap-1.5 cursor-pointer font-semibold text-red-600">
-                                    <input type="checkbox" ${isBatal ? 'checked' : ''} onchange="updateItemFlag(${gIndex}, ${iIndex}, 'batal', this.checked)" class="rounded text-red-600 focus:ring-red-500 w-4 h-4"> Malam Ini Batal
-                                </label>
-                            </div>
+                            ${stokAlertBadge}
                         </div>
                     `;
                 });
 
-                groupDiv.innerHTML = `
-                    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-3 pb-3 border-b border-amber-200">
-                        <div class="flex items-center gap-2 flex-grow">
+                if (keyword !== '' && !hasVisibleItem) return;
+
+                const parsed = parseGroupName(group.grup);
+                let storeOptionsHtml = STORE_OPTIONS.map(opt => `<option value="${opt}" ${parsed.store === opt ? 'selected' : ''}>${opt}</option>`).join('');
+
+                let gDiv = document.createElement('div');
+                gDiv.className = "bg-white p-4 sm:p-5 rounded-2xl border-2 border-stone-900 shadow-sm space-y-4 mb-6";
+
+                let moveButtons = '';
+                if ((currentData.belum_kirim || []).length > 1) {
+                    moveButtons = `<div class="flex items-center gap-1.5 border-l border-amber-200 pl-2.5 ml-1">`;
+                    if (gIdx > 0) {
+                        moveButtons += `<button onclick="moveGroup(${gIdx}, -1)" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-semibold px-2 py-1 rounded text-xs transition-all">Geser ke Atas</button>`;
+                    }
+                    if (gIdx < currentData.belum_kirim.length - 1) {
+                        moveButtons += `<button onclick="moveGroup(${gIdx}, 1)" class="bg-stone-200 hover:bg-stone-300 text-stone-700 font-semibold px-2 py-1 rounded text-xs transition-all">Geser ke Bawah</button>`;
+                    }
+                    moveButtons += `</div>`;
+                }
+
+                gDiv.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-between pb-2 border-b border-amber-200/60 gap-2">
+                        <div class="flex items-center gap-2 flex-wrap">
                             <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
-                            <input type="text" value="${group.grup}" onchange="updateGroupTitle(${gIndex}, this.value)" class="bg-white border border-amber-300 rounded-lg px-3 py-1 text-base font-extrabold text-amber-950 uppercase tracking-wide w-full sm:w-80 focus:outline-none focus:ring-2 focus:ring-amber-700" placeholder="Nama Grup...">
+                            <select id="store_select_${gIdx}" onchange="updateGroupComposite(${gIdx})" class="font-bold text-amber-950 text-sm sm:text-base bg-white border border-amber-200 rounded-lg px-3 py-1.5 uppercase tracking-wide focus:ring-2 focus:ring-amber-800 focus:outline-none cursor-pointer">
+                                ${storeOptionsHtml}
+                            </select>
+                            <input type="date" id="date_input_${gIdx}" value="${parsed.dateStr}" onchange="updateGroupComposite(${gIdx})" class="font-semibold text-stone-800 text-sm bg-white border border-amber-200 rounded-lg px-2.5 py-1.5 focus:ring-2 focus:ring-amber-800 focus:outline-none cursor-pointer">
+                            ${moveButtons}
                         </div>
                         <div class="flex items-center gap-2">
-                            <button onclick="addItemToGroup(${gIndex})" class="bg-amber-800 hover:bg-amber-900 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition-all">➕ Tambah Item</button>
-                            <button onclick="deleteGroup(${gIndex})" class="bg-red-700 hover:bg-red-800 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition-all">🗑️ Hapus Grup</button>
+                            <button onclick="addBelumKirimItem(${gIdx})" class="bg-amber-800 text-white font-bold px-3 py-1.5 rounded-lg text-xs sm:text-sm hover:bg-amber-900 transition-all">+ Pesanan</button>
+                            <button onclick="confirmDeleteGroup(${gIdx})" class="bg-red-100 text-red-700 font-bold px-2.5 py-1.5 rounded-lg text-xs sm:text-sm hover:bg-red-200 transition-all">Hapus E-Commerce</button>
                         </div>
                     </div>
-                    <div class="space-y-3 pt-2">
+                    <div class="space-y-2.5">
                         ${itemsHtml}
                     </div>
                 `;
-                container.appendChild(groupDiv);
+
+                container.appendChild(gDiv);
+            });
+            checkDuplicates();
+        }
+
+        function renderStok() {
+            const container = document.getElementById('stokContainer');
+            container.innerHTML = '';
+
+            const keyword = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
+
+            (currentData.stok_tangerang || []).forEach((item, idx) => {
+                const namaStok = (item.nama || '').toLowerCase();
+                const catatanStok = (item.catatan || '').toLowerCase();
+                const isMatchStok = keyword === '' || namaStok.includes(keyword) || catatanStok.includes(keyword);
+
+                const displayStyleStok = isMatchStok ? '' : 'display: none;';
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-[#faf7f2]";
+                tr.style.cssText = displayStyleStok;
+                tr.innerHTML = `
+                    <td class="py-2.5 px-3">
+                        <input type="text" value="${item.nama || ''}" onchange="updateStokNama(${idx}, this.value)" class="w-full bg-[#fdfbf7] border border-stone-200 rounded-lg px-3 py-2 font-bold text-sm text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                    </td>
+                    <td class="py-2.5 px-3">
+                        <input type="number" value="${item.jumlah !== undefined ? item.jumlah : 1}" onchange="updateStokJumlah(${idx}, this.value)" class="w-24 bg-[#fdfbf7] border border-stone-200 rounded-lg px-2 py-2 font-extrabold text-sm text-center text-stone-900 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                    </td>
+                    <td class="py-2.5 px-3">
+                        <select onchange="updateStokTipe(${idx}, this.value)" class="w-full bg-[#fdfbf7] border border-stone-200 rounded-lg px-2 py-2 font-bold text-sm focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                            <option value="normal" ${item.tipe === 'normal' ? 'selected' : ''}>Normal (-)</option>
+                            <option value="warning" ${item.tipe === 'warning' ? 'selected' : ''}>Perlu diperbaiki</option>
+                            <option value="priority" ${item.tipe === 'priority' ? 'selected' : ''}>Utamakan habiskan ini</option>
+                        </select>
+                    </td>
+                    <td class="py-2.5 px-3">
+                        <input type="text" value="${item.catatan || ''}" onchange="updateStokCatatan(${idx}, this.value)" placeholder="Teks Catatan" class="w-full bg-[#fdfbf7] border border-stone-200 rounded-lg px-3 py-2 text-sm text-stone-700 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                    </td>
+                    <td class="py-2.5 px-3 text-center">
+                        <button onclick="confirmDeleteStokItem(${idx})" class="text-red-600 hover:text-red-800 font-bold text-xs sm:text-sm">Hapus</button>
+                    </td>
+                `;
+                container.appendChild(tr);
             });
         }
 
-        function addBelumKirimGroup() {
-            const todayStr = new Date().toLocaleDateString('id-ID', {day: '2-digit', month: '2-digit', year: 'numeric'}).split('/').join('/');
-            globalData.belum_kirim.push({
-                grup: `TOKOPEDIA MT ${todayStr}`,
-                items: [{ nama: "BARU", no_pesanan: "12345", qty: 1, ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, catatan_manual: "" }]
-            });
-            renderAdminBelumKirim();
-            showAlert("Grup baru ditambahkan. Jangan lupa klik Simpan Perubahan.");
+        function updateItemName(gIdx, iIdx, val) { 
+            currentData.belum_kirim[gIdx].items[iIdx].nama = val; 
         }
 
-        function deleteGroup(gIndex) {
-            if (confirm("Yakin ingin menghapus seluruh grup ini?")) {
-                globalData.belum_kirim.splice(gIndex, 1);
-                renderAdminBelumKirim();
-                showAlert("Grup berhasil dihapus.");
+        function updateItemNameWithStokCheck(gIdx, iIdx, val) {
+            updateItemName(gIdx, iIdx, val);
+
+            const item = currentData.belum_kirim[gIdx].items[iIdx];
+            const qtyOrder = item.qty || 1;
+            const matchedStok = findStokTitipanMatch(val);
+
+            // Jika mengetik barang baru dan belum dipotong stok, baru munculkan pop-up peringatan
+            if (matchedStok && !item.potong_stok) {
+                setTimeout(() => {
+                    const confirmKurang = confirm(
+                        `⚠️ PENGINGAT STOK TITIPAN:\n\n` +
+                        `Barang "${val}" terdeteksi ada di Stok Titipan Gudang ("${matchedStok.nama}" dengan sisa stok: ${matchedStok.jumlah}).\n\n` +
+                        `Apakah Anda ingin otomatis memotong Stok Titipan sebanyak ${qtyOrder} item?`
+                    );
+
+                    if (confirmKurang) {
+                        kurangiStokTitipanOtomatis(gIdx, iIdx, matchedStok.nama, qtyOrder);
+                    } else {
+                        renderAllForms();
+                    }
+                }, 100);
+            } else {
+                renderAllForms();
             }
         }
 
-        function updateGroupTitle(gIndex, val) {
-            globalData.belum_kirim[gIndex].grup = val;
+        function kurangiStokTitipanOtomatis(gIdx, iIdx, stokNama, qtyPotong) {
+            const idx = (currentData.stok_tangerang || []).findIndex(s => (s.nama || '').trim().toLowerCase() === stokNama.trim().toLowerCase());
+            
+            if (currentData.belum_kirim[gIdx] && currentData.belum_kirim[gIdx].items[iIdx]) {
+                currentData.belum_kirim[gIdx].items[iIdx].potong_stok = true;
+            }
+
+            if (idx !== -1) {
+                const sisa = currentData.stok_tangerang[idx].jumlah - qtyPotong;
+                if (sisa <= 0) {
+                    alert(`✓ Stok titipan "${currentData.stok_tangerang[idx].nama}" telah habis dan otomatis dihapus dari daftar stok.`);
+                    currentData.stok_tangerang.splice(idx, 1);
+                } else {
+                    currentData.stok_tangerang[idx].jumlah = sisa;
+                    alert(`✓ Stok titipan "${currentData.stok_tangerang[idx].nama}" berhasil dipotong ${qtyPotong}. Sisa stok sekarang: ${sisa}`);
+                }
+            }
+            renderAllForms();
         }
 
-        function addItemToGroup(gIndex) {
-            globalData.belum_kirim[gIndex].items.push({
-                nama: "BARU", no_pesanan: "12345", qty: 1, ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, catatan_manual: ""
+        function updateItemQty(gIdx, iIdx, val) { 
+            currentData.belum_kirim[gIdx].items[iIdx].qty = Number(val) || 1; 
+            renderBelumKirim();
+        }
+
+        function updateItemNo(gIdx, iIdx, val) { 
+            currentData.belum_kirim[gIdx].items[iIdx].no_pesanan = val; 
+            checkDuplicates();
+        }
+
+        function updateItemExp(gIdx, iIdx, val) { currentData.belum_kirim[gIdx].items[iIdx].ekspedisi = val; }
+        
+        function updateItemStatusCheckbox(gIdx, iIdx, field, isChecked) {
+            currentData.belum_kirim[gIdx].items[iIdx][field] = isChecked;
+        }
+
+        function updateItemCatatanManual(gIdx, iIdx, val) {
+            currentData.belum_kirim[gIdx].items[iIdx].catatan_manual = val;
+        }
+
+        function checkDuplicates() {
+            const counts = {};
+            (currentData.belum_kirim || []).forEach(group => {
+                (group.items || []).forEach(item => {
+                    const no = (item.no_pesanan || '').trim();
+                    if (no !== '') {
+                        counts[no] = (counts[no] || 0) + 1;
+                    }
+                });
             });
-            renderAdminBelumKirim();
+
+            let hasDuplicate = false;
+            (currentData.belum_kirim || []).forEach((group, gIdx) => {
+                (group.items || []).forEach((item, iIdx) => {
+                    const no = (item.no_pesanan || '').trim();
+                    const inputEl = document.getElementById(`no_pesanan_${gIdx}_${iIdx}`);
+                    if (inputEl) {
+                        if (no !== '' && counts[no] > 1) {
+                            inputEl.classList.add('border-red-500', 'bg-red-50', 'text-red-700');
+                            inputEl.title = "Nomor pesanan ini duplikat!";
+                            hasDuplicate = true;
+                        } else {
+                            inputEl.classList.remove('border-red-500', 'bg-red-50', 'text-red-700');
+                            inputEl.title = "";
+                        }
+                    }
+                });
+            });
+
+            const warningBanner = document.getElementById('globalDuplicateWarning');
+            if (warningBanner) {
+                if (hasDuplicate) {
+                    warningBanner.classList.remove('hidden');
+                } else {
+                    warningBanner.classList.add('hidden');
+                }
+            }
+        }
+        
+        function addBelumKirimGroup() {
+            if (!currentData.belum_kirim) currentData.belum_kirim = [];
+            let today = new Date();
+            let d = today.getDate();
+            let m = today.getMonth() + 1;
+            let y = today.getFullYear();
+
+            currentData.belum_kirim.push({ 
+                grup: `TOKOPEDIA MT ${d}/${m}/${y}`, 
+                items: [
+                    { nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, catatan_manual: "", potong_stok: false }
+                ] 
+            });
+            renderBelumKirim();
         }
 
-        function deleteItem(gIndex, iIndex) {
-            globalData.belum_kirim[gIndex].items.splice(iIndex, 1);
-            renderAdminBelumKirim();
+        function addBelumKirimItem(gIdx) {
+            if (!currentData.belum_kirim[gIdx].items) currentData.belum_kirim[gIdx].items = [];
+            // Untuk pesanan BARU, potong_stok otomatis false (sehingga fitur notifikasi aktif)
+            currentData.belum_kirim[gIdx].items.push({ nama: "", qty: 1, no_pesanan: "", ekspedisi: "JNE", kayu: false, terlambat: false, batal: false, catatan_manual: "", potong_stok: false });
+            renderBelumKirim();
         }
 
-        function updateItemField(gIndex, iIndex, field, val) {
-            globalData.belum_kirim[gIndex].items[iIndex][field] = val;
+        function confirmDeleteBelumKirimItem(gIdx, iIdx) {
+            if (confirm("Yakin ingin menghapus item pesanan ini?")) {
+                currentData.belum_kirim[gIdx].items.splice(iIdx, 1);
+                renderBelumKirim();
+            }
         }
 
-        function updateItemFlag(gIndex, iIndex, flag, val) {
-            globalData.belum_kirim[gIndex].items[iIndex][flag] = val;
+        function confirmDeleteGroup(gIdx) {
+            if (confirm("⚠️ Yakin ingin menghapus seluruh kelompok E-Commerce ini beserta isinya?")) {
+                currentData.belum_kirim.splice(gIdx, 1);
+                renderBelumKirim();
+            }
         }
 
+        function moveGroup(gIdx, direction) {
+            const newIdx = gIdx + direction;
+            if (newIdx < 0 || newIdx >= currentData.belum_kirim.length) return;
+            
+            const temp = currentData.belum_kirim[gIdx];
+            currentData.belum_kirim[gIdx] = currentData.belum_kirim[newIdx];
+            currentData.belum_kirim[newIdx] = temp;
+            
+            renderBelumKirim();
+        }
 
-        // --- SECTION 2: KELOLA STOK TANGERANG ---
-        function renderAdminStokTangerang() {
-            const tbody = document.getElementById('admin-tbody-stok-tangerang');
-            tbody.innerHTML = '';
+        function updateStokNama(idx, val) { currentData.stok_tangerang[idx].nama = val; }
+        function updateStokJumlah(idx, val) { currentData.stok_tangerang[idx].jumlah = Number(val); }
+        function updateStokTipe(idx, val) { currentData.stok_tangerang[idx].tipe = val; }
+        function updateStokCatatan(idx, val) { currentData.stok_tangerang[idx].catatan = val; }
+        
+        function addStokItem() {
+            if (!currentData.stok_tangerang) currentData.stok_tangerang = [];
+            currentData.stok_tangerang.push({ nama: "", jumlah: 1, catatan: "-", tipe: "normal" });
+            renderStok();
+        }
 
-            if (!globalData.stok_tangerang || globalData.stok_tangerang.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="5" class="py-4 text-center text-stone-400">Belum ada data stok Tangerang.</td></tr>`;
+        function confirmDeleteStokItem(idx) {
+            if (confirm("Yakin ingin menghapus data stok barang ini?")) {
+                currentData.stok_tangerang.splice(idx, 1);
+                renderStok();
+            }
+        }
+
+        async function saveToGitHub() {
+            const user = localStorage.getItem('mbp_gh_user');
+            const repo = localStorage.getItem('mbp_gh_repo');
+            const token = localStorage.getItem('mbp_gh_token');
+
+            if (!user || !repo || !token) {
+                alert('Pengaturan token belum lengkap!');
                 return;
             }
 
-            globalData.stok_tangerang.forEach((item, index) => {
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-amber-50/50 transition-colors";
-                tr.innerHTML = `
-                    <td class="py-3 px-4">
-                        <input type="text" value="${item.nama}" onchange="updateStokField(${index}, 'nama', this.value)" class="w-full bg-[#faf7f2] border border-amber-200 rounded-lg px-3 py-1 text-sm font-semibold text-stone-800 focus:outline-none">
-                    </td>
-                    <td class="py-3 px-4 text-center">
-                        <input type="number" min="0" value="${item.jumlah}" onchange="updateStokField(${index}, 'jumlah', parseInt(this.value) || 0)" class="w-20 bg-[#faf7f2] border border-amber-200 rounded-lg px-2 py-1 text-sm font-bold text-stone-900 text-center focus:outline-none">
-                    </td>
-                    <td class="py-3 px-4">
-                        <select onchange="updateStokField(${index}, 'tipe', this.value)" class="w-full bg-[#faf7f2] border border-amber-200 rounded-lg px-2 py-1 text-xs font-bold text-stone-800 focus:outline-none">
-                            <option value="normal" ${item.tipe === 'normal' || !item.tipe ? 'selected' : ''}>Normal</option>
-                            <option value="priority" ${item.tipe === 'priority' ? 'selected' : ''}>Priority (Utamakan)</option>
-                            <option value="warning" ${item.tipe === 'warning' ? 'selected' : ''}>Warning (Perbaiki)</option>
-                        </select>
-                    </td>
-                    <td class="py-3 px-4">
-                        <input type="text" value="${item.catatan || ''}" placeholder="Catatan kustom..." onchange="updateStokField(${index}, 'catatan', this.value)" class="w-full bg-[#faf7f2] border border-amber-200 rounded-lg px-3 py-1 text-xs text-stone-700 focus:outline-none">
-                    </td>
-                    <td class="py-3 px-4 text-center">
-                        <button onclick="deleteStokItem(${index})" class="bg-red-100 hover:bg-red-200 text-red-700 px-2.5 py-1 rounded-lg text-xs font-bold transition-all">🗑️</button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
-            });
+            try {
+                const url = `https://api.github.com/repos/${user}/${repo}/contents/data.json`;
+                const jsonString = JSON.stringify(currentData, null, 2);
+                const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
+
+                const bodyData = {
+                    message: "Update admin stock deduction logic for new entries only",
+                    content: contentBase64,
+                    sha: currentSha
+                };
+
+                const response = await fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify(bodyData)
+                });
+
+                if (!response.ok) throw new Error("Gagal menyimpan ke GitHub.");
+
+                const resJson = await response.json();
+                currentSha = resJson.content.sha;
+
+                alert("BERHASIL SIMPAN & UPDATE");
+            } catch (err) {
+                alert("Gagal menyimpan: " + err.message);
+            }
         }
-
-        function addStokTangerangItem() {
-            globalData.stok_tangerang.push({ nama: "BARANG BARU", jumlah: 1, tipe: "normal", catatan: "-" });
-            renderAdminStokTangerang();
-        }
-
-        function deleteStokItem(index) {
-            globalData.stok_tangerang.splice(index, 1);
-            renderAdminStokTangerang();
-        }
-
-        function updateStokField(index, field, val) {
-            globalData.stok_tangerang[index][field] = val;
-        }
-
-        // --- SIMPAN DATA (DOWNLOAD data.json) ---
-        function saveData() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(globalData, null, 4));
-            const downloadAnchor = document.createElement('a');
-            downloadAnchor.setAttribute("href", dataStr);
-            downloadAnchor.setAttribute("download", "data.json");
-            document.body.appendChild(downloadAnchor);
-            downloadAnchor.click();
-            downloadAnchor.remove();
-
-            showAlert("Berhasil! File data.json telah diunduh. Silakan unggah file tersebut ke repository GitHub Anda.", "success");
-        }
-
-        window.onload = loadAdminData;
     </script>
 </body>
 </html>
