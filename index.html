@@ -3,332 +3,549 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Monitoring Pengiriman - PT. MBP</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Monitoring Pengiriman & Titipan Stok PT. MBP</title>
+    <meta name="title" content="Monitoring Pengiriman & Titipan Stok PT. MBP">
+    <meta name="description" content="Dashboard monitoring real-time status pengiriman dan titipan stok PT. MBP.">
+
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/favicon.png">
+
+    <!-- Open Graph / WhatsApp Preview Meta Tags -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Monitoring Pengiriman & Titipan Stok PT. MBP">
+    <meta property="og:description" content="Monitoring Pengiriman & Titipan Stok PT. MBP">
+    <meta property="og:image" content="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/preview.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://monitoringtitipproses.ptmbp.my.id/">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- html2canvas CDN untuk fitur Simpan ke Gambar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+        }
+    </style>
 </head>
-<body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-16">
+<body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-12 flex flex-col justify-between">
 
-    <!-- Header Utama -->
-    <header class="bg-amber-950 text-amber-50 shadow-md">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <h1 class="font-extrabold text-lg sm:text-xl">Monitoring Pengiriman Pesanan Titip Proses PT. MBP</h1>
-            </div>
-            <div class="flex items-center gap-2">
-                <a href="admin.html" class="bg-amber-800 hover:bg-amber-900 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs sm:text-sm transition-all shadow-sm">
-                    ⚙️ Admin Panel
-                </a>
-            </div>
+    <div>
+        <!-- Area utama yang di-capture ke Gambar -->
+        <div id="capture-area" class="bg-[#faf7f2] pb-6">
+            <!-- Header Section -->
+            <header class="bg-gradient-to-r from-amber-900 via-stone-800 to-amber-800 text-white shadow-lg">
+                <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div>
+                            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2 text-amber-50">
+                                Monitoring Pengiriman & Titipan Stok PT. MBP
+                            </h1>
+                        </div>
+                        <div class="flex items-center gap-2.5 self-start md:self-auto">
+                            <!-- Tombol Bagikan -->
+                            <button onclick="openShareModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm no-print">
+                                🔗 BAGIKAN
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="max-w-6xl mx-auto px-4 sm:px-6 mt-6 space-y-8">
+
+                <!-- Summary Cards / Statistics Header (4 Kolom) -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm">
+                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Total Pesanan</p>
+                        <p class="text-2xl font-bold text-stone-800 mt-1" id="stat-total-pesanan">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-orange-400">
+                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Terlambat</p>
+                        <p class="text-2xl font-bold text-orange-500 mt-1" id="stat-terlambat">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-amber-800">
+                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Packing Kayu</p>
+                        <p class="text-2xl font-bold text-amber-900 mt-1" id="stat-kayu">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
+                    </div>
+                    <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-red-600">
+                        <p class="text-xs sm:text-sm font-semibold text-stone-400 uppercase tracking-wider">Malam Ini Batal</p>
+                        <p class="text-2xl font-bold text-red-600 mt-1" id="stat-batal">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
+                    </div>
+                </div>
+
+                <!-- Search & Filter Controls (No Print) -->
+                <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between no-print">
+                    <div class="relative w-full md:w-80">
+                        <input type="text" id="searchInput" onkeyup="filterItems()" placeholder="Cari nama barang / no. pesanan..." 
+                               class="w-full pl-9 pr-4 py-2 bg-[#fdfbf7] border border-amber-200/80 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-700 focus:bg-white transition-all">
+                        <svg class="w-4 h-4 text-stone-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0">
+                        <button onclick="filterBy('all', event)" class="filter-btn bg-amber-800 text-white px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold shadow-sm transition-all whitespace-nowrap">Semua Pesanan</button>
+                        <button onclick="filterBy('terlambat', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-orange-50 hover:text-orange-600 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap">⚠️ Pesanan Terlambat</button>
+                        <button onclick="filterBy('kayu', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-amber-100/60 hover:text-amber-900 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap">Pesanan Packing Kayu</button>
+                        <button onclick="filterBy('batal', event)" class="filter-btn bg-[#f7f2ea] text-stone-700 hover:bg-red-50 hover:text-red-700 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold transition-all whitespace-nowrap">⚠️ Malam Ini Batal</button>
+                    </div>
+                </div>
+
+                <!-- SECTION 1: BELUM KIRIM -->
+                <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
+                    <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-amber-600 text-white rounded-lg font-bold text-lg leading-none">⏳</div>
+                            <div>
+                                <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">BELUM KIRIM</h2>
+                                <p class="text-stone-400 text-xs sm:text-sm">Daftar pesanan yang belum dikirimkan ke ekspedisi</p>
+                            </div>
+                        </div>
+                        <span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
+                            Menunggu Dikirim
+                        </span>
+                    </div>
+
+                    <div id="container-belum-kirim" class="p-4 sm:p-6 space-y-6">
+                        <!-- Data Belum Kirim Dimuat dari JSON -->
+                    </div>
+                </section>
+
+                <!-- SECTION 2: STOK TANGERANG TITIP DI PT. MBG -->
+                <section class="bg-white rounded-2xl shadow-sm border border-amber-100 overflow-hidden">
+                    <div class="bg-stone-900 text-amber-50 px-6 py-4 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                        <div class="flex items-center gap-3">
+                            <div class="p-2 bg-emerald-700 text-white rounded-lg font-bold text-lg leading-none">🏢</div>
+                            <div>
+                                <h2 class="font-bold text-lg sm:text-xl tracking-wide uppercase">STOK TANGERANG TITIP DI PT. MBG</h2>
+                                <p class="text-stone-400 text-xs sm:text-sm">Stok fisik barang yang saat ini tersedia di gudang PT. MBG</p>
+                            </div>
+                        </div>
+                        <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
+                            Stok Di Gudang MBG
+                        </span>
+                    </div>
+
+                    <div class="p-4 sm:p-6">
+                        <div class="overflow-x-auto rounded-xl border border-amber-100">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-[#faf7f2] border-b border-amber-100 text-stone-700 text-sm uppercase tracking-wider">
+                                        <th class="py-4 px-4 font-bold">Nama Barang</th>
+                                        <th class="py-4 px-4 font-bold text-center w-32">QTY</th>
+                                        <th class="py-4 px-4 font-bold">Status / Catatan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-stok-tangerang" class="divide-y divide-amber-50 text-base">
+                                    <!-- Data Stok Dimuat dari JSON -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
         </div>
-    </header>
+    </div>
 
-    <main class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
-        
-        <!-- Search & Filter Bar -->
-        <div class="bg-white p-4 rounded-2xl border border-amber-100 shadow-sm flex flex-col md:flex-row gap-3 justify-between items-center">
-            <div class="w-full md:w-80">
-                <input type="text" id="searchInput" oninput="filterData()" placeholder="🔍 Cari pesanan, barang, atau no nota..." class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+    <!-- Modal Bagikan Link & Download Gambar -->
+    <div id="shareModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden no-print">
+        <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl space-y-4 relative border border-amber-100">
+            <button onclick="closeShareModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-600 text-lg font-bold">✕</button>
+            <div class="flex items-center gap-3">
+                <div class="p-3 bg-amber-100 text-amber-800 rounded-xl text-xl">📸</div>
+                <div>
+                    <h3 class="font-bold text-stone-800 text-lg">Bagikan Laporan</h3>
+                    <p class="text-xs text-stone-500">Salin link atau simpan laporan sebagai gambar</p>
+                </div>
             </div>
-            <!-- Quick Summary Badges -->
-            <div id="summaryBadges" class="flex flex-wrap gap-2 text-xs font-bold text-stone-700">
-                <!-- Dirender secara dinamis -->
+
+            <div class="space-y-2 pt-2">
+                <label class="text-xs font-semibold text-stone-600 block">Link Akses:</label>
+                <div class="flex items-center gap-2">
+                    <input type="text" id="shareUrlInput" readonly class="w-full bg-[#faf7f2] border border-amber-200 rounded-lg px-3 py-2 text-xs font-mono text-stone-700 focus:outline-none select-all">
+                    <button onclick="copyShareUrl()" class="bg-amber-800 hover:bg-amber-900 text-white text-xs font-bold px-3 py-2 rounded-lg transition-all whitespace-nowrap">
+                        Salin Link
+                    </button>
+                </div>
             </div>
+
+            <div class="border-t border-amber-100 pt-3 space-y-2">
+                <p class="text-xs font-semibold text-stone-600">Simpan Tampilan Dashboard:</p>
+                <button onclick="downloadDashboardImage()" id="downloadBtn" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all shadow-sm">
+                    🖼️ Download Laporan sebagai Gambar (PNG)
+                </button>
+            </div>
+
+            <p id="copyAlert" class="text-xs text-emerald-700 font-bold text-center hidden pt-1">
+                ✓ Link berhasil disalin ke clipboard!
+            </p>
         </div>
+    </div>
 
-        <!-- SECTION 1: BELUM KIRIM -->
-        <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
-            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
-                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base sm:text-lg">
-                    📦 Data Pesanan Belum Kirim
-                </h2>
-                <span id="totalBelumKirimBadge" class="bg-amber-100 text-amber-900 px-3 py-1 rounded-full text-xs font-extrabold">0 Pesanan</span>
-            </div>
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto px-4 mt-12 text-center text-stone-600 text-xs sm:text-sm space-y-1">
+        <p class="font-semibold">DASHBOARD MONITORING PENGIRIMAN & TITIP STOK PT. MBP © 2026</p>
+        <p class="text-stone-400 font-medium">by putradwi-dev</p>
+    </footer>
 
-            <div id="belumKirimContainer" class="space-y-6">
-                <!-- Data akan dirender secara dinamis dengan pembungkus tanggal -->
-            </div>
-        </section>
-
-        <!-- SECTION 2: STOK TANGERANG -->
-        <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
-            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
-                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base sm:text-lg">
-                    📊 Data Stok Tangerang Titip di PT. MBG
-                </h2>
-                <span id="totalStokBadge" class="bg-emerald-100 text-emerald-900 px-3 py-1 rounded-full text-xs font-extrabold">0 Item</span>
-            </div>
-
-            <div class="overflow-x-auto rounded-xl border border-amber-100">
-                <table class="w-full text-center text-xs sm:text-sm">
-                    <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-amber-100 text-xs">
-                        <tr>
-                            <th class="py-3 px-3 w-1/3">Nama Barang</th>
-                            <th class="py-3 px-3 w-24">QTY</th>
-                            <th class="py-3 px-3">Tipe / Status Khusus</th>
-                            <th class="py-3 px-3">Catatan</th>
-                        </tr>
-                    </thead>
-                    <tbody id="stokContainer" class="divide-y divide-amber-50">
-                        <!-- Items Stok dirender secara dinamis -->
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Global State Data & Render Script -->
     <script>
-        let globalData = {
-            belum_kirim: [],
-            stok_tangerang: []
-        };
+        function getItemStatus(item) {
+            let isKayu = !!item.kayu;
+            let isTerlambat = !!item.terlambat;
+            let isBatal = !!item.batal;
 
-        window.onload = function() {
-            fetchData();
-            // Refresh data otomatis setiap 30 detik agar selalu sinkron dengan admin
-            setInterval(fetchData, 30000);
-        };
-
-        async function fetchData() {
-            try {
-                // Memuat data terbaru dari data.json di repository GitHub
-                const response = await fetch('data.json?t=' + new Date().getTime());
-                if (!response.ok) throw new Error("Gagal memuat data dari server.");
-                globalData = await response.json();
-                renderAll();
-            } catch (err) {
-                console.error("Error fetching data:", err);
+            if (!isKayu && !isTerlambat && !isBatal && typeof item.status === 'string') {
+                const s = item.status.toLowerCase();
+                isKayu = (s === 'kayu' || s === 'keduanya');
+                isTerlambat = (s === 'terlambat' || s === 'keduanya');
             }
+            return { isKayu, isTerlambat, isBatal };
         }
 
-        function filterData() {
-            renderBelumKirim();
-            renderStok();
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('data.json?v=' + new Date().getTime());
+                const data = await response.json();
+
+                renderBelumKirim(data.belum_kirim || []);
+                renderStokTangerang(data.stok_tangerang || []);
+                updateStatistics(data);
+            } catch (error) {
+                console.error("Gagal memuat data.json:", error);
+            }
         }
 
         function extractDateFromGroup(grupStr) {
-            const match = (grupStr || '').match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+            const match = grupStr.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
             if (match) {
                 const [, d, m, y] = match;
-                return new Date(`${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`).getTime();
+                return new Date(`${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`);
             }
-            return 0;
+            return new Date(0);
         }
 
-        function renderAll() {
-            renderSummaryBadges();
-            renderBelumKirim();
-            renderStok();
-        }
-
-        function renderSummaryBadges() {
-            let totalPesanan = 0;
-            (globalData.belum_kirim || []).forEach(g => {
-                totalPesanan += (g.items || []).length;
-            });
-            document.getElementById('totalBelumKirimBadge').innerText = `${totalPesanan} Pesanan`;
-
-            let totalStokItems = 0;
-            (globalData.stok_tangerang || []).forEach(s => {
-                totalStokItems += (Number(s.jumlah) || 0);
-            });
-            document.getElementById('totalStokBadge').innerText = `${totalStokItems} Item`;
-
-            const badgesEl = document.getElementById('summaryBadges');
-            badgesEl.innerHTML = `
-                <div class="bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-xl">Total Kelompok E-Commerce: <strong>${(globalData.belum_kirim || []).length}</strong></div>
-                <div class="bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-xl">Jenis Barang Stok: <strong>${(globalData.stok_tangerang || []).length}</strong></div>
-            `;
-        }
-
-        function renderBelumKirim() {
-            const container = document.getElementById('belumKirimContainer');
+        function renderBelumKirim(groups) {
+            const container = document.getElementById('container-belum-kirim');
             container.innerHTML = '';
 
-            const groups = globalData.belum_kirim || [];
-            if (groups.length === 0) {
-                container.innerHTML = '<p class="text-center text-stone-400 py-6 text-sm">Belum ada data pesanan.</p>';
-                return;
-            }
+            if (!groups || groups.length === 0) return;
 
-            // Urutkan grup berdasarkan tanggal tertua ke terbaru, pertahankan urutan manual jika tanggal sama
+            // Urutkan groups dari tanggal tua ke muda (pertahankan urutan manual jika tanggal sama)
             const sortedGroups = groups.map((g, idx) => ({ g, idx })).sort((a, b) => {
                 const diff = extractDateFromGroup(a.g.grup) - extractDateFromGroup(b.g.grup);
                 return diff !== 0 ? diff : a.idx - b.idx;
             }).map(item => item.g);
 
-            const keyword = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
+            let lastDateStr = '';
 
-            // Kelompokkan data berdasarkan tanggal pesanan masuk
-            const groupedByDate = {};
-            sortedGroups.forEach(group => {
-                const dateMatch = (group.grup || '').match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
-                const dateStr = dateMatch ? dateMatch[1] : 'Tanpa Tanggal';
-                if (!groupedByDate[dateStr]) {
-                    groupedByDate[dateStr] = [];
+            sortedGroups.forEach((group, index) => {
+                // Ekstrak tanggal untuk membuat tajuk pemisah tanggal
+                const dateMatch = group.grup.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+                const currentDateStr = dateMatch ? dateMatch[1] : '';
+
+                // Jika tanggal berbeda dari sebelumnya, buat tajuk pemisah tanggal yang tegas
+                if (currentDateStr && currentDateStr !== lastDateStr) {
+                    lastDateStr = currentDateStr;
+                    const dateDivider = document.createElement('div');
+                    dateDivider.className = "flex items-center gap-4 pt-4 pb-2 mb-2 date-section-divider";
+                    dateDivider.innerHTML = `
+                        <div class="flex items-center gap-2 bg-stone-900 text-amber-50 px-4 py-2 rounded-xl shadow-sm text-sm sm:text-base font-extrabold tracking-wide uppercase border border-amber-500/30">
+                            <span>📅 Tanggal Pesanan Masuk: ${currentDateStr}</span>
+                        </div>
+                        <div class="flex-grow border-t-2 border-stone-300"></div>
+                    `;
+                    container.appendChild(dateDivider);
                 }
-                groupedByDate[dateStr].push(group);
-            });
 
-            // Render per tanggal dengan kontainer pembungkus utama
-            Object.keys(groupedByDate).forEach(dateStr => {
-                const storeGroups = groupedByDate[dateStr];
+                const groupDiv = document.createElement('div');
+                groupDiv.className = `data-group bg-white p-4 sm:p-5 rounded-2xl border-2 border-stone-900 shadow-sm space-y-4 mb-6`;
 
-                // Cek apakah ada item yang cocok dengan keyword pencarian di tanggal ini
-                let hasVisibleGroupInDate = false;
-                storeGroups.forEach(group => {
-                    const hasMatch = (group.items || []).some(item => {
-                        return keyword === '' || 
-                            (item.nama || '').toLowerCase().includes(keyword) || 
-                            (item.no_pesanan || '').toLowerCase().includes(keyword) || 
-                            (group.grup || '').toLowerCase().includes(keyword) ||
-                            (item.catatan_manual || '').toLowerCase().includes(keyword);
-                    });
-                    if (hasMatch) hasVisibleGroupInDate = true;
-                });
+                let tableRows = '';
+                let mobileCards = '';
 
-                if (keyword !== '' && !hasVisibleGroupInDate) return;
+                group.items.forEach(item => {
+                    const statusObj = getItemStatus(item);
+                    const isKayu = statusObj.isKayu;
+                    const isTerlambat = statusObj.isTerlambat;
+                    const isBatal = statusObj.isBatal;
+                    const itemQty = item.qty !== undefined ? item.qty : 1;
+                    const catatanManual = item.catatan_manual ? item.catatan_manual.trim() : '';
 
-                // Wrapper Kotak Utama untuk Tanggal Pesanan Masuk
-                const dateWrapper = document.createElement('div');
-                dateWrapper.className = "bg-[#fdfbf7] p-4 sm:p-5 rounded-2xl border-2 border-stone-800 shadow-sm space-y-4 mb-6";
+                    const ekspedisiClean = (item.ekspedisi || '').toUpperCase();
+                    let badgeEkspedisi = `<span class="bg-stone-100 text-stone-800 px-2.5 py-1 rounded-md text-xs sm:text-sm font-bold uppercase border border-stone-200 whitespace-nowrap inline-block">${item.ekspedisi}</span>`;
+                    
+                    if (ekspedisiClean.includes('JNE')) {
+                        badgeEkspedisi = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/jne.png" alt="JNE Express" class="h-6 w-auto max-w-[95px] inline-block object-contain" title="JNE Express" onerror="this.onerror=null; this.src='https://images.zonalogo.com/uploads/images/jne-logo-colored-618x256.png';">`;
+                    } else if (ekspedisiClean.includes('J&T')) {
+                        badgeEkspedisi = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/jntcargo.png" alt="J&T Cargo" class="h-5 w-auto max-w-[78px] inline-block object-contain" title="J&T Cargo" onerror="this.onerror=null; this.src='https://images.zonalogo.com/uploads/images/jt-cargo-logo-colored-557x128.png';">`;
+                    } else if (ekspedisiClean.includes('KURIR TOKO')) {
+                        badgeEkspedisi = `<span class="bg-rose-50 text-rose-700 px-2.5 py-1 rounded-md text-xs sm:text-sm font-bold uppercase border border-rose-200 whitespace-nowrap inline-block">${item.ekspedisi}</span>`;
+                    }
 
-                // Label Header Tanggal
-                let htmlContent = `
-                    <div class="inline-block bg-stone-900 text-amber-50 px-4 py-2 rounded-xl shadow-sm text-sm sm:text-base font-extrabold tracking-wide uppercase border border-amber-500/30 mb-2">
-                        📅 TANGGAL PESANAN MASUK: ${dateStr}
-                    </div>
-                    <div class="space-y-4">
-                `;
+                    let statusBadgesHtml = '';
+                    let statusBadgesMobile = '';
 
-                storeGroups.forEach(group => {
-                    let itemsHtml = '';
-                    let visibleItemCount = 0;
+                    if (isKayu) {
+                        statusBadgesHtml += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-2.5 py-1 rounded-md font-semibold border border-amber-200 inline-block whitespace-nowrap">KAYU</span>`;
+                        statusBadgesMobile += `<span class="bg-amber-100/80 text-amber-900 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-amber-200 inline-block whitespace-nowrap">KAYU</span>`;
+                    }
+                    if (isTerlambat) {
+                        statusBadgesHtml += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2.5 py-1 rounded-md font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ Terlambat</span>`;
+                        statusBadgesMobile += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ Terlambat</span>`;
+                    }
+                    if (isBatal) {
+                        statusBadgesHtml += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2.5 py-1 rounded-md font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ MALAM INI BATAL</span>`;
+                        statusBadgesMobile += `<span class="bg-orange-100 text-orange-800 text-xs sm:text-sm px-2.5 py-1 rounded font-semibold border border-orange-200 inline-block whitespace-nowrap">⚠️ MALAM INI BATAL</span>`;
+                    }
+                    if (catatanManual !== '') {
+                        statusBadgesHtml += `<span class="bg-sky-50 text-sky-800 text-xs sm:text-sm px-2.5 py-1 rounded-md font-bold border border-sky-200 inline-block">${catatanManual}</span>`;
+                        statusBadgesMobile += `<span class="bg-sky-50 text-sky-800 text-xs sm:text-sm px-2.5 py-1 rounded font-bold border border-sky-200 inline-block">${catatanManual}</span>`;
+                    }
 
-                    (group.items || []).forEach(item => {
-                        const namaBarang = (item.nama || '').toLowerCase();
-                        const noPesanan = (item.no_pesanan || '').toLowerCase();
-                        const namaGrup = (group.grup || '').toLowerCase();
-                        const catatanManualStr = (item.catatan_manual || '').toLowerCase();
+                    if (!isKayu && !isTerlambat && !isBatal && catatanManual === '') {
+                        statusBadgesHtml = `<span class="text-stone-400 font-mono text-sm">-</span>`;
+                    }
 
-                        const isMatch = keyword === '' || namaBarang.includes(keyword) || noPesanan.includes(keyword) || namaGrup.includes(keyword) || catatanManualStr.includes(keyword);
+                    const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${catatanManual} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
 
-                        if (!isMatch && keyword !== '') return;
-                        visibleItemCount++;
+                    tableRows += `
+                        <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
+                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[24%]">${item.nama}</td>
+                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[24%]">${item.no_pesanan}</td>
+                            <td class="py-3.5 px-2 text-center w-[5%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
+                            <td class="py-3.5 px-2 w-[13%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
+                            <td class="py-3.5 px-4 w-[34%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
+                        </tr>
+                    `;
 
-                        let statusBadges = [];
-                        if (item.kayu) statusBadges.push(`<span class="bg-amber-100 text-amber-900 border border-amber-300 font-bold px-2 py-0.5 rounded text-xs">Kayu</span>`);
-                        if (item.terlambat) statusBadges.push(`<span class="bg-red-100 text-red-800 border border-red-300 font-bold px-2 py-0.5 rounded text-xs">Terlambat</span>`);
-                        if (item.batal) statusBadges.push(`<span class="bg-orange-100 text-orange-900 border border-orange-300 font-bold px-2 py-0.5 rounded text-xs">MIB Malam Ini Batal</span>`);
-                        if (item.catatan_manual) statusBadges.push(`<span class="bg-sky-50 text-sky-800 border border-sky-200 font-semibold px-2.5 py-1 rounded-lg text-xs">${item.catatan_manual}</span>`);
-
-                        let statusContent = statusBadges.length > 0 ? `<div class="flex flex-wrap gap-1.5 items-center">${statusBadges.join('')}</div>` : `<span class="text-stone-400 text-xs italic">-</span>`;
-
-                        itemsHtml += `
-                            <tr class="hover:bg-[#faf7f2] transition-colors">
-                                <td class="py-3 px-3 font-bold text-stone-900 text-left">${item.nama || '-'}</td>
-                                <td class="py-3 px-3 font-mono text-stone-700 text-left">${item.no_pesanan || '-'}</td>
-                                <td class="py-3 px-3 text-center">
-                                    <span class="bg-amber-50 border border-amber-200 text-amber-900 font-extrabold px-2.5 py-1 rounded-md text-xs">${item.qty !== undefined ? item.qty : 1}</span>
-                                </td>
-                                <td class="py-3 px-3 font-bold text-stone-800 text-center">${item.ekspedisi || '-'}</td>
-                                <td class="py-3 px-3 text-left">${statusContent}</td>
-                            </tr>
-                        `;
-                    });
-
-                    if (keyword !== '' && visibleItemCount === 0) return;
-
-                    let storeNameOnly = group.grup;
-                    ['TOKOPEDIA MT', 'TOKOPEDIA ADT', 'SHOPE MT', 'SHOPE ADT', 'SHOPE TANGSEL', 'OFFLINE'].forEach(s => {
-                        if (storeNameOnly.toUpperCase().startsWith(s)) {
-                            storeNameOnly = s;
-                        }
-                    });
-
-                    let badgeColor = "bg-amber-50 text-amber-900 border-amber-200";
-                    if (group.grup.toUpperCase().includes("SHOPE")) badgeColor = "bg-orange-50 text-orange-900 border-orange-200";
-                    if (group.grup.toUpperCase().includes("OFFLINE")) badgeColor = "bg-stone-100 text-stone-800 border-stone-300";
-
-                    let totalGroupQty = (group.items || []).reduce((sum, item) => sum + (Number(item.qty) || 1), 0);
-
-                    htmlContent += `
-                        <div class="bg-white p-4 rounded-xl border border-amber-200 shadow-sm space-y-3">
-                            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-amber-100 pb-2">
+                    mobileCards += `
+                        <div class="item-row bg-[#fdfbf7] hover:bg-sky-100 p-4 rounded-xl border border-amber-100 space-y-2 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
+                            <div class="flex justify-between items-start">
+                                <span class="font-bold text-stone-900 text-base sm:text-lg">${item.nama}</span>
                                 <div class="flex items-center gap-2">
-                                    <span class="w-3 h-3 rounded-full bg-amber-700"></span>
-                                    <h3 class="font-extrabold text-amber-950 text-sm sm:text-base tracking-wide">${group.grup}</h3>
-                                    <span class="text-xs font-bold px-2.5 py-0.5 rounded-full border ${badgeColor}">${(group.items || []).length} Pesanan (${totalGroupQty} Qty)</span>
+                                    <span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-xs border border-amber-200">Qty: ${itemQty}</span>
+                                    ${badgeEkspedisi}
                                 </div>
-                                ${group.grup.toUpperCase().includes("OFFLINE") ? '<span class="text-xs font-extrabold text-cyan-800 bg-cyan-50 border border-cyan-200 px-2.5 py-1 rounded-lg">TRANSAKSI OFFLINE</span>' : ''}
                             </div>
-                            <div class="overflow-x-auto rounded-lg border border-amber-100">
-                                <table class="w-full text-xs sm:text-sm">
-                                    <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-amber-100 text-xs">
-                                        <tr>
-                                            <th class="py-2.5 px-3 text-left w-1/4">Nama Barang</th>
-                                            <th class="py-2.5 px-3 text-left w-1/4">Nomor Pesanan</th>
-                                            <th class="py-2.5 px-3 text-center w-20">QTY</th>
-                                            <th class="py-2.5 px-3 text-center w-28">Ekspedisi</th>
-                                            <th class="py-2.5 px-3 text-left">Status / Catatan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="divide-y divide-amber-50">
-                                        ${itemsHtml}
-                                    </tbody>
-                                </table>
+                            <div>
+                                <span class="text-xs sm:text-sm text-stone-400 block uppercase font-medium">Nomor Pesanan</span>
+                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-white px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
                             </div>
+                            ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
                         </div>
                     `;
                 });
 
-                htmlContent += `</div>`;
-                dateWrapper.innerHTML = htmlContent;
-                container.appendChild(dateWrapper);
+                // Deteksi logo e-commerce / offline untuk pojok kanan atas berdasarkan nama grup
+                let groupNameUpper = (group.grup || '').toUpperCase();
+                let ecomLogoHtml = '';
+
+                if (groupNameUpper.includes('TOKOPEDIA')) {
+                    ecomLogoHtml = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/tokopedia.png" alt="Tokopedia" class="h-8 sm:h-9 w-auto object-contain" title="Tokopedia" onerror="this.style.display='none';">`;
+                } else if (groupNameUpper.includes('SHOPE')) {
+                    ecomLogoHtml = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/shopee.png" alt="Shopee" class="h-6 sm:h-7 w-auto object-contain" title="Shopee" onerror="this.style.display='none';">`;
+                } else if (groupNameUpper.includes('OFFLINE')) {
+                    ecomLogoHtml = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/offline.png" alt="Offline" class="h-8 sm:h-9 w-auto object-contain" title="Offline" onerror="this.style.display='none';">`;
+                }
+
+                groupDiv.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-between gap-2 pb-1">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
+                            <h3 class="font-bold text-amber-950 text-base sm:text-lg uppercase tracking-wide">${group.grup}</h3>
+                            <span class="text-xs sm:text-sm bg-amber-50 text-amber-800 px-2.5 py-0.5 rounded-full font-semibold border border-amber-200/60">${group.items.length} Pesanan</span>
+                        </div>
+                        <div>${ecomLogoHtml}</div>
+                    </div>
+
+                    <div class="hidden md:block overflow-x-auto rounded-xl border border-amber-100">
+                        <table class="w-full text-left text-base table-fixed">
+                            <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-100 uppercase text-sm">
+                                <tr>
+                                    <th class="py-4 px-4 w-[24%]">Nama Barang</th>
+                                    <th class="py-4 px-4 w-[24%]">Nomor Pesanan</th>
+                                    <th class="py-4 px-2 text-center w-[5%]" style="padding-left: 2px; padding-right: 2px;">QTY</th>
+                                    <th class="py-4 px-2 w-[13%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
+                                    <th class="py-4 px-4 w-[34%]">Status / Catatan</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-amber-50">
+                                ${tableRows}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-3 md:hidden">
+                        ${mobileCards}
+                    </div>
+                `;
+
+                container.appendChild(groupDiv);
             });
         }
 
-        function renderStok() {
-            const container = document.getElementById('stokContainer');
-            container.innerHTML = '';
+        function renderStokTangerang(items) {
+            const tbody = document.getElementById('tbody-stok-tangerang');
+            tbody.innerHTML = '';
 
-            const keyword = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
-            const stokList = globalData.stok_tangerang || [];
+            items.forEach(item => {
+                let statusBadge = `<span class="text-stone-400 font-mono text-sm">-</span>`;
+                let rowBgClass = 'hover:bg-sky-100 transition-colors cursor-pointer';
+                let qtyClass = 'bg-stone-100 px-3.5 py-1 rounded-lg font-bold text-stone-800 text-base inline-block';
 
-            if (stokList.length === 0) {
-                container.innerHTML = '<tr><td colspan="4" class="py-4 text-stone-400 text-center text-sm">Belum ada data stok.</td></tr>';
-                return;
-            }
+                if (item.tipe === 'warning') {
+                    statusBadge = `<span class="text-red-700 font-bold bg-red-50 px-3 py-1 rounded-md text-sm border border-red-200">${item.catatan && item.catatan !== '-' ? item.catatan : '🛠️ Perlu di perbaiki'}</span>`;
+                } else if (item.tipe === 'priority') {
+                    statusBadge = `<span class="text-amber-900 font-extrabold bg-amber-100/90 px-3 py-1 rounded-md text-sm border border-amber-300">${item.catatan && item.catatan !== '-' ? item.catatan : '🔥 Utamakan habiskan ini'}</span>`;
+                    rowBgClass = 'hover:bg-sky-100 transition-colors bg-amber-50/30 cursor-pointer';
+                    qtyClass = 'bg-amber-100 text-amber-900 px-3.5 py-1 rounded-lg font-extrabold text-base inline-block border border-amber-200';
+                } else {
+                    if (item.catatan && item.catatan.trim() !== '' && item.catatan.trim() !== '-') {
+                        statusBadge = `<span class="text-stone-800 font-semibold bg-stone-100 px-3 py-1 rounded-md text-sm border border-stone-200">${item.catatan}</span>`;
+                    }
+                }
 
-            stokList.forEach(item => {
-                const namaStok = (item.nama || '').toLowerCase();
-                const catatanStok = (item.catatan || '').toLowerCase();
-                const isMatch = keyword === '' || namaStok.includes(keyword) || catatanStok.includes(keyword);
-
-                if (!isMatch) return;
-
-                let badgeStyle = "text-stone-700";
-                if (item.tipe === 'warning') badgeStyle = "bg-amber-100 text-amber-900 border border-amber-300 px-2 py-0.5 rounded font-bold";
-                if (item.tipe === 'priority') badgeStyle = "bg-red-100 text-red-900 border border-red-300 px-2 py-0.5 rounded font-bold";
+                const searchStr = `${item.nama} ${item.catatan || ''}`.toLowerCase();
 
                 const tr = document.createElement('tr');
-                tr.className = "hover:bg-[#faf7f2]";
+                tr.className = `item-row ${rowBgClass}`;
+                tr.setAttribute('data-search', searchStr);
+
                 tr.innerHTML = `
-                    <td class="py-3 px-3 font-bold text-stone-900">${item.nama || '-'}</td>
-                    <td class="py-3 px-3 font-extrabold text-stone-900">
-                        <span class="bg-emerald-50 border border-emerald-200 text-emerald-900 px-2.5 py-1 rounded-md text-xs">${item.jumlah !== undefined ? item.jumlah : 0}</span>
-                    </td>
-                    <td class="py-3 px-3"><span class="${badgeStyle}">${item.tipe === 'priority' ? 'Utamakan Habiskan' : (item.tipe === 'warning' ? 'Perlu Diperhatikan' : 'Normal')}</span></td>
-                    <td class="py-3 px-3 text-stone-600">${item.catatan || '-'}</td>
+                    <td class="py-3.5 px-4 ${item.tipe === 'priority' ? 'font-bold text-stone-900' : 'font-semibold text-stone-800'} text-base">${item.nama}</td>
+                    <td class="py-3.5 px-4 text-center"><span class="${qtyClass}">${item.jumlah}</span></td>
+                    <td class="py-3.5 px-4">${statusBadge}</td>
                 `;
-                container.appendChild(tr);
+
+                tbody.appendChild(tr);
             });
         }
+
+        function updateStatistics(data) {
+            let totalPesanan = 0;
+            let totalKayu = 0;
+            let totalTerlambat = 0;
+            let totalBatal = 0;
+
+            (data.belum_kirim || []).forEach(group => {
+                group.items.forEach(item => {
+                    totalPesanan++;
+                    const statusObj = getItemStatus(item);
+                    if (statusObj.isKayu) totalKayu++;
+                    if (statusObj.isTerlambat) totalTerlambat++;
+                    if (statusObj.isBatal) totalBatal++;
+                });
+            });
+
+            document.getElementById('stat-total-pesanan').innerHTML = `${totalPesanan} <span class="text-xs font-normal text-stone-500">Item</span>`;
+            document.getElementById('stat-terlambat').innerHTML = `${totalTerlambat} <span class="text-xs font-normal text-stone-500">Item</span>`;
+            document.getElementById('stat-kayu').innerHTML = `${totalKayu} <span class="text-xs font-normal text-stone-500">Item</span>`;
+            document.getElementById('stat-batal').innerHTML = `${totalBatal} <span class="text-xs font-normal text-stone-500">Item</span>`;
+        }
+
+        function openShareModal() {
+            document.getElementById('shareUrlInput').value = window.location.href;
+            document.getElementById('shareModal').classList.remove('hidden');
+        }
+
+        function closeShareModal() {
+            document.getElementById('shareModal').classList.add('hidden');
+            document.getElementById('copyAlert').classList.add('hidden');
+        }
+
+        function copyShareUrl() {
+            const input = document.getElementById('shareUrlInput');
+            input.select();
+            document.execCommand('copy');
+            const copyAlert = document.getElementById('copyAlert');
+            copyAlert.classList.remove('hidden');
+            setTimeout(() => {
+                copyAlert.classList.add('hidden');
+            }, 3000);
+        }
+
+        function downloadDashboardImage() {
+            const btn = document.getElementById('downloadBtn');
+            btn.innerText = "⏳ Sedang memproses gambar...";
+            btn.disabled = true;
+
+            const element = document.getElementById('capture-area');
+
+            html2canvas(element, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#faf7f2',
+                windowWidth: 1200
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `Laporan-Monitoring-PT-MBP-${new Date().toISOString().slice(0,10)}.png`;
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+
+                btn.innerText = "🖼️ Download Laporan sebagai Gambar (PNG)";
+                btn.disabled = false;
+                closeShareModal();
+            }).catch(err => {
+                console.error("Gagal membuat gambar:", err);
+                alert("Gagal mengunduh gambar. Silakan coba lagi.");
+                btn.innerText = "🖼️ Download Laporan sebagai Gambar (PNG)";
+                btn.disabled = false;
+            });
+        }
+
+        function filterItems() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const rows = document.querySelectorAll('.item-row');
+
+            rows.forEach(row => {
+                const searchData = row.getAttribute('data-search') || '';
+                if (searchData.toLowerCase().includes(query)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        function filterBy(type, event) {
+            const rows = document.querySelectorAll('#container-belum-kirim .item-row');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+
+            filterBtns.forEach(btn => {
+                btn.classList.remove('bg-amber-800', 'text-white');
+                btn.classList.add('bg-[#f7f2ea]', 'text-stone-700');
+            });
+
+            if(event && event.target) {
+                event.target.classList.remove('bg-[#f7f2ea]', 'text-stone-700');
+                event.target.classList.add('bg-amber-800', 'text-white');
+            }
+
+            rows.forEach(row => {
+                const isKayu = row.getAttribute('data-kayu') === 'true';
+                const isTerlambat = row.getAttribute('data-terlambat') === 'true';
+                const isBatal = row.getAttribute('data-batal') === 'true';
+
+                if (type === 'all') {
+                    row.style.display = '';
+                } else if (type === 'terlambat') {
+                    row.style.display = isTerlambat ? '' : 'none';
+                } else if (type === 'kayu') {
+                    row.style.display = isKayu ? '' : 'none';
+                } else if (type === 'batal') {
+                    row.style.display = isBatal ? '' : 'none';
+                }
+            });
+        }
+
+        window.onload = loadDashboardData;
     </script>
 </body>
 </html>
