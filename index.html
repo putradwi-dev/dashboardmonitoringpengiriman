@@ -237,10 +237,11 @@
 
             if (!groups || groups.length === 0) return;
 
-            // Urutkan groups dari tanggal yang lebih tua ke yang lebih muda (Ascending)
-            const sortedGroups = [...groups].sort((a, b) => {
-                return extractDateFromGroup(a.grup) - extractDateFromGroup(b.grup);
-            });
+            // Urutkan groups dari tanggal tua ke muda (pertahankan urutan manual jika tanggal sama)
+            const sortedGroups = groups.map((g, idx) => ({ g, idx })).sort((a, b) => {
+                const diff = extractDateFromGroup(a.g.grup) - extractDateFromGroup(b.g.grup);
+                return diff !== 0 ? diff : a.idx - b.idx;
+            }).map(item => item.g);
 
             let lastDateStr = '';
 
