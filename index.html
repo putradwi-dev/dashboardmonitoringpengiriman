@@ -196,15 +196,6 @@
     </footer>
 
     <script>
-        const STORE_OPTIONS = [
-            "TOKOPEDIA MT",
-            "TOKOPEDIA ADT",
-            "SHOPE MT",
-            "SHOPE ADT",
-            "SHOPE TANGSEL",
-            "OFFLINE"
-        ];
-
         function getItemStatus(item) {
             let isKayu = !!item.kayu;
             let isTerlambat = !!item.terlambat;
@@ -231,11 +222,47 @@
             }
         }
 
+        function extractDateFromGroup(grupStr) {
+            const match = grupStr.match(/(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+            if (match) {
+                const [, d, m, y] = match;
+                return new Date(`${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`);
+            }
+            return new Date(0);
+        }
+
         function renderBelumKirim(groups) {
             const container = document.getElementById('container-belum-kirim');
             container.innerHTML = '';
 
-            groups.forEach((group, index) => {
+            if (!groups || groups.length === 0) return;
+
+            // Urutkan groups dari tanggal yang lebih tua ke yang lebih muda (Ascending)
+            const sortedGroups = [...groups].sort((a, b) => {
+                return extractDateFromGroup(a.grup) - extractDateFromGroup(b.grup);
+            });
+
+            let lastDateStr = '';
+
+            sortedGroups.forEach((group, index) => {
+                // Ekstrak tanggal untuk membuat tajuk pemisah tanggal
+                const dateMatch = group.grup.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+                const currentDateStr = dateMatch ? dateMatch[1] : '';
+
+                // Jika tanggal berbeda dari sebelumnya, buat tajuk pemisah tanggal yang tegas
+                if (currentDateStr && currentDateStr !== lastDateStr) {
+                    lastDateStr = currentDateStr;
+                    const dateDivider = document.createElement('div');
+                    dateDivider.className = "flex items-center gap-4 pt-4 pb-2 mb-2 date-section-divider";
+                    dateDivider.innerHTML = `
+                        <div class="flex items-center gap-2 bg-stone-900 text-amber-50 px-4 py-2 rounded-xl shadow-sm text-sm sm:text-base font-extrabold tracking-wide uppercase border border-amber-500/30">
+                            <span>📅 Tanggal Pengiriman: ${currentDateStr}</span>
+                        </div>
+                        <div class="flex-grow border-t-2 border-stone-300"></div>
+                    `;
+                    container.appendChild(dateDivider);
+                }
+
                 const groupDiv = document.createElement('div');
                 groupDiv.className = `data-group bg-white p-4 sm:p-5 rounded-2xl border-2 border-stone-900 shadow-sm space-y-4 mb-6`;
 
@@ -315,14 +342,8 @@
                     `;
                 });
 
-                // Parse nama grup untuk memisahkan Store Name dan Tanggal agar tanggal lebih tegas dan mencolok
-                let fullGrup = group.grup || '';
-                let matchedStore = STORE_OPTIONS.find(s => fullGrup.toUpperCase().startsWith(s));
-                let storeName = matchedStore ? matchedStore : fullGrup;
-                let dateStr = matchedStore ? fullGrup.substring(matchedStore.length).trim() : '';
-
                 // Deteksi logo e-commerce / offline untuk pojok kanan atas berdasarkan nama grup
-                let groupNameUpper = fullGrup.toUpperCase();
+                let groupNameUpper = (group.grup || '').toUpperCase();
                 let ecomLogoHtml = '';
 
                 if (groupNameUpper.includes('TOKOPEDIA')) {
@@ -333,16 +354,12 @@
                     ecomLogoHtml = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/offline.png" alt="Offline" class="h-8 sm:h-9 w-auto object-contain" title="Offline" onerror="this.style.display='none';">`;
                 }
 
-                // Desain Badge Tanggal yang Tegas, Kontras, dan Mudah Dilihat
-                let dateBadgeHtml = dateStr ? `<span class="bg-stone-900 text-amber-300 font-extrabold px-3.5 py-1.5 rounded-xl text-xs sm:text-sm shadow-sm border border-stone-700 flex items-center gap-1.5 uppercase tracking-wide">📅 ${dateStr}</span>` : '';
-
                 groupDiv.innerHTML = `
-                    <div class="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-amber-100 mb-2">
-                        <div class="flex items-center gap-2.5 flex-wrap">
-                            <span class="w-4 h-4 rounded-full bg-amber-800 shadow-sm"></span>
-                            <h3 class="font-extrabold text-amber-950 text-base sm:text-lg uppercase tracking-wide">${storeName}</h3>
-                            ${dateBadgeHtml}
-                            <span class="text-xs sm:text-sm bg-amber-100/90 text-amber-900 px-3 py-1 rounded-full font-bold border border-amber-200">${group.items.length} Pesanan</span>
+                    <div class="flex flex-wrap items-center justify-between gap-2 pb-1">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
+                            <h3 class="font-bold text-amber-950 text-base sm:text-lg uppercase tracking-wide">${group.grup}</h3>
+                            <span class="text-xs sm:text-sm bg-amber-50 text-amber-800 px-2.5 py-0.5 rounded-full font-semibold border border-amber-200/60">${group.items.length} Pesanan</span>
                         </div>
                         <div>${ecomLogoHtml}</div>
                     </div>
