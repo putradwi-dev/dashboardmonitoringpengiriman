@@ -256,6 +256,23 @@
             renderBelumKirim();
         }
 
+        // Fungsi baru untuk mengubah tanggal secara massal langsung dari header pemisah
+        function updateAllGroupsDate(oldDateStr, newDateVal) {
+            if (!newDateVal) return;
+            let parts = newDateVal.split('-'); // Format YYYY-MM-DD
+            if (parts.length !== 3) return;
+            let formattedNewDate = `${parseInt(parts[2])}/${parseInt(parts[1])}/${parts[0]}`;
+
+            currentData.belum_kirim.forEach(group => {
+                let parsed = parseGroupName(group.grup);
+                let matchDate = (group.grup || '').match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+                if (matchDate && matchDate[1] === oldDateStr) {
+                    group.grup = `${parsed.store} ${formattedNewDate}`;
+                }
+            });
+            renderBelumKirim();
+        }
+
         function findStokTitipanMatch(namaBarangInput) {
             if (!namaBarangInput || namaBarangInput.trim().length < 2) return null;
             const inputClean = namaBarangInput.trim().toLowerCase();
@@ -333,11 +350,17 @@
 
                 if (currentDateStr && currentDateStr !== lastDateStr) {
                     lastDateStr = currentDateStr;
+
+                    // Konversi format tanggal DD/MM/YYYY ke YYYY-MM-DD untuk input date HTML
+                    let p = currentDateStr.split('/');
+                    let isoDate = p.length === 3 ? `${p[2]}-${p[1].padStart(2,'0')}-${p[0].padStart(2,'0')}` : '';
+
                     const dateDivider = document.createElement('div');
                     dateDivider.className = "flex items-center gap-4 pt-4 pb-2 mb-2 date-section-divider";
                     dateDivider.innerHTML = `
-                        <div class="flex items-center gap-2 bg-stone-900 text-amber-50 px-4 py-2 rounded-xl shadow-sm text-sm sm:text-base font-extrabold tracking-wide uppercase border border-amber-500/30">
-                            <span>📅 Tanggal Pesanan Masuk: ${currentDateStr}</span>
+                        <div class="flex items-center gap-2 bg-stone-900 text-amber-50 px-3.5 py-2 rounded-xl shadow-sm text-sm sm:text-base font-extrabold tracking-wide uppercase border border-amber-500/30">
+                            <span>📅 Tanggal Pesanan Masuk:</span>
+                            <input type="date" value="${isoDate}" onchange="updateAllGroupsDate('${currentDateStr}', this.value)" class="bg-stone-800 text-amber-200 border border-amber-500/40 rounded px-2 py-1 text-xs sm:text-sm font-bold focus:outline-none focus:ring-1 focus:ring-amber-400 cursor-pointer" title="Klik untuk mengubah tanggal kelompok ini">
                         </div>
                         <div class="flex-grow border-t-2 border-stone-300"></div>
                     `;
@@ -703,7 +726,7 @@
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Update admin remove icons from move buttons",
+                    message: "Update admin editable date in section divider header",
                     content: contentBase64,
                     sha: currentSha
                 };
