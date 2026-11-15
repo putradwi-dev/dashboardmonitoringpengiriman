@@ -244,28 +244,34 @@
             }).map(item => item.g);
 
             let lastDateStr = '';
+            let currentDateCard = null;
+            let storeContainer = null;
 
-            sortedGroups.forEach((group, index) => {
-                // Ekstrak tanggal untuk membuat tajuk pemisah tanggal
+            sortedGroups.forEach((group) => {
                 const dateMatch = group.grup.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
                 const currentDateStr = dateMatch ? dateMatch[1] : '';
 
-                // Jika tanggal berbeda dari sebelumnya, buat tajuk pemisah tanggal yang tegas
+                // Jika tanggal berbeda, buat satu Card Utama (Kotak Pembungkus) untuk tanggal tersebut
                 if (currentDateStr && currentDateStr !== lastDateStr) {
                     lastDateStr = currentDateStr;
-                    const dateDivider = document.createElement('div');
-                    dateDivider.className = "flex items-center gap-4 pt-4 pb-2 mb-2 date-section-divider";
-                    dateDivider.innerHTML = `
-                        <div class="flex items-center gap-2 bg-stone-900 text-amber-50 px-4 py-2 rounded-xl shadow-sm text-sm sm:text-base font-extrabold tracking-wide uppercase border border-amber-500/30">
-                            <span>📅 Tanggal Pesanan Masuk: ${currentDateStr}</span>
+
+                    currentDateCard = document.createElement('div');
+                    currentDateCard.className = "bg-white p-4 sm:p-6 rounded-2xl border-2 border-stone-900 shadow-sm space-y-6 mb-8";
+                    
+                    currentDateCard.innerHTML = `
+                        <div class="flex items-center gap-3 pb-3 border-b-2 border-stone-200">
+                            <div class="bg-stone-900 text-amber-50 px-4 py-2 rounded-xl text-sm sm:text-base font-extrabold uppercase tracking-wide shadow-sm">
+                                📅 Tanggal Pesanan Masuk: ${currentDateStr}
+                            </div>
                         </div>
-                        <div class="flex-grow border-t-2 border-stone-300"></div>
+                        <div class="space-y-6 store-tables-container"></div>
                     `;
-                    container.appendChild(dateDivider);
+                    container.appendChild(currentDateCard);
+                    storeContainer = currentDateCard.querySelector('.store-tables-container');
                 }
 
-                const groupDiv = document.createElement('div');
-                groupDiv.className = `data-group bg-white p-4 sm:p-5 rounded-2xl border-2 border-stone-900 shadow-sm space-y-4 mb-6`;
+                const storeDiv = document.createElement('div');
+                storeDiv.className = `data-group bg-[#faf7f2] p-4 sm:p-5 rounded-xl border border-amber-200 shadow-sm space-y-4`;
 
                 let tableRows = '';
                 let mobileCards = '';
@@ -316,7 +322,7 @@
                     const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${catatanManual} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
 
                     tableRows += `
-                        <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
+                        <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer bg-white" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
                             <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[24%]">${item.nama}</td>
                             <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[24%]">${item.no_pesanan}</td>
                             <td class="py-3.5 px-2 text-center w-[5%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
@@ -326,7 +332,7 @@
                     `;
 
                     mobileCards += `
-                        <div class="item-row bg-[#fdfbf7] hover:bg-sky-100 p-4 rounded-xl border border-amber-100 space-y-2 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
+                        <div class="item-row bg-white hover:bg-sky-100 p-4 rounded-xl border border-amber-100 space-y-2 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
                             <div class="flex justify-between items-start">
                                 <span class="font-bold text-stone-900 text-base sm:text-lg">${item.nama}</span>
                                 <div class="flex items-center gap-2">
@@ -343,7 +349,6 @@
                     `;
                 });
 
-                // Deteksi logo e-commerce / offline untuk pojok kanan atas berdasarkan nama grup
                 let groupNameUpper = (group.grup || '').toUpperCase();
                 let ecomLogoHtml = '';
 
@@ -355,7 +360,7 @@
                     ecomLogoHtml = `<img src="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/offline.png" alt="Offline" class="h-8 sm:h-9 w-auto object-contain" title="Offline" onerror="this.style.display='none';">`;
                 }
 
-                groupDiv.innerHTML = `
+                storeDiv.innerHTML = `
                     <div class="flex flex-wrap items-center justify-between gap-2 pb-1">
                         <div class="flex items-center gap-2">
                             <span class="w-3.5 h-3.5 rounded-full bg-amber-700"></span>
@@ -387,7 +392,9 @@
                     </div>
                 `;
 
-                container.appendChild(groupDiv);
+                if (storeContainer) {
+                    storeContainer.appendChild(storeDiv);
+                }
             });
         }
 
