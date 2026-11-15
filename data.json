@@ -25,8 +25,8 @@
           "no_pesanan": "2611137N2VYVDY",
           "ekspedisi": "JNE",
           "kayu": false,
-          "terlambat": true,
-          "batal": false,
+          "terlambat": false,
+          "batal": true,
           "catatan_manual": "",
           "potong_stok": false
         },
@@ -36,8 +36,8 @@
           "no_pesanan": "2611137NHDCAGQ",
           "ekspedisi": "JNE",
           "kayu": false,
-          "terlambat": true,
-          "batal": false,
+          "terlambat": false,
+          "batal": true,
           "catatan_manual": "",
           "potong_stok": false
         },
@@ -47,8 +47,8 @@
           "no_pesanan": "2611137FYA811X",
           "ekspedisi": "J&T",
           "kayu": false,
-          "terlambat": true,
-          "batal": false,
+          "terlambat": false,
+          "batal": true,
           "catatan_manual": "BANTU SCAN MINGGU MALAM",
           "potong_stok": false
         },
