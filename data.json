@@ -153,22 +153,6 @@
       ]
     },
     {
-      "grup": "SHOPE ADT 16/11/2026",
-      "items": [
-        {
-          "nama": "D8SM",
-          "qty": 1,
-          "no_pesanan": "261115BQ5S111R",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE TANGSEL 16/11/2026",
       "items": [
         {
@@ -181,6 +165,22 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": true
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE ADT 16/11/2026",
+      "items": [
+        {
+          "nama": "D8SM",
+          "qty": 1,
+          "no_pesanan": "261115BQ5S111R",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
