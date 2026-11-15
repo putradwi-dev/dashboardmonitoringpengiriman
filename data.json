@@ -82,22 +82,6 @@
       ]
     },
     {
-      "grup": "TOKOPEDIA ADT 15/11/2026",
-      "items": [
-        {
-          "nama": "tes",
-          "qty": 1,
-          "no_pesanan": "tes",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA MT 16/11/2026",
       "items": [
         {
