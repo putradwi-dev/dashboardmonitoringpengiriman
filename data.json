@@ -82,6 +82,22 @@
       ]
     },
     {
+      "grup": "TOKOPEDIA ADT 15/11/2026",
+      "items": [
+        {
+          "nama": "tes",
+          "qty": 1,
+          "no_pesanan": "tes",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
       "grup": "TOKOPEDIA MT 16/11/2026",
       "items": [
         {
@@ -169,22 +185,6 @@
       ]
     },
     {
-      "grup": "SHOPE TANGSEL 16/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 3,
-          "no_pesanan": "261115BTX32VC4",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        }
-      ]
-    },
-    {
       "grup": "SHOPE ADT 16/11/2026",
       "items": [
         {
@@ -197,6 +197,22 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE TANGSEL 16/11/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM",
+          "qty": 3,
+          "no_pesanan": "261115BTX32VC4",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
         }
       ]
     }
