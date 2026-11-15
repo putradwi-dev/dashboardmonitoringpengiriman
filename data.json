@@ -68,7 +68,7 @@
           "qty": 1,
           "no_pesanan": "261114A5MPWWAB",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
@@ -85,22 +85,6 @@
           "no_pesanan": "2611149YVM4467",
           "ekspedisi": "J&T",
           "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE TANGSEL 14/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 2,
-          "no_pesanan": "2611149854MJSK",
-          "ekspedisi": "J&T",
-          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
