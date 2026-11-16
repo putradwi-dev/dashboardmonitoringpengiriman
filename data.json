@@ -1,22 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "OFFLINE 10/11/2026",
-      "items": [
-        {
-          "nama": "EXPO 1200 IC",
-          "qty": 4,
-          "no_pesanan": "PT. KOPI KINA INDONESIA",
-          "ekspedisi": "KURIR TOKO",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "KIRIM HARI INI 16/11/2026",
-          "potong_stok": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 14/11/2026",
       "items": [
         {
