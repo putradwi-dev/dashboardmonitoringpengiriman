@@ -58,7 +58,7 @@
           "no_pesanan": "2611149UUSBDYY",
           "ekspedisi": "JNE",
           "kayu": true,
-          "terlambat": false,
+          "terlambat": true,
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
