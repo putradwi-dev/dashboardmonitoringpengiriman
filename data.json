@@ -105,6 +105,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": true
+        },
+        {
+          "nama": "GMB 50 BLACK INOX",
+          "qty": 1,
+          "no_pesanan": "587230989948061224",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
         }
       ]
     },
@@ -225,12 +236,6 @@
     },
     {
       "nama": "GMB 50 INOX GEA",
-      "jumlah": 1,
-      "catatan": "PO.2026.10.00150",
-      "tipe": "normal"
-    },
-    {
-      "nama": "GMB 50 BLACK INOX GEA",
       "jumlah": 1,
       "catatan": "PO.2026.10.00150",
       "tipe": "normal"
