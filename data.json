@@ -20,17 +20,6 @@
       "grup": "SHOPE MT 16/11/2026",
       "items": [
         {
-          "nama": "GC 388",
-          "qty": 1,
-          "no_pesanan": "261116EG7M4V1D",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        },
-        {
           "nama": "D8SM",
           "qty": 1,
           "no_pesanan": "261116EGU3VEBC",
