@@ -94,6 +94,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "CF 110",
+          "qty": 1,
+          "no_pesanan": "587228867582461083",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
         }
       ]
     },
@@ -139,6 +150,17 @@
           "no_pesanan": "261116F8K1M3F8",
           "ekspedisi": "JNE",
           "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "TOPAZ 600",
+          "qty": 1,
+          "no_pesanan": "261117FW0C3AF6",
+          "ekspedisi": "J&T",
+          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
@@ -258,7 +280,7 @@
     },
     {
       "nama": "CF 110 RSA",
-      "jumlah": 2,
+      "jumlah": 1,
       "catatan": "PO.2026.11.00019",
       "tipe": "normal"
     },
