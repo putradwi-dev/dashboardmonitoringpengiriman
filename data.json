@@ -105,6 +105,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": true
+        },
+        {
+          "nama": "CF 310",
+          "qty": 1,
+          "no_pesanan": "587232437868070170",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
         }
       ]
     },
@@ -253,12 +264,6 @@
       "tipe": "normal"
     },
     {
-      "nama": "CF 310 RSA",
-      "jumlah": 1,
-      "catatan": "PO.2026.10.00174",
-      "tipe": "normal"
-    },
-    {
       "nama": "EXPO 37 GEA",
       "jumlah": 1,
       "catatan": "PO.2026.10.00185",
@@ -278,7 +283,7 @@
     },
     {
       "nama": "CF 310 RSA",
-      "jumlah": 2,
+      "jumlah": 1,
       "catatan": "PO.2026.11.00019",
       "tipe": "normal"
     },
