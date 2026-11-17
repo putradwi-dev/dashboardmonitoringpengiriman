@@ -82,6 +82,22 @@
       ]
     },
     {
+      "grup": "TOKOPEDIA MT 17/11/2026",
+      "items": [
+        {
+          "nama": "EF 89",
+          "qty": 2,
+          "no_pesanan": "587228500084491984",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 17/11/2026",
       "items": [
         {
