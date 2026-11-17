@@ -281,6 +281,8 @@
                     const isKayu = statusObj.isKayu;
                     const isTerlambat = statusObj.isTerlambat;
                     const isBatal = statusObj.isBatal;
+                    const isPacked = !!item.sudah_packing;
+                    const isShipped = !!item.sudah_kirim;
                     const itemQty = item.qty !== undefined ? item.qty : 1;
                     const catatanManual = item.catatan_manual ? item.catatan_manual.trim() : '';
 
@@ -319,20 +321,31 @@
                         statusBadgesHtml = `<span class="text-stone-400 font-mono text-sm">-</span>`;
                     }
 
+                    // Indikator visual status Packing & Kirim (Read-Only dari konfirmasi karyawan)
+                    const packingCellHtml = isPacked
+                        ? `<span class="inline-flex items-center gap-1.5 text-amber-800 font-bold text-xs sm:text-sm"><span class="w-4 h-4 rounded bg-amber-600 text-white inline-flex items-center justify-center text-[11px] font-extrabold">✓</span> Sudah</span>`
+                        : `<span class="inline-flex items-center gap-1.5 text-stone-400 font-semibold text-xs sm:text-sm"><span class="w-4 h-4 rounded border border-stone-300 bg-white inline-block"></span> Belum</span>`;
+
+                    const kirimCellHtml = isShipped
+                        ? `<span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold text-xs sm:text-sm"><span class="w-4 h-4 rounded bg-emerald-600 text-white inline-flex items-center justify-center text-[11px] font-extrabold">✓</span> Terkirim</span>`
+                        : `<span class="inline-flex items-center gap-1.5 text-stone-400 font-semibold text-xs sm:text-sm"><span class="w-4 h-4 rounded border border-stone-300 bg-white inline-block"></span> Belum</span>`;
+
                     const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${catatanManual} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
 
                     tableRows += `
                         <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer bg-white" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
-                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[24%]">${item.nama}</td>
-                            <td class="py-3.5 px-4 font-mono text-sm sm:text-base text-stone-700 w-[26%]">${item.no_pesanan}</td>
+                            <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[20%]">${item.nama}</td>
+                            <td class="py-3.5 px-3 font-mono text-sm sm:text-base text-stone-700 w-[22%]">${item.no_pesanan}</td>
                             <td class="py-3.5 px-2 text-center w-[5%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
-                            <td class="py-3.5 px-2 w-[11%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
-                            <td class="py-3.5 px-4 w-[34%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
+                            <td class="py-3.5 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
+                            <td class="py-3.5 px-3 w-[21%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
+                            <td class="py-3.5 px-2 text-center w-[11%] bg-amber-50/30 border-l border-amber-100">${packingCellHtml}</td>
+                            <td class="py-3.5 px-2 text-center w-[11%] bg-emerald-50/30 border-l border-amber-100">${kirimCellHtml}</td>
                         </tr>
                     `;
 
                     mobileCards += `
-                        <div class="item-row bg-white hover:bg-sky-100 p-4 rounded-xl border border-amber-100 space-y-2 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
+                        <div class="item-row bg-white hover:bg-sky-100 p-4 rounded-xl border border-amber-100 space-y-2.5 transition-colors cursor-pointer" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
                             <div class="flex justify-between items-start">
                                 <span class="font-bold text-stone-900 text-base sm:text-lg">${item.nama}</span>
                                 <div class="flex items-center gap-2">
@@ -345,6 +358,16 @@
                                 <span class="font-mono text-sm sm:text-base text-stone-700 bg-white px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
                             </div>
                             ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
+                            <div class="pt-2 border-t border-amber-100 grid grid-cols-2 gap-2">
+                                <div class="px-2.5 py-1.5 rounded-lg border ${isPacked ? 'bg-amber-50 border-amber-200' : 'bg-stone-50 border-stone-200'} flex items-center justify-center gap-1.5">
+                                    <span class="text-xs font-bold text-stone-500">Packing:</span>
+                                    ${packingCellHtml}
+                                </div>
+                                <div class="px-2.5 py-1.5 rounded-lg border ${isShipped ? 'bg-emerald-50 border-emerald-200' : 'bg-stone-50 border-stone-200'} flex items-center justify-center gap-1.5">
+                                    <span class="text-xs font-bold text-stone-500">Kirim:</span>
+                                    ${kirimCellHtml}
+                                </div>
+                            </div>
                         </div>
                     `;
                 });
@@ -372,13 +395,15 @@
 
                     <div class="hidden md:block overflow-x-auto rounded-xl border border-amber-200">
                         <table class="w-full text-left text-base table-fixed">
-                            <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-200 uppercase text-sm">
+                            <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-200 uppercase text-xs sm:text-sm">
                                 <tr>
-                                    <th class="py-4 px-4 w-[24%]">Nama Barang</th>
-                                    <th class="py-4 px-4 w-[26%]">Nomor Pesanan</th>
+                                    <th class="py-4 px-4 w-[20%]">Nama Barang</th>
+                                    <th class="py-4 px-3 w-[22%]">Nomor Pesanan</th>
                                     <th class="py-4 px-2 text-center w-[5%]" style="padding-left: 2px; padding-right: 2px;">QTY</th>
-                                    <th class="py-4 px-2 w-[11%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
-                                    <th class="py-4 px-4 w-[34%]">Status / Catatan</th>
+                                    <th class="py-4 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
+                                    <th class="py-4 px-3 w-[21%]">Status / Catatan</th>
+                                    <th class="py-4 px-2 text-center w-[11%] bg-amber-100/50 text-amber-950 border-l border-amber-200">📦 PACKING</th>
+                                    <th class="py-4 px-2 text-center w-[11%] bg-emerald-100/50 text-emerald-950 border-l border-amber-200">🚚 KIRIM</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-amber-100">
