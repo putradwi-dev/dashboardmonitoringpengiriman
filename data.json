@@ -211,6 +211,22 @@
           "potong_stok": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE MT 18/11/2026",
+      "items": [
+        {
+          "nama": "AB 208",
+          "qty": 1,
+          "no_pesanan": "261117HNPK1AMG",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
