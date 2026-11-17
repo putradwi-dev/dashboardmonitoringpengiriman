@@ -12,7 +12,9 @@
           "terlambat": true,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": true
+          "potong_stok": true,
+          "sudah_packing": true,
+          "sudah_kirim": false
         }
       ]
     },
@@ -28,7 +30,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "LB 20",
@@ -39,7 +43,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "TJ 8YG",
@@ -50,7 +56,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     },
@@ -66,7 +74,9 @@
           "terlambat": true,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": true
+          "potong_stok": true,
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     },
@@ -82,7 +92,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "CF 110",
@@ -93,7 +105,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": true
+          "potong_stok": true,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "GMB 50 BLACK INOX",
@@ -104,7 +118,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": true
+          "potong_stok": true,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "CF 310",
@@ -115,7 +131,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": true
+          "potong_stok": true,
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     },
@@ -131,7 +149,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": true
+          "potong_stok": true,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "TOPAZ 600",
@@ -142,7 +162,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "DZ 88",
@@ -153,7 +175,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "AB 318",
@@ -164,7 +188,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "TOPAZ 600",
@@ -175,7 +201,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "AB 318",
@@ -186,7 +214,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "AB 600",
@@ -197,7 +227,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "AB 208",
@@ -208,7 +240,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     },
@@ -224,7 +258,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     }
