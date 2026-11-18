@@ -84,48 +84,9 @@
       "grup": "TOKOPEDIA MT 17/11/2026",
       "items": [
         {
-          "nama": "EF 89",
-          "qty": 2,
-          "no_pesanan": "587228500084491984",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "CF 110",
-          "qty": 1,
-          "no_pesanan": "587228867582461083",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
           "nama": "GMB 50 BLACK INOX",
           "qty": 1,
           "no_pesanan": "587230989948061224",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "CF 310",
-          "qty": 1,
-          "no_pesanan": "587232437868070170",
           "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false,
