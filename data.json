@@ -1,24 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "SHOPE ADT 14/11/2026",
-      "items": [
-        {
-          "nama": "D8SM",
-          "qty": 1,
-          "no_pesanan": "2611149YVM4467",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": true,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 16/11/2026",
       "items": [
         {
@@ -71,8 +53,8 @@
           "no_pesanan": "261115BTX32VC4",
           "ekspedisi": "J&T",
           "kayu": true,
-          "terlambat": true,
-          "batal": false,
+          "terlambat": false,
+          "batal": true,
           "catatan_manual": "",
           "potong_stok": true,
           "sudah_packing": false,
@@ -177,6 +159,44 @@
           "qty": 1,
           "no_pesanan": "261117HUUV928H",
           "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "RUBY 280",
+          "qty": 1,
+          "no_pesanan": "261117HVNAR0A3",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "261118JHAVE7S2",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE ADT 18/11/2026",
+      "items": [
+        {
+          "nama": "HR 6",
+          "qty": 1,
+          "no_pesanan": "261117J62KF9K4",
+          "ekspedisi": "J&T",
           "kayu": false,
           "terlambat": false,
           "batal": false,
