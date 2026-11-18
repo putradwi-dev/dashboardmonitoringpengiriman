@@ -45,24 +45,6 @@
       ]
     },
     {
-      "grup": "SHOPE TANGSEL 16/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 3,
-          "no_pesanan": "261115BTX32VC4",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": true,
-          "catatan_manual": "",
-          "potong_stok": true,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA MT 17/11/2026",
       "items": [
         {
@@ -237,6 +219,22 @@
           "potong_stok": true
         }
       ]
+    },
+    {
+      "grup": "SHOPE TANGSEL 18/11/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM",
+          "qty": 2,
+          "no_pesanan": "261118K4GVXCDT",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
+        }
+      ]
     }
   ],
   "stok_tangerang": [
@@ -254,7 +252,7 @@
     },
     {
       "nama": "LOYANG 3CM GOMESIN",
-      "jumlah": 26,
+      "jumlah": 24,
       "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
     },
