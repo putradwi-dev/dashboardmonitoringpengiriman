@@ -53,19 +53,6 @@
       "grup": "SHOPE MT 17/11/2026",
       "items": [
         {
-          "nama": "TOPAZ 600",
-          "qty": 1,
-          "no_pesanan": "261116FK21UV8D",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
           "nama": "AB 208",
           "qty": 1,
           "no_pesanan": "261117HMYTBSK8",
