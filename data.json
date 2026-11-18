@@ -202,6 +202,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "AB 108",
+          "qty": 1,
+          "no_pesanan": "261117J03S1HQJ",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
         }
       ]
     }
@@ -245,7 +256,7 @@
     },
     {
       "nama": "AB 108 GEA",
-      "jumlah": 2,
+      "jumlah": 1,
       "catatan": "PO.2026.09.00180 & PO.2026.10.00043",
       "tipe": "normal"
     },
