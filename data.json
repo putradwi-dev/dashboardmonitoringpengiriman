@@ -4,19 +4,6 @@
       "grup": "SHOPE MT 16/11/2026",
       "items": [
         {
-          "nama": "D8SM",
-          "qty": 1,
-          "no_pesanan": "261116EGU3VEBC",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": true,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
           "nama": "LB 20",
           "qty": 1,
           "no_pesanan": "261116F151JWPK",
