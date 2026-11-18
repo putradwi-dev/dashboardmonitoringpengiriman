@@ -186,6 +186,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "TOPAZ 600",
+          "qty": 1,
+          "no_pesanan": "261118KGU61NPY",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
