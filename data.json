@@ -208,6 +208,22 @@
       ]
     },
     {
+      "grup": "TOKOPEDIA ADT 18/11/2026",
+      "items": [
+        {
+          "nama": "HIS 400PC",
+          "qty": 1,
+          "no_pesanan": "587233534644749584",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 18/11/2026",
       "items": [
         {
