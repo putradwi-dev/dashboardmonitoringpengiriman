@@ -160,6 +160,17 @@
           "potong_stok": false,
           "sudah_packing": false,
           "sudah_kirim": false
+        },
+        {
+          "nama": "AB 208",
+          "qty": 1,
+          "no_pesanan": "261117HS88BFG2",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     }
