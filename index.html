@@ -335,7 +335,18 @@
                     tableRows += `
                         <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer bg-white" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
                             <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[20%]">${item.nama}</td>
-                            <td class="py-3.5 px-3 font-mono text-sm sm:text-base text-stone-700 w-[22%]">${item.no_pesanan}</td>
+                            <td class="py-3.5 px-3 font-mono text-sm sm:text-base text-stone-700 w-[22%]">
+                                <div class="inline-flex items-center gap-1.5">
+                                    <span class="select-all">${item.no_pesanan}</span>
+                                    <button onclick="copyNoPesanan('${item.no_pesanan}', this)" title="Salin Nomor Pesanan"
+                                            class="text-stone-400 hover:text-amber-700 p-1 rounded hover:bg-amber-100/70 transition-all cursor-pointer">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </td>
                             <td class="py-3.5 px-2 text-center w-[5%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
                             <td class="py-3.5 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
                             <td class="py-3.5 px-3 w-[21%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
@@ -355,7 +366,16 @@
                             </div>
                             <div>
                                 <span class="text-xs sm:text-sm text-stone-400 block uppercase font-medium">Nomor Pesanan</span>
-                                <span class="font-mono text-sm sm:text-base text-stone-700 bg-white px-2.5 py-1 rounded border border-amber-100 block mt-0.5 select-all">${item.no_pesanan}</span>
+                                <div class="text-xs sm:text-sm font-mono text-stone-700 bg-white px-2.5 py-1.5 rounded border border-amber-100 flex items-center justify-between gap-2 mt-0.5">
+                                    <span class="select-all">No: ${item.no_pesanan}</span>
+                                    <button onclick="copyNoPesanan('${item.no_pesanan}', this)" title="Salin Nomor Pesanan"
+                                            class="text-stone-500 hover:text-amber-700 p-1 rounded hover:bg-amber-100/70 transition-all shrink-0">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
                             </div>
                             ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
                             <div class="pt-2 border-t border-amber-100 grid grid-cols-2 gap-2">
@@ -485,6 +505,24 @@
             document.getElementById('stat-terlambat').innerHTML = `${totalTerlambat} <span class="text-xs font-normal text-stone-500">Item</span>`;
             document.getElementById('stat-kayu').innerHTML = `${totalKayu} <span class="text-xs font-normal text-stone-500">Item</span>`;
             document.getElementById('stat-batal').innerHTML = `${totalBatal} <span class="text-xs font-normal text-stone-500">Item</span>`;
+        }
+
+        function copyNoPesanan(text, btnElement) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalIcon = btnElement.innerHTML;
+                btnElement.innerHTML = `
+                    <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                `;
+                btnElement.classList.add('bg-emerald-50');
+                setTimeout(() => {
+                    btnElement.innerHTML = originalIcon;
+                    btnElement.classList.remove('bg-emerald-50');
+                }, 1500);
+            }).catch(err => {
+                console.error('Gagal menyalin teks:', err);
+            });
         }
 
         function openShareModal() {
