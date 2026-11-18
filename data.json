@@ -209,6 +209,22 @@
           "potong_stok": true
         }
       ]
+    },
+    {
+      "grup": "SHOPE MT 19/11/2026",
+      "items": [
+        {
+          "nama": "LB 30",
+          "qty": 1,
+          "no_pesanan": "261118M5T8XEAJ",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
