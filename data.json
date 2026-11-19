@@ -120,6 +120,22 @@
       ]
     },
     {
+      "grup": "TOKOPEDIA ADT 19/11/2026",
+      "items": [
+        {
+          "nama": "DECANTER 1.6 GETRA",
+          "qty": 2,
+          "no_pesanan": "587266554077021726",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE TANGSEL 19/11/2026",
       "items": [
         {
