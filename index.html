@@ -323,11 +323,11 @@
 
                     // Indikator visual status Packing & Kirim (Read-Only dari konfirmasi karyawan)
                     const packingCellHtml = isPacked
-                        ? `<span class="inline-flex items-center gap-1.5 text-blue-700 font-bold text-xs sm:text-sm"><span class="w-4 h-4 rounded bg-blue-600 text-white inline-flex items-center justify-center text-[11px] font-extrabold">✓</span> Sudah</span>`
+                        ? `<span class="inline-flex items-center gap-1.5 text-blue-700 font-bold text-xs sm:text-sm"><span class="w-4 h-4 rounded bg-blue-600 text-white inline-flex items-center justify-center text-[11px] font-extrabold">✓</span>Sudah</span>`
                         : `<span class="inline-flex items-center gap-1.5 text-stone-400 font-semibold text-xs sm:text-sm"><span class="w-4 h-4 rounded border border-stone-300 bg-white inline-block"></span> Belum</span>`;
 
                     const kirimCellHtml = isShipped
-                        ? `<span class="inline-flex items-center gap-1.5 text-blue-700 font-bold text-xs sm:text-sm"><span class="w-4 h-4 rounded bg-blue-600 text-white inline-flex items-center justify-center text-[11px] font-extrabold">✓</span> Terkirim</span>`
+                        ? `<span class="inline-flex items-center gap-1.5 text-blue-700 font-bold text-xs sm:text-sm"><span class="w-4 h-4 rounded bg-blue-600 text-white inline-flex items-center justify-center text-[11px] font-extrabold">✓</span>Siap</span>`
                         : `<span class="inline-flex items-center gap-1.5 text-stone-400 font-semibold text-xs sm:text-sm"><span class="w-4 h-4 rounded border border-stone-300 bg-white inline-block"></span> Belum</span>`;
 
                     const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${catatanManual} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
@@ -423,7 +423,7 @@
                                     <th class="py-4 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
                                     <th class="py-4 px-3 w-[21%]">Status / Catatan</th>
                                     <th class="py-4 px-2 text-center w-[11%] bg-amber-100/50 text-amber-950 border-l border-amber-200">PACKING</th>
-                                    <th class="py-4 px-2 text-center w-[11%] bg-emerald-100/50 text-emerald-950 border-l border-amber-200">KIRIM</th>
+                                    <th class="py-4 px-2 text-center w-[11%] bg-emerald-100/50 text-emerald-950 border-l border-amber-200">SIAP KIRIM</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-amber-100">
