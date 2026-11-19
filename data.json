@@ -89,7 +89,7 @@
           "qty": 2,
           "no_pesanan": "261118MKKGYJ79",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
