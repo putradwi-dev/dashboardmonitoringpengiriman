@@ -12,7 +12,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": true,
+          "sudah_kirim": false
         },
         {
           "nama": "TF 120SNB",
@@ -23,7 +25,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     },
@@ -39,7 +43,9 @@
           "terlambat": true,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": true
+          "potong_stok": true,
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     },
@@ -55,7 +61,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "CF 750",
@@ -66,7 +74,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "CF 210",
@@ -77,7 +87,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": true
+          "potong_stok": true,
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     },
@@ -93,7 +105,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": true
+          "potong_stok": true,
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     }
