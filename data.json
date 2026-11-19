@@ -90,6 +90,17 @@
           "potong_stok": true,
           "sudah_packing": false,
           "sudah_kirim": false
+        },
+        {
+          "nama": "AB 208",
+          "qty": 1,
+          "no_pesanan": "261119NW8NQNTG",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
