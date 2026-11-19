@@ -51,7 +51,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": true,
+          "sudah_kirim": false
         },
         {
           "nama": "AB 318 & AB 600",
@@ -62,7 +64,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "GM POP6C & GM POP6AR",
@@ -73,7 +77,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": true,
+          "sudah_kirim": false
         },
         {
           "nama": "CF 110",
@@ -84,7 +90,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": true
+          "potong_stok": true,
+          "sudah_packing": true,
+          "sudah_kirim": false
         },
         {
           "nama": "OL 4B",
@@ -111,7 +119,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": true,
+          "sudah_kirim": false
         }
       ]
     },
@@ -128,7 +138,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": true,
-          "sudah_packing": false,
+          "sudah_packing": true,
           "sudah_kirim": false
         }
       ]
