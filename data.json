@@ -101,6 +101,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "AB 318 & AB 600",
+          "qty": 1,
+          "no_pesanan": "261119P3YHQDF7",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
