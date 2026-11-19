@@ -94,6 +94,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "GM POP6C & GM POP6AR",
+          "qty": 1,
+          "no_pesanan": "261119P9JFJ3X7",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
