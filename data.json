@@ -225,6 +225,36 @@
       "jumlah": 1,
       "catatan": "PO.2026.11.00019",
       "tipe": "normal"
+    },
+    {
+      "nama": "CF 310 RSA BELUM DATANG",
+      "jumlah": 4,
+      "catatan": "PO.2026.11.00099",
+      "tipe": "normal"
+    },
+    {
+      "nama": "AB 208 GEA BELUM DATANG",
+      "jumlah": 3,
+      "catatan": "PO.2026.11.00099",
+      "tipe": "normal"
+    },
+    {
+      "nama": "AB 318 GEA BELUM DATANG",
+      "jumlah": 4,
+      "catatan": "PO.2026.11.00099",
+      "tipe": "normal"
+    },
+    {
+      "nama": "GMB 50 BLACK INOX GEA BELUM DATANG",
+      "jumlah": 2,
+      "catatan": "PO.2026.11.00099",
+      "tipe": "normal"
+    },
+    {
+      "nama": "CF 1200 RSA BELUM DATANG",
+      "jumlah": 1,
+      "catatan": "PO.2026.11.00099",
+      "tipe": "normal"
     }
   ]
 }
