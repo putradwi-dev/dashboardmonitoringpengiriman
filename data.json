@@ -13,7 +13,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "sudah_packing": true,
+          "sudah_packing": false,
           "sudah_kirim": false
         },
         {
