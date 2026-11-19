@@ -32,24 +32,6 @@
       ]
     },
     {
-      "grup": "TOKOPEDIA MT 17/11/2026",
-      "items": [
-        {
-          "nama": "GMB 50 BLACK INOX",
-          "qty": 1,
-          "no_pesanan": "587230989948061224",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 17/11/2026",
       "items": [
         {
@@ -64,22 +46,6 @@
           "potong_stok": false,
           "sudah_packing": false,
           "sudah_kirim": false
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA ADT 18/11/2026",
-      "items": [
-        {
-          "nama": "HIS 400PC",
-          "qty": 1,
-          "no_pesanan": "587233534644749584",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
         }
       ]
     },
