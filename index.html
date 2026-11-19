@@ -323,11 +323,11 @@
 
                     // Indikator visual status Packing & Kirim (Read-Only dari konfirmasi karyawan)
                     const packingCellHtml = isPacked
-                        ? `<span class="inline-flex items-center gap-1.5 text-amber-800 font-bold text-xs sm:text-sm"><span class="w-4 h-4 rounded bg-amber-600 text-white inline-flex items-center justify-center text-[11px] font-extrabold">✓</span> Sudah</span>`
+                        ? `<span class="inline-flex items-center gap-1.5 text-blue-700 font-bold text-xs sm:text-sm"><span class="w-4 h-4 rounded bg-blue-600 text-white inline-flex items-center justify-center text-[11px] font-extrabold">✓</span> Sudah</span>`
                         : `<span class="inline-flex items-center gap-1.5 text-stone-400 font-semibold text-xs sm:text-sm"><span class="w-4 h-4 rounded border border-stone-300 bg-white inline-block"></span> Belum</span>`;
 
                     const kirimCellHtml = isShipped
-                        ? `<span class="inline-flex items-center gap-1.5 text-emerald-700 font-bold text-xs sm:text-sm"><span class="w-4 h-4 rounded bg-emerald-600 text-white inline-flex items-center justify-center text-[11px] font-extrabold">✓</span> Terkirim</span>`
+                        ? `<span class="inline-flex items-center gap-1.5 text-blue-700 font-bold text-xs sm:text-sm"><span class="w-4 h-4 rounded bg-blue-600 text-white inline-flex items-center justify-center text-[11px] font-extrabold">✓</span> Terkirim</span>`
                         : `<span class="inline-flex items-center gap-1.5 text-stone-400 font-semibold text-xs sm:text-sm"><span class="w-4 h-4 rounded border border-stone-300 bg-white inline-block"></span> Belum</span>`;
 
                     const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${catatanManual} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
