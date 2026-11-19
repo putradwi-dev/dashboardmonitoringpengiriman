@@ -32,24 +32,6 @@
       ]
     },
     {
-      "grup": "SHOPE ADT 18/11/2026",
-      "items": [
-        {
-          "nama": "AB 108",
-          "qty": 1,
-          "no_pesanan": "261117J03S1HQJ",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": true,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 19/11/2026",
       "items": [
         {
