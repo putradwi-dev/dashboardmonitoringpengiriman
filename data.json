@@ -1,24 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "SHOPE MT 18/11/2026",
-      "items": [
-        {
-          "nama": "TF 120SNB",
-          "qty": 1,
-          "no_pesanan": "261118KPN42VC5",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 19/11/2026",
       "items": [
         {
