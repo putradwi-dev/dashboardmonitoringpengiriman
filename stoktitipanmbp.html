@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelola Stok Titipan PT. MBP</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/putradwi-dev/dashboardmonitoringpengiriman/main/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#faf7f2] text-stone-800 min-h-screen pb-14">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-stone-900 via-emerald-950 to-stone-900 text-white shadow-lg">
+        <div class="max-w-[1320px] mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="p-2.5 bg-emerald-700 rounded-xl text-xl leading-none shadow-sm">🏢</div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-amber-50">
+                        KELOLA STOK TITIPAN PT. MBP
+                    </h1>
+                    <p class="text-xs sm:text-sm text-emerald-200/80">
+                        Portal Khusus Karyawan Stok • Update Stok Titipan di Gudang PT. MBG
+                    </p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2.5">
+                <button onclick="openTokenModal()" class="bg-emerald-700 hover:bg-emerald-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
+                    Pengaturan Token Github
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-4 sm:px-6 mt-6 space-y-6">
+
+        <div id="statusToast" class="hidden px-4 py-3 rounded-xl text-sm font-bold shadow-sm border"></div>
+
+        <!-- Ringkasan Cepat -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm">
+                <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">Jenis Barang Titipan</p>
+                <p class="text-2xl font-bold text-stone-800 mt-1" id="sum-jenis">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-emerald-600">
+                <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">Total Qty Fisik</p>
+                <p class="text-2xl font-bold text-emerald-700 mt-1" id="sum-qty">0 <span class="text-xs font-normal text-stone-500">Unit</span></p>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-amber-600">
+                <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">Prioritas Habiskan</p>
+                <p class="text-2xl font-bold text-amber-800 mt-1" id="sum-priority">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-amber-100 shadow-sm border-l-4 border-l-red-600">
+                <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider">Perlu Diperbaiki</p>
+                <p class="text-2xl font-bold text-red-600 mt-1" id="sum-warning">0 <span class="text-xs font-normal text-stone-500">Item</span></p>
+            </div>
+        </div>
+
+        <!-- Form Tambah Barang Titipan Baru -->
+        <section class="bg-white rounded-2xl border border-amber-100 shadow-sm p-5 sm:p-6">
+            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                <div>
+                    <h2 class="text-base sm:text-lg font-extrabold text-stone-900 uppercase tracking-wide">
+                        Tambah Stok Titipan Baru
+                    </h2>
+                    <p class="text-xs text-stone-500">Input item baru yang dititipkan di gudang PT. MBG</p>
+                </div>
+                <button onclick="saveAllToGitHub()" id="btnSaveTop" class="bg-cyan-700 hover:bg-cyan-800 text-white text-m sm:text-sm font-bold px-10 py-2.5 rounded-xl shadow-sm transition-all flex items-center gap-2">
+                   SIMPAN
+                </button>
+            </div>
+
+            <form id="addStokForm" onsubmit="addStokItem(event)" class="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
+                <div class="md:col-span-4">
+                    <label class="block text-xs font-bold text-stone-600 uppercase mb-1">Nama Barang</label>
+                    <input type="text" id="newNama" required placeholder="Contoh: AB 108 GEA"
+                           class="w-full px-3.5 py-2.5 bg-[#fdfbf7] border border-amber-200 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-700">
+                </div>
+                <div class="md:col-span-1">
+                    <label class="block text-xs text-center font-bold text-stone-600 uppercase mb-1">QTY</label>
+                    <input type="number" id="newJumlah" required min="0" value="1"
+                           class="w-full px-3.5 py-2.5 bg-[#fdfbf7] border border-amber-200 rounded-xl text-sm font-bold text-center focus:outline-none focus:ring-2 focus:ring-emerald-700">
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-xs text-center font-bold text-stone-600 uppercase mb-1">Tipe Status</label>
+                    <select id="newTipe" onchange="syncCatatanPreset()"
+                            class="w-full px-3 py-2.5 bg-[#fdfbf7] border border-amber-200 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-700">
+                        <option value="normal">Normal</option>
+                        <option value="priority">Prioritas Habiskan</option>
+                        <option value="warning">Perlu Diperbaiki</option>
+                    </select>
+                </div>
+                <div class="md:col-span-3">
+                    <label class="block text-xs font-bold text-stone-600 uppercase mb-1">Catatan</label>
+                    <input type="text" id="newCatatan" placeholder="catatan khusus"
+                           class="w-full px-3.5 py-2.5 bg-[#fdfbf7] border border-amber-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-700">
+                </div>
+                <div class="md:col-span-2">
+                    <button type="submit" class="w-full bg-stone-900 hover:bg-stone-800 text-amber-50 text-xs font-bold py-1.5 px-4 rounded-xl transition-all shadow-sm">
+                        TAMBAH DATA KE TABEL
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Daftar Stok Titipan Aktif -->
+        <section class="bg-white rounded-2xl border border-amber-100 shadow-sm overflow-hidden">
+            <div class="bg-stone-900 text-amber-50 px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div>
+                    <h2 class="font-bold text-base sm:text-lg uppercase tracking-wide">
+                        Daftar Stok Tangerang Titip di PT. MBG
+                    </h2>
+                    <p class="text-xs text-stone-400">Ubah qty (+/-), status, atau catatan, lalu klik SIMPAN</p>
+                </div>
+                <input type="text" id="filterStokInput" onkeyup="renderStokTable()" placeholder="Cari barang titipan..."
+                       class="px-3.5 py-2 rounded-lg bg-stone-800 border border-stone-700 text-sm text-white placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-full sm:w-64">
+            </div>
+
+            <div class="p-4 sm:p-6 overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-[#faf7f2] border-b border-amber-200 text-stone-700 text-xs uppercase tracking-wider">
+                            <th class="py-3.5 px-4 font-bold">Nama Barang</th>
+                            <th class="py-3.5 px-3 font-bold text-center w-44">QTY</th>
+                            <th class="py-3.5 px-3 font-bold w-48">Tipe Status</th>
+                            <th class="py-3.5 px-3 font-bold">Catatan</th>
+                            <th class="py-3.5 px-3 font-bold text-center w-24">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stokEditorBody" class="divide-y divide-amber-100 text-sm">
+                        <!-- Baris Stok Titipan -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Pengaturan GitHub Token -->
+    <div id="tokenModal" class="fixed inset-0 bg-stone-900/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl border border-amber-100 space-y-4">
+            <div class="flex items-center justify-between">
+                <h3 class="font-bold text-stone-900 text-lg">🔑 Pengaturan Repo & Token GitHub</h3>
+                <button onclick="closeTokenModal()" class="text-stone-400 hover:text-stone-600 font-bold">✕</button>
+            </div>
+            <div class="space-y-3 text-xs">
+                <div>
+                    <label class="font-bold text-stone-600 block mb-1">Owner / Username GitHub</label>
+                    <input type="text" id="ghOwner" class="w-full px-3 py-2 border border-amber-200 rounded-lg font-mono">
+                </div>
+                <div>
+                    <label class="font-bold text-stone-600 block mb-1">Repository Name</label>
+                    <input type="text" id="ghRepo" class="w-full px-3 py-2 border border-amber-200 rounded-lg font-mono">
+                </div>
+                <div>
+                    <label class="font-bold text-stone-600 block mb-1">Branch</label>
+                    <input type="text" id="ghBranch" class="w-full px-3 py-2 border border-amber-200 rounded-lg font-mono">
+                </div>
+                <div>
+                    <label class="font-bold text-stone-600 block mb-1">GitHub Personal Access Token (Contents: Read & Write)</label>
+                    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx" class="w-full px-3 py-2 border border-amber-200 rounded-lg font-mono">
+                </div>
+            </div>
+            <div class="flex justify-end gap-2 pt-2">
+                <button onclick="closeTokenModal()" class="px-4 py-2 rounded-lg text-xs font-bold text-stone-600 bg-stone-100 hover:bg-stone-200">Batal</button>
+                <button onclick="saveTokenConfig()" class="px-4 py-2 rounded-lg text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800">Simpan Konfigurasi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'ptmbp_stok_titipan_cfg_v1';
+        let fullDataJson = { belum_kirim: [], stok_tangerang: [] };
+        let stokList = [];
+
+        function getConfig() {
+            const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            return {
+                owner: saved.owner || 'putradwi-dev',
+                repo: saved.repo || 'dashboardmonitoringpengiriman',
+                branch: saved.branch || 'main',
+                token: saved.token || ''
+            };
+        }
+
+        function checkTokenUI() {
+            const cfg = getConfig();
+            const warn = document.getElementById('tokenWarning');
+            if (!cfg.token) {
+                warn.classList.remove('hidden');
+            } else {
+                warn.classList.add('hidden');
+            }
+        }
+
+        function openTokenModal() {
+            const cfg = getConfig();
+            document.getElementById('ghOwner').value = cfg.owner;
+            document.getElementById('ghRepo').value = cfg.repo;
+            document.getElementById('ghBranch').value = cfg.branch;
+            document.getElementById('ghToken').value = cfg.token;
+            document.getElementById('tokenModal').classList.remove('hidden');
+        }
+
+        function closeTokenModal() {
+            document.getElementById('tokenModal').classList.add('hidden');
+        }
+
+        function saveTokenConfig() {
+            const cfg = {
+                owner: document.getElementById('ghOwner').value.trim() || 'putradwi-dev',
+                repo: document.getElementById('ghRepo').value.trim() || 'dashboardmonitoringpengiriman',
+                branch: document.getElementById('ghBranch').value.trim() || 'main',
+                token: document.getElementById('ghToken').value.trim()
+            };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+            closeTokenModal();
+            checkTokenUI();
+            showToast('✅ Konfigurasi GitHub tersimpan di browser ini.', 'success');
+        }
+
+        function showToast(message, type = 'success') {
+            const el = document.getElementById('statusToast');
+            el.textContent = message;
+            el.className = 'px-4 py-3 rounded-xl text-sm font-bold shadow-sm border ' + (
+                type === 'success'
+                    ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                    : 'bg-red-50 text-red-800 border-red-200'
+            );
+            el.classList.remove('hidden');
+            setTimeout(() => el.classList.add('hidden'), 4500);
+        }
+
+        function syncCatatanPreset() {
+            const tipe = document.getElementById('newTipe').value;
+            const catInput = document.getElementById('newCatatan');
+            if (tipe === 'priority' && !catInput.value.trim()) {
+                catInput.value = '🔥 Utamakan habiskan ini';
+            } else if (tipe === 'warning' && !catInput.value.trim()) {
+                catInput.value = '🛠️ Perlu di perbaiki';
+            } else if (tipe === 'normal' && (catInput.value === '🔥 Utamakan habiskan ini' || catInput.value === '🛠️ Perlu di perbaiki')) {
+                catInput.value = '-';
+            }
+        }
+
+        async function loadStokData() {
+            checkTokenUI();
+            try {
+                const res = await fetch('data.json?v=' + Date.now());
+                fullDataJson = await res.json();
+                stokList = Array.isArray(fullDataJson.stok_tangerang) ? fullDataJson.stok_tangerang : [];
+                renderStokTable();
+                updateSummary();
+            } catch (err) {
+                console.error(err);
+                showToast('❌ Gagal memuat data.json', 'error');
+            }
+        }
+
+        function updateSummary() {
+            const jenis = stokList.length;
+            const totalQty = stokList.reduce((acc, item) => acc + (Number(item.jumlah) || 0), 0);
+            const priorityCount = stokList.filter(item => item.tipe === 'priority').length;
+            const warningCount = stokList.filter(item => item.tipe === 'warning').length;
+
+            document.getElementById('sum-jenis').innerHTML = `${jenis} <span class="text-xs font-normal text-stone-500">Item</span>`;
+            document.getElementById('sum-qty').innerHTML = `${totalQty} <span class="text-xs font-normal text-stone-500">Unit</span>`;
+            document.getElementById('sum-priority').innerHTML = `${priorityCount} <span class="text-xs font-normal text-stone-500">Item</span>`;
+            document.getElementById('sum-warning').innerHTML = `${warningCount} <span class="text-xs font-normal text-stone-500">Item</span>`;
+        }
+
+        function renderStokTable() {
+            const tbody = document.getElementById('stokEditorBody');
+            const query = (document.getElementById('filterStokInput').value || '').toLowerCase().trim();
+            tbody.innerHTML = '';
+
+            const indexed = stokList.map((item, idx) => ({ item, idx }));
+            const filtered = query
+                ? indexed.filter(({ item }) => `${item.nama || ''} ${item.catatan || ''}`.toLowerCase().includes(query))
+                : indexed;
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-stone-400">Belum ada data stok titipan yang cocok.</td></tr>`;
+                return;
+            }
+
+            filtered.forEach(({ item, idx }) => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-amber-50/40 transition-colors';
+                tr.innerHTML = `
+                    <td class="py-3 px-4">
+                        <input type="text" value="${escapeHtml(item.nama || '')}" onchange="updateField(${idx}, 'nama', this.value)"
+                               class="w-full px-3 py-1.5 bg-white border border-amber-200 rounded-lg font-bold text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700">
+                    </td>
+                    <td class="py-3 px-3">
+                        <div class="flex items-center justify-center gap-1.5">
+                            <button onclick="adjustQty(${idx}, -1)" class="w-8 h-8 rounded-lg bg-stone-100 hover:bg-stone-200 font-bold text-stone-700">-</button>
+                            <input type="number" min="0" value="${Number(item.jumlah) || 0}" onchange="updateField(${idx}, 'jumlah', Number(this.value) || 0)"
+                                   class="w-16 text-center px-2 py-1.5 bg-white border border-amber-200 rounded-lg font-extrabold text-stone-900 focus:outline-none focus:ring-2 focus:ring-emerald-700">
+                            <button onclick="adjustQty(${idx}, 1)" class="w-8 h-8 rounded-lg bg-emerald-100 hover:bg-emerald-200 font-bold text-emerald-800">+</button>
+                        </div>
+                    </td>
+                    <td class="py-3 px-3">
+                        <select onchange="updateField(${idx}, 'tipe', this.value)"
+                                class="w-full px-2.5 py-1.5 bg-white border border-amber-200 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-emerald-700">
+                            <option value="normal" ${item.tipe === 'normal' || !item.tipe ? 'selected' : ''}>Normal</option>
+                            <option value="priority" ${item.tipe === 'priority' ? 'selected' : ''}>Prioritas Habiskan</option>
+                            <option value="warning" ${item.tipe === 'warning' ? 'selected' : ''}>Perlu Diperbaiki</option>
+                        </select>
+                    </td>
+                    <td class="py-3 px-3">
+                        <input type="text" value="${escapeHtml(item.catatan || '-')}" onchange="updateField(${idx}, 'catatan', this.value)"
+                               class="w-full px-3 py-1.5 bg-white border border-amber-200 rounded-lg text-stone-700 focus:outline-none focus:ring-2 focus:ring-emerald-700">
+                    </td>
+                    <td class="py-3 px-3 text-center">
+                        <button onclick="deleteStokItem(${idx})" title="Hapus Item"
+                                class="px-2.5 py-1.5 rounded-lg bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold border border-red-200 transition-colors">
+                            Hapus
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function updateField(idx, field, value) {
+            if (!stokList[idx]) return;
+            stokList[idx][field] = value;
+            updateSummary();
+        }
+
+        function adjustQty(idx, delta) {
+            if (!stokList[idx]) return;
+            const current = Number(stokList[idx].jumlah) || 0;
+            stokList[idx].jumlah = Math.max(0, current + delta);
+            renderStokTable();
+            updateSummary();
+        }
+
+        function deleteStokItem(idx) {
+            if (!confirm('Hapus item stok titipan ini?')) return;
+            stokList.splice(idx, 1);
+            renderStokTable();
+            updateSummary();
+        }
+
+        function addStokItem(event) {
+            event.preventDefault();
+            const nama = document.getElementById('newNama').value.trim();
+            const jumlah = Math.max(0, Number(document.getElementById('newJumlah').value) || 0);
+            const tipe = document.getElementById('newTipe').value;
+            const catatan = (document.getElementById('newCatatan').value || '-').trim() || '-';
+
+            if (!nama) return;
+
+            stokList.push({ nama, jumlah, tipe, catatan });
+            document.getElementById('addStokForm').reset();
+            document.getElementById('newJumlah').value = 1;
+            document.getElementById('newTipe').value = 'normal';
+
+            renderStokTable();
+            updateSummary();
+            showToast(`✅ "${nama}" ditambahkan ke daftar. Klik Simpan Perubahan ke GitHub untuk mempublikasikan.`, 'success');
+        }
+
+        function toBase64Utf8(str) {
+            const bytes = new TextEncoder().encode(str);
+            let bin = '';
+            bytes.forEach(b => bin += String.fromCharCode(b));
+            return btoa(bin);
+        }
+
+        async function saveAllToGitHub() {
+            const cfg = getConfig();
+            if (!cfg.token) {
+                openTokenModal();
+                return;
+            }
+
+            const btnTop = document.getElementById('btnSaveTop');
+            const btnBot = document.getElementById('btnSaveBottom');
+            btnTop.disabled = btnBot.disabled = true;
+            btnTop.textContent = btnBot.textContent = '⏳ Menyimpan ke GitHub...';
+
+            try {
+                const apiUrl = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/data.json?ref=${encodeURIComponent(cfg.branch)}`;
+                const getRes = await fetch(apiUrl, {
+                    headers: { Authorization: `token ${cfg.token}` }
+                });
+
+                if (!getRes.ok) {
+                    throw new Error(`Gagal mengambil metadata data.json (${getRes.status})`);
+                }
+
+                const fileMeta = await getRes.json();
+                const updatedPayload = {
+                    ...fullDataJson,
+                    stok_tangerang: stokList
+                };
+
+                const putRes = await fetch(`https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/data.json`, {
+                    method: 'PUT',
+                    headers: {
+                        Authorization: `token ${cfg.token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: 'Update stok titipan PT. MBG via web karyawan stok',
+                        content: toBase64Utf8(JSON.stringify(updatedPayload, null, 2)),
+                        sha: fileMeta.sha,
+                        branch: cfg.branch
+                    })
+                });
+
+                if (!putRes.ok) {
+                    const errJson = await putRes.json().catch(() => ({}));
+                    throw new Error(errJson.message || `Gagal menyimpan data.json (${putRes.status})`);
+                }
+
+                fullDataJson = updatedPayload;
+                showToast('✅ Stok titipan berhasil disimpan ke GitHub (data.json)!', 'success');
+            } catch (err) {
+                console.error(err);
+                showToast('❌ ' + err.message, 'error');
+            } finally {
+                btnTop.disabled = btnBot.disabled = false;
+                btnTop.textContent = btnBot.textContent = '💾 Simpan Perubahan ke GitHub';
+            }
+        }
+
+        window.onload = loadStokData;
+    </script>
+</body>
+</html>
