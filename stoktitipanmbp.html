@@ -403,8 +403,7 @@
         }
 
         function fromBase64Utf8(base64Str) {
-            const binaryStr = atob(base64Str.replace(/
-/g, ''));
+            const binaryStr = atob(base64Str.replace(/\n/g, ''));
             const bytes = new Uint8Array(binaryStr.length);
             for (let i = 0; i < binaryStr.length; i++) {
                 bytes[i] = binaryStr.charCodeAt(i);
