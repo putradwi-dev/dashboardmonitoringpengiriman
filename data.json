@@ -20,17 +20,6 @@
       "grup": "SHOPE MT 20/11/2026",
       "items": [
         {
-          "nama": "CF 210 JANGAN PROSES",
-          "qty": 1,
-          "no_pesanan": "261119MX9BPNDK",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        },
-        {
           "nama": "C70",
           "qty": 1,
           "no_pesanan": "261120REGT098B",
@@ -167,7 +156,7 @@
     },
     {
       "nama": "CF 210 RSA",
-      "jumlah": 2,
+      "jumlah": 3,
       "catatan": "PO.2026.11.00019",
       "tipe": "normal"
     },
