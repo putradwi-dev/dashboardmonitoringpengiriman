@@ -218,6 +218,12 @@
       "jumlah": 2,
       "catatan": "PO.2026.11.00099",
       "tipe": "normal"
+    },
+    {
+      "nama": "CF 1200",
+      "jumlah": 1,
+      "tipe": "normal",
+      "catatan": "PO..2026.11.00099"
     }
   ]
 }
