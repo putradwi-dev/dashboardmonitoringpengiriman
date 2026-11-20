@@ -207,6 +207,12 @@
       "jumlah": 2,
       "catatan": "PO.2026.11.00099",
       "tipe": "normal"
+    },
+    {
+      "nama": "tes",
+      "jumlah": 1,
+      "tipe": "normal",
+      "catatan": "tes"
     }
   ]
 }
