@@ -45,9 +45,6 @@
                     1. Data Pesanan Belum Kirim
                 </h2>
                 <div class="flex items-center gap-2">
-                    <button onclick="markAllExistingAsStockDeducted()" class="bg-stone-100 hover:bg-stone-200 text-stone-700 border border-stone-300 font-bold px-3.5 py-2 rounded-lg text-xs transition-all" title="Menandai semua pesanan yang ada saat ini sebagai sudah potong stok">
-                        ✓ Tandai Semua Sudah Potong Stok
-                    </button>
                     <button onclick="addBelumKirimGroup()" class="bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 font-bold px-3.5 py-2 rounded-lg text-xs sm:text-sm transition-all">
                         + E-Commerce Baru
                     </button>
@@ -256,10 +253,9 @@
             renderBelumKirim();
         }
 
-        // Fungsi baru untuk mengubah tanggal secara massal langsung dari header pemisah
         function updateAllGroupsDate(oldDateStr, newDateVal) {
             if (!newDateVal) return;
-            let parts = newDateVal.split('-'); // Format YYYY-MM-DD
+            let parts = newDateVal.split('-');
             if (parts.length !== 3) return;
             let formattedNewDate = `${parseInt(parts[2])}/${parseInt(parts[1])}/${parts[0]}`;
 
@@ -351,7 +347,6 @@
                 if (currentDateStr && currentDateStr !== lastDateStr) {
                     lastDateStr = currentDateStr;
 
-                    // Konversi format tanggal DD/MM/YYYY ke YYYY-MM-DD untuk input date HTML
                     let p = currentDateStr.split('/');
                     let isoDate = p.length === 3 ? `${p[2]}-${p[1].padStart(2,'0')}-${p[0].padStart(2,'0')}` : '';
 
@@ -389,26 +384,6 @@
                     }
 
                     const displayStyle = isMatch ? '' : 'display: none;';
-                    const matchedStok = findStokTitipanMatch(item.nama);
-                    let stokAlertBadge = '';
-
-                    if (item.potong_stok) {
-                        stokAlertBadge = `
-                            <div class="mt-1 flex items-center justify-between bg-emerald-50 text-emerald-800 border border-emerald-300 px-2.5 py-1 rounded-lg text-xs font-bold">
-                                <span>📦 Status Stok Titipan: <strong>Sudah Potong Stok</strong></span>
-                                <span class="bg-emerald-700 text-white px-2 py-0.5 rounded text-[11px] font-bold">✓ Sudah potong stok</span>
-                            </div>
-                        `;
-                    } else if (matchedStok) {
-                        stokAlertBadge = `
-                            <div class="mt-1 flex items-center justify-between bg-amber-100/90 text-amber-900 border border-amber-300 px-2.5 py-1 rounded-lg text-xs font-bold">
-                                <span>📦 Ditemukan di Stok Titipan: <strong>${matchedStok.nama}</strong> (Tersedia: ${matchedStok.jumlah})</span>
-                                <button onclick="kurangiStokTitipanOtomatis(${gIdx}, ${iIdx}, '${matchedStok.nama}', ${item.qty || 1})" class="bg-amber-800 hover:bg-amber-900 text-white px-2 py-0.5 rounded text-[11px] font-bold transition-all ml-2 shadow-sm">
-                                    Potong Stok (-${item.qty || 1})
-                                </button>
-                            </div>
-                        `;
-                    }
 
                     itemsHtml += `
                         <div class="space-y-1.5 bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
@@ -452,7 +427,6 @@
                                     <button onclick="confirmDeleteBelumKirimItem(${gIdx}, ${iIdx})" class="bg-red-50 hover:bg-red-100 text-red-600 hover:text-red-800 text-xs sm:text-sm font-bold px-2 py-2 rounded-lg border border-red-200 transition-all w-full shadow-sm">Hapus</button>
                                 </div>
                             </div>
-                            ${stokAlertBadge}
                         </div>
                     `;
                 });
@@ -553,28 +527,6 @@
 
         function updateItemNameWithStokCheck(gIdx, iIdx, val) {
             updateItemName(gIdx, iIdx, val);
-
-            const item = currentData.belum_kirim[gIdx].items[iIdx];
-            const qtyOrder = item.qty || 1;
-            const matchedStok = findStokTitipanMatch(val);
-
-            if (matchedStok && !item.potong_stok) {
-                setTimeout(() => {
-                    const confirmKurang = confirm(
-                        `⚠️ PENGINGAT STOK TITIPAN:\n\n` +
-                        `Barang "${val}" terdeteksi ada di Stok Titipan Gudang ("${matchedStok.nama}" dengan sisa stok: ${matchedStok.jumlah}).\n\n` +
-                        `Apakah Anda ingin otomatis memotong Stok Titipan sebanyak ${qtyOrder} item?`
-                    );
-
-                    if (confirmKurang) {
-                        kurangiStokTitipanOtomatis(gIdx, iIdx, matchedStok.nama, qtyOrder);
-                    } else {
-                        renderAllForms();
-                    }
-                }, 100);
-            } else {
-                renderAllForms();
-            }
         }
 
         function kurangiStokTitipanOtomatis(gIdx, iIdx, stokNama, qtyPotong) {
