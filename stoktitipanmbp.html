@@ -402,6 +402,16 @@
             return btoa(bin);
         }
 
+        function fromBase64Utf8(base64Str) {
+            const binaryStr = atob(base64Str.replace(/
+/g, ''));
+            const bytes = new Uint8Array(binaryStr.length);
+            for (let i = 0; i < binaryStr.length; i++) {
+                bytes[i] = binaryStr.charCodeAt(i);
+            }
+            return new TextDecoder().decode(bytes);
+        }
+
         async function saveAllToGitHub() {
             const cfg = getConfig();
             if (!cfg.token) {
@@ -415,9 +425,12 @@
             btnTop.textContent = btnBot.textContent = '⏳ Menyimpan ke GitHub...';
 
             try {
-                const apiUrl = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/data.json?ref=${encodeURIComponent(cfg.branch)}`;
+                const apiUrl = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/data.json?ref=${encodeURIComponent(cfg.branch)}&t=${Date.now()}`;
                 const getRes = await fetch(apiUrl, {
-                    headers: { Authorization: `token ${cfg.token}` }
+                    headers: {
+                        Authorization: `token ${cfg.token}`,
+                        Accept: 'application/vnd.github+json'
+                    }
                 });
 
                 if (!getRes.ok) {
@@ -425,8 +438,9 @@
                 }
 
                 const fileMeta = await getRes.json();
+                const latestJson = JSON.parse(fromBase64Utf8(fileMeta.content));
                 const updatedPayload = {
-                    ...fullDataJson,
+                    ...latestJson,
                     stok_tangerang: stokList
                 };
 
