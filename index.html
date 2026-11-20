@@ -127,14 +127,9 @@
                                 <p class="text-stone-400 text-xs sm:text-sm">Stok fisik barang yang saat ini tersedia di gudang PT. MBG</p>
                             </div>
                         </div>
-                        <div class="flex flex-wrap items-center gap-2 self-start sm:self-auto">
-                            <span class="bg-amber-400/20 text-amber-200 border border-amber-400/40 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                                DATA DIISI OLEH DINI
-                            </span>
-                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                                Stok Di Gudang MBG
-                            </span>
-                        </div>
+                        <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs sm:text-sm font-bold px-3 py-1 rounded-full uppercase tracking-wider self-start sm:self-auto">
+                            Stok Di Gudang MBG
+                        </span>
                     </div>
 
                     <div class="p-4 sm:p-6">
@@ -383,11 +378,7 @@
                                 </div>
                             </div>
                             ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
-                            <div class="pt-2 border-t border-amber-100 space-y-1.5">
-                                <div class="text-[11px] font-extrabold tracking-wider uppercase text-amber-900 bg-amber-100/80 border border-amber-200/80 rounded px-2 py-0.5 text-center">
-                                    KONFIRMASI DARI FADIL
-                                </div>
-                                <div class="grid grid-cols-2 gap-2">
+                            <div class="pt-2 border-t border-amber-100 grid grid-cols-2 gap-2">
                                 <div class="px-2.5 py-1.5 rounded-lg border ${isPacked ? 'bg-amber-50 border-amber-200' : 'bg-stone-50 border-stone-200'} flex items-center justify-center gap-1.5">
                                     <span class="text-xs font-bold text-stone-500">Packing:</span>
                                     ${packingCellHtml}
@@ -395,7 +386,6 @@
                                 <div class="px-2.5 py-1.5 rounded-lg border ${isShipped ? 'bg-emerald-50 border-emerald-200' : 'bg-stone-50 border-stone-200'} flex items-center justify-center gap-1.5">
                                     <span class="text-xs font-bold text-stone-500">Kirim:</span>
                                     ${kirimCellHtml}
-                                </div>
                                 </div>
                             </div>
                         </div>
@@ -426,12 +416,6 @@
                     <div class="hidden md:block overflow-x-auto rounded-xl border border-amber-200">
                         <table class="w-full text-left text-base table-fixed">
                             <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-200 uppercase text-xs sm:text-sm">
-                                <tr class="border-b border-amber-200 bg-amber-50/70">
-                                    <th colspan="5" class="py-1 px-4 text-left text-[10px] font-medium tracking-wider text-stone-400 normal-case">Detail Pesanan</th>
-                                    <th colspan="2" class="py-1 px-2 text-center text-[9px] sm:text-[10px] font-bold tracking-widest text-amber-900/80 bg-amber-100/70 border-l border-amber-200">
-                                        KONFIRMASI DARI FADIL
-                                    </th>
-                                </tr>
                                 <tr>
                                     <th class="py-4 px-4 w-[20%]">Nama Barang</th>
                                     <th class="py-4 px-3 w-[19%]">Nomor Pesanan</th>
