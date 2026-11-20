@@ -28,11 +28,8 @@
                 </div>
             </div>
             <div class="flex items-center gap-2.5">
-                <a href="index.html" target="_blank" class="bg-stone-800 hover:bg-stone-700 text-amber-50 border border-stone-700 px-3.5 py-2 rounded-xl text-xs font-bold transition-all">
-                    📊 Lihat Dashboard Utama
-                </a>
                 <button onclick="openTokenModal()" class="bg-emerald-700 hover:bg-emerald-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
-                    🔑 Pengaturan Token
+                    Pengaturan Token Github
                 </button>
             </div>
         </div>
@@ -77,12 +74,12 @@
             <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
                 <div>
                     <h2 class="text-base sm:text-lg font-extrabold text-stone-900 uppercase tracking-wide">
-                        ➕ Tambah Barang Stok Titipan Baru
+                        Tambah Barang Stok Titipan Baru
                     </h2>
                     <p class="text-xs text-stone-500">Input item baru yang dititipkan di gudang PT. MBG</p>
                 </div>
                 <button onclick="saveAllToGitHub()" id="btnSaveTop" class="bg-emerald-700 hover:bg-emerald-800 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-all flex items-center gap-2">
-                    💾 Simpan Perubahan ke GitHub
+                    SIMPAN PERUBAHAN
                 </button>
             </div>
 
@@ -92,7 +89,7 @@
                     <input type="text" id="newNama" required placeholder="Contoh: WK 120 / LB 20..."
                            class="w-full px-3.5 py-2.5 bg-[#fdfbf7] border border-amber-200 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-700">
                 </div>
-                <div class="md:col-span-2">
+                <div class="md:col-span-1">
                     <label class="block text-xs font-bold text-stone-600 uppercase mb-1">QTY / Jumlah</label>
                     <input type="number" id="newJumlah" required min="0" value="1"
                            class="w-full px-3.5 py-2.5 bg-[#fdfbf7] border border-amber-200 rounded-xl text-sm font-bold text-center focus:outline-none focus:ring-2 focus:ring-emerald-700">
@@ -102,8 +99,8 @@
                     <select id="newTipe" onchange="syncCatatanPreset()"
                             class="w-full px-3 py-2.5 bg-[#fdfbf7] border border-amber-200 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-700">
                         <option value="normal">Normal</option>
-                        <option value="priority">🔥 Prioritas Habiskan</option>
-                        <option value="warning">🛠️ Perlu Diperbaiki</option>
+                        <option value="priority">Prioritas Habiskan</option>
+                        <option value="warning">Perlu Diperbaiki</option>
                     </select>
                 </div>
                 <div class="md:col-span-2">
@@ -113,7 +110,7 @@
                 </div>
                 <div class="md:col-span-2">
                     <button type="submit" class="w-full bg-stone-900 hover:bg-stone-800 text-amber-50 text-sm font-bold py-2.5 px-4 rounded-xl transition-all shadow-sm">
-                        + Tambah
+                        TAMBAH DATA
                     </button>
                 </div>
             </form>
@@ -154,7 +151,7 @@
                     Perubahan hanya memengaruhi bagian <code class="font-mono">stok_tangerang</code> pada <code class="font-mono">data.json</code>. Data penjualan/pesanan tetap aman.
                 </p>
                 <button onclick="saveAllToGitHub()" id="btnSaveBottom" class="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm transition-all">
-                    💾 Simpan Perubahan ke GitHub
+                    SIMPAN PERUBAHAN
                 </button>
             </div>
         </section>
@@ -328,8 +325,8 @@
                         <select onchange="updateField(${idx}, 'tipe', this.value)"
                                 class="w-full px-2.5 py-1.5 bg-white border border-amber-200 rounded-lg text-xs font-bold focus:outline-none focus:ring-2 focus:ring-emerald-700">
                             <option value="normal" ${item.tipe === 'normal' || !item.tipe ? 'selected' : ''}>Normal</option>
-                            <option value="priority" ${item.tipe === 'priority' ? 'selected' : ''}>🔥 Prioritas Habiskan</option>
-                            <option value="warning" ${item.tipe === 'warning' ? 'selected' : ''}>🛠️ Perlu Diperbaiki</option>
+                            <option value="priority" ${item.tipe === 'priority' ? 'selected' : ''}>Prioritas Habiskan</option>
+                            <option value="warning" ${item.tipe === 'warning' ? 'selected' : ''}>Perlu Diperbaiki</option>
                         </select>
                     </td>
                     <td class="py-3 px-3">
