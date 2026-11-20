@@ -154,6 +154,14 @@
                     </tbody>
                 </table>
             </div>
+			<div class="bg-[#faf7f2] border-t border-amber-200 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p class="text-xs text-stone-500">
+                    Perubahan hanya memengaruhi bagian <code class="font-mono">stok_tangerang</code> pada <code class="font-mono">data.json</code>. Data penjualan/pesanan tetap aman.
+                </p>
+                <button onclick="saveAllToGitHub()" id="btnSaveBottom" class="w-full sm:w-auto bg-emerald-700 hover:bg-emerald-800 text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm transition-all">
+                    SIMPAN DATA
+                </button>
+            </div>
         </section>
     </main>
 
