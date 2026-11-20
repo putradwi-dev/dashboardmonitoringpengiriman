@@ -29,17 +29,6 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": true
-        },
-        {
-          "nama": "",
-          "qty": 1,
-          "no_pesanan": "",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
         }
       ]
     },
