@@ -1,131 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "SHOPE MT 19/11/2026",
-      "items": [
-        {
-          "nama": "LB 30",
-          "qty": 1,
-          "no_pesanan": "261118M5T8XEAJ",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "CF 750",
-          "qty": 1,
-          "no_pesanan": "261118KWEMVPNU",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "CF 210",
-          "qty": 1,
-          "no_pesanan": "261118MC89M3H4",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "AB 208",
-          "qty": 1,
-          "no_pesanan": "261119NW8NQNTG",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": true,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "AB 318 & AB 600",
-          "qty": 1,
-          "no_pesanan": "261119P3YHQDF7",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "GM POP6C & GM POP6AR",
-          "qty": 1,
-          "no_pesanan": "261119P9JFJ3X7",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": true,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "CF 110",
-          "qty": 2,
-          "no_pesanan": "261119P9KMSBXU",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true,
-          "sudah_packing": true,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "OL 4B",
-          "qty": 2,
-          "no_pesanan": "261119PK8JHGSJ",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA ADT 19/11/2026",
-      "items": [
-        {
-          "nama": "DECANTER 1.6 GETRA",
-          "qty": 3,
-          "no_pesanan": "587266554077021726",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": true,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE TANGSEL 19/11/2026",
       "items": [
         {
@@ -140,6 +15,38 @@
           "potong_stok": true,
           "sudah_packing": true,
           "sudah_kirim": false
+        }
+      ]
+    },
+    {
+      "grup": "TOKOPEDIA MT 20/11/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM",
+          "qty": 2,
+          "no_pesanan": "587275502542423792",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE MT 20/11/2026",
+      "items": [
+        {
+          "nama": "",
+          "qty": 1,
+          "no_pesanan": "",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     }
@@ -159,7 +66,7 @@
     },
     {
       "nama": "LOYANG 3CM GOMESIN",
-      "jumlah": 22,
+      "jumlah": 20,
       "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
     },
