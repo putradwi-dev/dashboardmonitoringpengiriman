@@ -89,7 +89,7 @@
                     <p class="text-xs text-stone-500">Input item baru yang dititipkan di gudang PT. MBG</p>
                 </div>
                 <button onclick="saveAllToGitHub()" id="btnSaveTop" class="bg-cyan-700 hover:bg-cyan-800 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-all flex items-center gap-2">
-                    SIMPAN PERUBAHAN
+                    SIMPAN
                 </button>
             </div>
 
@@ -133,7 +133,7 @@
                     <h2 class="font-bold text-base sm:text-lg uppercase tracking-wide">
                         📦 Daftar Stok Tangerang Titip di PT. MBG
                     </h2>
-                    <p class="text-xs text-stone-400">Ubah jumlah (+/-), status, atau catatan langsung lalu klik Simpan Perubahan ke GitHub</p>
+                    <p class="text-xs text-stone-400">Ubah jumlah (+/-), status, atau catatan langsung lalu klik SIMPAN</p>
                 </div>
                 <input type="text" id="filterStokInput" onkeyup="renderStokTable()" placeholder="Cari barang titipan..."
                        class="px-3.5 py-2 rounded-lg bg-stone-800 border border-stone-700 text-sm text-white placeholder-stone-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 w-full sm:w-64">
@@ -157,11 +157,8 @@
             </div>
 
             <div class="bg-[#faf7f2] border-t border-amber-200 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-                <p class="text-xs text-stone-500">
-                    Perubahan hanya memengaruhi bagian <code class="font-mono">stok_tangerang</code> pada <code class="font-mono">data.json</code>. Data penjualan/pesanan tetap aman.
-                </p>
                 <button onclick="saveAllToGitHub()" id="btnSaveBottom" class="w-full sm:w-auto bg-cyan-700 hover:bg-cyan-800 text-white text-sm font-bold px-6 py-2.5 rounded-xl shadow-sm transition-all">
-                    SIMPAN PERUBAHAN
+                    SIMPAN
                 </button>
             </div>
         </section>
@@ -399,7 +396,7 @@
 
             renderStokTable();
             updateSummary();
-            showToast(`✅ "${nama}" ditambahkan ke daftar. Klik Simpan Perubahan ke GitHub untuk mempublikasikan.`, 'success');
+            showToast(`✅ "${nama}" ditambahkan ke daftar. Klik SIMPAN untuk mengupdate data.`, 'success');
         }
 
         function toBase64Utf8(str) {
@@ -428,7 +425,7 @@
             const btnTop = document.getElementById('btnSaveTop');
             const btnBot = document.getElementById('btnSaveBottom');
             btnTop.disabled = btnBot.disabled = true;
-            btnTop.textContent = btnBot.textContent = '⏳ Menyimpan ke GitHub...';
+            btnTop.textContent = btnBot.textContent = 'PROSES SIMPAN...';
 
             try {
                 const apiUrl = `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/data.json?ref=${encodeURIComponent(cfg.branch)}&t=${Date.now()}`;
@@ -476,7 +473,7 @@
                 showToast('❌ ' + err.message, 'error');
             } finally {
                 btnTop.disabled = btnBot.disabled = false;
-                btnTop.textContent = btnBot.textContent = '💾 Simpan Perubahan ke GitHub';
+                btnTop.textContent = btnBot.textContent = 'SIMPAN';
             }
         }
 
