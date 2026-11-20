@@ -88,7 +88,7 @@
                     </h2>
                     <p class="text-xs text-stone-500">Input item baru yang dititipkan di gudang PT. MBG</p>
                 </div>
-                <button onclick="saveAllToGitHub()" id="btnSaveTop" class="bg-cyan-700 hover:bg-cyan-800 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-xl shadow-sm transition-all flex items-center gap-2">
+                <button onclick="saveAllToGitHub()" id="btnSaveTop" class="bg-cyan-700 hover:bg-cyan-800 text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-xl shadow-sm transition-all flex items-center gap-2">
                     SIMPAN
                 </button>
             </div>
@@ -96,7 +96,7 @@
             <form id="addStokForm" onsubmit="addStokItem(event)" class="grid grid-cols-1 md:grid-cols-12 gap-3 items-end">
                 <div class="md:col-span-4">
                     <label class="block text-xs font-bold text-stone-600 uppercase mb-1">Nama Barang</label>
-                    <input type="text" id="newNama" required placeholder="Contoh: WK 120 / LB 20..."
+                    <input type="text" id="newNama" required placeholder=" "
                            class="w-full px-3.5 py-2.5 bg-[#fdfbf7] border border-amber-200 rounded-xl text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-emerald-700">
                 </div>
                 <div class="md:col-span-1">
@@ -115,11 +115,11 @@
                 </div>
                 <div class="md:col-span-3">
                     <label class="block text-xs font-bold text-stone-600 uppercase mb-1">Catatan</label>
-                    <input type="text" id="newCatatan" placeholder="- atau catatan stok"
+                    <input type="text" id="newCatatan" placeholder=" "
                            class="w-full px-3.5 py-2.5 bg-[#fdfbf7] border border-amber-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-700">
                 </div>
-                <div class="md:col-span-1">
-                    <button type="submit" class="w-full bg-green-500 hover:bg-green-300 text-amber-150 text-sm font-bold py-2.5 px-4 rounded-xl transition-all shadow-sm">
+                <div class="md:col-span-2">
+                    <button type="submit" class="w-full bg-green-500 hover:bg-green-300 text-amber-50 text-sm font-bold py-2.5 px-4 rounded-xl transition-all shadow-sm">
                         TAMBAH DATA
                     </button>
                 </div>
