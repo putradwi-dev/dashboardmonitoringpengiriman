@@ -1,24 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "SHOPE TANGSEL 19/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 2,
-          "no_pesanan": "261118MKKGYJ79",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true,
-          "sudah_packing": true,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA MT 20/11/2026",
       "items": [
         {
@@ -38,6 +20,17 @@
       "grup": "SHOPE MT 20/11/2026",
       "items": [
         {
+          "nama": "CF 210",
+          "qty": 1,
+          "no_pesanan": "261119MX9BPNDK",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
+        },
+        {
           "nama": "",
           "qty": 1,
           "no_pesanan": "",
@@ -47,6 +40,22 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE TANGSEL 20/11/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM",
+          "qty": 20,
+          "no_pesanan": "261119P7PY2Y4B",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": true
         }
       ]
     }
@@ -62,12 +71,6 @@
       "nama": "WK 120 GETRA",
       "jumlah": 2,
       "catatan": "PO.2025.12.00158",
-      "tipe": "normal"
-    },
-    {
-      "nama": "LOYANG 3CM GOMESIN",
-      "jumlah": 20,
-      "catatan": "PO.2026.08.00121 (10) & PO.2026.08.00123 (90)",
       "tipe": "normal"
     },
     {
@@ -126,7 +129,7 @@
     },
     {
       "nama": "CF 210 RSA",
-      "jumlah": 3,
+      "jumlah": 2,
       "catatan": "PO.2026.11.00019",
       "tipe": "normal"
     },
