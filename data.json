@@ -74,6 +74,22 @@
           "potong_stok": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE MT 21/11/2026",
+      "items": [
+        {
+          "nama": "CF 1200",
+          "qty": 1,
+          "no_pesanan": "261120SCFY1KHG",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
