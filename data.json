@@ -125,17 +125,6 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "DO senin"
-        },
-        {
-          "nama": "tes",
-          "qty": 1,
-          "no_pesanan": "tes",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
         }
       ]
     }
