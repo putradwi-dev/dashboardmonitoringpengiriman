@@ -572,12 +572,12 @@
                 const latestMeta = await latestRes.json();
                 const latestJson = JSON.parse(decodeURIComponent(escape(atob(latestMeta.content))));
 
-                // Pertahankan status ceklis konfirmasi terbaru dari server untuk pesanan yang sama
-                const serverConfirmMap = {};
+                // Pertahankan status ceklis konfirmasi dan Nomor DO (no_do) terbaru dari server untuk pesanan yang sama
+                const serverItemMap = {};
                 (latestJson.belum_kirim || []).forEach(g => {
                     (g.items || []).forEach(it => {
                         if (it.no_pesanan) {
-                            serverConfirmMap[it.no_pesanan.trim()] = it;
+                            serverItemMap[it.no_pesanan.trim()] = it;
                         }
                     });
                 });
@@ -585,11 +585,16 @@
                 (currentData.belum_kirim || []).forEach(g => {
                     (g.items || []).forEach(it => {
                         const key = (it.no_pesanan || '').trim();
-                        if (key && serverConfirmMap[key]) {
-                            const srv = serverConfirmMap[key];
+                        if (key && serverItemMap[key]) {
+                            const srv = serverItemMap[key];
                             if (srv.siap_kirim !== undefined) it.siap_kirim = srv.siap_kirim;
                             if (srv.konfirmasi !== undefined) it.konfirmasi = srv.konfirmasi;
                             if (srv.checked !== undefined) it.checked = srv.checked;
+                            if (srv.sudah_packing !== undefined) it.sudah_packing = srv.sudah_packing;
+                            if (srv.sudah_kirim !== undefined) it.sudah_kirim = srv.sudah_kirim;
+                            if (srv.no_do !== undefined && (!it.no_do || !it.no_do.trim())) {
+                                it.no_do = srv.no_do;
+                            }
                         }
                     });
                 });
