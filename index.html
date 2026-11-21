@@ -330,12 +330,20 @@
                         ? `<span class="inline-flex items-center gap-1.5 text-blue-700 font-bold text-xs sm:text-sm"><span class="w-4 h-4 rounded bg-blue-600 text-white inline-flex items-center justify-center text-[11px] font-extrabold">✓</span>Siap</span>`
                         : `<span class="inline-flex items-center gap-1.5 text-stone-400 font-semibold text-xs sm:text-sm"><span class="w-4 h-4 rounded border border-stone-300 bg-white inline-block"></span> Belum</span>`;
 
-                    const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${catatanManual} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
+                    const nomorDo = (item.no_do || '').trim();
+                    const nomorDoBadgeDesktop = nomorDo
+                        ? `<span class="bg-cyan-50 text-cyan-900 font-mono font-extrabold text-xs sm:text-sm px-2.5 py-1 rounded-md border border-cyan-200 inline-block break-all">${nomorDo}</span>`
+                        : `<span class="text-stone-400 font-mono text-sm">-</span>`;
+                    const nomorDoBadgeMobile = nomorDo
+                        ? `<span class="bg-cyan-50 text-cyan-900 font-mono font-extrabold text-xs px-2.5 py-1 rounded border border-cyan-200 inline-block">${nomorDo}</span>`
+                        : `<span class="text-stone-400 font-mono text-xs">-</span>`;
+
+                    const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${nomorDo} ${catatanManual} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
 
                     tableRows += `
                         <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer bg-white" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
                             <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[20%]">${item.nama}</td>
-                            <td class="py-3.5 px-3 font-mono text-sm sm:text-base text-stone-700 w-[22%]">
+                            <td class="py-3.5 px-3 font-mono text-sm sm:text-base text-stone-700 w-[18%]">
                                 <div class="inline-flex items-center gap-1.5">
                                     <span class="select-all">${item.no_pesanan}</span>
                                     <button onclick="copyNoPesanan('${item.no_pesanan}', this)" title="Salin Nomor Pesanan"
@@ -349,9 +357,10 @@
                             </td>
                             <td class="py-3.5 px-2 text-center w-[5%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
                             <td class="py-3.5 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
-                            <td class="py-3.5 px-3 w-[21%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
-                            <td class="py-3.5 px-2 text-center w-[11%] bg-amber-50/30 border-l border-amber-100">${packingCellHtml}</td>
-                            <td class="py-3.5 px-2 text-center w-[11%] bg-emerald-50/30 border-l border-amber-100">${kirimCellHtml}</td>
+                            <td class="py-3.5 px-3 w-[18%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
+                            <td class="py-3.5 px-2 text-center w-[12%] bg-cyan-50/30 border-l border-amber-100">${nomorDoBadgeDesktop}</td>
+                            <td class="py-3.5 px-2 text-center w-[9%] bg-amber-50/30 border-l border-amber-100">${packingCellHtml}</td>
+                            <td class="py-3.5 px-2 text-center w-[9%] bg-emerald-50/30 border-l border-amber-100">${kirimCellHtml}</td>
                         </tr>
                     `;
 
@@ -378,6 +387,10 @@
                                 </div>
                             </div>
                             ${statusBadgesMobile ? `<div class="pt-2 border-t border-amber-100 flex flex-wrap gap-1.5">${statusBadgesMobile}</div>` : ''}
+                            <div class="pt-2 border-t border-amber-100 flex items-center justify-between gap-2">
+                                <span class="text-xs font-bold text-stone-500 uppercase">Nomor DO:</span>
+                                ${nomorDoBadgeMobile}
+                            </div>
                             <div class="pt-2 border-t border-amber-100 grid grid-cols-2 gap-2">
                                 <div class="px-2.5 py-1.5 rounded-lg border ${isPacked ? 'bg-amber-50 border-amber-200' : 'bg-stone-50 border-stone-200'} flex items-center justify-center gap-1.5">
                                     <span class="text-xs font-bold text-stone-500">Packing:</span>
@@ -418,12 +431,13 @@
                             <thead class="bg-[#faf7f2] text-stone-700 font-bold border-b border-amber-200 uppercase text-xs sm:text-sm">
                                 <tr>
                                     <th class="py-4 px-4 w-[20%]">Nama Barang</th>
-                                    <th class="py-4 px-3 w-[19%]">Nomor Pesanan</th>
+                                    <th class="py-4 px-3 w-[18%]">Nomor Pesanan</th>
                                     <th class="py-4 px-2 text-center w-[5%]" style="padding-left: 2px; padding-right: 2px;">QTY</th>
-                                    <th class="py-4 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
-                                    <th class="py-4 px-3 w-[24%]">Status / Catatan</th>
-                                    <th class="py-4 px-2 text-center w-[11%] bg-amber-100/50 text-amber-950 border-l border-amber-200">PACKING</th>
-                                    <th class="py-4 px-2 text-center w-[11%] bg-emerald-100/50 text-emerald-950 border-l border-amber-200">SIAP KIRIM</th>
+                                    <th class="py-4 px-2 w-[9%]" style="padding-left: 2px; padding-right: 2px;">Ekspedisi</th>
+                                    <th class="py-4 px-3 w-[18%]">Catatan</th>
+                                    <th class="py-4 px-2 text-center w-[12%] bg-cyan-50/70 text-cyan-950 border-l border-amber-200">NOMOR DO</th>
+                                    <th class="py-4 px-2 text-center w-[9%] bg-amber-100/50 text-amber-950 border-l border-amber-200">PACKING</th>
+                                    <th class="py-4 px-2 text-center w-[9%] bg-emerald-100/50 text-emerald-950 border-l border-amber-200">SIAP KIRIM</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-amber-100">
