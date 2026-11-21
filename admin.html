@@ -34,7 +34,7 @@
             </div>
             <!-- Kotak Pencarian Universal -->
             <div class="w-full md:w-80">
-                <input type="text" id="searchInput" oninput="filterData()" placeholder="🔍 Cari pesanan, barang, atau stok..." class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
+                <input type="text" id="searchInput" oninput="filterData()" placeholder="🔍 Cari pesanan atau nama barang..." class="w-full bg-[#faf7f2] border border-amber-200 rounded-xl px-3.5 py-2.5 text-sm font-semibold text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
             </div>
         </div>
 
@@ -53,35 +53,6 @@
 
             <div id="belumKirimContainer" class="space-y-6">
                 <!-- Form Grup Belum Kirim akan dirender secara dinamis -->
-            </div>
-        </section>
-
-        <!-- SECTION 2: EDIT STOK TANGERANG -->
-        <section class="bg-white p-5 rounded-2xl border border-amber-100 shadow-sm space-y-4">
-            <div class="flex items-center justify-between border-b border-amber-100 pb-3">
-                <h2 class="font-bold text-stone-800 flex items-center gap-2 text-base sm:text-lg">
-                    2. Data Stok Tangerang Titip di PT. MBG
-                </h2>
-                <button onclick="addStokItem()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 font-bold px-3.5 py-2 rounded-lg text-xs sm:text-sm transition-all">
-                    + Barang & Stok
-                </button>
-            </div>
-
-            <div class="overflow-x-auto rounded-xl border border-amber-100">
-                <table class="w-full text-center text-xs sm:text-sm">
-                    <thead class="bg-[#faf7f2] font-bold text-stone-700 uppercase border-b border-amber-100 text-xs">
-                        <tr>
-                            <th class="py-3 px-3 w-1/3">Nama Barang</th>
-                            <th class="py-3 px-3 w-24">QTY</th>
-                            <th class="py-3 px-3">Tipe / Status Khusus</th>
-                            <th class="py-3 px-3">Catatan</th>
-                            <th class="py-3 px-3 text-center w-16">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody id="stokContainer" class="divide-y divide-amber-50">
-                        <!-- Items Stok dirender secara dinamis -->
-                    </tbody>
-                </table>
             </div>
         </section>
 
@@ -200,13 +171,11 @@
 
         function renderAllForms() {
             renderBelumKirim();
-            renderStok();
             checkDuplicates();
         }
 
         function filterData() {
             renderBelumKirim();
-            renderStok();
         }
 
         function parseGroupName(fullGrup) {
@@ -253,9 +222,10 @@
             renderBelumKirim();
         }
 
+        // Fungsi baru untuk mengubah tanggal secara massal langsung dari header pemisah
         function updateAllGroupsDate(oldDateStr, newDateVal) {
             if (!newDateVal) return;
-            let parts = newDateVal.split('-');
+            let parts = newDateVal.split('-'); // Format YYYY-MM-DD
             if (parts.length !== 3) return;
             let formattedNewDate = `${parseInt(parts[2])}/${parseInt(parts[1])}/${parts[0]}`;
 
@@ -267,31 +237,6 @@
                 }
             });
             renderBelumKirim();
-        }
-
-        function findStokTitipanMatch(namaBarangInput) {
-            if (!namaBarangInput || namaBarangInput.trim().length < 2) return null;
-            const inputClean = namaBarangInput.trim().toLowerCase();
-
-            return (currentData.stok_tangerang || []).find(stok => {
-                const stokNameClean = (stok.nama || '').trim().toLowerCase();
-                return stokNameClean.includes(inputClean) || inputClean.includes(stokNameClean);
-            });
-        }
-
-        function markAllExistingAsStockDeducted() {
-            if (confirm("Tandai pesanan yang ada di Stok Titipan sebagai 'Sudah Potong Stok'? (Pesanan lain yang tidak ada di stok titipan akan dibiarkan bersih)")) {
-                (currentData.belum_kirim || []).forEach(group => {
-                    (group.items || []).forEach(item => {
-                        const matchedStok = findStokTitipanMatch(item.nama);
-                        if (matchedStok) {
-                            item.potong_stok = true;
-                        }
-                    });
-                });
-                renderAllForms();
-                alert("✓ Pesanan dari stok titipan telah ditandai sudah potong stok!");
-              }
         }
 
         function extractDateFromGroup(grupStr) {
@@ -347,6 +292,7 @@
                 if (currentDateStr && currentDateStr !== lastDateStr) {
                     lastDateStr = currentDateStr;
 
+                    // Konversi format tanggal DD/MM/YYYY ke YYYY-MM-DD untuk input date HTML
                     let p = currentDateStr.split('/');
                     let isoDate = p.length === 3 ? `${p[2]}-${p[1].padStart(2,'0')}-${p[0].padStart(2,'0')}` : '';
 
@@ -384,7 +330,6 @@
                     }
 
                     const displayStyle = isMatch ? '' : 'display: none;';
-
                     itemsHtml += `
                         <div class="space-y-1.5 bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm item-row-admin" data-gidx="${gIdx}" data-iidx="${iIdx}" style="${displayStyle}">
                             <div class="grid grid-cols-1 sm:grid-cols-12 gap-2.5 items-center">
@@ -480,73 +425,34 @@
             checkDuplicates();
         }
 
-        function renderStok() {
-            const container = document.getElementById('stokContainer');
-            container.innerHTML = '';
-
-            const keyword = (document.getElementById('searchInput') ? document.getElementById('searchInput').value : '').toLowerCase().trim();
-
-            (currentData.stok_tangerang || []).forEach((item, idx) => {
-                const namaStok = (item.nama || '').toLowerCase();
-                const catatanStok = (item.catatan || '').toLowerCase();
-                const isMatchStok = keyword === '' || namaStok.includes(keyword) || catatanStok.includes(keyword);
-
-                const displayStyleStok = isMatchStok ? '' : 'display: none;';
-
-                const tr = document.createElement('tr');
-                tr.className = "hover:bg-[#faf7f2]";
-                tr.style.cssText = displayStyleStok;
-                tr.innerHTML = `
-                    <td class="py-2.5 px-3">
-                        <input type="text" value="${item.nama || ''}" onchange="updateStokNama(${idx}, this.value)" class="w-full bg-[#fdfbf7] border border-stone-200 rounded-lg px-3 py-2 font-bold text-sm text-stone-800 focus:ring-2 focus:ring-amber-800 focus:outline-none">
-                    </td>
-                    <td class="py-2.5 px-3">
-                        <input type="number" value="${item.jumlah !== undefined ? item.jumlah : 1}" onchange="updateStokJumlah(${idx}, this.value)" class="w-24 bg-[#fdfbf7] border border-stone-200 rounded-lg px-2 py-2 font-extrabold text-sm text-center text-stone-900 focus:ring-2 focus:ring-amber-800 focus:outline-none">
-                    </td>
-                    <td class="py-2.5 px-3">
-                        <select onchange="updateStokTipe(${idx}, this.value)" class="w-full bg-[#fdfbf7] border border-stone-200 rounded-lg px-2 py-2 font-bold text-sm focus:ring-2 focus:ring-amber-800 focus:outline-none">
-                            <option value="normal" ${item.tipe === 'normal' ? 'selected' : ''}>Normal (-)</option>
-                            <option value="warning" ${item.tipe === 'warning' ? 'selected' : ''}>Perlu diperbaiki</option>
-                            <option value="priority" ${item.tipe === 'priority' ? 'selected' : ''}>Utamakan habiskan ini</option>
-                        </select>
-                    </td>
-                    <td class="py-2.5 px-3">
-                        <input type="text" value="${item.catatan || ''}" onchange="updateStokCatatan(${idx}, this.value)" placeholder="Teks Catatan" class="w-full bg-[#fdfbf7] border border-stone-200 rounded-lg px-3 py-2 text-sm text-stone-700 focus:ring-2 focus:ring-amber-800 focus:outline-none">
-                    </td>
-                    <td class="py-2.5 px-3 text-center">
-                        <button onclick="confirmDeleteStokItem(${idx})" class="text-red-600 hover:text-red-800 font-bold text-xs sm:text-sm">Hapus</button>
-                    </td>
-                `;
-                container.appendChild(tr);
-            });
-        }
-
         function updateItemName(gIdx, iIdx, val) { 
             currentData.belum_kirim[gIdx].items[iIdx].nama = val; 
         }
 
         function updateItemNameWithStokCheck(gIdx, iIdx, val) {
             updateItemName(gIdx, iIdx, val);
-        }
 
-        function kurangiStokTitipanOtomatis(gIdx, iIdx, stokNama, qtyPotong) {
-            const idx = (currentData.stok_tangerang || []).findIndex(s => (s.nama || '').trim().toLowerCase() === stokNama.trim().toLowerCase());
-            
-            if (currentData.belum_kirim[gIdx] && currentData.belum_kirim[gIdx].items[iIdx]) {
-                currentData.belum_kirim[gIdx].items[iIdx].potong_stok = true;
-            }
+            const item = currentData.belum_kirim[gIdx].items[iIdx];
+            const qtyOrder = item.qty || 1;
+            const matchedStok = findStokTitipanMatch(val);
 
-            if (idx !== -1) {
-                const sisa = currentData.stok_tangerang[idx].jumlah - qtyPotong;
-                if (sisa <= 0) {
-                    alert(`✓ Stok titipan "${currentData.stok_tangerang[idx].nama}" telah habis dan otomatis dihapus dari daftar stok.`);
-                    currentData.stok_tangerang.splice(idx, 1);
-                } else {
-                    currentData.stok_tangerang[idx].jumlah = sisa;
-                    alert(`✓ Stok titipan "${currentData.stok_tangerang[idx].nama}" berhasil dipotong ${qtyPotong}. Sisa stok sekarang: ${sisa}`);
-                }
+            if (matchedStok && !item.potong_stok) {
+                setTimeout(() => {
+                    const confirmKurang = confirm(
+                        `⚠️ PENGINGAT STOK TITIPAN:\n\n` +
+                        `Barang "${val}" terdeteksi ada di Stok Titipan Gudang ("${matchedStok.nama}" dengan sisa stok: ${matchedStok.jumlah}).\n\n` +
+                        `Apakah Anda ingin otomatis memotong Stok Titipan sebanyak ${qtyOrder} item?`
+                    );
+
+                    if (confirmKurang) {
+                        kurangiStokTitipanOtomatis(gIdx, iIdx, matchedStok.nama, qtyOrder);
+                    } else {
+                        renderAllForms();
+                    }
+                }, 100);
+            } else {
+                renderAllForms();
             }
-            renderAllForms();
         }
 
         function updateItemQty(gIdx, iIdx, val) { 
@@ -644,24 +550,6 @@
             }
         }
 
-        function updateStokNama(idx, val) { currentData.stok_tangerang[idx].nama = val; }
-        function updateStokJumlah(idx, val) { currentData.stok_tangerang[idx].jumlah = Number(val); }
-        function updateStokTipe(idx, val) { currentData.stok_tangerang[idx].tipe = val; }
-        function updateStokCatatan(idx, val) { currentData.stok_tangerang[idx].catatan = val; }
-        
-        function addStokItem() {
-            if (!currentData.stok_tangerang) currentData.stok_tangerang = [];
-            currentData.stok_tangerang.push({ nama: "", jumlah: 1, catatan: "-", tipe: "normal" });
-            renderStok();
-        }
-
-        function confirmDeleteStokItem(idx) {
-            if (confirm("Yakin ingin menghapus data stok barang ini?")) {
-                currentData.stok_tangerang.splice(idx, 1);
-                renderStok();
-            }
-        }
-
         async function saveToGitHub() {
             const user = localStorage.getItem('mbp_gh_user');
             const repo = localStorage.getItem('mbp_gh_repo');
@@ -674,13 +562,49 @@
 
             try {
                 const url = `https://api.github.com/repos/${user}/${repo}/contents/data.json`;
-                const jsonString = JSON.stringify(currentData, null, 2);
+
+                // Ambil data.json & SHA terbaru terlebih dahulu agar stok titipan & ceklis konfirmasi karyawan tidak tertimpa
+                const latestRes = await fetch(url, {
+                    headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' },
+                    cache: 'no-store'
+                });
+                if (!latestRes.ok) throw new Error("Gagal sinkronisasi data terbaru dari GitHub.");
+                const latestMeta = await latestRes.json();
+                const latestJson = JSON.parse(decodeURIComponent(escape(atob(latestMeta.content))));
+
+                // Pertahankan status ceklis konfirmasi terbaru dari server untuk pesanan yang sama
+                const serverConfirmMap = {};
+                (latestJson.belum_kirim || []).forEach(g => {
+                    (g.items || []).forEach(it => {
+                        if (it.no_pesanan) {
+                            serverConfirmMap[it.no_pesanan.trim()] = it;
+                        }
+                    });
+                });
+
+                (currentData.belum_kirim || []).forEach(g => {
+                    (g.items || []).forEach(it => {
+                        const key = (it.no_pesanan || '').trim();
+                        if (key && serverConfirmMap[key]) {
+                            const srv = serverConfirmMap[key];
+                            if (srv.siap_kirim !== undefined) it.siap_kirim = srv.siap_kirim;
+                            if (srv.konfirmasi !== undefined) it.konfirmasi = srv.konfirmasi;
+                            if (srv.checked !== undefined) it.checked = srv.checked;
+                        }
+                    });
+                });
+
+                // Hanya update bagian belum_kirim; biarkan stok_tangerang tetap mengikuti data terbaru di GitHub
+                latestJson.belum_kirim = currentData.belum_kirim;
+                currentData = latestJson;
+
+                const jsonString = JSON.stringify(latestJson, null, 2);
                 const contentBase64 = btoa(unescape(encodeURIComponent(jsonString)));
 
                 const bodyData = {
-                    message: "Update admin editable date in section divider header",
+                    message: "Update data pesanan belum_kirim dari admin utama",
                     content: contentBase64,
-                    sha: currentSha
+                    sha: latestMeta.sha
                 };
 
                 const response = await fetch(url, {
