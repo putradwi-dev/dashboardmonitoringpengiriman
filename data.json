@@ -12,7 +12,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "barang datang ke mbg"
         },
         {
           "nama": "AB 318",
@@ -23,7 +24,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "barang di gudang Bekasi"
         }
       ]
     },
@@ -39,7 +41,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "nomor do senin"
         },
         {
           "nama": "HIS 400MH",
@@ -50,7 +53,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "nomor do senin"
         },
         {
           "nama": "SJ 8502",
@@ -61,7 +65,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "nomor do senin"
         }
       ]
     },
@@ -77,7 +82,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "nomor do senin"
         },
         {
           "nama": "KS 10000",
@@ -88,7 +94,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "PInjam dulu nomor do senin"
         }
       ]
     },
@@ -104,7 +111,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "nomor do senin"
         }
       ]
     }
