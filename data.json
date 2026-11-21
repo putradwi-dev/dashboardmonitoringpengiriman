@@ -51,7 +51,7 @@
           "qty": 1,
           "no_pesanan": "261120SCFY1KHG",
           "ekspedisi": "JNE",
-          "kayu": true,
+          "kayu": false,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
