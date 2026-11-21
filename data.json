@@ -13,7 +13,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "tes"
+          "no_do": "getra ke mbg"
         },
         {
           "nama": "AB 318",
@@ -25,7 +25,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": ""
+          "no_do": "gudang mbg"
         }
       ]
     },
@@ -42,7 +42,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": ""
+          "no_do": "DO SENIN"
         },
         {
           "nama": "HIS 400MH",
@@ -54,7 +54,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": ""
+          "no_do": "DO SENIN"
         },
         {
           "nama": "SJ 8502",
@@ -66,7 +66,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": ""
+          "no_do": "DO SENIN"
         }
       ]
     },
@@ -83,7 +83,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": ""
+          "no_do": "pinjam dulu, senin PO cikarang"
         },
         {
           "nama": "KS 10000",
@@ -95,7 +95,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": ""
+          "no_do": "pindam dulu, DO senin"
         },
         {
           "nama": "CF 110",
@@ -107,7 +107,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": ""
+          "no_do": "Pinjam dulu DO senin"
         }
       ]
     },
@@ -124,7 +124,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": ""
+          "no_do": "DO senin"
         }
       ]
     }
