@@ -28,10 +28,10 @@
                 </div>
             </div>
             <div class="flex items-center gap-2.5">
-                <button type="button" onclick="loadFromGitHub()" class="bg-stone-800 hover:bg-stone-700 text-amber-50 border border-stone-700 px-3.5 py-2 rounded-xl text-xs font-bold transition-all">
+                <button type="button" id="btnReloadData" onclick="loadFromGitHub()" class="bg-stone-800 hover:bg-stone-700 text-amber-50 border border-stone-700 px-3.5 py-2 rounded-xl text-xs font-bold transition-all relative z-20 cursor-pointer">
                     🔄 Muat Ulang Data
                 </button>
-                <button type="button" onclick="openTokenModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
+                <button type="button" id="btnOpenTokenTop" onclick="openTokenModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all shadow-sm relative z-20 cursor-pointer">
                     🔑 Pengaturan Token GitHub
                 </button>
             </div>
@@ -45,7 +45,7 @@
             <div class="text-xs sm:text-sm">
                 <span class="font-bold">⚠️ GitHub Token belum diatur:</span> Klik tombol <b>Pengaturan Token GitHub</b> agar Nomor DO dapat disimpan langsung ke <code class="font-mono bg-amber-100 px-1.5 py-0.5 rounded">data.json</code>.
             </div>
-            <button type="button" onclick="openTokenModal()" class="bg-amber-800 hover:bg-amber-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0">
+            <button type="button" id="btnOpenTokenWarn" onclick="openTokenModal()" class="bg-amber-800 hover:bg-amber-900 text-white text-xs font-bold px-3 py-1.5 rounded-lg shrink-0 relative z-20 cursor-pointer">
                 Atur Token Sekarang
             </button>
         </div>
@@ -116,7 +116,7 @@
         <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl border border-amber-100 space-y-4">
             <div class="flex items-center justify-between">
                 <h3 class="font-bold text-stone-900 text-lg">🔑 Pengaturan Repo & Token GitHub</h3>
-                <button type="button" onclick="closeTokenModal()" class="text-stone-400 hover:text-stone-600 font-bold">✕</button>
+                <button type="button" id="btnCloseTokenModal" onclick="closeTokenModal()" class="text-stone-400 hover:text-stone-600 font-bold cursor-pointer">✕</button>
             </div>
             <div class="space-y-3 text-xs">
                 <div>
@@ -137,8 +137,8 @@
                 </div>
             </div>
             <div class="flex justify-end gap-2 pt-2">
-                <button type="button" onclick="closeTokenModal()" class="px-4 py-2 rounded-lg text-xs font-bold text-stone-600 bg-stone-100 hover:bg-stone-200">Batal</button>
-                <button type="button" onclick="saveTokenConfig()" class="px-4 py-2 rounded-lg text-xs font-bold text-white bg-amber-800 hover:bg-amber-900">Simpan Konfigurasi</button>
+                <button type="button" id="btnCancelTokenModal" onclick="closeTokenModal()" class="px-4 py-2 rounded-lg text-xs font-bold text-stone-600 bg-stone-100 hover:bg-stone-200 cursor-pointer">Batal</button>
+                <button type="button" id="btnSaveTokenModal" onclick="saveTokenConfig()" class="px-4 py-2 rounded-lg text-xs font-bold text-white bg-amber-800 hover:bg-amber-900 cursor-pointer">Simpan Konfigurasi</button>
             </div>
         </div>
     </div>
@@ -215,8 +215,7 @@
         }
 
         function fromBase64Utf8(base64Str) {
-            const binaryStr = atob(base64Str.replace(/
-/g, ''));
+            const binaryStr = atob(base64Str.replace(/[\r\n]/g, ''));
             const bytes = new Uint8Array(binaryStr.length);
             for (let i = 0; i < binaryStr.length; i++) {
                 bytes[i] = binaryStr.charCodeAt(i);
@@ -522,7 +521,23 @@
             }
         }
 
-        window.addEventListener('DOMContentLoaded', loadFromGitHub);
+        window.addEventListener('DOMContentLoaded', function() {
+            const btnOpenTop = document.getElementById('btnOpenTokenTop');
+            const btnOpenWarn = document.getElementById('btnOpenTokenWarn');
+            const btnCloseModal = document.getElementById('btnCloseTokenModal');
+            const btnCancelModal = document.getElementById('btnCancelTokenModal');
+            const btnSaveModal = document.getElementById('btnSaveTokenModal');
+            const btnReload = document.getElementById('btnReloadData');
+
+            if (btnOpenTop) btnOpenTop.addEventListener('click', openTokenModal);
+            if (btnOpenWarn) btnOpenWarn.addEventListener('click', openTokenModal);
+            if (btnCloseModal) btnCloseModal.addEventListener('click', closeTokenModal);
+            if (btnCancelModal) btnCancelModal.addEventListener('click', closeTokenModal);
+            if (btnSaveModal) btnSaveModal.addEventListener('click', saveTokenConfig);
+            if (btnReload) btnReload.addEventListener('click', loadFromGitHub);
+
+            loadFromGitHub();
+        });
     </script>
 </body>
 </html>
