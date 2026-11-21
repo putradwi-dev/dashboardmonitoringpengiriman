@@ -28,38 +28,6 @@
       ]
     },
     {
-      "grup": "SHOPE ADT 20/11/2026",
-      "items": [
-        {
-          "nama": "DH2P MERAH",
-          "qty": 2,
-          "no_pesanan": "261120RHBWB58C",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE TANGSEL 20/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 20,
-          "no_pesanan": "261119P7PY2Y4B",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": true
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA MT 21/11/2026",
       "items": [
         {
