@@ -12,7 +12,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "tes"
         },
         {
           "nama": "AB 318",
@@ -23,7 +24,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": ""
         }
       ]
     },
@@ -39,7 +41,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": ""
         },
         {
           "nama": "HIS 400MH",
@@ -50,7 +53,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": ""
         },
         {
           "nama": "SJ 8502",
@@ -61,7 +65,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": ""
         }
       ]
     },
@@ -77,7 +82,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": ""
         },
         {
           "nama": "KS 10000",
@@ -88,7 +94,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": ""
         },
         {
           "nama": "CF 110",
@@ -99,7 +106,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "tes",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": ""
         }
       ]
     },
@@ -115,7 +123,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": ""
         }
       ]
     }
