@@ -1,39 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "SHOPE MT 20/11/2026",
-      "items": [
-        {
-          "nama": "UCC 150",
-          "qty": 1,
-          "no_pesanan": "261120S2KJVMWU",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "barang ke mbg",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "AB 318",
-          "qty": 1,
-          "no_pesanan": "261120S6569F3S",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "ada di gudang mbg",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA MT 21/11/2026",
       "items": [
         {
@@ -84,20 +51,6 @@
       "grup": "SHOPE MT 21/11/2026",
       "items": [
         {
-          "nama": "CF 1200",
-          "qty": 1,
-          "no_pesanan": "261120SCFY1KHG",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "pinjam dulu, senin PO cikarang",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
           "nama": "KS 10000",
           "qty": 2,
           "no_pesanan": "261121U4G0D1PR",
@@ -108,20 +61,6 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "DO senin",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "CF 110",
-          "qty": 1,
-          "no_pesanan": "261121UFJEH769",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO SENIN",
           "sudah_packing": false,
           "sudah_kirim": false
         }
