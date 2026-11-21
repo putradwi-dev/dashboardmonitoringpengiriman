@@ -14,7 +14,7 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "barang ke mbg",
-          "sudah_packing": true,
+          "sudah_packing": false,
           "sudah_kirim": false
         },
         {
