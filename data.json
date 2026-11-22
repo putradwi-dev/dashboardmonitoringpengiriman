@@ -171,6 +171,22 @@
           "potong_stok": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE TANGSEL 23/11/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM",
+          "qty": 2,
+          "no_pesanan": "2611232FYV45HV",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
