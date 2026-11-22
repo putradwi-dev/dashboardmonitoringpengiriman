@@ -84,6 +84,38 @@
           "sudah_kirim": false
         }
       ]
+    },
+    {
+      "grup": "TOKOPEDIA MT 23/11/2026",
+      "items": [
+        {
+          "nama": "SJ 8502",
+          "qty": 1,
+          "no_pesanan": "587315889440261271",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE MT 23/11/2026",
+      "items": [
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "261121V934XB88",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
