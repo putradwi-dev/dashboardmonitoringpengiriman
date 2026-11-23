@@ -176,6 +176,17 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "stok MBP"
+        },
+        {
+          "nama": "AB 750",
+          "qty": 1,
+          "no_pesanan": "26112334NT6604",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
