@@ -13,7 +13,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO SENIN",
+          "no_do": "TUNGGU DO",
           "sudah_packing": false,
           "sudah_kirim": false
         },
@@ -27,7 +27,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO SENIN",
+          "no_do": "TUNGGU DO",
           "sudah_packing": false,
           "sudah_kirim": false
         },
@@ -41,7 +41,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO SENIN",
+          "no_do": "TUNGGU DO",
           "sudah_packing": false,
           "sudah_kirim": false
         }
@@ -60,7 +60,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO senin",
+          "no_do": "TUNGGU DO",
           "sudah_packing": false,
           "sudah_kirim": false
         }
@@ -79,7 +79,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO senin",
+          "no_do": "TUNGGU DO",
           "sudah_packing": false,
           "sudah_kirim": false
         }
@@ -97,7 +97,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "TUNGGU DO"
         },
         {
           "nama": "LOYANG 3CM",
@@ -108,7 +109,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "WAIT"
         }
       ]
     },
@@ -124,7 +126,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "STOk MBP"
         },
         {
           "nama": "RUBY 280",
@@ -135,7 +138,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "tunggu do"
         },
         {
           "nama": "G2D 472 INOX",
@@ -146,7 +150,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "tunggu do"
         },
         {
           "nama": "DH 10",
@@ -157,7 +162,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "tunggu do"
         },
         {
           "nama": "AB 208",
@@ -168,7 +174,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "stok MBP"
         }
       ]
     },
@@ -184,7 +191,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "wait"
         }
       ]
     }
