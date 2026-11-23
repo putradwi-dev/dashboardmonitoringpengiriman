@@ -110,7 +110,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "WAIT"
+          "no_do": "PO ke MBG"
         }
       ]
     },
@@ -192,7 +192,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "wait"
+          "no_do": "PO ke MBG"
         }
       ]
     }
