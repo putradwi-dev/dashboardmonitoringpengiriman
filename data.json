@@ -187,6 +187,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "GM DZM 160",
+          "qty": 1,
+          "no_pesanan": "26112333T194CD",
+          "ekspedisi": "KURIR TOKO",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "KIRIM KURIR MBG",
+          "potong_stok": false
         }
       ]
     },
