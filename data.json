@@ -110,7 +110,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "po ke mbg"
+          "no_do": "DO-202611/12726"
         }
       ]
     },
@@ -187,7 +187,29 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/13256"
+          "no_do": "tunggu No DO"
+        },
+        {
+          "nama": "HR 9",
+          "qty": 1,
+          "no_pesanan": "26112337DUB2W9",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "GC 388",
+          "qty": 1,
+          "no_pesanan": "2611233EMT97EA",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
