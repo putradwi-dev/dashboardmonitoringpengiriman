@@ -320,7 +320,7 @@
     },
     {
       "nama": "AB 318 GEA",
-      "jumlah": 4,
+      "jumlah": 3,
       "catatan": "PO.2026.11.00099",
       "tipe": "normal"
     },
@@ -329,6 +329,12 @@
       "jumlah": 2,
       "catatan": "PO.2026.11.00099",
       "tipe": "normal"
+    },
+    {
+      "nama": "TOPAZ 600",
+      "jumlah": 1,
+      "tipe": "normal",
+      "catatan": "261118KGU61NPY"
     }
   ]
 }
