@@ -13,7 +13,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "TUNGGU DO",
+          "no_do": "DO-202611/12816",
           "sudah_packing": false,
           "sudah_kirim": false
         },
@@ -127,7 +127,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "STOk MBP"
+          "no_do": "dari STOk MBP"
         },
         {
           "nama": "RUBY 280",
@@ -175,7 +175,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "stok MBP"
+          "no_do": "dari stok MBP"
         },
         {
           "nama": "AB 750",
@@ -186,7 +186,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "tunggu No DO"
         },
         {
           "nama": "GM DZM 160",
@@ -197,7 +198,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "KIRIM KURIR MBG",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "PO MBG KIRIM PEMBELI"
         }
       ]
     },
