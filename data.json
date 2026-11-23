@@ -198,7 +198,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "DO-202611/13429"
         },
         {
           "nama": "GC 388",
@@ -209,7 +210,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "DO-202611/13429"
         }
       ]
     },
