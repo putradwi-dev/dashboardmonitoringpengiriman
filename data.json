@@ -89,6 +89,22 @@
           "sudah_kirim": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE MT 24/11/2026",
+      "items": [
+        {
+          "nama": "LZ 80GZ",
+          "qty": 1,
+          "no_pesanan": "2611234904DV8F",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
