@@ -1,25 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "SHOPE MT 21/11/2026",
-      "items": [
-        {
-          "nama": "KS 10000",
-          "qty": 2,
-          "no_pesanan": "261121U4G0D1PR",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": true,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/12726",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 23/11/2026",
       "items": [
         {
