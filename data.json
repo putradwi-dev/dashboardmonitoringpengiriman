@@ -1,53 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 21/11/2026",
-      "items": [
-        {
-          "nama": "9870C",
-          "qty": 1,
-          "no_pesanan": "587296049432201156",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": true,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/12816",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "HIS 400MH",
-          "qty": 1,
-          "no_pesanan": "587302392198760431",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": true,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/12726",
-          "sudah_packing": true,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "SJ 8502",
-          "qty": 2,
-          "no_pesanan": "587304014590084933",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": true,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/12726",
-          "sudah_packing": true,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 21/11/2026",
       "items": [
         {
@@ -75,39 +28,6 @@
           "no_pesanan": "261120SDGUWXK9",
           "ekspedisi": "J&T",
           "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/12726",
-          "sudah_packing": true,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA MT 23/11/2026",
-      "items": [
-        {
-          "nama": "SJ 8502",
-          "qty": 1,
-          "no_pesanan": "587315889440261271",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/12726",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 2,
-          "no_pesanan": "587323303058244745",
-          "ekspedisi": "J&T",
-          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
