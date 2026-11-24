@@ -20,25 +20,6 @@
       ]
     },
     {
-      "grup": "SHOPE ADT 21/11/2026",
-      "items": [
-        {
-          "nama": "HR 6",
-          "qty": 1,
-          "no_pesanan": "261120SDGUWXK9",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/12726",
-          "sudah_packing": true,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 23/11/2026",
       "items": [
         {
@@ -67,25 +48,6 @@
           "potong_stok": false,
           "no_do": "DO-202611/13429",
           "sudah_packing": false,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE TANGSEL 23/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 2,
-          "no_pesanan": "2611232FYV45HV",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "PO ke MBG",
-          "sudah_packing": true,
           "sudah_kirim": false
         }
       ]
