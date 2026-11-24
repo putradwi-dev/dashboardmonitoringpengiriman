@@ -66,6 +66,17 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "stok MBP"
+        },
+        {
+          "nama": "AB 208",
+          "qty": 1,
+          "no_pesanan": "587359013554718494",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
