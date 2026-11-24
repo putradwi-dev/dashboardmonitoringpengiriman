@@ -64,7 +64,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "stok MBP"
         }
       ]
     },
@@ -80,7 +81,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "tunggu do"
         },
         {
           "nama": "SD 516B",
@@ -91,7 +93,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "tunggu do"
         },
         {
           "nama": "TFB 350SN",
@@ -102,7 +105,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "tunggu do"
         }
       ]
     }
