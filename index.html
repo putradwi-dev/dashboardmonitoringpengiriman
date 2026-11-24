@@ -331,11 +331,34 @@
                         : `<span class="inline-flex items-center gap-1.5 text-stone-400 font-semibold text-xs sm:text-sm"><span class="w-4 h-4 rounded border border-stone-300 bg-white inline-block"></span> Belum</span>`;
 
                     const nomorDo = (item.no_do || '').trim();
+                    const nomorDoEscaped = nomorDo.replace(/'/g, "\\'");
+                    const copyDoBtnDesktop = `
+                        <button type="button" onclick="event.stopPropagation(); copyNoPesanan('${nomorDoEscaped}', this)" title="Salin Nomor DO"
+                                class="text-cyan-700 hover:text-cyan-950 p-1 rounded hover:bg-cyan-100/80 transition-all cursor-pointer shrink-0">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                        </button>`;
+                    const copyDoBtnMobile = `
+                        <button type="button" onclick="event.stopPropagation(); copyNoPesanan('${nomorDoEscaped}', this)" title="Salin Nomor DO"
+                                class="text-cyan-700 hover:text-cyan-950 p-1 rounded hover:bg-cyan-100/80 transition-all cursor-pointer shrink-0">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                            </svg>
+                        </button>`;
                     const nomorDoBadgeDesktop = nomorDo
-                        ? `<span class="bg-cyan-50 text-cyan-900 font-mono font-extrabold text-xs sm:text-sm px-2.5 py-1 rounded-md border border-cyan-200 inline-block break-all">${nomorDo}</span>`
+                        ? `<div class="inline-flex items-center justify-center gap-1 bg-cyan-50 text-cyan-900 font-mono font-extrabold text-xs sm:text-sm px-2.5 py-1 rounded-md border border-cyan-200 max-w-full">
+                               <span class="select-all break-all">${nomorDo}</span>
+                               ${copyDoBtnDesktop}
+                           </div>`
                         : `<span class="text-stone-400 font-mono text-sm">-</span>`;
                     const nomorDoBadgeMobile = nomorDo
-                        ? `<span class="bg-cyan-50 text-cyan-900 font-mono font-extrabold text-xs px-2.5 py-1 rounded border border-cyan-200 inline-block">${nomorDo}</span>`
+                        ? `<div class="inline-flex items-center gap-1 bg-cyan-50 text-cyan-900 font-mono font-extrabold text-xs px-2.5 py-1 rounded border border-cyan-200">
+                               <span class="select-all">${nomorDo}</span>
+                               ${copyDoBtnMobile}
+                           </div>`
                         : `<span class="text-stone-400 font-mono text-xs">-</span>`;
 
                     const searchStr = `${item.nama} ${item.no_pesanan} ${item.ekspedisi} ${nomorDo} ${catatanManual} ${isKayu ? 'kayu' : ''} ${isTerlambat ? 'terlambat' : ''} ${isBatal ? 'batal' : ''}`.toLowerCase();
@@ -343,7 +366,7 @@
                     tableRows += `
                         <tr class="item-row hover:bg-sky-100 transition-colors cursor-pointer bg-white" data-kayu="${isKayu}" data-terlambat="${isTerlambat}" data-batal="${isBatal}" data-search="${searchStr}">
                             <td class="py-3.5 px-4 font-bold text-stone-900 text-base w-[20%]">${item.nama}</td>
-                            <td class="py-3.5 px-3 font-mono text-sm sm:text-base text-stone-700 w-[18%]">
+                            <td class="py-3.5 px-3 font-mono text-sm sm:text-base text-stone-700 w-[16%]">
                                 <div class="inline-flex items-center gap-1.5">
                                     <span class="select-all">${item.no_pesanan}</span>
                                     <button onclick="copyNoPesanan('${item.no_pesanan}', this)" title="Salin Nomor Pesanan"
@@ -356,11 +379,11 @@
                                 </div>
                             </td>
                             <td class="py-3.5 px-2 text-center w-[5%]" style="padding-left: 2px; padding-right: 2px;"><span class="bg-amber-50 px-2 py-0.5 rounded-lg font-bold text-amber-900 text-sm inline-block border border-amber-200">${itemQty}</span></td>
-                            <td class="py-3.5 px-2 w-[10%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
-                            <td class="py-3.5 px-3 w-[18%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
-                            <td class="py-3.5 px-2 text-center w-[12%] bg-cyan-50/30 border-l border-amber-100">${nomorDoBadgeDesktop}</td>
-                            <td class="py-3.5 px-2 text-center w-[9%] bg-amber-50/30 border-l border-amber-100">${packingCellHtml}</td>
-                            <td class="py-3.5 px-2 text-center w-[9%] bg-emerald-50/30 border-l border-amber-100">${kirimCellHtml}</td>
+                            <td class="py-3.5 px-2 w-[9%]" style="padding-left: 2px; padding-right: 2px;">${badgeEkspedisi}</td>
+                            <td class="py-3.5 px-3 w-[20%]"><div class="flex flex-wrap gap-1.5 items-center">${statusBadgesHtml}</div></td>
+                            <td class="py-3.5 px-2 text-center w-[14%] bg-cyan-50/30 border-l border-amber-100">${nomorDoBadgeDesktop}</td>
+                            <td class="py-3.5 px-2 text-center w-[8%] bg-amber-50/30 border-l border-amber-100">${packingCellHtml}</td>
+                            <td class="py-3.5 px-2 text-center w-[8%] bg-emerald-50/30 border-l border-amber-100">${kirimCellHtml}</td>
                         </tr>
                     `;
 
