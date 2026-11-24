@@ -101,6 +101,38 @@
           "no_do": "DO-202611/14172"
         }
       ]
+    },
+    {
+      "grup": "TOKOPEDIA MT 25/11/2026",
+      "items": [
+        {
+          "nama": "CF 310",
+          "qty": 1,
+          "no_pesanan": "587361059200665527",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE MT 25/11/2026",
+      "items": [
+        {
+          "nama": "DH10 TUKAR DH20",
+          "qty": 1,
+          "no_pesanan": "26112322SJGKMB",
+          "ekspedisi": "KURIR TOKO",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
