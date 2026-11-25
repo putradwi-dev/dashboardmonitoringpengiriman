@@ -27,6 +27,133 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+    /* Header adaptasi dari Homepage Portal PT. MBP */
+    .hp-header {
+      position: relative;
+      background:
+        radial-gradient(circle at 88% 20%, rgba(226, 168, 104, 0.22) 0%, rgba(226, 168, 104, 0) 48%),
+        linear-gradient(90deg, #1d110a 0%, #3b1e0c 55%, #7c3a10 100%);
+      border-bottom: 1px solid rgba(243, 210, 179, 0.28);
+      box-shadow: 0 6px 20px rgba(29, 17, 10, 0.14);
+      padding: 18px 16px;
+      color: #ffffff;
+    }
+
+    @media (min-width: 640px) {
+      .hp-header {
+        padding: 18px 24px;
+      }
+    }
+
+    .hp-header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1.5px;
+      background: linear-gradient(
+        90deg,
+        rgba(243, 210, 179, 0.08) 0%,
+        rgba(226, 168, 104, 0.72) 50%,
+        rgba(243, 210, 179, 0.08) 100%
+      );
+      pointer-events: none;
+    }
+
+    .hp-header-inner {
+      max-width: 1680px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hp-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .hp-header-logo {
+      height: 54px;
+      width: auto;
+      max-width: 190px;
+      object-fit: contain;
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 640px) {
+      .hp-header-logo {
+        height: 60px;
+        max-width: 210px;
+      }
+    }
+
+    .hp-brand-divider {
+      color: rgba(243, 210, 179, 0.55);
+      font-weight: 400;
+      font-size: 1.25rem;
+    }
+
+    @media (min-width: 640px) {
+      .hp-brand-divider {
+        font-size: 1.65rem;
+      }
+    }
+
+    .hp-brand-subtitle {
+      color: #f3d2b3;
+      font-weight: 700;
+      font-size: 1.15rem;
+      line-height: 1.25;
+    }
+
+    @media (min-width: 640px) {
+      .hp-brand-subtitle {
+        font-size: 1.6rem;
+      }
+    }
+
+    .hp-header-right {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hp-social-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hp-social-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: transform 0.2s ease;
+    }
+
+    .hp-social-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hp-social-icon {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      display: block;
+    }
+
         body { font-family: 'Inter', sans-serif; }
         @media print {
             .no-print { display: none !important; }
@@ -39,21 +166,18 @@
     <div>
         <!-- Area utama yang di-capture ke Gambar -->
         <div id="capture-area" class="bg-[#faf7f2] pb-6">
-            <!-- Header Section -->
-            <header class="bg-gradient-to-r from-amber-900 via-stone-800 to-amber-800 text-white shadow-lg">
-                <div class="max-w-[1680px] mx-auto px-4 sm:px-6 py-6">
-                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                        <div>
-                            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight flex items-center gap-2 text-amber-50">
-                                Monitoring Pengiriman & Titipan Stok PT. MBP
-                            </h1>
-                        </div>
-                        <div class="flex items-center gap-2.5 self-start md:self-auto">
-                            <!-- Tombol Bagikan -->
-                            <button onclick="openShareModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm no-print">
-                                🔗 BAGIKAN
-                            </button>
-                        </div>
+            <!-- Header Section (Adopsi dari Homepage Portal PT. MBP) -->
+            <header class="hp-header">
+                <div class="hp-header-inner">
+                    <div class="hp-brand">
+                        <img src="https://raw.githubusercontent.com/putradwi-dev/homepage/main/ptmbp.png" alt="PT. Makmur Beruntung Pisan" class="hp-header-logo" />
+                        <span class="hp-brand-divider">|</span>
+                        <h1 class="hp-brand-subtitle">Monitoring Pengiriman &amp; Titipan Stok</h1>
+                    </div>
+                    <div class="hp-header-right">
+                        <button type="button" onclick="openShareModal()" class="bg-amber-700 hover:bg-amber-600 text-white px-3.5 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm no-print cursor-pointer">
+                            🔗 BAGIKAN
+                        </button>
                     </div>
                 </div>
             </header>
@@ -656,6 +780,27 @@
                 }
             });
         }
+
+
+        // Handler klik ikon media sosial di header
+        document.querySelectorAll('.hp-social-btn').forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                const href = (btn.getAttribute('href') || '').trim();
+                const socialName = btn.getAttribute('data-social') || 'media sosial';
+                const isPlaceholder =
+                    !href ||
+                    href === '#' ||
+                    href === 'https://wa.me/' ||
+                    href === 'https://www.instagram.com/' ||
+                    href === 'https://www.tiktok.com/' ||
+                    href === 'https://www.facebook.com/';
+
+                if (isPlaceholder) {
+                    e.preventDefault();
+                    alert('Tautan ' + socialName + ' sedang dalam proses pembuatan dan belum diatur.');
+                }
+            });
+        });
 
         window.onload = loadDashboardData;
     </script>
