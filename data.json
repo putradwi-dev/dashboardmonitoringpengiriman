@@ -118,6 +118,17 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 2,
+          "no_pesanan": "261125833V41YJ",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
