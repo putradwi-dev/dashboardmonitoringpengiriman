@@ -47,7 +47,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "TUNGGU DO unutk tukar"
+          "no_do": "DO-202611/14508"
         },
         {
           "nama": "GM DZM 160",
@@ -71,7 +71,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "tunggu do"
+          "no_do": "Do-202611/14522"
         },
         {
           "nama": "TJ 8YG",
@@ -83,7 +83,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "tunggu do"
+          "no_do": "Do-202611/14522"
         },
         {
           "nama": "CF 210",
@@ -106,7 +106,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": ""
         },
         {
           "nama": "AB 318",
@@ -117,7 +118,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "stok MBP"
         },
         {
           "nama": "AB 318",
@@ -128,7 +130,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "DO-202611/14726"
         }
       ]
     },
