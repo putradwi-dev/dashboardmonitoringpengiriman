@@ -71,7 +71,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "Do-202611/14522"
+          "no_do": "tunggu do"
         },
         {
           "nama": "TJ 8YG",
@@ -83,7 +83,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "Do-202611/14522"
+          "no_do": "tunggu do"
         },
         {
           "nama": "CF 210",
@@ -103,6 +103,17 @@
           "no_pesanan": "2611257X9PRMAD",
           "ekspedisi": "JNE",
           "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "AB 318",
+          "qty": 1,
+          "no_pesanan": "26112581V9KVJD",
+          "ekspedisi": "JNE",
+          "kayu": false,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
