@@ -31,6 +31,17 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "STOK MBP"
+        },
+        {
+          "nama": "GM GF 71",
+          "qty": 1,
+          "no_pesanan": "587378950099862648",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
