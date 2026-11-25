@@ -91,6 +91,22 @@
           "potong_stok": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE TANGSEL 25/11/2026",
+      "items": [
+        {
+          "nama": "LOYANG 3CM",
+          "qty": 4,
+          "no_pesanan": "261118KGU61NPY ",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
