@@ -13,7 +13,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "STOK MBP"
+          "no_do": "STOK MBP",
+          "sudah_packing": true,
+          "sudah_kirim": false
         }
       ]
     },
@@ -30,7 +32,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "STOK MBP"
+          "no_do": "STOK MBP",
+          "sudah_packing": true,
+          "sudah_kirim": false
         },
         {
           "nama": "GM GF 71 + REGULATOR",
@@ -41,7 +45,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": true,
+          "sudah_kirim": false
         }
       ]
     },
@@ -58,7 +64,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/14508"
+          "no_do": "DO-202611/14508",
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "GM DZM 160",
@@ -70,7 +78,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "PO ke MBG"
+          "no_do": "PO ke MBG",
+          "sudah_packing": true,
+          "sudah_kirim": false
         },
         {
           "nama": "GF 101G",
@@ -82,7 +92,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "Do-202611/14522"
+          "no_do": "Do-202611/14522",
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "TJ 8YG",
@@ -94,7 +106,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "Do-202611/14522"
+          "no_do": "Do-202611/14522",
+          "sudah_packing": true,
+          "sudah_kirim": false
         },
         {
           "nama": "CF 210",
@@ -106,7 +120,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "STOK MBP"
+          "no_do": "STOK MBP",
+          "sudah_packing": true,
+          "sudah_kirim": false
         },
         {
           "nama": "EXPO 770 IC HITAM",
@@ -118,7 +134,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/14779"
+          "no_do": "DO-202611/14779",
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "AB 318",
@@ -130,7 +148,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "stok MBP"
+          "no_do": "stok MBP",
+          "sudah_packing": false,
+          "sudah_kirim": false
         },
         {
           "nama": "AB 318",
@@ -142,7 +162,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/14726"
+          "no_do": "DO-202611/14726",
+          "sudah_packing": true,
+          "sudah_kirim": false
         },
         {
           "nama": "WB 1H",
@@ -153,7 +175,9 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     },
@@ -170,7 +194,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "PO ke MBG"
+          "no_do": "PO ke MBG",
+          "sudah_packing": true,
+          "sudah_kirim": false
         }
       ]
     }
