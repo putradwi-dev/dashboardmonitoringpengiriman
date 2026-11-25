@@ -45,6 +45,50 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "GM DZM 160",
+          "qty": 1,
+          "no_pesanan": "2611246HN4A6HV",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "GF 101G",
+          "qty": 1,
+          "no_pesanan": "2611256YB4EQGV",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "TJ 8YG",
+          "qty": 1,
+          "no_pesanan": "2611257RHTH53P",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "CF 210",
+          "qty": 1,
+          "no_pesanan": "2611257TUA9WYR",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     }
