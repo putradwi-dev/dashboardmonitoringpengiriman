@@ -25,7 +25,7 @@
           "qty": 1,
           "no_pesanan": "587361059200665527",
           "ekspedisi": "J&T",
-          "kayu": true,
+          "kayu": false,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
