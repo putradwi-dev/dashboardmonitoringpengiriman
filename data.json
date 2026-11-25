@@ -132,6 +132,17 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "DO-202611/14726"
+        },
+        {
+          "nama": "WB 1H",
+          "qty": 1,
+          "no_pesanan": "2611258FGDMCK0",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
