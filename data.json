@@ -1,53 +1,8 @@
 {
   "belum_kirim": [
     {
-      "grup": "SHOPE MT 23/11/2026",
-      "items": [
-        {
-          "nama": "HR 9",
-          "qty": 1,
-          "no_pesanan": "26112337DUB2W9",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/13429",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "GC 388",
-          "qty": 1,
-          "no_pesanan": "2611233EMT97EA",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/13429",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA MT 24/11/2026",
       "items": [
-        {
-          "nama": "CF 210",
-          "qty": 1,
-          "no_pesanan": "587355060035093601",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "stok MBP"
-        },
         {
           "nama": "AB 208",
           "qty": 1,
@@ -62,47 +17,6 @@
       ]
     },
     {
-      "grup": "SHOPE MT 24/11/2026",
-      "items": [
-        {
-          "nama": "LZ 80GZ",
-          "qty": 1,
-          "no_pesanan": "2611234904DV8F",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/14171"
-        },
-        {
-          "nama": "SD 516B",
-          "qty": 1,
-          "no_pesanan": "26112346V27M8G",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/14172"
-        },
-        {
-          "nama": "TFB 350SN",
-          "qty": 1,
-          "no_pesanan": "2611245QVXH6ER",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/14172"
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA MT 25/11/2026",
       "items": [
         {
@@ -110,7 +24,7 @@
           "qty": 1,
           "no_pesanan": "587361059200665527",
           "ekspedisi": "J&T",
-          "kayu": false,
+          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
