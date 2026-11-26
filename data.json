@@ -79,6 +79,23 @@
       ]
     },
     {
+      "grup": "TOKOPEDIA ADT 26/11/2026",
+      "items": [
+        {
+          "nama": "1400PT",
+          "qty": 5,
+          "no_pesanan": "587377910703687446",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false,
+          "no_do": "DO DELAY"
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 26/11/2026",
       "items": [
         {
@@ -104,23 +121,17 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "DO DELAY"
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA ADT 26/11/2026",
-      "items": [
+        },
         {
-          "nama": "1400PT",
-          "qty": 5,
-          "no_pesanan": "587377910703687446",
-          "ekspedisi": "JNE",
-          "kayu": false,
+          "nama": "GM RTW 100L",
+          "qty": 1,
+          "no_pesanan": "261126AUPV9GQ8",
+          "ekspedisi": "J&T",
+          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO DELAY"
+          "potong_stok": false
         }
       ]
     },
