@@ -91,7 +91,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15400"
+          "no_do": "DO DELAY"
         }
       ]
     },
@@ -108,7 +108,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15224"
+          "no_do": "DO DELAY"
         },
         {
           "nama": "CF 750",
@@ -120,7 +120,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15222"
+          "no_do": "DO DELAY"
         },
         {
           "nama": "GM RTW 100L",
@@ -149,7 +149,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15226"
+          "no_do": "DO DELAY"
         }
       ]
     },
@@ -166,7 +166,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15222"
+          "no_do": "DO DELAY"
         },
         {
           "nama": "LOYANG 3CM",
@@ -196,6 +196,22 @@
           "catatan_manual": "KIRIM SABTU 28/11/2026",
           "potong_stok": false,
           "no_do": "KIRIM SABTU"
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE ADT 27/11/2026",
+      "items": [
+        {
+          "nama": "HR 6",
+          "qty": 1,
+          "no_pesanan": "261126B1E3FK65",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     }
