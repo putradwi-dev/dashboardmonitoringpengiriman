@@ -108,6 +108,22 @@
       ]
     },
     {
+      "grup": "TOKOPEDIA ADT 26/11/2026",
+      "items": [
+        {
+          "nama": "1400PT",
+          "qty": 5,
+          "no_pesanan": "587377910703687446",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE ADT 26/11/2026",
       "items": [
         {
