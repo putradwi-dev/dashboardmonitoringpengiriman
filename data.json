@@ -56,7 +56,8 @@
           "catatan_manual": "",
           "potong_stok": false,
           "sudah_packing": false,
-          "sudah_kirim": false
+          "sudah_kirim": false,
+          "no_do": "po ke mbg"
         }
       ]
     },
@@ -72,7 +73,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "stok mbp"
         }
       ]
     },
@@ -88,7 +90,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "TUNGGU DO"
         },
         {
           "nama": "CF 750",
@@ -99,7 +102,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "TUNGGU DO"
         }
       ]
     },
@@ -115,7 +119,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "TUNGGU DO"
         }
       ]
     },
@@ -131,7 +136,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "TUNGGU DO"
         },
         {
           "nama": "LOYANG 3CM",
@@ -142,7 +148,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "PO ke MBG"
         }
       ]
     }
