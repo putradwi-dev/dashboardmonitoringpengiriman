@@ -94,6 +94,33 @@
           "potong_stok": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE MT 26/11/2026",
+      "items": [
+        {
+          "nama": "HR 9",
+          "qty": 1,
+          "no_pesanan": "26112596A2EXGS",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "CF 750",
+          "qty": 1,
+          "no_pesanan": "261126A1NMFRDB",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
