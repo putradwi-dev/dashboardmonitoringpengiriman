@@ -62,6 +62,22 @@
       ]
     },
     {
+      "grup": "TOKOPEDIA MT 26/11/2026",
+      "items": [
+        {
+          "nama": "CF 210",
+          "qty": 1,
+          "no_pesanan": "587381891388573438",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
       "grup": "TOKOPEDIA ADT 26/11/2026",
       "items": [
         {
