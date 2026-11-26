@@ -108,7 +108,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15224"
+          "no_do": "DO DELAY"
         },
         {
           "nama": "CF 750",
@@ -120,7 +120,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15222"
+          "no_do": "DO DELAY"
         },
         {
           "nama": "GM RTW 100L",
@@ -149,7 +149,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15226"
+          "no_do": "DO DELAY"
         }
       ]
     },
@@ -166,7 +166,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15222"
+          "no_do": "DO DELAY"
         },
         {
           "nama": "LOYANG 3CM",
@@ -179,6 +179,22 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "PO ke MBG"
+        }
+      ]
+    },
+    {
+      "grup": "OFFLINE 26/11/2026",
+      "items": [
+        {
+          "nama": "UCC 150 2D & CF 210",
+          "qty": 1,
+          "no_pesanan": "ARJUNA DAMAR JAYA",
+          "ekspedisi": "KURIR TOKO",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "KIRIM SABTU 28/11/2026",
+          "potong_stok": false
         }
       ]
     }
