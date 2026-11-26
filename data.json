@@ -1,57 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "TOKOPEDIA MT 24/11/2026",
-      "items": [
-        {
-          "nama": "AB 208",
-          "qty": 1,
-          "no_pesanan": "587359013554718494",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "STOK MBP",
-          "sudah_packing": true,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA MT 25/11/2026",
-      "items": [
-        {
-          "nama": "CF 310",
-          "qty": 1,
-          "no_pesanan": "587361059200665527",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "STOK MBP",
-          "sudah_packing": true,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "GM GF 71 + REGULATOR",
-          "qty": 1,
-          "no_pesanan": "587378950099862648",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": true,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 25/11/2026",
       "items": [
         {
@@ -69,20 +18,6 @@
           "sudah_kirim": false
         },
         {
-          "nama": "GM DZM 160",
-          "qty": 1,
-          "no_pesanan": "2611246HN4A6HV",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "PO ke MBG",
-          "sudah_packing": true,
-          "sudah_kirim": false
-        },
-        {
           "nama": "GF 101G",
           "qty": 1,
           "no_pesanan": "2611256YB4EQGV",
@@ -93,48 +28,6 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "Do-202611/14522",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "TJ 8YG",
-          "qty": 1,
-          "no_pesanan": "2611257RHTH53P",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "Do-202611/14522",
-          "sudah_packing": true,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "CF 210",
-          "qty": 1,
-          "no_pesanan": "2611257TUA9WYR",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "STOK MBP",
-          "sudah_packing": true,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "EXPO 770 IC HITAM",
-          "qty": 1,
-          "no_pesanan": "2611257X9PRMAD",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/14779",
           "sudah_packing": false,
           "sudah_kirim": false
         },
@@ -150,20 +43,6 @@
           "potong_stok": false,
           "no_do": "stok MBP",
           "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "AB 318",
-          "qty": 2,
-          "no_pesanan": "261125833V41YJ",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/14726",
-          "sudah_packing": true,
           "sudah_kirim": false
         },
         {
@@ -197,6 +76,22 @@
           "no_do": "PO ke MBG",
           "sudah_packing": true,
           "sudah_kirim": false
+        }
+      ]
+    },
+    {
+      "grup": "TOKOPEDIA MT 26/11/2026",
+      "items": [
+        {
+          "nama": "CF 210",
+          "qty": 1,
+          "no_pesanan": "587381891388573438",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     }
