@@ -194,7 +194,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "KIRIM SABTU 28/11/2026",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "KIRIM SABTU"
         }
       ]
     }
