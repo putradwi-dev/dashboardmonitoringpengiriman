@@ -61,25 +61,6 @@
       ]
     },
     {
-      "grup": "SHOPE TANGSEL 25/11/2026",
-      "items": [
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 4,
-          "no_pesanan": "2611257SHAMFAF",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "PO ke MBG",
-          "sudah_packing": true,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA MT 26/11/2026",
       "items": [
         {
@@ -115,6 +96,49 @@
           "no_pesanan": "261126A1NMFRDB",
           "ekspedisi": "J&T",
           "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE ADT 26/11/2026",
+      "items": [
+        {
+          "nama": "SD 456B",
+          "qty": 1,
+          "no_pesanan": "26112595JYC0QT",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE TANGSEL 26/11/2026",
+      "items": [
+        {
+          "nama": "DZM 350",
+          "qty": 1,
+          "no_pesanan": "2611258RFBM3X5",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "LOYANG 3CM",
+          "qty": 5,
+          "no_pesanan": "261126A3JW6UJ5",
+          "ekspedisi": "JNE",
+          "kayu": true,
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
