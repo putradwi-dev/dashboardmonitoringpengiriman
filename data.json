@@ -62,23 +62,6 @@
       ]
     },
     {
-      "grup": "TOKOPEDIA MT 26/11/2026",
-      "items": [
-        {
-          "nama": "CF 210",
-          "qty": 1,
-          "no_pesanan": "587381891388573438",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "stok mbp"
-        }
-      ]
-    },
-    {
       "grup": "TOKOPEDIA ADT 26/11/2026",
       "items": [
         {
@@ -108,7 +91,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15224"
+          "no_do": "DO DELAY"
         },
         {
           "nama": "CF 750",
@@ -120,7 +103,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15222"
+          "no_do": "DO DELAY"
         },
         {
           "nama": "GM RTW 100L",
@@ -148,7 +131,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15226"
+          "no_do": "DO DELAY"
         }
       ]
     },
@@ -165,7 +148,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO-202611/15222"
+          "no_do": "DO DELAY"
         },
         {
           "nama": "LOYANG 3CM",
