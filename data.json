@@ -73,7 +73,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "STOK MBP"
         }
       ]
     },
@@ -107,7 +108,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO DELAY"
+          "no_do": "DO-202611/15224"
         },
         {
           "nama": "CF 750",
@@ -119,7 +120,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO DELAY"
+          "no_do": "DO-202611/15222"
         },
         {
           "nama": "GM RTW 100L",
@@ -130,7 +131,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "PO KE MBG"
         }
       ]
     },
@@ -147,7 +149,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO DELAY"
+          "no_do": "DO-202611/15226"
         }
       ]
     },
@@ -164,7 +166,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "DO DELAY"
+          "no_do": "DO-202611/15222"
         },
         {
           "nama": "LOYANG 3CM",
