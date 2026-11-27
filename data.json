@@ -13,7 +13,23 @@
           "batal": false,
           "catatan_manual": "KIRIM SABTU 28/11/2026",
           "potong_stok": false,
-          "no_do": "barang di MBG"
+          "no_do": "KIRIM SABTU"
+        }
+      ]
+    },
+    {
+      "grup": "TOKOPEDIA MT 27/11/2026",
+      "items": [
+        {
+          "nama": "GM EF 88",
+          "qty": 1,
+          "no_pesanan": "587415118272890306",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
@@ -30,7 +46,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "Do-202611/15711"
+          "no_do": "tunggu do"
         }
       ]
     },
@@ -47,7 +63,7 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "Do-202611/15711"
+          "no_do": "tunggu do"
         }
       ]
     }
