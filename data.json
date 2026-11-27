@@ -31,17 +31,6 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "tunggu do"
-        },
-        {
-          "nama": "VRX 1200",
-          "qty": 1,
-          "no_pesanan": "261127D2DRS40N",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
         }
       ]
     },
