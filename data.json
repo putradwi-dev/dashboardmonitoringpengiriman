@@ -13,7 +13,7 @@
           "batal": false,
           "catatan_manual": "KIRIM SABTU 28/11/2026",
           "potong_stok": false,
-          "no_do": "KIRIM SABTU"
+          "no_do": "barang di MBG"
         }
       ]
     },
@@ -29,7 +29,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "tunggu do"
         }
       ]
     },
@@ -45,7 +46,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "tunggu do"
         }
       ]
     }
