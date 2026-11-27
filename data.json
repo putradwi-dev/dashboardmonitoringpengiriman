@@ -84,6 +84,22 @@
           "no_do": "Do-202611/15711"
         }
       ]
+    },
+    {
+      "grup": "TOKOPEDIA MT 28/11/2026",
+      "items": [
+        {
+          "nama": "TOPAZ 600",
+          "qty": 1,
+          "no_pesanan": "261127DNECP9XC",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
