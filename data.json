@@ -13,7 +13,9 @@
           "batal": false,
           "catatan_manual": "KIRIM SABTU 28/11/2026",
           "potong_stok": false,
-          "no_do": "KIRIM SABTU"
+          "no_do": "KIRIM SABTU",
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     },
@@ -30,7 +32,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "PO KE MBG"
+          "no_do": "PO KE MBG",
+          "sudah_packing": true,
+          "sudah_kirim": false
         }
       ]
     },
@@ -64,7 +68,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "Do-202611/15711"
+          "no_do": "Do-202611/15711",
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     },
@@ -81,7 +87,9 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
-          "no_do": "Do-202611/15711"
+          "no_do": "Do-202611/15711",
+          "sudah_packing": false,
+          "sudah_kirim": false
         }
       ]
     },
