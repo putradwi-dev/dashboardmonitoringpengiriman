@@ -1,188 +1,6 @@
 {
   "belum_kirim": [
     {
-      "grup": "SHOPE MT 25/11/2026",
-      "items": [
-        {
-          "nama": "DH10 TUKAR DH20",
-          "qty": 1,
-          "no_pesanan": "26112322SJGKMB",
-          "ekspedisi": "KURIR TOKO",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO-202611/14508",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "GF 101G",
-          "qty": 1,
-          "no_pesanan": "2611256YB4EQGV",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "Do-202611/14522",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "AB 318",
-          "qty": 1,
-          "no_pesanan": "26112581V9KVJD",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "stok MBP",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "WB 1H",
-          "qty": 1,
-          "no_pesanan": "2611258FGDMCK0",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "sudah_packing": false,
-          "sudah_kirim": false,
-          "no_do": "po ke mbg"
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA MT 26/11/2026",
-      "items": [
-        {
-          "nama": "CF 210",
-          "qty": 1,
-          "no_pesanan": "587381891388573438",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "STOK MBP"
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA ADT 26/11/2026",
-      "items": [
-        {
-          "nama": "1400PT",
-          "qty": 5,
-          "no_pesanan": "587377910703687446",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO DELAY"
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 26/11/2026",
-      "items": [
-        {
-          "nama": "HR 9",
-          "qty": 1,
-          "no_pesanan": "26112596A2EXGS",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO DELAY"
-        },
-        {
-          "nama": "CF 750",
-          "qty": 1,
-          "no_pesanan": "261126A1NMFRDB",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO DELAY"
-        },
-        {
-          "nama": "GM RTW 100L",
-          "qty": 1,
-          "no_pesanan": "261126AUPV9GQ8",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "PO KE MBG"
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE ADT 26/11/2026",
-      "items": [
-        {
-          "nama": "SD 456B",
-          "qty": 1,
-          "no_pesanan": "26112595JYC0QT",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO DELAY"
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE TANGSEL 26/11/2026",
-      "items": [
-        {
-          "nama": "DZM 350",
-          "qty": 1,
-          "no_pesanan": "2611258RFBM3X5",
-          "ekspedisi": "JNE",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "DO DELAY"
-        },
-        {
-          "nama": "LOYANG 3CM",
-          "qty": 5,
-          "no_pesanan": "261126A3JW6UJ5",
-          "ekspedisi": "JNE",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "PO ke MBG"
-        }
-      ]
-    },
-    {
       "grup": "OFFLINE 26/11/2026",
       "items": [
         {
@@ -196,6 +14,22 @@
           "catatan_manual": "KIRIM SABTU 28/11/2026",
           "potong_stok": false,
           "no_do": "KIRIM SABTU"
+        }
+      ]
+    },
+    {
+      "grup": "SHOPE MT 27/11/2026",
+      "items": [
+        {
+          "nama": "RTW 120L 5",
+          "qty": 1,
+          "no_pesanan": "261126B7GVNVAV",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
