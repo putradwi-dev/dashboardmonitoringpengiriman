@@ -71,6 +71,17 @@
           "no_do": "Do-202611/15711",
           "sudah_packing": false,
           "sudah_kirim": false
+        },
+        {
+          "nama": "TOPAZ 600",
+          "qty": 1,
+          "no_pesanan": "261127DNECP9XC",
+          "ekspedisi": "JNE",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     },
@@ -90,22 +101,6 @@
           "no_do": "Do-202611/15711",
           "sudah_packing": false,
           "sudah_kirim": false
-        }
-      ]
-    },
-    {
-      "grup": "TOKOPEDIA MT 28/11/2026",
-      "items": [
-        {
-          "nama": "TOPAZ 600",
-          "qty": 1,
-          "no_pesanan": "261127DNECP9XC",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
         }
       ]
     }
