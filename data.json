@@ -29,7 +29,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "PO KE MBG"
         }
       ]
     },
@@ -45,7 +46,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "TUNGGU DO"
         }
       ]
     },
