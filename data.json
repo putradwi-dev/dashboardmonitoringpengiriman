@@ -34,6 +34,22 @@
       ]
     },
     {
+      "grup": "SHOPE ADT 27/11/2026",
+      "items": [
+        {
+          "nama": "SC R2 5 & CM 0521",
+          "qty": 1,
+          "no_pesanan": "587409413705664259",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 27/11/2026",
       "items": [
         {
