@@ -54,6 +54,22 @@
           "sudah_kirim": false
         }
       ]
+    },
+    {
+      "grup": "SHOPE MT 28/11/2026",
+      "items": [
+        {
+          "nama": "C32",
+          "qty": 1,
+          "no_pesanan": "261128ED8C78F8",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
     }
   ],
   "stok_tangerang": [
