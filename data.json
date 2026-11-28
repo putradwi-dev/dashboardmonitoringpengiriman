@@ -37,25 +37,6 @@
       ]
     },
     {
-      "grup": "SHOPE ADT 27/11/2026",
-      "items": [
-        {
-          "nama": "HR 6",
-          "qty": 1,
-          "no_pesanan": "261126B1E3FK65",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "Do-202611/15711",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
       "grup": "SHOPE MT 28/11/2026",
       "items": [
         {
