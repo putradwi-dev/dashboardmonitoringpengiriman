@@ -32,18 +32,6 @@
           "no_do": "Pinjam jika ada"
         },
         {
-          "nama": "DH 10",
-          "qty": 1,
-          "no_pesanan": "261128F9QSHDB0",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "BARANG DI MBG"
-        },
-        {
           "nama": "HIS 300PC",
           "qty": 1,
           "no_pesanan": "261127E0YFW4BJ",
