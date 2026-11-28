@@ -86,6 +86,17 @@
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "Pinjam jika ada"
+        },
+        {
+          "nama": "ENC 4",
+          "qty": 1,
+          "no_pesanan": "261128FM7BUT7U",
+          "ekspedisi": "J&T",
+          "kayu": true,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     }
