@@ -20,26 +20,7 @@
       ]
     },
     {
-      "grup": "TOKOPEDIA MT 27/11/2026",
-      "items": [
-        {
-          "nama": "GM EF 88",
-          "qty": 1,
-          "no_pesanan": "587415118272890306",
-          "ekspedisi": "J&T",
-          "kayu": false,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "PO KE MBG",
-          "sudah_packing": true,
-          "sudah_kirim": false
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE ADT 27/11/2026",
+      "grup": "TOKOPEDIA ADT 27/11/2026",
       "items": [
         {
           "nama": "SC R2 5, CM 0521, TEKO 1.6 (3 UNIT)",
@@ -47,41 +28,11 @@
           "no_pesanan": "587409413705664259",
           "ekspedisi": "J&T",
           "kayu": true,
-          "terlambat": false,
+          "terlambat": true,
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false,
           "no_do": "DO-202611/16156"
-        }
-      ]
-    },
-    {
-      "grup": "SHOPE MT 27/11/2026",
-      "items": [
-        {
-          "nama": "RTW 120L 5",
-          "qty": 1,
-          "no_pesanan": "261126B7GVNVAV",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false,
-          "no_do": "Do-202611/15711",
-          "sudah_packing": false,
-          "sudah_kirim": false
-        },
-        {
-          "nama": "TOPAZ 600",
-          "qty": 1,
-          "no_pesanan": "261127DNECP9XC",
-          "ekspedisi": "J&T",
-          "kayu": true,
-          "terlambat": false,
-          "batal": false,
-          "catatan_manual": "",
-          "potong_stok": false
         }
       ]
     },
