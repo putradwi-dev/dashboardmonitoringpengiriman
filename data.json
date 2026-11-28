@@ -48,7 +48,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "Pinjam jika ada"
         },
         {
           "nama": "DH 10",
@@ -59,7 +60,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "barang di mbg"
         },
         {
           "nama": "HIS 300PC",
@@ -70,7 +72,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "Pinjam jika ada"
         },
         {
           "nama": "RUBY 280",
@@ -81,7 +84,8 @@
           "terlambat": false,
           "batal": false,
           "catatan_manual": "",
-          "potong_stok": false
+          "potong_stok": false,
+          "no_do": "Pinjam jika ada"
         }
       ]
     }
