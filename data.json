@@ -68,6 +68,28 @@
           "batal": false,
           "catatan_manual": "",
           "potong_stok": false
+        },
+        {
+          "nama": "DH 10",
+          "qty": 1,
+          "no_pesanan": "261128F9QSHDB0",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        },
+        {
+          "nama": "HIS 300PC",
+          "qty": 1,
+          "no_pesanan": "261127E0YFW4BJ",
+          "ekspedisi": "JNE",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
         }
       ]
     }
