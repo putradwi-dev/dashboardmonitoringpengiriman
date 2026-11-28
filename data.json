@@ -37,6 +37,22 @@
       ]
     },
     {
+      "grup": "TOKOPEDIA ADT 28/11/2026",
+      "items": [
+        {
+          "nama": "HIS 300MH",
+          "qty": 2,
+          "no_pesanan": "587433951989368062",
+          "ekspedisi": "J&T",
+          "kayu": false,
+          "terlambat": false,
+          "batal": false,
+          "catatan_manual": "",
+          "potong_stok": false
+        }
+      ]
+    },
+    {
       "grup": "SHOPE MT 28/11/2026",
       "items": [
         {
